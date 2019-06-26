@@ -1,0 +1,53 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+$family-primary: 'Compromis', sans-serif;
+
+// Set your colors
+$primary: #ff6600;
+$primary-invert: findColorInvert($primary);
+
+$gray-darkest: #242946;
+$gray-lightest: #f8faff;
+
+$grays: (
+  '100': mix($gray-darkest, $gray-lightest, 5%),
+  '200': mix($gray-darkest, $gray-lightest, 10%),
+  '300': mix($gray-darkest, $gray-lightest, 20%),
+  '400': mix($gray-darkest, $gray-lightest, 30%),
+  '500': mix($gray-darkest, $gray-lightest, 40%),
+  '600': mix($gray-darkest, $gray-lightest, 50%),
+  '700': mix($gray-darkest, $gray-lightest, 70%),
+  '800': mix($gray-darkest, $gray-lightest, 90%),
+  '900': $gray-darkest,
+);
+
+$black-bis: map-get($grays, '900');
+$black-ter: map-get($grays, '800');
+$grey-darker: map-get($grays, '700');
+$grey-dark: map-get($grays, '600');
+$grey: map-get($grays, '500');
+$grey-light: map-get($grays, '400');
+$grey-lighter: map-get($grays, '300');
+$white-ter: map-get($grays, '200');
+$white-bis: map-get($grays, '100');
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+$input-shadow: 0;
