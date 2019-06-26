@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ bannerProperties.text }}
+    {{ bannerProperties }}
   </div>
 </template>
 
