@@ -15,14 +15,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-    @import "../variables";
-
-    .bannerWorkspace {
-        background-color: $white;
-        padding: 1rem;
-        display: flex;
-        border-radius: 20px;
-    }
-</style>

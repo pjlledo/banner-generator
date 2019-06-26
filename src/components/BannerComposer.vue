@@ -64,25 +64,25 @@ export default {
 
  .composer {
    display: grid;
-   grid-template-columns: 0.3fr 0.7fr;
+   grid-template-columns: 21rem 1fr;
    grid-template-areas: "pane workspace";
  }
 
   .pane {
     grid-area: pane;
     margin: 1rem 1rem 1rem 0rem;
-    border-radius: 0px 20px 20px 0px;
-    padding: 3rem;
-    background-color: $gray-900;
+    border-radius: 0 1.25rem 1.25rem 0;
+    padding: 2rem 2rem 2rem 3.5rem;
+    background-color: $white;
   }
 
   .workspace {
     grid-area: workspace;
-    margin: 1rem;
+    margin: 1rem 0 1rem 1rem;
     background-color: $white;
     padding: 1rem;
     display: flex;
-    border-radius: 20px;
+    border-radius: 1.25rem 0  0 1.25rem;
   }
 
 

@@ -1,13 +1,13 @@
 <template>
-    <div class="appHeader">Compromís · Generador Banners</div> 
+    <div class="header">Compromís · Generador Banners</div> 
 </template>
 
 <style lang="scss" scoped>
     @import "../variables";
 
-    .appHeader {
+    .header {
         background-color: $white;
-        width: 90%;
+        margin: 0 4rem 1rem 3.5rem;
         padding: 1rem;
         display: flex;
         border-radius: 0px 0px 20px 20px;
