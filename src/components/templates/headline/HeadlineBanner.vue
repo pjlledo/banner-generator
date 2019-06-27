@@ -1,6 +1,7 @@
 <template>
   <div>
     {{ bannerProperties }}
+    <img :src="bannerProperties.picturePreview" />
   </div>
 </template>
 
