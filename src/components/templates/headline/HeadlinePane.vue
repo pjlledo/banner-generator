@@ -31,10 +31,10 @@
     <b-field label="Titular">
       <b-input placeholder="Un tren descarrila..." v-model="properties.headline"></b-input>
     </b-field>
-    <b-field v-if="!properties.picture">
+    <b-field>
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
-          <div class="content has-text-centered">
+          <div class="content has-text-centered" v-if="!properties.picture">
             <p>
               <b-icon
                 icon="upload"
@@ -43,12 +43,12 @@
             </p>
             <p>Drop your files here or click to upload</p>
           </div>
+          <div v-else>
+            {{ properties.picture.name }}
+          </div>
         </section>
       </b-upload>
-    </b-field>
-    <b-field v-else>
-      {{ properties.picture.name }}
-      <button @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
+      <button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
     </b-field>
     <b-switch v-model="properties.hasLocalLabel">
       Afegir text al logo
@@ -80,7 +80,7 @@ export default {
         localLabel: '',
         source: null,
         customSource: '',
-        customSourceColor: '',
+        customSourceColor: ''
       },
       presets: presets,
       imagePreview: ''
@@ -103,7 +103,7 @@ export default {
 
   methods: {
     updateSource (source) {
-      if (source === 'other') { 
+      if (source === 'other') {
         this.properties.source = 'other'
         return
       }

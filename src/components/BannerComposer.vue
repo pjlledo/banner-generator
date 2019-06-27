@@ -1,14 +1,40 @@
 <template>
   <div class="composer">
-    <component class="pane" :is="selectedTemplate.componentPane" @updated="propertiesUpdated" />
-    <banner-workspace class="workspace" :component-banner="selectedTemplate.componentBanner" :banner-properties="bannerProperties" />
+    <template v-if="selectedTemplate">
+      <component class="pane" :is="selectedTemplate.componentPane" @updated="(props) => { bannerProperties = props }" />
+      <banner-workspace class="workspace" :component-banner="selectedTemplate.componentBanner" :banner-properties="bannerProperties" />
+    </template>
+    <template v-else>
+      <ul>
+        <li v-for="template in templates" :key="template.id">
+          <a href="#" @click="selectedTemplate = template">{{ template.name }}</a>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 
 <script>
 import BannerWorkspace from './BannerWorkspace'
+
+/* Templates */
 import HeadlinePane from './templates/headline/HeadlinePane'
 import HeadlineBanner from './templates/headline/HeadlineBanner'
+
+const templates = [
+  {
+    id: 'headline',
+    name: 'Titular de premsa',
+    componentPane: HeadlinePane,
+    componentBanner: HeadlineBanner
+  },
+  {
+    id: 'quote',
+    name: 'Frase',
+    componentPane: null,
+    componentBanner: null
+  }
+]
 
 export default {
   name: 'BannerComposer',
@@ -21,36 +47,9 @@ export default {
 
   data () {
     return {
-      templates: [
-        {
-          id: 'headline',
-          name: 'Titular de premsa',
-          componentPane: HeadlinePane,
-          componentBanner: HeadlineBanner
-        },
-        {
-          id: 'quote',
-          name: 'Frase',
-          componentPane: null,
-          componentBanner: null
-        }
-      ],
+      templates: templates,
       selectedTemplate: null,
       bannerProperties: null
-    }
-  },
-
-  created () {
-    this.selectedTemplate = this.templates[0]
-  },
-
-  methods: {
-    updateTemplate (e) {
-      this.selectedTemplate = this.templates.find(template => template.id === e.target.value)
-    },
-
-    propertiesUpdated (newProps) {
-      this.bannerProperties = newProps
     }
   }
 }
