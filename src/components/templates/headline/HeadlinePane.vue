@@ -31,8 +31,7 @@
     <b-field label="Titular">
       <b-input placeholder="Un tren descarrila..." v-model="properties.headline"></b-input>
     </b-field>
-    <b-field>
-      <label class="label">Imatge</label>
+    <b-field v-if="!properties.picture">
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered">
@@ -46,6 +45,10 @@
           </div>
         </section>
       </b-upload>
+    </b-field>
+    <b-field v-else>
+      {{ properties.picture.name }}
+      <button @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
     </b-field>
     <b-switch v-model="properties.hasLocalLabel">
       Afegir text al logo
@@ -68,7 +71,7 @@ export default {
     return {
       properties: {
         disposition: 1,
-        picture: '',
+        picture: null,
         picturePreview: '',
         picturePos: '',
         headline: '',
