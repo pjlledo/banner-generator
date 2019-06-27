@@ -3,7 +3,7 @@
 
 $family-primary: 'Compromis', sans-serif;
 
-// Set your colors
+// Colors
 $primary: #ff6600;
 $primary-invert: findColorInvert($primary);
 
@@ -30,7 +30,7 @@ $grey-lighter: $gray-300;
 $white-ter: $gray-200;
 $white-bis: $gray-100;
 
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+// Setup $colors to use as bulma classes
 $colors: (
     "white": ($white, $black),
     "black": ($black, $white),
@@ -51,4 +51,5 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
+// Inputs
 $input-shadow: 0;
