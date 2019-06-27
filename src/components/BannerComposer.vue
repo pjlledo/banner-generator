@@ -1,8 +1,5 @@
 <template>
   <div class="composer">
-    <select @change="updateTemplate">
-      <option v-for="template in templates" :value="template.id" :key="template.id" :selected="selectedTemplate.id === template.id">{{ template.name }}</option>
-    </select>
     <component class="pane" :is="selectedTemplate.componentPane" @updated="propertiesUpdated" />
     <banner-workspace class="workspace" :component-banner="selectedTemplate.componentBanner" :banner-properties="bannerProperties" />
   </div>
@@ -63,27 +60,33 @@ export default {
   @import "../variables";
 
  .composer {
-   display: grid;
-   grid-template-columns: 21rem 1fr;
-   grid-template-areas: "pane workspace";
+    display: grid;
+    grid-template-columns: 21rem 1fr;
+    grid-template-areas: "pane workspace";
+    position: absolute;
+    top: 4rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
  }
 
   .pane {
     grid-area: pane;
-    margin: 1rem 1rem 1rem 0rem;
-    border-radius: 0 1.25rem 1.25rem 0;
+    margin: 1rem 1rem 0 0;
+    border-radius: 0 1.25rem 0 0;
     padding: 2rem 2rem 2rem 3.5rem;
     background-color: $white;
   }
 
   .workspace {
     grid-area: workspace;
-    margin: 1rem 0 1rem 1rem;
+    margin: 1rem 0 0 1rem;
     background-color: $white;
     padding: 1rem;
     display: flex;
-    border-radius: 1.25rem 0  0 1.25rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.25rem 0  0 0;
   }
-
-
 </style>
