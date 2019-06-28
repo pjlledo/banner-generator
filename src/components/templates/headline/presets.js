@@ -1,14 +1,16 @@
+import LaVanguardiaSVG from './logos/lavanguardia.svg'
+
 const sources = [
   {
     id: 'eldiario',
     name: 'eldiario.es',
-    logo: 'svg',
+    logo: LaVanguardiaSVG,
     fontFamily: 'Roboto Slab'
   },
   {
     id: 'lavanguardia',
     name: 'La Vanguardia',
-    logo: 'svg',
+    logo: LaVanguardiaSVG,
     fontFamily: 'TiemposHeadline'
   }
 ]
