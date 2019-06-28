@@ -25,11 +25,11 @@
         <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
       </b-field>
       <b-field label="Color">
-        Color
+        <swatches v-model="properties.customSourceColor"></swatches>
       </b-field>
     </div>
     <b-field label="Titular">
-      <b-input placeholder="Un tren descarrila..." v-model="properties.headline"></b-input>
+      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline"></b-input>
     </b-field>
     <b-field>
       <b-upload @input="updateImage" drag-drop>
@@ -50,12 +50,15 @@
       </b-upload>
       <button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
     </b-field>
+    <b-field label="Hashtag">
+      <b-input placeholder="#" v-model="properties.hashtag"></b-input>
+    </b-field>
     <b-switch v-model="properties.hasLocalLabel">
       Afegir text al logo
     </b-switch>
     <div v-if="properties.hasLocalLabel">
       <b-field label="Text">
-        <b-input placeholder="Alacant" v-model="properties.headline"></b-input>
+        <b-input placeholder="Alacant" v-model="properties.localLabel"></b-input>
       </b-field>
     </div>
   </div>
@@ -63,9 +66,14 @@
 
 <script>
 import presets from './presets'
+import Swatches from 'vue-swatches'
 
 export default {
   name: 'headline-pane',
+
+  components: {
+    Swatches
+  },
 
   data () {
     return {
@@ -80,7 +88,7 @@ export default {
         localLabel: '',
         source: null,
         customSource: '',
-        customSourceColor: ''
+        customSourceColor: '#1CA085'
       },
       presets: presets,
       imagePreview: ''

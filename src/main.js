@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import './icons'
 import './registerServiceWorker'
 import './global.scss'
+import 'vue-swatches/dist/vue-swatches.min.css'
 
 Vue.config.productionTip = false
 Vue.use(Buefy, {
