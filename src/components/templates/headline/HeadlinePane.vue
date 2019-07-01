@@ -51,7 +51,7 @@
       <button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
     </b-field>
     <b-field label="Hashtag">
-      <b-input placeholder="#" v-model="properties.hashtag"></b-input>
+      <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag"></b-input>
     </b-field>
     <b-switch v-model="properties.hasLocalLabel">
       Afegir text al logo
@@ -120,9 +120,21 @@ export default {
     },
 
     updateImage (image) {
-      console.log(image)
       this.properties.picture = image
       this.properties.picturePreview = URL.createObjectURL(image)
+    },
+
+    updateHashtag (hashtag) {
+      if (!hashtag) {
+        this.properties.hashtag = ''
+        return
+      }
+
+      if (hashtag[0] === '#') {
+        this.properties.hashtag = hashtag
+      } else {
+        this.properties.hashtag = '#' + hashtag
+      }
     }
   }
 }
