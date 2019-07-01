@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'banner-canvas': true, 'aspect-11': aspect === '1:1', 'aspect-916': aspect === '9:16' }" id="banner">
+  <div :class="{ 'banner-canvas': true, 'aspect-11': aspect === '1:1', 'aspect-916': aspect === '9:16' }" v-if="bannerProperties">
     <div class="blob blob-image">
       <div class="blob-image-wrapper" v-if="bannerProperties">
         <img :src="bannerProperties.picturePreview" alt="" />
