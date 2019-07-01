@@ -12,9 +12,9 @@
         <span :style="{ 'color': bannerProperties.customSourceColor }">{{ bannerProperties.customSource }}</span>
       </div>
       <div class="headline-source" v-else>
-        <img :src="bannerProperties.source.logo" :alt="bannerProperties.source.name" />
+        <img :src="bannerProperties.source.logo" :alt="bannerProperties.source.name" :style="{ height: bannerProperties.source.logoHeight + 'px' }" />
       </div>
-      <div class="headline-text" contenteditable>
+      <div class="headline-text" contenteditable :style="{ fontFamily: bannerProperties.source.fontFamily }">
         {{ bannerProperties.headline }}
       </div>
     </div>
@@ -60,6 +60,8 @@ export default {
 <style lang="scss" scoped>
   @import "../../../variables";
   @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
 
   @font-face {
     font-family: 'Tiempos Headline';
@@ -95,9 +97,7 @@ export default {
     font-family: 'Tiempos Headline', serif;
 
     &-source {
-      img {
-        height: 18px;
-      }
+      margin-bottom: .25rem;
 
       &--custom {
         margin-bottom: 4px;
@@ -108,10 +108,6 @@ export default {
       font-size: 30px;
       line-height: 1.1;
       word-wrap: break-word;
-    }
-
-    &.eldiario {
-      font-family: 'Roboto Slab', serif;
     }
   }
 
