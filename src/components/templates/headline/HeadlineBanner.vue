@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'banner-canvas': true, 'aspect-11': aspect === '1:1', 'aspect-916': aspect === '9:16' }">
+  <div :class="{ 'banner-canvas': true, 'aspect-11': aspect === '1:1', 'aspect-916': aspect === '9:16' }" id="banner">
     <div class="blob blob-image">
       <div class="blob-image-wrapper" v-if="bannerProperties">
         <img :src="bannerProperties.picturePreview" alt="" />
@@ -150,7 +150,7 @@ export default {
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          // object-fit: cover;
         }
       }
     }

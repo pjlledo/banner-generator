@@ -29,7 +29,7 @@
       </b-field>
     </div>
     <b-field label="Titular">
-      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline"></b-input>
+      <b-input type="textarea" placeholder="Més proves de la caixa B del PP..." v-model="properties.headline"></b-input>
     </b-field>
     <b-field>
       <b-upload @input="updateImage" drag-drop>
