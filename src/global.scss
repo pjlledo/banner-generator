@@ -28,3 +28,15 @@
   position: fixed;
   z-index: 10000;
 }
+
+.upload {
+  width: 100%;
+
+  .upload-draggable {
+    display: block;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}

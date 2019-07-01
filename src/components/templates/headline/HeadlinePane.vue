@@ -29,7 +29,7 @@
       </b-field>
     </div>
     <b-field label="Titular">
-      <b-input type="textarea" placeholder="Més proves de la caixa B del PP..." v-model="properties.headline"></b-input>
+      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline" maxlength="160"></b-input>
     </b-field>
     <b-field>
       <b-upload @input="updateImage" drag-drop>
@@ -51,7 +51,7 @@
       <button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
     </b-field>
     <b-field label="Hashtag">
-      <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag"></b-input>
+      <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" maxlength="32"></b-input>
     </b-field>
     <b-switch v-model="properties.hasLocalLabel">
       Afegir text al logo
