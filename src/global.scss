@@ -22,4 +22,9 @@
 
 @import "variables";
 @import "~bulma";
-@import "~buefy/src/scss/buefy"
+@import "~buefy/src/scss/buefy";
+
+.banner {
+  position: fixed;
+  z-index: 10000;
+}
