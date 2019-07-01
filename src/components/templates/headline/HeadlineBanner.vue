@@ -1,8 +1,8 @@
 <template>
-  <div :class="{ 'banner-canvas': true, 'aspect-11': aspect === '1:1', 'aspect-916': aspect === '9:16' }" v-if="bannerProperties">
+  <div id="bannerCanvas" :class="{ 'banner-canvas': true, 'aspect-11': aspect === '1:1', 'aspect-916': aspect === '9:16' }" v-if="bannerProperties">
     <div class="blob blob-image">
       <div class="blob-image-wrapper" v-if="bannerProperties">
-        <img :src="bannerProperties.picturePreview" alt="" />
+        <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" />
       </div>
     </div>
     <div class="blob blob-1"></div>
@@ -70,7 +70,7 @@ export default {
         url('../../../assets/fonts/TiemposHeadline-Medium.woff2') format('woff2'),
         url('../../../assets/fonts/TiemposHeadline-Medium.woff') format('woff'),
         url('../../../assets/fonts/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
-    font-weight: 500;
+    font-weight: 700;
     font-style: normal;
   }
 
@@ -95,6 +95,7 @@ export default {
     z-index: 100;
     padding: 0 40px;
     font-family: 'Tiempos Headline', serif;
+    font-weight: 700;
 
     &-source {
       margin-bottom: .25rem;
