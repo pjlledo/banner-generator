@@ -1,9 +1,11 @@
 <template>
   <div>
-    <b-tabs type="is-toggle-rounded" size="is-small" v-model="properties.disposition">
-      <b-tab-item label="Titular dalt"></b-tab-item>
-      <b-tab-item label="Titular baix"></b-tab-item>
-    </b-tabs>
+    <transition name="slide">
+      <b-tabs type="is-toggle-rounded" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition">
+        <b-tab-item label="Titular dalt"></b-tab-item>
+        <b-tab-item label="Titular baix"></b-tab-item>
+      </b-tabs>
+    </transition>
     <b-field label="Font">
         <b-select placeholder="Selecciona un diari" @input="updateSource">
             <option
@@ -50,21 +52,28 @@
         <b-icon icon="times"></b-icon>
       </b-button>
     </b-field>
-    <b-field label="Hashtag">
-      <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" maxlength="32"></b-input>
-    </b-field>
-    <b-switch v-model="properties.hasLocalLabel">
-      Afegir text al logo
-    </b-switch>
-    <div v-if="properties.hasLocalLabel">
-      <b-field>
-        <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
+    <transition name="slide">
+      <b-field label="Hashtag" v-if="!aspect">
+        <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" maxlength="32"></b-input>
       </b-field>
-    </div>
+    </transition>
+    <transition name="slide">
+      <div v-if="!aspect">
+        <b-switch v-model="properties.hasLocalLabel">
+          Afegir text al logo
+        </b-switch>
+        <div v-if="properties.hasLocalLabel">
+          <b-field>
+            <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
+          </b-field>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import { EventBus } from '../../../event-bus.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
 
@@ -91,7 +100,7 @@ export default {
         customSourceColor: '#1CA085'
       },
       presets: presets,
-      imagePreview: ''
+      aspect: 0
     }
   },
 
@@ -107,6 +116,9 @@ export default {
   created () {
     // Set first preset as default
     this.properties.source = this.presets[0]
+    
+    // Update aspect
+    EventBus.$on('aspectUpdated', (aspect) => this.aspect = aspect)
   },
 
   methods: {

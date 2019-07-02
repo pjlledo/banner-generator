@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
 
@@ -28,6 +29,12 @@ export default {
   data () {
     return {
       aspect: 0
+    }
+  },
+
+  watch: {
+    aspect: function () {
+      EventBus.$emit('aspectUpdated', this.aspect)
     }
   },
 

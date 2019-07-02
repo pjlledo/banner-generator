@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Compromis';
+  src: url('../assets/fonts/akkurat-webfont.eot?2');
+  src: url('../assets/fonts/akkurat-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/akkurat-webfont.woff?2') format('woff'),
+      url('../assets/fonts/akkurat-webfont.ttf?2') format('truetype'),
+      url('../assets/fonts/akkurat-webfont.svg#AkkuratRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Compromis';
+  src: url('../assets/fonts/akkurat-bold-webfont.eot?2');
+  src: url('../assets/fonts/akkurat-bold-webfont.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/akkurat-bold-webfont.woff?2') format('woff'),
+      url('../assets/fonts/akkurat-bold-webfont.ttf?2') format('truetype'),
+      url('../assets/fonts/akkurat-bold-webfont.svg#Akkurat-BoldRegular') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@import "variables";
+@import "animations";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+.banner {
+  position: fixed;
+  z-index: 10000;
+  border: 2px black solid;
+}
+
+.upload {
+  width: 100%;
+
+  .upload-draggable {
+    display: block;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.banner-disposition .tab-content {
+  display: none;
+}
+
