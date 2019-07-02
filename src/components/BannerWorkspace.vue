@@ -1,14 +1,14 @@
 <template>
   <div class="banner-workspace">
-    <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered">
+    <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
       <b-tab-item label="1:1" icon="square">
-          
+        <component :is="componentBanner" :banner-properties="bannerProperties" aspect="11" />
       </b-tab-item>
       <b-tab-item label="9:16" icon="mobile-android">
-          
+        <component :is="componentBanner" :banner-properties="bannerProperties" aspect="916" />
       </b-tab-item>
     </b-tabs>
-    <component :is="componentBanner" :banner-properties="bannerProperties" aspect="1:1" />
+    
     <button @click="download">Descarrega</button>
   </div>
 </template>
@@ -25,9 +25,17 @@ export default {
     bannerProperties: Object
   },
 
+  data () {
+    return {
+      aspect: 0
+    }
+  },
+
   methods: {
     download () {
-      domtoimage.toPng(document.getElementById('bannerCanvas'), { bgcolor: '#fff', height: 720, width: 720 })
+      const aspect = this.aspect === 1 ? '916' : '11'
+      const dimensions = this.aspect === 1 ? { width: 405, height: 720 } : { width: 720, height: 720 }
+      domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })
         .then(function (blob) {
           window.saveAs(blob, 'banner.png');
         })
