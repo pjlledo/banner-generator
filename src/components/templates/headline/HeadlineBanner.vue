@@ -93,10 +93,6 @@ export default {
     overflow: hidden;
   }
 
-  .aspect-916 {
-    width: 405px;
-  }
-
   .headline {
     position: absolute;
     top: 460px;
@@ -206,5 +202,41 @@ export default {
     .blob-2 {
       left: -60%;
     }
+  }
+
+  .aspect-916 {
+    width: 405px;
+
+    .blob {
+      &-1 {
+        top: -43%;
+        right: -120%;
+      }
+
+      &-2 {
+        left: -110%;
+        bottom: -94%;
+      }
+
+      &-image {
+        top: -65px;
+        left: -12px;
+      }
+    }
+
+    .headline {
+      top: 430px;
+
+      &-text {
+        font-size: 26px;
+      }
+    }
+
+
+
+    .logo {
+      display:none;
+    }
+
   }
 </style>
