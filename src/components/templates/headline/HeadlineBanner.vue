@@ -92,6 +92,7 @@ export default {
     border: 1px $white solid;
     outline: 1px $gray-900 solid;
     overflow: hidden;
+    transition: all .5s ease-in-out;
   }
 
   .headline {
