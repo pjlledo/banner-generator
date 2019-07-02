@@ -4,7 +4,7 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      'disposition-' + bannerProperties.disposition,
+      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
       bannerProperties.localLabel ? 'has-local-label' : '',
       bannerProperties.headline.length > 105 ? 'has-long-headline' : ''
     ]"
