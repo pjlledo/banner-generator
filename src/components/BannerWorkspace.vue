@@ -2,11 +2,10 @@
   <div class="banner-workspace">
     <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
       <b-tab-item label="1:1" icon="square">
-        <component :is="componentBanner" :banner-properties="bannerProperties" aspect="11" />
       </b-tab-item>
       <b-tab-item label="9:16" icon="mobile-android">
-        <component :is="componentBanner" :banner-properties="bannerProperties" aspect="916" />
       </b-tab-item>
+      <component :is="componentBanner" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
     </b-tabs>
 
     <b-button @click="download">Descarrega</b-button>
