@@ -35,20 +35,20 @@
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
-            <p>
-              <b-icon
-                icon="upload"
-                size="is-large">
-              </b-icon>
-            </p>
-            <p>Drop your files here or click to upload</p>
+            <b-icon
+              icon="upload"
+              size="is-large">
+            </b-icon>
+            <p>Arrosega la foto</p>
           </div>
           <div v-else>
             {{ properties.picture.name }}
           </div>
         </section>
       </b-upload>
-      <button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null">Remove image</button>
+      <b-button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null" class="remove-image" type="is-danger">
+        <b-icon icon="times"></b-icon>
+      </b-button>
     </b-field>
     <b-field label="Hashtag">
       <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" maxlength="32"></b-input>
@@ -57,8 +57,8 @@
       Afegir text al logo
     </b-switch>
     <div v-if="properties.hasLocalLabel">
-      <b-field label="Text">
-        <b-input placeholder="Alacant" v-model="properties.localLabel"></b-input>
+      <b-field>
+        <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
       </b-field>
     </div>
   </div>
@@ -139,3 +139,22 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .field {
+    position: relative;
+  }
+
+  .section {
+    padding: 2rem 1.5rem;
+  }
+
+  .remove-image {
+    position: absolute;
+    right: 0;
+  }
+
+  .hashtag {
+    margin-top: .25rem;
+  }
+</style>

@@ -8,8 +8,8 @@
         <component :is="componentBanner" :banner-properties="bannerProperties" aspect="916" />
       </b-tab-item>
     </b-tabs>
-    
-    <button @click="download">Descarrega</button>
+
+    <b-button @click="download">Descarrega</b-button>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
       const dimensions = this.aspect === 1 ? { width: 405, height: 720 } : { width: 720, height: 720 }
       domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })
         .then(function (blob) {
-          window.saveAs(blob, 'banner.png');
+          saveAs(blob, 'banner.png')
         })
     }
   }

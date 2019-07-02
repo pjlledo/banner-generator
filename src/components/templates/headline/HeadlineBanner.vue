@@ -1,5 +1,13 @@
 <template>
-  <div :id="'bannerCanvas' + aspect" :class="['banner-canvas', 'aspect-' + aspect]" v-if="bannerProperties">
+  <div
+    :id="'bannerCanvas' + aspect"
+    :class="[
+      'banner-canvas',
+      'aspect-' + aspect,
+      'disposition-' + bannerProperties.disposition,
+      bannerProperties.localLabel ? 'has-local-label' : ''
+    ]"
+    v-if="bannerProperties">
     <div class="blob blob-image">
       <div class="blob-image-wrapper" v-if="bannerProperties">
         <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" />
@@ -20,6 +28,7 @@
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
+      <div :class="{'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 20}" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
     </div>
     <div class="hashtag" v-if="bannerProperties.hashtag">
       {{ bannerProperties.hashtag }}
@@ -120,6 +129,7 @@ export default {
     border-radius: $border-radius;
     background: linear-gradient(45deg,$gradient-start,$gradient-end);
     transform: rotate($rotation);
+    transition: all .5s ease-in-out;
 
     &-1 {
       top: -42%;
@@ -147,19 +157,37 @@ export default {
         img {
           width: 100%;
           height: 100%;
-          // object-fit: cover;
+          object-fit: cover;
         }
       }
     }
   }
 
   .logo {
+    display: flex;
     position: absolute;
     right: 35px;
     bottom: 15px;
+    align-items: center;
 
     img {
       height: 30px;
+    }
+
+    &-local-label {
+      border-left: 1px $gray-400 solid;
+      margin-left: .75rem;
+      padding-left: .75rem;
+      font-size: 1.25rem;
+      letter-spacing: -.3px;
+      line-height: 1;
+      white-space: nowrap;
+
+      &--long {
+        font-size: .95rem;
+        white-space: normal;
+        width: 90px;
+      }
     }
   }
 
@@ -171,5 +199,12 @@ export default {
     color: $white;
     font-weight: bold;
     font-size: 20px;
+    letter-spacing: -.3px;
+  }
+
+  .has-local-label {
+    .blob-2 {
+      left: -60%;
+    }
   }
 </style>

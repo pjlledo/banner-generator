@@ -79,7 +79,7 @@ const sources = [
     logo: SerSVG,
     logoHeight: 24,
     fontFamily: 'Montserrat'
-  },
+  }
 ]
 
 export default sources
