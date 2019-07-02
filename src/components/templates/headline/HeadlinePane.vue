@@ -116,9 +116,9 @@ export default {
   created () {
     // Set first preset as default
     this.properties.source = this.presets[0]
-    
+
     // Update aspect
-    EventBus.$on('aspectUpdated', (aspect) => this.aspect = aspect)
+    EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
   },
 
   methods: {

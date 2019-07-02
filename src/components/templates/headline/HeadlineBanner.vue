@@ -5,7 +5,8 @@
       'banner-canvas',
       'aspect-' + aspect,
       'disposition-' + bannerProperties.disposition,
-      bannerProperties.localLabel ? 'has-local-label' : ''
+      bannerProperties.localLabel ? 'has-local-label' : '',
+      bannerProperties.headline.length > 105 ? 'has-long-headline' : ''
     ]"
     v-if="bannerProperties">
     <div class="blob blob-image">
@@ -28,7 +29,7 @@
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 20}" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 20 }" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
     </div>
     <div class="hashtag" v-if="bannerProperties.hashtag">
       {{ bannerProperties.hashtag }}
@@ -101,6 +102,7 @@ export default {
     padding: 0 40px;
     font-family: 'Tiempos Headline', serif;
     font-weight: 700;
+    transition: all .5s ease-in-out;
 
     &-source {
       margin-bottom: .25rem;
@@ -232,11 +234,41 @@ export default {
       }
     }
 
-
-
     .logo {
-      display:none;
+      display: none;
+    }
+  }
+
+  .disposition-1 {
+    .headline {
+      top: 100px;
     }
 
+    &.has-long-headline {
+      .blob-image{
+        bottom: -120px;
+      }
+    }
+
+    .blob {
+      &-1 {
+        top: -90%;
+        left: -40%;
+        bottom: auto;
+        right: auto;
+      }
+
+      &-2 {
+        display: none;
+      }
+
+      &-image {
+        left: auto;
+        top: auto;
+        bottom: -90px;
+        right: -80px;
+        height: 570px;
+      }
+    }
   }
 </style>
