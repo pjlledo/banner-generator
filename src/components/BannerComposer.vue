@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../variables";
+  @import "../sass/variables";
 
  .composer {
     display: grid;

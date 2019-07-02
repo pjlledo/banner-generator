@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../variables";
+  @import "../../../sass/variables";
   @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');

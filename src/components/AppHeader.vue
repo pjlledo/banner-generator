@@ -3,7 +3,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "../variables";
+  @import "../sass/variables";
 
   .header {
     background-color: $white;
