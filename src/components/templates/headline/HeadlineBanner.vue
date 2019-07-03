@@ -6,7 +6,7 @@
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
       bannerProperties.localLabel ? 'has-local-label' : '',
-      bannerProperties.headline.length > 105 ? 'has-long-headline' : ''
+      bannerProperties.headline.length > 95 ? 'has-long-headline' : ''
     ]"
     v-if="bannerProperties">
     <div class="blob blob-image">
@@ -241,13 +241,14 @@ export default {
 
     &.has-long-headline {
       .blob-image{
-        bottom: -120px;
+        bottom: -130px;
       }
     }
 
     &.has-local-label {
       .blob-1 {
         left: -60%;
+        top: -88%;
       }
     }
 
@@ -261,7 +262,7 @@ export default {
 
     .blob {
       &-1 {
-        top: -88%;
+        top: -90%;
         left: -40%;
         bottom: auto;
         right: auto;
