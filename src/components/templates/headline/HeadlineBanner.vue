@@ -10,9 +10,7 @@
     ]"
     v-if="bannerProperties">
     <div class="blob blob-image">
-      <div class="blob-image-wrapper" v-if="bannerProperties">
-        <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" />
-      </div>
+      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="{ objectPosition: '0% ' + bannerProperties.picturePos + '%' }" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -149,15 +147,11 @@ export default {
       z-index: 20;
       background: $gray-300;
 
-      &-wrapper {
-        margin: -10px;
-        transform: rotate(-$rotation);
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+      img {
+        transform: rotate(-$rotation) scale(1.15);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }

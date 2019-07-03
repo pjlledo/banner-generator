@@ -52,6 +52,9 @@
         <b-icon icon="times"></b-icon>
       </b-button>
     </b-field>
+    <b-field label="Posició de la imatge">
+      <input type="range" name="points" min="0" max="100" v-model="properties.picturePos">
+    </b-field>
     <transition name="slide">
       <b-field label="Hashtag" v-if="!aspect">
         <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" maxlength="32"></b-input>
@@ -90,7 +93,7 @@ export default {
         disposition: 0,
         picture: null,
         picturePreview: '',
-        picturePos: '',
+        picturePos: 50,
         headline: '',
         hashtag: '',
         hasLocalLabel: false,
