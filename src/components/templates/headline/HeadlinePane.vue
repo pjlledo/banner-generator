@@ -87,7 +87,7 @@ export default {
   data () {
     return {
       properties: {
-        disposition: 1,
+        disposition: 0,
         picture: null,
         picturePreview: '',
         picturePos: '',

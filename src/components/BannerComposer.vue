@@ -2,7 +2,7 @@
   <div class="composer">
     <template v-if="selectedTemplate">
       <component class="pane" :is="selectedTemplate.componentPane" @updated="(props) => { bannerProperties = props }" />
-      <banner-workspace class="workspace" :component-banner="selectedTemplate.componentBanner" :banner-properties="bannerProperties" />
+      <banner-workspace class="workspace" :component-banner="selectedTemplate.componentBanner" :banner-properties="bannerProperties" @cancel="selectedTemplate = null" />
     </template>
     <template v-else>
       <ul>

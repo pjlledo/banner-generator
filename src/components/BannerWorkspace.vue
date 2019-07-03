@@ -1,14 +1,13 @@
 <template>
   <div class="banner-workspace">
     <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
-      <b-tab-item label="1:1" icon="square">
-      </b-tab-item>
-      <b-tab-item label="9:16" icon="mobile-android">
-      </b-tab-item>
+      <b-tab-item label="1:1" icon="square"></b-tab-item>
+      <b-tab-item label="9:16" icon="mobile-android"></b-tab-item>
       <component :is="componentBanner" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
     </b-tabs>
 
     <b-button @click="download">Descarrega</b-button>
+    <b-button @click="cancel">Cancel·la</b-button>
   </div>
 </template>
 
@@ -45,6 +44,10 @@ export default {
         .then(function (blob) {
           saveAs(blob, 'banner.png')
         })
+    },
+
+    cancel () {
+      this.$emit('cancel', true)
     }
   }
 }
