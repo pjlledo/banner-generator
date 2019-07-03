@@ -57,7 +57,7 @@
     </b-field>
     <transition name="slide">
       <b-field label="Hashtag" v-if="!aspect">
-        <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" maxlength="32"></b-input>
+        <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" :maxlength="properties.hasLocalLabel ? 18 : 32"></b-input>
       </b-field>
     </transition>
     <transition name="slide">

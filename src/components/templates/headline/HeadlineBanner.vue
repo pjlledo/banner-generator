@@ -27,7 +27,7 @@
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 20 }" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
     </div>
     <div class="hashtag" v-if="bannerProperties.hashtag">
       {{ bannerProperties.hashtag }}
@@ -245,9 +245,23 @@ export default {
       }
     }
 
+    &.has-local-label {
+      .blob-1 {
+        left: -60%;
+      }
+    }
+
+    .logo {
+      bottom: 666px;
+    }
+
+    .hashtag {
+      bottom: 668px;
+    }
+
     .blob {
       &-1 {
-        top: -90%;
+        top: -88%;
         left: -40%;
         bottom: auto;
         right: auto;
