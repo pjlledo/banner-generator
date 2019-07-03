@@ -9,6 +9,7 @@
     </b-tabs>
 
     <b-button @click="download">Descarrega</b-button>
+    <b-button @click="cancel">Cancel·la</b-button>
   </div>
 </template>
 
@@ -45,6 +46,10 @@ export default {
         .then(function (blob) {
           saveAs(blob, 'banner.png')
         })
+    },
+
+    cancel () {
+      this.$emit('cancel', true)
     }
   }
 }
