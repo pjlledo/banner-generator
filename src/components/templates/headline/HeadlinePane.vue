@@ -1,13 +1,13 @@
 <template>
   <div>
     <transition name="slide">
-      <b-tabs type="is-toggle-rounded" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition">
+      <b-tabs type="is-toggle-rounded" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
         <b-tab-item label="Titular dalt"></b-tab-item>
         <b-tab-item label="Titular baix"></b-tab-item>
       </b-tabs>
     </transition>
     <b-field label="Font">
-        <b-select placeholder="Selecciona un diari" @input="updateSource">
+        <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
             <option
               v-for="source in presets"
               :value="source.id"
@@ -22,14 +22,16 @@
             </option>
         </b-select>
     </b-field>
-    <div v-if="properties.source === 'other'">
-      <b-field label="Mitjà de comunicació">
-        <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
-      </b-field>
-      <b-field label="Color">
-        <swatches v-model="properties.customSourceColor"></swatches>
-      </b-field>
-    </div>
+    <transition name="slide">
+      <div v-if="properties.source === 'other'">
+        <b-field label="Mitjà de comunicació">
+          <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
+        </b-field>
+        <b-field label="Color">
+          <swatches v-model="properties.customSourceColor"></swatches>
+        </b-field>
+      </div>
+    </transition>
     <b-field label="Titular">
       <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline" maxlength="160"></b-input>
     </b-field>
@@ -65,11 +67,13 @@
         <b-switch v-model="properties.hasLocalLabel">
           Afegir text al logo
         </b-switch>
-        <div v-if="properties.hasLocalLabel">
-          <b-field>
-            <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-          </b-field>
-        </div>
+        <transition name="slide">
+          <div v-if="properties.hasLocalLabel" class="local-label">
+            <b-field>
+              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
+            </b-field>
+          </div>
+        </transition>
       </div>
     </transition>
   </div>
@@ -171,5 +175,9 @@ export default {
 
   .hashtag {
     margin-top: .25rem;
+  }
+
+  .local-label {
+    margin-top: .75rem;
   }
 </style>
