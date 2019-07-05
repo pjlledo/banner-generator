@@ -1,5 +1,5 @@
 <template>
-  <div class="composer">
+  <div :class="{ 'workspace': selectedTemplate }">
     <transition name="fade">
       <app-nav class="nav" v-if="selectedTemplate !== null" />
     </transition>
@@ -8,11 +8,7 @@
       <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" />
     </template>
     <template v-else>
-      <ul>
-        <li v-for="template in templates" :key="template.id">
-          <a href="#" @click="selectedTemplate = template">{{ template.name }}</a>
-        </li>
-      </ul>
+      <template-selector @update="(template) => { this.selectedTemplate = template }" />
     </template>
   </div>
 </template>
@@ -21,6 +17,7 @@
 import { EventBus } from '../event-bus.js'
 import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
+import TemplateSelector from './TemplateSelector'
 import templates from './templates/templates'
 
 /* Templates */
@@ -38,6 +35,7 @@ export default {
   components: {
     AppNav,
     CanvasContainer,
+    TemplateSelector,
     ...bannerComponents
   },
 
@@ -59,7 +57,7 @@ export default {
 <style lang="scss" scoped>
   @import "../sass/variables";
 
- .composer {
+ .workspace {
     display: grid;
     grid-template-columns: 21rem 1fr;
     grid-template-rows: auto 1fr;
