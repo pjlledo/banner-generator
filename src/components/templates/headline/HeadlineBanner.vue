@@ -10,7 +10,7 @@
     ]"
     v-if="bannerProperties">
     <div class="blob blob-image">
-      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="{ objectPosition: '0% ' + bannerProperties.picturePos + '%' }" />
+      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -60,6 +60,13 @@ export default {
         'headline': true,
         [name]: true
       }
+    },
+
+    objectPosition: function () {
+      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
+        ? '0% ' + this.bannerProperties.picturePos + '%'  
+        : this.bannerProperties.picturePos + '% 0%'
+      return { objectPosition }
     }
   }
 }
