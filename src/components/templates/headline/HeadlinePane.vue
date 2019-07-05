@@ -55,7 +55,7 @@
       </b-button>
     </b-field>
     <b-field label="Posició de la imatge">
-      <input type="range" name="points" min="0" max="100" v-model="properties.picturePos">
+      <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
     <transition name="slide">
       <b-field label="Hashtag" v-if="!aspect">
@@ -83,12 +83,14 @@
 import { EventBus } from '../../../event-bus.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
+import RangeSlider from '../../../utils/RangeSlider.vue'
 
 export default {
   name: 'headline-pane',
 
   components: {
-    Swatches
+    Swatches,
+    RangeSlider
   },
 
   data () {
