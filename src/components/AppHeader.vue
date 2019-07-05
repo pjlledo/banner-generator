@@ -9,6 +9,8 @@
 import Logo from '../assets/logo-compromis.svg'
 
 export default {
+  name: 'app-header',
+
   data () {
     return {
       logo: Logo

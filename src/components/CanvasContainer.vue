@@ -3,7 +3,7 @@
     <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
       <b-tab-item label="1:1" icon="square"></b-tab-item>
       <b-tab-item label="9:16" icon="mobile-android"></b-tab-item>
-      <component :is="componentBanner" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
+      <component :is="canvasComponent" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
     </b-tabs>
 
     <b-button @click="download">Descarrega</b-button>
@@ -17,10 +17,10 @@ import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
 
 export default {
-  name: 'banner-workspace',
+  name: 'canvas-container',
 
   props: {
-    componentBanner: Object,
+    canvasComponent: Function,
     bannerProperties: Object
   },
 

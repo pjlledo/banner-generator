@@ -39,7 +39,7 @@
 import Logo from '../../../assets/logo-compromis.svg'
 
 export default {
-  name: 'HeadlineBanner',
+  name: 'HeadlineCanvas',
 
   props: {
     bannerProperties: Object,

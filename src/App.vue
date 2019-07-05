@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <AppHeader />
-    <BannerComposer />
+    <app-header />
+    <app-workspace />
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader.vue'
-import BannerComposer from './components/BannerComposer.vue'
+import AppWorkspace from './components/AppWorkspace.vue'
 
 export default {
   name: 'app',
   components: {
     AppHeader,
-    BannerComposer
+    AppWorkspace
   }
 }
 </script>

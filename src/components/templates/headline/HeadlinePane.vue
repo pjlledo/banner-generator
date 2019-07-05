@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name="slide">
-      <b-tabs type="is-toggle-rounded" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
+      <b-tabs type="is-toggle" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
         <b-tab-item label="Titular dalt"></b-tab-item>
         <b-tab-item label="Titular baix"></b-tab-item>
       </b-tabs>

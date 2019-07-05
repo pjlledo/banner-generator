@@ -1,8 +1,8 @@
 <template>
   <div class="composer">
     <template v-if="selectedTemplate">
-      <component class="pane" :is="selectedTemplate.componentPane" @updated="(props) => { bannerProperties = props }" />
-      <banner-workspace class="workspace" :component-banner="selectedTemplate.componentBanner" :banner-properties="bannerProperties" @cancel="selectedTemplate = null" />
+      <component class="pane" :is="bannerComponents[selectedTemplate.id + 'Pane']" @updated="(props) => { bannerProperties = props }" />
+      <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" @cancel="selectedTemplate = null" />
     </template>
     <template v-else>
       <ul>
@@ -15,39 +15,30 @@
 </template>
 
 <script>
-import BannerWorkspace from './BannerWorkspace'
+import CanvasContainer from './CanvasContainer'
+import templates from './templates/templates'
 
 /* Templates */
-import HeadlinePane from './templates/headline/HeadlinePane'
-import HeadlineBanner from './templates/headline/HeadlineBanner'
-
-const templates = [
-  {
-    id: 'headline',
-    name: 'Titular de premsa',
-    componentPane: HeadlinePane,
-    componentBanner: HeadlineBanner
-  },
-  {
-    id: 'quote',
-    name: 'Frase',
-    componentPane: null,
-    componentBanner: null
-  }
-]
+const bannerComponents = {}
+templates.map(template => {
+  const canvas = `${template.id}Canvas`
+  const pane = `${template.id}Pane`
+  bannerComponents[canvas] = () => import(`./templates/${template.id.toLowerCase()}/${canvas}`)
+  bannerComponents[pane] = () => import(`./templates/${template.id.toLowerCase()}/${pane}`)
+})
 
 export default {
-  name: 'BannerComposer',
+  name: 'app-workspace',
 
   components: {
-    BannerWorkspace,
-    HeadlinePane,
-    HeadlineBanner
+    CanvasContainer,
+    ...bannerComponents
   },
 
   data () {
     return {
       templates: templates,
+      bannerComponents: bannerComponents,
       selectedTemplate: null,
       bannerProperties: null
     }
@@ -61,7 +52,7 @@ export default {
  .composer {
     display: grid;
     grid-template-columns: 21rem 1fr;
-    grid-template-areas: "pane workspace";
+    grid-template-areas: "pane canvas";
     align-items: center;
  }
 
@@ -74,8 +65,8 @@ export default {
     box-shadow: 0 7px 25px -16px;
   }
 
-  .workspace {
-    grid-area: workspace;
+  .canvas-container {
+    grid-area: canvas;
     margin: 1rem 0 0 1rem;
     padding: 1rem;
     display: flex;
