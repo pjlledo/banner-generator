@@ -6,8 +6,7 @@
       <component :is="canvasComponent" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
     </b-tabs>
 
-    <b-button @click="download">Descarrega</b-button>
-    <b-button @click="cancel">Cancel·la</b-button>
+    <b-button type="is-primary" size="is-large" @click="download">Descarrega</b-button>
   </div>
 </template>
 

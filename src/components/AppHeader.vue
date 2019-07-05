@@ -1,8 +1,10 @@
 <template>
+  <div>
     <div class="navbar">
       <img :src="logo" alt="Compromís" />
       <div class="logo-label">Disseny</div>
     </div>
+  </div>
 </template>
 
 <script>

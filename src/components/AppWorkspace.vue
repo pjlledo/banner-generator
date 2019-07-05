@@ -1,8 +1,11 @@
 <template>
   <div class="composer">
+    <transition name="fade">
+      <app-nav class="nav" v-if="selectedTemplate !== null" />
+    </transition>
     <template v-if="selectedTemplate">
       <component class="pane" :is="bannerComponents[selectedTemplate.id + 'Pane']" @updated="(props) => { bannerProperties = props }" />
-      <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" @cancel="selectedTemplate = null" />
+      <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" />
     </template>
     <template v-else>
       <ul>
@@ -15,6 +18,8 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js'
+import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
 import templates from './templates/templates'
 
@@ -31,6 +36,7 @@ export default {
   name: 'app-workspace',
 
   components: {
+    AppNav,
     CanvasContainer,
     ...bannerComponents
   },
@@ -42,6 +48,10 @@ export default {
       selectedTemplate: null,
       bannerProperties: null
     }
+  },
+
+  created () {
+    EventBus.$on('closeBanner', () => { this.selectedTemplate  = null })
   }
 }
 </script>
@@ -52,9 +62,17 @@ export default {
  .composer {
     display: grid;
     grid-template-columns: 21rem 1fr;
-    grid-template-areas: "pane canvas";
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "nav nav"
+      "pane canvas";
     align-items: center;
+    height: calc(100vh - 4rem);
  }
+
+  .nav {
+    grid-area: nav;
+  }
 
   .pane {
     grid-area: pane;
