@@ -51,7 +51,9 @@ export default {
 
     ul {
       display: flex;
+      flex-wrap: wrap;
       margin: 0 auto;
+      max-width: 70rem;
     }
 
     .template-item {
