@@ -1,21 +1,23 @@
 <template>
-  <div :class="{ 'workspace': selectedTemplate }">
-    <transition name="fade">
-      <app-nav class="nav" v-if="selectedTemplate !== null" />
+  <div>
+    <transition name="fade" mode="out-in">
+      <div class="workspace" key="workspace" v-if="selectedTemplate"> 
+        <app-nav class="nav" />
+        <component class="pane" :is="bannerComponents[selectedTemplate.id + 'Pane']" @updated="(props) => { bannerProperties = props }" />
+        <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" />
+      </div>
+      <div class="selector" key="selector" v-else>
+        <template-selector @update="(template) => { this.selectedTemplate = template }" />
+      </div>
     </transition>
-    <template v-if="selectedTemplate">
-      <component class="pane" :is="bannerComponents[selectedTemplate.id + 'Pane']" @updated="(props) => { bannerProperties = props }" />
-      <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" />
-    </template>
-    <template v-else>
-      <template-selector @update="(template) => { this.selectedTemplate = template }" />
-    </template>
+    <app-background :hidden="selectedTemplate ? true : false" />
   </div>
 </template>
 
 <script>
 import { EventBus } from '../event-bus.js'
 import AppNav from './AppNav'
+import AppBackground from './AppBackground'
 import CanvasContainer from './CanvasContainer'
 import TemplateSelector from './TemplateSelector'
 import templates from './templates/templates'
@@ -34,6 +36,7 @@ export default {
 
   components: {
     AppNav,
+    AppBackground,
     CanvasContainer,
     TemplateSelector,
     ...bannerComponents
