@@ -1,8 +1,19 @@
 <template>
-    <div class="nav">
-      <div class="nav-back" ><button @click="cancel">x Tornar Enrere</button></div>
-      <p class='nav-centered' >Generador de Targes / Tarja titular</p>
-    </div>
+  <div class="nav">
+    <div class="nav-back" ><b-button size="is-small" rounded inverted outlined type="is-primary" @click="isCardModalActive = true">x Tornar Enrere</b-button></div>
+    <p class='nav-centered' >Generador de Targes / Tarja titular</p>
+    <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
+      <div class="card">
+        <div class="content">
+          <h2>Atenció</h2>
+          Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
+          Es perdran els canvis no guardats.
+          <b-button type="is-warning" @click="cancel">Si, tancar.</b-button>
+          <b-button type="is-primary" @click="isCardModalActive = false">No, seguir editant</b-button>
+        </div>
+      </div>
+    </b-modal>
+  </div>
 </template>
 
 <script>
@@ -10,6 +21,13 @@ import { EventBus } from '../event-bus.js'
 
 export default {
   name: 'app-nav',
+
+  data () {
+    return {
+      isCardModalActive: false
+    }
+  },
+
   methods: {
     cancel () {
       EventBus.$emit('closeBanner', true)
