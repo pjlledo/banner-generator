@@ -105,8 +105,8 @@ export default {
     transition: all .5s ease-in-out;
 
     &-1 {
-      top: -42%;
-      right: -55%;
+      top: -80%;
+      left: -75%;
       z-index: 10;
     }
 
@@ -117,9 +117,9 @@ export default {
     }
 
     &-image {
-      top: -55px;
-      left: -30px;
-      height: 440px;
+      top: -15%;
+      right: -33%;
+      height: 640px;
       z-index: 20;
       background: $gray-300;
       width: 620px;
@@ -175,13 +175,6 @@ export default {
   .has-local-label {
     .blob-2 {
       left: -60%;
-    }
-  }
-
-  // Square aspect
-  .aspect-11 {
-    .blob-image {
-      border-bottom-left-radius: 0;
     }
   }
 
