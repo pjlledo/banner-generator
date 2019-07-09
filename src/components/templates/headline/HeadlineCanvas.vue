@@ -150,10 +150,11 @@ export default {
 
     &-image {
       top: -55px;
-      left: -140px;
+      left: -30px;
       height: 440px;
       z-index: 20;
       background: $gray-300;
+      width: 620px;
 
       img {
         transform: rotate(-$rotation) scale(1.15);
@@ -206,6 +207,13 @@ export default {
   .has-local-label {
     .blob-2 {
       left: -60%;
+    }
+  }
+
+  // Square aspect
+  .aspect-11 {
+    .blob-image {
+      border-bottom-left-radius: 0;
     }
   }
 

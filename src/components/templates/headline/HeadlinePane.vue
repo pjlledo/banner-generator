@@ -7,20 +7,20 @@
       </b-tabs>
     </transition>
     <b-field label="Font">
-        <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
-            <option
-              v-for="source in presets"
-              :value="source.id"
-              :key="source.id"
-              :selected="properties.source === source.id">
-              {{ source.name }}
-            </option>
-            <option
-              value="other"
-              :selected="properties.source === 'other'">
-              Altre...
-            </option>
-        </b-select>
+      <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
+        <option
+          v-for="source in presets"
+          :value="source.id"
+          :key="source.id"
+          :selected="properties.source === source.id">
+          {{ source.name }}
+        </option>
+        <option
+          value="other"
+          :selected="properties.source === 'other'">
+          Altre...
+        </option>
+      </b-select>
     </b-field>
     <transition name="slide">
       <div v-if="properties.source === 'other'">
@@ -39,19 +39,16 @@
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
-            <b-icon
-              icon="upload"
-              size="is-large">
-            </b-icon>
+            <b-icon icon="upload" size="is-large" />
             <p>Arrosega la foto</p>
           </div>
-          <div v-else>
-            {{ properties.picture.name }}
+          <div class="content has-text-centered" v-else>
+            <p>{{ properties.picture.name }}</p>
           </div>
         </section>
       </b-upload>
       <b-button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null" class="remove-image" type="is-danger">
-        <b-icon icon="times"></b-icon>
+        <b-icon icon="times" />
       </b-button>
     </b-field>
     <b-field label="Posició de la imatge">
@@ -180,6 +177,7 @@ export default {
   .remove-image {
     position: absolute;
     right: 0;
+    top: 2rem;
   }
 
   .hashtag {
@@ -192,5 +190,10 @@ export default {
 
   .image-upload-field {
     margin-top: -1rem;
+
+    &.has-addons {
+      flex-direction: column;
+      width: 100%;
+    }
   }
 </style>
