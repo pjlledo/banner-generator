@@ -5,8 +5,7 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : '',
-      bannerProperties.headline.length > 95 ? 'has-long-headline' : ''
+      bannerProperties.localLabel ? 'has-local-label' : ''
     ]"
     v-if="bannerProperties">
     <div class="blob blob-image">
@@ -14,16 +13,8 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div :class="sourceClass">
-      <div class="headline-source headline-source--custom" v-if="bannerProperties.source === 'other'">
-        <span :style="{ 'color': bannerProperties.customSourceColor }">{{ bannerProperties.customSource }}</span>
-      </div>
-      <div class="headline-source" v-else>
-        <img :src="bannerProperties.source.logo" :alt="bannerProperties.source.name" :style="{ height: bannerProperties.source.logoHeight + 'px' }" />
-      </div>
-      <div class="headline-text" contenteditable :style="{ fontFamily: bannerProperties.source.fontFamily }">
-        {{ bannerProperties.headline }}
-      </div>
+    <div class="quote-text" contenteditable>
+      {{ bannerProperties.quote }}
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
@@ -39,7 +30,7 @@
 import Logo from '../../../assets/logo-compromis.svg'
 
 export default {
-  name: 'headline-canvas',
+  name: 'quote-canvas',
 
   props: {
     bannerProperties: Object,
@@ -53,15 +44,6 @@ export default {
   },
 
   computed: {
-    sourceClass: function () {
-      if (!this.bannerProperties) return
-      const name = this.bannerProperties.source === 'other' ? 'other' : this.bannerProperties.source.id
-      return {
-        'headline': true,
-        [name]: true
-      }
-    },
-
     objectPosition: function () {
       const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
         ? '0% ' + this.bannerProperties.picturePos + '%'
@@ -74,20 +56,6 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
-
-  @font-face {
-    font-family: 'Tiempos Headline';
-    src: url('../../../assets/fonts/TiemposHeadline-Medium.eot');
-    src: url('../../../assets/fonts/TiemposHeadline-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../../../assets/fonts/TiemposHeadline-Medium.woff2') format('woff2'),
-        url('../../../assets/fonts/TiemposHeadline-Medium.woff') format('woff'),
-        url('../../../assets/fonts/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
-    font-weight: 700;
-    font-style: normal;
-  }
 
   .banner-canvas {
     box-sizing: content-box;

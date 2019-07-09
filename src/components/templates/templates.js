@@ -7,7 +7,7 @@ const templates = [
     icon: HeadlineIcon
   },
   {
-    id: 'Headline',
+    id: 'Quote',
     name: 'Frase',
     icon: HeadlineIcon
   },
