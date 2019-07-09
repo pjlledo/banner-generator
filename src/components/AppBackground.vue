@@ -24,6 +24,7 @@ export default {
 
   mounted () {
     const scene = this.$refs.scene
+    // eslint-disable-next-line
     const parallaxInstance = new Parallax(scene)
   }
 }

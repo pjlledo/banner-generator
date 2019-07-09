@@ -209,6 +209,7 @@ export default {
     }
   }
 
+  // Story aspect
   .aspect-916 {
     width: 405px;
 
@@ -226,6 +227,8 @@ export default {
       &-image {
         top: -65px;
         left: -12px;
+        width: 444px;
+        border-bottom-right-radius: 0;
       }
     }
 
@@ -242,6 +245,7 @@ export default {
     }
   }
 
+  // Headline on top
   .disposition-1 {
     .headline {
       top: 100px;
