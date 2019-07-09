@@ -2,7 +2,7 @@
   <div>
     <transition name="fade" mode="out-in">
       <div class="workspace" key="workspace" v-if="selectedTemplate">
-        <app-nav class="nav" />
+        <app-nav class="nav" :template-name="selectedTemplate.name" />
         <component class="pane" :is="bannerComponents[selectedTemplate.id + 'Pane']" @updated="(props) => { bannerProperties = props }" />
         <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" />
       </div>
