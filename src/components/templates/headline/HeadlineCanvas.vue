@@ -105,7 +105,7 @@ export default {
     position: absolute;
     top: 460px;
     left: 0;
-    z-index: 100;
+    z-index: 40;
     padding: 0 40px;
     font-family: 'Tiempos Headline', serif;
     font-weight: 700;
