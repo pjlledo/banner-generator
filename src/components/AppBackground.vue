@@ -53,6 +53,7 @@ export default {
       animation-direction: alternate;
       animation-timing-function: ease-in-out;
       transition: 1s ease-in-out;
+      will-change: transform, left, top, right, bottom;
 
       &-holder {
         width: 100%;

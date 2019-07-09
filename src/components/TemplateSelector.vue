@@ -47,6 +47,7 @@ export default {
       margin-top: 2rem;
       font-size: 3rem;
       font-weight: bold;
+      letter-spacing: -1px;
     }
 
     ul {
@@ -80,6 +81,11 @@ export default {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
+      }
+
+      &:active {
+        transform: rotate(0) scale(.95);
+        opacity: .75;
       }
 
       &-icon {
