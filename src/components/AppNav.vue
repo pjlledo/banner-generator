@@ -1,7 +1,7 @@
 <template>
     <div class="nav">
-      <div class="nav-back" ><button @click="cancel">x Tornar Enrere</button></div>
-      <p class='nav-centered' >Generador de Targes / Tarja titular</p>
+      <div class="nav-back"><button @click="cancel">x Tornar Enrere</button></div>
+      <p class="nav-centered">Generador de Targes / Tarja titular</p>
     </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   .nav {
     color: $white;
     background-color: $gray-900;
-    padding: 1rem;
+    padding: .75rem 2rem;
     display: flex;
 
     &-back {

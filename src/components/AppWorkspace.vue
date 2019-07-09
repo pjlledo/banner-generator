@@ -79,7 +79,7 @@ export default {
     grid-area: pane;
     margin: 1rem 1rem 1rem 0;
     border-radius: 0 1.25rem 1.25rem 0;
-    padding: 2rem 2rem 2rem 3.5rem;
+    padding: 2rem;
     background-color: $white;
     box-shadow: 0 7px 25px -16px;
   }
