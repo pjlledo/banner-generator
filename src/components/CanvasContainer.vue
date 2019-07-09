@@ -51,3 +51,19 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  @media (max-height: 900px) {
+    .banner-aspect .tab-content {
+      transform: scale(.75);
+      margin: -5rem 0;
+    }
+  }
+
+  @media (max-height: 700px) {
+    .banner-aspect .tab-content {
+      transform: scale(.7);
+      margin: -6.5rem 0;
+    }
+  }
+</style>
