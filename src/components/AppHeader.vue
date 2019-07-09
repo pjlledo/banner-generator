@@ -2,7 +2,8 @@
   <div>
     <div class="navbar">
       <img :src="logo" alt="Compromís" />
-      <div class="logo-label">Disseny</div>
+      <div class="nav-label logo-label">Disseny</div>
+      <div class="nav-label app-label">Generador de targes</div>
     </div>
   </div>
 </template>
@@ -35,16 +36,23 @@ export default {
       height: 32px;
     }
 
-    .logo-label {
+    .nav-label {
       display: flex;
       align-items: center;
-      border-left: 1px $gray-400 solid;
-      margin-left: .75rem;
-      padding-left: .75rem;
       font-size: 1.25rem;
       letter-spacing: -.3px;
       line-height: 1;
       white-space: nowrap;
+    }
+
+    .logo-label {
+      border-left: 1px $gray-400 solid;
+      margin-left: .75rem;
+      padding-left: .75rem;
+    }
+
+    .app-label {
+      margin-left: auto;
     }
   }
 </style>

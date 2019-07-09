@@ -145,7 +145,7 @@ export default {
       this.properties.picture = image
       this.properties.picturePreview = URL.createObjectURL(image)
 
-      const img = new Image
+      const img = new Image()
       img.onload = () => {
         this.properties.pictureAspect = (img.width / img.height > 1) ? 'horizontal' : 'vertical'
       }
