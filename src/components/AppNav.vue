@@ -1,10 +1,10 @@
 <template>
   <div class="nav">
-    <div class="nav-back"><b-button size="is-small" rounded inverted outlined type="is-primary" @click="isCardModalActive = true">x Tornar Enrere</b-button></div>
+    <div class="nav-back"><b-button size="is-small" rounded inverted outlined type="is-text" @click="isCardModalActive = true">x Tornar Enrere</b-button></div>
     <p class="nav-centered">{{ templateName }}</p>
     <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
       <div class="card content">
-          <h2>Atenció</h2>
+          <b-icon icon="exclamation-triangle" size="is-large" /><h2>Atenció</h2>
           <p>Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
           Es perdran els canvis no guardats.</p>
           <b-button type="is-primary" @click="cancel">Si, tancar.</b-button>
@@ -57,6 +57,14 @@ export default {
 
       p {
         display: block;
+      }
+
+      h2 {
+        display: inline;
+      }
+
+      .icon.is-large {
+      margin-left: -.75rem;
       }
     }
 
