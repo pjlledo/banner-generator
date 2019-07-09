@@ -35,7 +35,7 @@
     <b-field label="Titular">
       <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline" maxlength="160"></b-input>
     </b-field>
-    <b-field>
+    <b-field label="Foto" class="image-upload-field">
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -113,6 +113,7 @@ export default {
     }
   },
 
+  // Emit state to parent component
   watch: {
     properties: {
       handler: function (properties) {
@@ -187,5 +188,9 @@ export default {
 
   .local-label {
     margin-top: .75rem;
+  }
+
+  .image-upload-field {
+    margin-top: -1rem;
   }
 </style>

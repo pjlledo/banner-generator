@@ -6,7 +6,10 @@
       <component :is="canvasComponent" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
     </b-tabs>
 
-    <b-button type="is-primary" size="is-large" @click="download">Descarrega</b-button>
+    <b-button type="is-primary" size="is-large" rounded @click="download">
+      <b-icon icon="arrow-to-bottom" />
+      <span class="button-label">Descarrega</span>
+    </b-button>
   </div>
 </template>
 
@@ -51,3 +54,24 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .button-label {
+    position: relative;
+    top: -4px;
+  }
+
+  @media (max-height: 900px) {
+    .banner-aspect .tab-content {
+      transform: scale(.75);
+      margin: -5rem 0;
+    }
+  }
+
+  @media (max-height: 700px) {
+    .banner-aspect .tab-content {
+      transform: scale(.7);
+      margin: -6.5rem 0;
+    }
+  }
+</style>

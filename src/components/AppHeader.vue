@@ -26,7 +26,7 @@ export default {
 
   .navbar {
     background-color: $white;
-    padding: 1rem;
+    padding: .75rem 2rem;
     display: flex;
 
     img {
