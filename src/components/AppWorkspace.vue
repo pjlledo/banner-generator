@@ -46,7 +46,7 @@ export default {
 
   methods: {
     back (confirmed) {
-      this.$router.push({ name: 'start', params: { confirmed }})
+      this.$router.push({ name: 'start', params: { confirmed } })
     }
   },
 

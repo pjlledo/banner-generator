@@ -28,13 +28,13 @@ export default {
 
   created () {
     /// Hide background blobs when user in the workspace
-    this.backgroundHidden = this.$route.name === 'workspace' ? true : false
+    this.backgroundHidden = this.$route.name === 'workspace'
   },
 
   watch: {
     '$route' (to, from) {
       // Hide background blobs when user navigates to the workspace
-      this.backgroundHidden = to.name === 'workspace' ? true : false
+      this.backgroundHidden = to.name === 'workspace'
     }
   }
 }
