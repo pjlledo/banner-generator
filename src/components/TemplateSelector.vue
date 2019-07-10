@@ -5,7 +5,9 @@
       <ul>
         <li v-for="template in templates" :key="template.id">
           <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
-            <span class="template-item-icon"><img :src="template.icon" alt="Icon" /></span>
+            <span class="template-item-icon">
+              <img svg-inline class="icon" src="./templates/headline/headline.svg" alt="Headline Icon" />
+            </span>
             <span class="template-item-name">{{ template.name }}</span>
           </router-link>
         </li>
@@ -77,9 +79,14 @@ export default {
         transform: rotate($rotation) scale(1.05);
 
         .template-item-name {
-          background: -webkit-linear-gradient(45deg, $gradient-start, $gradient-end);
+          background: linear-gradient(45deg, $gradient-start, $gradient-end);
+          background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+        }
+
+        .template-icon-active {
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         }
       }
 
@@ -96,7 +103,7 @@ export default {
         margin-top: -4rem;
         margin-left: -3rem;
 
-        img {
+        svg {
           width: 6rem;
           height: 6rem;
         }
@@ -109,6 +116,21 @@ export default {
         left: 0;
         padding: 1rem;
       }
+    }
+  }
+
+  .template-icon {
+    &-background {
+      fill: $gray-200;
+    }
+
+    &-bar {
+      fill: $gray-300;
+    }
+
+    &-active {
+      transition: .2s ease-in-out;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%)
     }
   }
 </style>
