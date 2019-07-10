@@ -1,19 +1,41 @@
 <template>
   <div id="app">
     <app-header />
-    <app-workspace />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
+    <app-background :hidden="backgroundHidden" />
   </div>
 </template>
 
 <script>
-import AppHeader from './components/AppHeader.vue'
-import AppWorkspace from './components/AppWorkspace.vue'
+import AppHeader from './components/AppHeader'
+import AppBackground from './components/AppBackground'
 
 export default {
   name: 'app',
+
   components: {
     AppHeader,
-    AppWorkspace
+    AppBackground
+  },
+
+  data () {
+    return {
+      backgroundHidden: false
+    }
+  },
+
+  created () {
+    /// Hide background blobs when user in the workspace
+    this.backgroundHidden = this.$route.name === 'workspace' ? true : false
+  },
+
+  watch: {
+    '$route' (to, from) {
+      // Hide background blobs when user navigates to the workspace
+      this.backgroundHidden = to.name === 'workspace' ? true : false
+    }
   }
 }
 </script>

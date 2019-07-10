@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="nav-back">
-      <b-button type="is-text" @click="isCardModalActive = true" class="back-button">
+      <b-button type="is-text" @click="$emit('back', false)" class="back-button">
         <b-icon icon="chevron-left" />
         <span class="button-text">Enrere</span>
       </b-button>
@@ -9,36 +9,26 @@
     <p class="nav-centered">{{ templateName }}</p>
     <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
       <div class="card content">
-          <b-icon icon="exclamation-triangle" size="is-large" /><h2>Atenció</h2>
-          <p>Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
-          Es perdran els canvis no guardats.</p>
-          <b-button type="is-primary" @click="cancel">Si, tancar</b-button>
-          <b-button type="is-light" @click="isCardModalActive = false">No, seguir editant</b-button>
+          <b-icon icon="exclamation-triangle" size="is-large" />
+          <h2>Atenció</h2>
+          <p>
+            Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
+            Es perdran els canvis no guardats.
+          </p>
+          <b-button type="is-primary" @click="$emit('back', true)">Si, tancar</b-button>
+          <b-button type="is-light" @click="$emit('hide', true)">No, seguir editant</b-button>
       </div>
     </b-modal>
   </div>
 </template>
 
 <script>
-import { EventBus } from '../event-bus.js'
-
 export default {
   name: 'app-nav',
 
   props: {
+    isCardModalActive: Boolean,
     templateName: String
-  },
-
-  data () {
-    return {
-      isCardModalActive: false
-    }
-  },
-
-  methods: {
-    cancel () {
-      EventBus.$emit('closeBanner', true)
-    }
   }
 }
 </script>

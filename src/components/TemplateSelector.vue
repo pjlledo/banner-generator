@@ -4,10 +4,10 @@
       <h2>Selecciona un model de tarja</h2>
       <ul>
         <li v-for="template in templates" :key="template.id">
-          <a href="#" @click="$emit('update', template)" class="template-item">
+          <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
             <span class="template-item-icon"><img :src="template.icon" alt="Icon" /></span>
             <span class="template-item-name">{{ template.name }}</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>

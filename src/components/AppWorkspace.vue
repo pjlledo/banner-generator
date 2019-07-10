@@ -1,25 +1,14 @@
 <template>
-  <div>
-    <transition name="fade" mode="out-in">
-      <div class="workspace" key="workspace" v-if="selectedTemplate">
-        <app-nav class="nav" :template-name="selectedTemplate.name" />
-        <component class="pane" :is="bannerComponents[selectedTemplate.id + 'Pane']" @updated="(props) => { bannerProperties = props }" />
-        <canvas-container class="canvas-container" :canvas-component="bannerComponents[selectedTemplate.id + 'Canvas']" :banner-properties="bannerProperties" />
-      </div>
-      <div class="selector" key="selector" v-else>
-        <template-selector @update="(template) => { this.selectedTemplate = template }" />
-      </div>
-    </transition>
-    <app-background :hidden="selectedTemplate ? true : false" />
+  <div class="workspace">
+    <app-nav class="nav" :is-card-modal-active="isCardModalActive" :template-name="selectedTemplate.name" @back="back" @hide="isCardModalActive = false" />
+    <component class="pane" :is="bannerComponents[`${selectedTemplate.id}Pane`]" @updated="(props) => { bannerProperties = props }" />
+    <canvas-container class="canvas-container" :canvas-component="bannerComponents[`${selectedTemplate.id}Canvas`]" :banner-properties="bannerProperties" />
   </div>
 </template>
 
 <script>
-import { EventBus } from '../event-bus.js'
 import AppNav from './AppNav'
-import AppBackground from './AppBackground'
 import CanvasContainer from './CanvasContainer'
-import TemplateSelector from './TemplateSelector'
 import templates from './templates/templates'
 
 /* Templates */
@@ -36,9 +25,7 @@ export default {
 
   components: {
     AppNav,
-    AppBackground,
     CanvasContainer,
-    TemplateSelector,
     ...bannerComponents
   },
 
@@ -47,12 +34,30 @@ export default {
       templates: templates,
       bannerComponents: bannerComponents,
       selectedTemplate: null,
-      bannerProperties: null
+      bannerProperties: null,
+      isCardModalActive: false
     }
   },
 
   created () {
-    EventBus.$on('closeBanner', () => { this.selectedTemplate = null })
+    // Find and set selected template based on route param
+    this.selectedTemplate = this.templates.find(template => template.id.toLowerCase() === this.$route.params.pathMatch)
+  },
+
+  methods: {
+    back (confirmed) {
+      this.$router.push({ name: 'start', params: { confirmed }})
+    }
+  },
+
+  beforeRouteLeave (to, from, next) {
+    // Abort and show modal if going back unless 'confirmed' is explicitly set
+    if (to.params.confirmed) {
+      next()
+    } else {
+      this.isCardModalActive = true
+      next(false)
+    }
   }
 }
 </script>

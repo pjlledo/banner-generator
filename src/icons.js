@@ -1,4 +1,10 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUpload, faMobileAndroid, faSquare, faTimes, faArrowToBottom, faExclamationTriangle, faChevronLeft} from '@fortawesome/pro-regular-svg-icons'
+import {
+  faUpload, faMobileAndroid, faSquare, faTimes, faArrowToBottom,
+  faExclamationTriangle, faChevronLeft
+} from '@fortawesome/pro-regular-svg-icons'
 
-library.add(faUpload, faMobileAndroid, faSquare, faTimes, faArrowToBottom, faExclamationTriangle, faChevronLeft)
+library.add(
+  faUpload, faMobileAndroid, faSquare, faTimes, faArrowToBottom,
+  faExclamationTriangle, faChevronLeft
+)

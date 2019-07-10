@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import router from './router'
 import Buefy from 'buefy'
 import App from './App.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -15,5 +16,6 @@ Vue.use(Buefy, {
 Vue.component('vue-fontawesome', FontAwesomeIcon)
 
 new Vue({
+  router,
   render: h => h(App)
 }).$mount('#app')

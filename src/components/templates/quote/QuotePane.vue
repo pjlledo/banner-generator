@@ -52,14 +52,12 @@
 
 <script>
 import { EventBus } from '../../../event-bus.js'
-import Swatches from 'vue-swatches'
 import RangeSlider from '../../../utils/RangeSlider.vue'
 
 export default {
   name: 'quote-pane',
 
   components: {
-    Swatches,
     RangeSlider
   },
 
