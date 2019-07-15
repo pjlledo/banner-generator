@@ -7,7 +7,10 @@
       </b-tabs>
     </transition>
     <b-field label="Frase">
-      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.quote" maxlength="160"></b-input>
+      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.quote" maxlength="120"></b-input>
+    </b-field>
+    <b-field label="Autor i/o mitjà">
+      <b-input type="textarea" class="textarea-small" placeholder="Mónica Oltra a l'entrevista de La Sexta" v-model="properties.author" maxlength="80"></b-input>
     </b-field>
     <b-field label="Foto" class="image-upload-field">
       <b-upload @input="updateImage" drag-drop>
@@ -69,6 +72,7 @@ export default {
         picturePreview: '',
         picturePos: 50,
         quote: '',
+        author: '',
         hashtag: '',
         hasLocalLabel: false,
         localLabel: ''
@@ -128,6 +132,8 @@ export default {
     position: relative;
   }
 
+
+
   .section {
     padding: 2rem 1.5rem;
   }
@@ -153,5 +159,11 @@ export default {
       flex-direction: column;
       width: 100%;
     }
+  }
+</style>
+
+<style lang="scss">
+  .textarea-small .textarea {
+    min-height: 4.3rem;
   }
 </style>

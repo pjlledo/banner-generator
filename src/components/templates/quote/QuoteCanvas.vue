@@ -13,8 +13,14 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="quote-text" contenteditable>
-      {{ bannerProperties.quote }}
+    <div class="quote">
+      <div class="quote-glyph">“</div>
+      <div class="quote-text" contenteditable>
+        {{ bannerProperties.quote }}.”
+      </div>
+      <div class="quote-author" contenteditable>
+        {{ bannerProperties.author }}
+      </div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
@@ -69,28 +75,42 @@ export default {
     background: $white;
   }
 
-  .headline {
+  .quote {
     position: absolute;
-    top: 460px;
+    top: 210px;
     left: 0;
     z-index: 40;
-    padding: 0 40px;
-    font-family: 'Tiempos Headline', serif;
-    font-weight: 700;
+    padding: 0 45px;
     transition: all .5s ease-in-out;
+    font-family: 'Compromis', serif;
 
-    &-source {
-      margin-bottom: .25rem;
-
-      &--custom {
-        margin-bottom: 4px;
-      }
+    &-glyph {
+      position: absolute;
+      top: -110px;
+      left: 16px;
+      font-size: 190px;
+      z-index: -10;
+      color: $gray-100;
+      font-weight: bold;
     }
 
     &-text {
-      font-size: 30px;
-      line-height: 1.1;
+      font-size: 31px;
+      line-height: 1.15;
+      letter-spacing: -1px;
       word-wrap: break-word;
+      font-family: 'Compromis', serif;
+      font-weight: bold;
+      width: 270px;
+    }
+
+    &-author {
+      font-size: 17px;
+      letter-spacing: -0.5px;
+      margin-top: .75rem;
+      line-height: 1.1;
+      width: 290px;
+      color: $gray-600;
     }
   }
 
@@ -118,7 +138,7 @@ export default {
 
     &-image {
       top: -15%;
-      right: -33%;
+      right: -34%;
       height: 640px;
       z-index: 20;
       background: $gray-300;
