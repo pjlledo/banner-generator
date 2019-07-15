@@ -84,10 +84,6 @@ export default {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-
-        .template-icon-active {
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        }
       }
 
       &:active {
@@ -116,21 +112,6 @@ export default {
         left: 0;
         padding: 1rem;
       }
-    }
-  }
-
-  .template-icon {
-    &-background {
-      fill: $gray-200;
-    }
-
-    &-bar {
-      fill: $gray-300;
-    }
-
-    &-active {
-      transition: .2s ease-in-out;
-      clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%)
     }
   }
 </style>
