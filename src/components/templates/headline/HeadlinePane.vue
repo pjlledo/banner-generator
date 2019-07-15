@@ -77,10 +77,10 @@
 </template>
 
 <script>
-import { EventBus } from '../../../event-bus.js'
+import { EventBus } from '@/event-bus.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
-import RangeSlider from '../../../utils/RangeSlider.vue'
+import RangeSlider from '@/utils/RangeSlider.vue'
 
 export default {
   name: 'headline-pane',
