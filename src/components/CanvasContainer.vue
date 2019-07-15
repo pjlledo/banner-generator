@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { EventBus } from '../event-bus.js'
+import { EventBus } from '@/event-bus.js'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
 

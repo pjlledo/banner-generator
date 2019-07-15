@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Logo from '../../../assets/logo-compromis.svg'
+import Logo from '@/assets/logo-compromis.svg'
 
 export default {
   name: 'headline-canvas',

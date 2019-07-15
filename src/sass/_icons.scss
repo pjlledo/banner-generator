@@ -1,0 +1,50 @@
+/* Icon animations */
+.template-icon {
+  &-background {
+    fill: $gray-200;
+  }
+}
+
+/* Headline icon */
+.headline {
+  &-bar {
+    fill: $gray-300;
+  }
+
+  &-active {
+    .headline-bar--1 {
+      transition: .4s ease-in-out;
+      width: 0;
+    }
+
+    .headline-bar--2 {
+      transition: .4s ease-in-out;
+      transition-delay: .2s;
+      width: 0;
+    }
+
+    .headline-bar--3 {
+      transition: .4s ease-in-out;
+      transition-delay: .3s;
+      width: 0;
+    }
+  }
+}
+
+.template-item {
+  &:hover {
+    .headline-bar {
+      &--1 {
+        width: 50px;
+      }
+
+      &--2 {
+        width: 260px;
+      }
+
+      &--3 {
+        width: 160px;
+      }
+    }
+  }
+}

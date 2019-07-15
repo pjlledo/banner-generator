@@ -1,25 +1,19 @@
-import HeadlineIcon from './headline/headline.svg'
-
 const templates = [
   {
     id: 'Headline',
-    name: 'Titular de premsa',
-    icon: HeadlineIcon
+    name: 'Titular de premsa'
   },
   {
     id: 'Quote',
-    name: 'Frase',
-    icon: HeadlineIcon
+    name: 'Frase'
   },
   {
     id: 'Headline',
-    name: 'Esdeveniment',
-    icon: HeadlineIcon
+    name: 'Esdeveniment'
   },
   {
     id: 'Headline',
-    name: 'Mitjans',
-    icon: HeadlineIcon
+    name: 'Mitjans'
   }
 ]
 

@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { EventBus } from '../../../event-bus.js'
-import RangeSlider from '../../../utils/RangeSlider.vue'
+import { EventBus } from '@/event-bus.js'
+import RangeSlider from '@/utils/RangeSlider.vue'
 
 export default {
   name: 'quote-pane',
