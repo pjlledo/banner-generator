@@ -11,7 +11,6 @@
     <div class="blob blob-image">
       <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
     </div>
-    <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="quote">
       <div class="quote-glyph">“</div>
@@ -25,9 +24,6 @@
     <div class="logo">
       <img :src="logo" alt="Compromís" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
-    </div>
-    <div class="hashtag" v-if="bannerProperties.hashtag">
-      {{ bannerProperties.hashtag }}
     </div>
   </div>
 </template>
@@ -77,35 +73,45 @@ export default {
 
   .quote {
     position: absolute;
-    top: 210px;
+    top: 200px;
     left: 0;
     z-index: 40;
     padding: 0 45px;
+    width: 320px;
+    z-index: 20;
     transition: all .5s ease-in-out;
     font-family: 'Compromis', serif;
 
-    &-glyph {
-      position: absolute;
-      top: -110px;
-      left: 16px;
-      font-size: 190px;
-      z-index: -10;
-      color: $gray-100;
-      font-weight: bold;
-    }
-
     &-text {
-      font-size: 31px;
-      line-height: 1.15;
+      font-size: 32px;
+      line-height: 1.42;
+      color: white;
+      padding: 0 10px;
+      border-radius: 2px;
+      background: linear-gradient(45deg,$gradient-start,$gradient-end);
       letter-spacing: -1px;
+      display: inline;
       word-wrap: break-word;
       font-family: 'Compromis', serif;
       font-weight: bold;
-      width: 270px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    &-glyph {
+      position: absolute;
+      top: -123px;
+      left: 35px;
+      font-size: 170px;
+      z-index: -10;
+      background: -webkit-linear-gradient(45deg,$gradient-start,$gradient-end);
+      font-weight: bold;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     &-author {
-      font-size: 17px;
+      font-size: 19px;
       letter-spacing: -0.5px;
       margin-top: .75rem;
       line-height: 1.1;
@@ -124,22 +130,16 @@ export default {
     transform: rotate($rotation);
     transition: all .5s ease-in-out;
 
-    &-1 {
-      top: -80%;
-      left: -75%;
-      z-index: 10;
-    }
-
     &-2 {
-      left: -42%;
-      bottom: -91%;
+      left: -67%;
+      bottom: -88%;
       z-index: 10;
     }
 
     &-image {
       top: -15%;
-      right: -34%;
-      height: 640px;
+      right: -14%;
+      height: 680px;
       z-index: 20;
       background: $gray-300;
       width: 620px;

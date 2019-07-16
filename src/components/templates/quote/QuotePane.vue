@@ -32,11 +32,6 @@
       <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
     <transition name="slide">
-      <b-field label="Hashtag" v-if="!aspect">
-        <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" :maxlength="properties.hasLocalLabel ? 18 : 32"></b-input>
-      </b-field>
-    </transition>
-    <transition name="slide">
       <div v-if="!aspect">
         <b-switch v-model="properties.hasLocalLabel">
           Afegir text al logo
@@ -73,7 +68,6 @@ export default {
         picturePos: 50,
         quote: '',
         author: '',
-        hashtag: '',
         hasLocalLabel: false,
         localLabel: ''
       },
