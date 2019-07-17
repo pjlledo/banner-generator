@@ -130,6 +130,10 @@ export default {
     transform: rotate($rotation);
     transition: all .5s ease-in-out;
 
+    &-1 {
+      display: none;
+    }
+
     &-2 {
       left: -67%;
       bottom: -88%;
@@ -214,18 +218,24 @@ export default {
       }
 
       &-image {
-        top: -65px;
+        height: 540px;
+        top: -48px;
         left: -12px;
-        width: 444px;
         border-bottom-right-radius: 0;
       }
     }
 
-    .headline {
-      top: 430px;
+    .quote {
+      top: 370px;
+
+
+      &-glyph {
+        top: -105px;
+        font-size: 140px;
+      }
 
       &-text {
-        font-size: 26px;
+        font-size: 28px;
       }
     }
 
@@ -234,20 +244,15 @@ export default {
     }
   }
 
-  // Headline on top
+  // Quote on top
   .disposition-1 {
-    .headline {
-      top: 100px;
-    }
-
-    &.has-long-headline {
-      .blob-image{
-        bottom: -130px;
-      }
+    .quote {
+      top: 22%;
+      width: 600px;
     }
 
     &.has-local-label {
-      .blob-1 {
+      .blob-2 {
         left: -60%;
         top: -88%;
       }
@@ -262,23 +267,18 @@ export default {
     }
 
     .blob {
-      &-1 {
-        top: -90%;
-        left: -40%;
-        bottom: auto;
-        right: auto;
-      }
-
       &-2 {
-        display: none;
+        left: -50%;
+        bottom: 90%;
       }
 
       &-image {
         left: auto;
         top: auto;
-        bottom: -90px;
-        right: -80px;
+        bottom: -73px;
+        right: -90px;
         height: 570px;
+        width: 650px;
       }
     }
   }
