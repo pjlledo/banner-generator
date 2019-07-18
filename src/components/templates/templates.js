@@ -8,7 +8,7 @@ const templates = [
     name: 'Frase'
   },
   {
-    id: 'Headline',
+    id: 'Event',
     name: 'Esdeveniment'
   },
   {
