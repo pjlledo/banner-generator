@@ -17,14 +17,16 @@
       <div class="event-title" contenteditable>
         {{ bannerProperties.title }}
       </div>
-      <div class="event-details" contenteditable>
-        <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
-      </div>
-      <div class="event-details" contenteditable>
-        <b-icon icon="clock"/>{{ bannerProperties.time }}
-      </div>
-      <div class="event-details" contenteditable>
-        <b-icon icon="map-marker-alt"/>{{ bannerProperties.place }}
+      <div class="event-details-wrapper">
+        <div class="event-details" contenteditable>
+          <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
+        </div>
+        <div class="event-details" contenteditable>
+          <b-icon icon="clock"/>{{ bannerProperties.time }}
+        </div>
+        <div class="event-details" contenteditable>
+          <b-icon icon="map-marker-alt"/>{{ bannerProperties.place }}
+        </div>
       </div>
     </div>
     <div class="logo">
@@ -207,8 +209,7 @@ export default {
 
     .blob {
       &-1 {
-        top: -43%;
-        right: -120%;
+        display: none;
       }
 
       &-2 {
@@ -218,22 +219,26 @@ export default {
 
       &-image {
         height: 540px;
-        top: -48px;
+        top: -160px;
         left: -12px;
         border-bottom-right-radius: 0;
       }
     }
 
-    .quote {
-      top: 370px;
+    .event {
+      top: 360px;
 
-      &-glyph {
-        top: -105px;
-        font-size: 140px;
-      }
-
-      &-text {
-        font-size: 28px;
+      &-title {
+        font-size: 34px;
+        line-height: 1.42;
+        color: white;
+        padding: 0 10px;
+        border-radius: 2px;
+        background: linear-gradient(45deg,$gradient-start,$gradient-end);
+        letter-spacing: -1px;
+        display: inline;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
       }
     }
 
@@ -244,9 +249,14 @@ export default {
 
   // Quote on top
   .disposition-1 {
-    .quote {
-      top: 22%;
-      width: 600px;
+    .event {
+      top: 38px;
+
+      &-details-wrapper {
+        position: absolute;
+        bottom: -400px;
+        right: -451px;
+      }
     }
 
     &.has-local-label {
@@ -256,26 +266,26 @@ export default {
       }
     }
 
-    .logo {
-      bottom: 666px;
-    }
-
     .hashtag {
       bottom: 668px;
     }
 
     .blob {
+      &-1 {
+        left: 69%;
+        top: -60%;
+      }
+
       &-2 {
-        left: -50%;
-        bottom: 90%;
+        display: none;
       }
 
       &-image {
         left: auto;
         top: auto;
-        bottom: -73px;
-        right: -90px;
-        height: 570px;
+        bottom: -108px;
+        right: 281px;
+        height: 593px;
         width: 650px;
       }
     }
