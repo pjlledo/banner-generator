@@ -12,7 +12,7 @@ const templates = [
     name: 'Esdeveniment'
   },
   {
-    id: 'Headline',
+    id: 'Media',
     name: 'Mitjans'
   }
 ]

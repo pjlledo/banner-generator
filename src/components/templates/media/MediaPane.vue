@@ -1,13 +1,13 @@
 <template>
   <div>
-    <transition name="slide">
-      <b-tabs type="is-toggle" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
-        <b-tab-item label="Frase esquerra"></b-tab-item>
-        <b-tab-item label="Frase dalt"></b-tab-item>
-      </b-tabs>
-    </transition>
     <b-field label="Titol">
-      <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
+      <b-input placeholder="Mónica Oltra" v-model="properties.title"></b-input>
+    </b-field>
+    <b-field label="Tipus d'acte">
+      <b-input placeholder="Debat" v-model="properties.overtitle"></b-input>
+    </b-field>
+    <b-field label="Subtítol">
+      <b-input placeholder="Models de finançament" v-model="properties.subtitle"></b-input>
     </b-field>
     <b-field label="Data">
       <b-input placeholder="21 de Febrer" v-model="properties.date"></b-input>
@@ -70,9 +70,10 @@ export default {
         picturePreview: '',
         picturePos: 50,
         title: '',
+        overtitle: '',
+        subtitle: '',
         date: '',
         time: '',
-        place: '',
         hasLocalLabel: false,
         localLabel: ''
       },

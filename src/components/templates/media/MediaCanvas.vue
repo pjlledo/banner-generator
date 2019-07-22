@@ -13,24 +13,26 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="media" contenteditable>
-      <div class="media-overtitle" contenteditable>
+    <div class="medium" contenteditable>
+      <div class="medium-overtitle" contenteditable>
         {{ bannerProperties.overtitle }}
       </div>
-      <div class="media-title" contenteditable>
+      <div class="medium-title" contenteditable>
         {{ bannerProperties.title }}
       </div>
-      <div class="media-subtitle" contenteditable>
+      <div class="medium-subtitle" contenteditable>
         {{ bannerProperties.subtitle }}
       </div>
-      <div class="media-details" contenteditable>
-        <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
+      <div class="medium-details">
+        <div class="medium-day" contenteditable>
+          <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
+        </div>
+        <div class="medium-time" contenteditable>
+          <b-icon icon="clock"/>{{ bannerProperties.time }}
+        </div>
+        <div class="medium-channel" contenteditable></div>
+        <div class="medium-programme" contenteditable></div>
       </div>
-      <div class="media-details" contenteditable>
-        <b-icon icon="clock"/>{{ bannerProperties.time }}
-      </div>
-      <div class="media-channel"></div>
-      <div class="media-programme"></div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
@@ -82,7 +84,7 @@ export default {
     background: $white;
   }
 
-  .event {
+  .medium {
     position: absolute;
     top: 100px;
     left: 0;
@@ -94,7 +96,7 @@ export default {
     font-family: 'Compromis', serif;
 
     &-title {
-      font-size: 40px;
+      font-size: 30px;
       line-height: 1.2;
       color: $gray-900;
       letter-spacing: -1px;
@@ -104,22 +106,43 @@ export default {
       font-weight: bold;
     }
 
-    &-details {
-      padding-top: .9rem;
+    &-subtitle {
       display: flex;
       align-items: center;
       font-size: 19px;
       letter-spacing: -0.5px;
-      width: 290px;
       color: $gray-700;
+    }
 
-      .icon {
+    &-overtitle {
+      display: flex;
+      align-items: center;
+      font-size: 19px;
+      letter-spacing: -0.5px;
+      color: $gray-700;
+    }
+
+    &-details {
+      padding-top: 3rem;
+    }
+
+    &-day, &-time {
+      display: flex;
+      align-content: center;
+      padding-top: .25rem;
+    }
+
+    &-channel, &-programme{
+      display: inline-block;
+      margin: 1rem .5rem 0 0;
+      background-color: $gray-800;
+      border-radius: 5px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .icon {
         padding-right: .3rem;
-        svg {
-          width: 500px;
-          height: 500px;
-        }
-      }
     }
   }
 
@@ -250,47 +273,4 @@ export default {
     }
   }
 
-  // Quote on top
-  .disposition-1 {
-    .event {
-      top: 38px;
-
-      &-details-wrapper {
-        position: absolute;
-        bottom: -400px;
-        right: -451px;
-      }
-    }
-
-    &.has-local-label {
-      .blob-2 {
-        left: -60%;
-        top: -88%;
-      }
-    }
-
-    .hashtag {
-      bottom: 668px;
-    }
-
-    .blob {
-      &-1 {
-        left: 69%;
-        top: -60%;
-      }
-
-      &-2 {
-        display: none;
-      }
-
-      &-image {
-        left: auto;
-        top: auto;
-        bottom: -108px;
-        right: 281px;
-        height: 593px;
-        width: 650px;
-      }
-    }
-  }
 </style>
