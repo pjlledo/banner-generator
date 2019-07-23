@@ -30,8 +30,8 @@
         <div class="medium-time" contenteditable>
           <b-icon icon="clock"/>{{ bannerProperties.time }}
         </div>
-        <div class="medium-channel" contenteditable></div>
-        <div class="medium-programme" contenteditable></div>
+        <div class="medium-channel" :style="{ marginTop: bannerProperties.source.logoHeight + 'px' }"></div>
+        <div class="medium-programme" ></div>
       </div>
     </div>
     <div class="logo">

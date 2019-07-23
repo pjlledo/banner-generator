@@ -34,6 +34,22 @@
     <b-field label="Posició de la imatge">
       <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
+    <b-field label="Font">
+      <b-select placeholder="Selecciona un canal" @input="updateSource" expanded>
+        <option
+          v-for="source in presets"
+          :value="source.id"
+          :key="source.id"
+          :selected="properties.source === source.id">
+          {{ source.name }}
+        </option>
+        <option
+          value="other"
+          :selected="properties.source === 'other'">
+          Altre...
+        </option>
+      </b-select>
+    </b-field>
     <transition name="slide">
       <div v-if="!aspect">
         <b-switch v-model="properties.hasLocalLabel">
@@ -54,6 +70,7 @@
 <script>
 import { EventBus } from '@/event-bus.js'
 import RangeSlider from '@/utils/RangeSlider.vue'
+import presets from './presets'
 
 export default {
   name: 'quote-pane',
@@ -77,6 +94,7 @@ export default {
         hasLocalLabel: false,
         localLabel: ''
       },
+      presets: presets,
       aspect: 0
     }
   },
