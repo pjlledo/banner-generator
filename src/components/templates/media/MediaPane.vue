@@ -91,6 +91,7 @@ export default {
         subtitle: '',
         date: '',
         time: '',
+        source: null,
         hasLocalLabel: false,
         localLabel: ''
       },
@@ -118,6 +119,15 @@ export default {
   },
 
   methods: {
+    updateSource (source) {
+      if (source === 'other') {
+        this.properties.source = 'other'
+        return
+      }
+
+      this.properties.source = this.presets.find(preset => preset.id === source)
+    },
+
     updateImage (image) {
       this.properties.picture = image
       this.properties.picturePreview = URL.createObjectURL(image)

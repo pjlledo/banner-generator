@@ -30,7 +30,7 @@
         <div class="medium-time" contenteditable>
           <b-icon icon="clock"/>{{ bannerProperties.time }}
         </div>
-        <div class="medium-channel" :style="{ marginTop: bannerProperties.source.logoHeight + 'px' }"></div>
+        <div class="medium-channel" :style="{ backgroundImage: 'url(' + bannerProperties.source.logo + ')' }"></div>
         <div class="medium-programme" ></div>
       </div>
     </div>
@@ -251,20 +251,27 @@ export default {
       }
     }
 
-    .event {
-      top: 360px;
+    .medium {
+      top: 330px;
 
       &-title {
         font-size: 34px;
-        line-height: 1.42;
+      }
+
+      &-details {
+        padding-top: 1.5rem;
+      }
+
+      &-title, &-subtitle, &-overtitle {
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
         color: white;
-        padding: 0 10px;
         border-radius: 2px;
         background: linear-gradient(45deg,$gradient-start,$gradient-end);
         letter-spacing: -1px;
         display: inline;
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
+        line-height: 1.42;
+        padding: 0 10px;
       }
     }
 
