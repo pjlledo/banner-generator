@@ -14,6 +14,10 @@ const templates = [
   {
     id: 'Media',
     name: 'Mitjans'
+  },
+  {
+    id: 'Speakers',
+    name: 'Ponents'
   }
 ]
 
