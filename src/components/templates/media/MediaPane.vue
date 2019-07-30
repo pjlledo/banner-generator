@@ -34,7 +34,7 @@
     <b-field label="Posició de la imatge">
       <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
-    <b-field label="Font">
+    <b-field label="Canal">
       <b-select placeholder="Selecciona un canal" @input="updateSource" expanded>
         <option
           v-for="source in presets"
@@ -47,6 +47,17 @@
           value="other"
           :selected="properties.source === 'other'">
           Altre...
+        </option>
+      </b-select>
+    </b-field>
+    <b-field label="Programa" v-if="properties.source">
+      <b-select placeholder="Selecciona un programa" expanded @input="updateProgramme">
+        <option
+          v-for="programme in properties.source.programmes"
+          :value="programme.id"
+          :key="programme.id"
+          :selected="properties.programme === programme.id">
+          {{ programme.name }}
         </option>
       </b-select>
     </b-field>
@@ -73,7 +84,7 @@ import RangeSlider from '@/utils/RangeSlider.vue'
 import presets from './presets'
 
 export default {
-  name: 'quote-pane',
+  name: 'media-pane',
 
   components: {
     RangeSlider
@@ -92,6 +103,7 @@ export default {
         date: '',
         time: '',
         source: null,
+        programme: null,
         hasLocalLabel: false,
         localLabel: ''
       },
@@ -126,6 +138,15 @@ export default {
       }
 
       this.properties.source = this.presets.find(preset => preset.id === source)
+    },
+
+    updateProgramme (programme) {
+      if (programme === 'other') {
+        this.properties.programme = 'other'
+        return
+      }
+
+      this.properties.programme = this.properties.source.programmes.find(p => p.id === programme)
     },
 
     updateImage (image) {

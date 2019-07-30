@@ -30,8 +30,10 @@
         <div class="medium-time" contenteditable>
           <b-icon icon="clock"/>{{ bannerProperties.time }}
         </div>
-        <div class="medium-channel" :style="{ backgroundImage: 'url(' + bannerProperties.source.logo + ')' }"></div>
-        <div class="medium-programme" ></div>
+        <div v-if="bannerProperties.source" class="medium-channel" :style="{ backgroundImage: 'url(' + bannerProperties.source.logo + ')' }"></div>
+        <div class="medium-programme" :style="{ backgroundColor: bannerProperties.programme.color }">
+          <img :src="bannerProperties.programme.logo" />
+        </div>
       </div>
     </div>
     <div class="logo">
