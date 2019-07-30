@@ -23,7 +23,7 @@
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
     </div>
   </div>
 </template>
@@ -115,7 +115,7 @@ export default {
       letter-spacing: -0.5px;
       margin-top: .75rem;
       line-height: 1.1;
-      width: 290px;
+      width: 150px;
       color: $gray-600;
     }
   }
