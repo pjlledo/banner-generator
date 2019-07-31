@@ -105,7 +105,8 @@ export default {
         source: null,
         programme: null,
         hasLocalLabel: false,
-        localLabel: ''
+        localLabel: '',
+        isDownloadable: true
       },
       presets: presets,
       aspect: 0

@@ -77,7 +77,8 @@ export default {
         time: '',
         place: '',
         hasLocalLabel: false,
-        localLabel: ''
+        localLabel: '',
+        isDownloadable: true
       },
       aspect: 0
     }

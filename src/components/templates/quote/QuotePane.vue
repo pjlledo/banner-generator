@@ -69,7 +69,8 @@ export default {
         quote: '',
         author: '',
         hasLocalLabel: false,
-        localLabel: ''
+        localLabel: '',
+        isDownloadable: true
       },
       aspect: 0
     }

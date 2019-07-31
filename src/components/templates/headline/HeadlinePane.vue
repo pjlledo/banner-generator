@@ -32,7 +32,7 @@
         </b-field>
       </div>
     </transition>
-    <b-field label="Titular">
+    <b-field label="Titular" :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''" :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
       <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline" maxlength="160"></b-input>
     </b-field>
     <b-field label="Foto" class="image-upload-field">
@@ -103,10 +103,12 @@ export default {
         localLabel: '',
         source: null,
         customSource: '',
-        customSourceColor: '#1CA085'
+        customSourceColor: '#1CA085',
+        isDownloadable: false
       },
       presets: presets,
-      aspect: 0
+      aspect: 0,
+      displayErrors: false
     }
   },
 
@@ -114,6 +116,8 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
+        // Check if canvas can be downloaded
+        this.properties.isDownloadable = this.properties.headline && this.properties.picture
         this.$emit('updated', properties)
       },
       deep: true
@@ -126,6 +130,9 @@ export default {
 
     // Update aspect
     EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
+
+    // Display errors
+    EventBus.$on('checkForErrors', (check) => { this.displayErrors = check })
   },
 
   methods: {
