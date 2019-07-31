@@ -7,7 +7,7 @@
       </b-button>
     </div>
     <p class="nav-centered">{{ templateName }}</p>
-    <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
+    <b-modal :active="isCardModalActive" @close="$emit('hide', true)" :width="640" scroll="keep">
       <div class="card content">
           <b-icon icon="exclamation-triangle" size="is-large" />
           <h2>Atenció</h2>
