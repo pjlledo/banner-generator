@@ -3,31 +3,29 @@
     <b-field label="Titol">
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
-    <b-field label="Ponent 1">
-      <b-input placeholder="Mónica Oltra" v-model="properties.speakers.name"></b-input>
-      <b-input placeholder="Vicepresidenta del govern" v-model="properties.place"></b-input>
-      <b-upload @input="updateImage" drag-drop>
-        <section class="section">
-          <div class="content has-text-centered" v-if="!properties.picture">
-            <b-icon icon="upload" size="is-large" />
-            <p>Arrosega la foto</p>
-          </div>
-          <div class="content has-text-centered" v-else>
-            <p>{{ properties.picture.name }}</p>
-          </div>
-        </section>
-      </b-upload>
-      <b-field label="Foto" class="image-upload-field">
-      <b-button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null" class="remove-image" type="is-danger">
-        <b-icon icon="times" />
-      </b-button>
+    <b-field v-for="speaker in speakers" :key="speaker.id" :label="speaker.id">
+      <b-input placeholder="Mónica Oltra" v-model="properties.speaker.name"></b-input>
+      <b-input placeholder="Vicepresidenta del govern" v-model="properties.speaker.surname"></b-input>
     </b-field>
-    </b-field>
+    <ul id="example-1">
+      <li v-for="speaker in speakers" :key="speaker.id">
+       {{ speaker.value.name }}
+      </li>
+    </ul>
     <b-field label="Data">
-      <b-input placeholder="21 de Febrer" v-model="properties.date"></b-input>
+       <b-datepicker
+            placeholder="Click to select..."
+            icon="calendar-today">
+        </b-datepicker>
     </b-field>
     <b-field label="Hora">
-      <b-input placeholder="19h" v-model="properties.time"></b-input>
+      <b-timepicker
+        rounded
+        inline
+        placeholder="Click to select..."
+        v-model="properties.time"
+        icon="clock">
+      </b-timepicker>
     </b-field>
     <b-field label="Lloc">
       <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
@@ -69,17 +67,28 @@ export default {
         picturePos: 50,
         title: '',
         date: '',
-        time: '',
+        time: new Date(),
         place: '',
-        speakers: speakers,
+        speakers: [
+          {
+            id: 'speaker1',
+            name: '',
+            surname: '',
+            picture: null
+          },
+          {
+            id: 'speaker2',
+            name: '',
+            surname: '',
+            picture: null
+          }
+        ],
         hasLocalLabel: false,
-        localLabel: ''
+        localLabel: '',
+        isDownloadable: true
       },
-      aspect: 0,
-      speaker: [{
-        name: '',
-        surname: ''
-      }]
+      aspect: 0
+
     }
   },
 
