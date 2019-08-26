@@ -123,6 +123,9 @@ export default {
   },
 
   created () {
+    // Set first preset as default
+    this.properties.source = this.presets[0]
+
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)

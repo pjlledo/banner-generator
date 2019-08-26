@@ -102,6 +102,11 @@ export default {
     }
   },
 
+  created () {
+    // Set first preset as default
+    this.properties.source = this.presets[0]
+  },
+
   watch: {
     properties: {
       handler: function (properties) {

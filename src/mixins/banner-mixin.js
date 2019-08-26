@@ -26,8 +26,8 @@ export default {
   },
 
   created () {
-    // Set first preset as default
-    this.properties.source = this.presets[0]
+    // Emit default properties to canvas on creation
+    this.$emit('updated', this.properties)
 
     // Update aspect
     EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })

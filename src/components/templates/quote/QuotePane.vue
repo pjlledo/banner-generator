@@ -61,8 +61,7 @@ export default {
       properties: {
         quote: '',
         author: '',
-      },
-      aspect: 0
+      }
     }
   },
 
