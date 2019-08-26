@@ -89,24 +89,17 @@
 </template>
 
 <script>
-import { EventBus } from '@/event-bus.js'
-import RangeSlider from '@/utils/RangeSlider.vue'
+import BannerMixin from '@/mixins/banner-mixin.js'
 import presets from './presets'
 
 export default {
   name: 'media-pane',
 
-  components: {
-    RangeSlider
-  },
+  mixins: [BannerMixin],
 
   data () {
     return {
       properties: {
-        disposition: 0,
-        picture: null,
-        picturePreview: '',
-        picturePos: 50,
         title: '',
         overtitle: '',
         subtitle: '',
@@ -114,32 +107,22 @@ export default {
         time: new Date(),
         source: null,
         programme: null,
-        hasLocalLabel: false,
-        localLabel: '',
-        isDownloadable: true
       },
-      presets: presets,
-      aspect: 0
+      presets: presets
     }
   },
 
-  // Emit state to parent component
   watch: {
     properties: {
       handler: function (properties) {
-        this.$emit('updated', properties)
+        // Check if canvas can be downloaded
+        this.isDownloadable = (this.properties.title !== '' && this.properties.picture !== null)
       },
       deep: true
     }
   },
 
   created () {
-    // Emit properties to canvas on component load
-    this.$emit('updated', this.properties)
-
-    // Update aspect
-    EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
-
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)
@@ -162,30 +145,6 @@ export default {
       }
 
       this.properties.programme = this.properties.source.programmes.find(p => p.id === programme)
-    },
-
-    updateImage (image) {
-      this.properties.picture = image
-      this.properties.picturePreview = URL.createObjectURL(image)
-
-      const img = new Image()
-      img.onload = () => {
-        this.properties.pictureAspect = (img.width / img.height > 1) ? 'horizontal' : 'vertical'
-      }
-      img.src = this.properties.picturePreview
-    },
-
-    updateHashtag (hashtag) {
-      if (!hashtag) {
-        this.properties.hashtag = ''
-        return
-      }
-
-      if (hashtag[0] === '#') {
-        this.properties.hashtag = hashtag
-      } else {
-        this.properties.hashtag = '#' + hashtag
-      }
     }
   }
 }

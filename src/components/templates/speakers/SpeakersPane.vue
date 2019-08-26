@@ -14,8 +14,8 @@
     </ul>
     <b-field label="Data">
        <b-datepicker
-            placeholder="Dia de l'acte"
-            icon="calendar-alt">
+          placeholder="Dia de l'acte"
+          icon="calendar-alt">
         </b-datepicker>
     </b-field>
     <b-field label="Hora">
@@ -48,18 +48,16 @@
 </template>
 
 <script>
-import { EventBus } from '@/event-bus.js'
+import BannerMixin from '@/mixins/banner-mixin.js'
 
 export default {
   name: 'quote-pane',
 
+  mixins: [BannerMixin],
+
   data () {
     return {
       properties: {
-        disposition: 0,
-        picture: null,
-        picturePreview: '',
-        picturePos: 50,
         title: '',
         date: '',
         time: new Date(),
@@ -77,13 +75,8 @@ export default {
             surname: '',
             picture: null
           }
-        ],
-        hasLocalLabel: false,
-        localLabel: '',
-        isDownloadable: true
-      },
-      aspect: 0
-
+        ]
+      }
     }
   },
 
@@ -91,48 +84,16 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
-        this.$emit('updated', properties)
+        this.isDownloadable = (this.properties.quote !== '' && this.properties.picture !== null)
       },
       deep: true
     }
   },
 
   created () {
-    // Emit properties to canvas on component load
-    this.$emit('updated', this.properties)
-
-    // Update aspect
-    EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
-
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)
-  },
-
-  methods: {
-    updateImage (image) {
-      this.properties.picture = image
-      this.properties.picturePreview = URL.createObjectURL(image)
-
-      const img = new Image()
-      img.onload = () => {
-        this.properties.pictureAspect = (img.width / img.height > 1) ? 'horizontal' : 'vertical'
-      }
-      img.src = this.properties.picturePreview
-    },
-
-    updateHashtag (hashtag) {
-      if (!hashtag) {
-        this.properties.hashtag = ''
-        return
-      }
-
-      if (hashtag[0] === '#') {
-        this.properties.hashtag = hashtag
-      } else {
-        this.properties.hashtag = '#' + hashtag
-      }
-    }
   }
 }
 </script>

@@ -49,74 +49,30 @@
 </template>
 
 <script>
-import { EventBus } from '@/event-bus.js'
-import RangeSlider from '@/utils/RangeSlider.vue'
+import BannerMixin from '@/mixins/banner-mixin.js'
 
 export default {
   name: 'quote-pane',
 
-  components: {
-    RangeSlider
-  },
+  mixins: [BannerMixin],
 
   data () {
     return {
       properties: {
-        disposition: 0,
-        picture: null,
-        picturePreview: '',
-        picturePos: 50,
         quote: '',
         author: '',
-        hasLocalLabel: false,
-        localLabel: '',
-        isDownloadable: true
       },
       aspect: 0
     }
   },
 
-  // Emit state to parent component
   watch: {
     properties: {
       handler: function (properties) {
-        this.$emit('updated', properties)
+        // Check if canvas can be downloaded
+        this.isDownloadable = (this.properties.quote !== '' && this.properties.picture !== null)
       },
       deep: true
-    }
-  },
-
-  created () {
-    // Emit properties to canvas on component load
-    this.$emit('updated', this.properties)
-
-    // Update aspect
-    EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
-  },
-
-  methods: {
-    updateImage (image) {
-      this.properties.picture = image
-      this.properties.picturePreview = URL.createObjectURL(image)
-
-      const img = new Image()
-      img.onload = () => {
-        this.properties.pictureAspect = (img.width / img.height > 1) ? 'horizontal' : 'vertical'
-      }
-      img.src = this.properties.picturePreview
-    },
-
-    updateHashtag (hashtag) {
-      if (!hashtag) {
-        this.properties.hashtag = ''
-        return
-      }
-
-      if (hashtag[0] === '#') {
-        this.properties.hashtag = hashtag
-      } else {
-        this.properties.hashtag = '#' + hashtag
-      }
     }
   }
 }

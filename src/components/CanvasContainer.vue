@@ -6,7 +6,7 @@
       <component :is="canvasComponent" :banner-properties="bannerProperties" :aspect="aspect ? '916' : '11'" />
     </b-tabs>
 
-    <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-top" type="is-dark" :active="!bannerProperties.isDownloadable && displayTooltip">
+    <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-top" type="is-dark" :active="!isDownloadable && displayTooltip">
       <b-button type="is-primary" size="is-large" rounded @click="download">
         <b-icon icon="arrow-to-bottom" />
         <span class="button-label">Descarrega</span>
@@ -25,7 +25,8 @@ export default {
 
   props: {
     canvasComponent: Function,
-    bannerProperties: Object
+    bannerProperties: Object,
+    isDownloadable: Boolean
   },
 
   data () {
@@ -47,7 +48,7 @@ export default {
       this.displayTooltip = true
       EventBus.$emit('checkForErrors', true)
 
-      if (this.bannerProperties.isDownloadable) {
+      if (this.isDownloadable) {
         const aspect = this.aspect === 1 ? '916' : '11'
         const dimensions = this.aspect === 1 ? { width: 405, height: 720 } : { width: 720, height: 720 }
         domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })

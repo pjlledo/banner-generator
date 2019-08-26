@@ -77,62 +77,38 @@
 </template>
 
 <script>
-import { EventBus } from '@/event-bus.js'
+import BannerMixin from '@/mixins/banner-mixin.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
-import RangeSlider from '@/utils/RangeSlider.vue'
 
 export default {
   name: 'headline-pane',
 
   components: {
-    Swatches,
-    RangeSlider
+    Swatches
   },
+
+  mixins: [BannerMixin],
 
   data () {
     return {
       properties: {
-        disposition: 0,
-        picture: null,
-        picturePreview: '',
-        picturePos: 50,
         headline: '',
-        hashtag: '',
-        hasLocalLabel: false,
-        localLabel: '',
         source: null,
         customSource: '',
-        customSourceColor: '#1CA085',
-        isDownloadable: false
+        customSourceColor: '#1CA085'
       },
-      presets: presets,
-      aspect: 0,
-      displayErrors: false
+      presets: presets
     }
   },
 
-  // Emit state to parent component
   watch: {
     properties: {
       handler: function (properties) {
-        // Check if canvas can be downloaded
-        this.properties.isDownloadable = this.properties.headline && this.properties.picture
-        this.$emit('updated', properties)
+        this.isDownloadable = (this.properties.headline !== '' && this.properties.picture !== null)
       },
       deep: true
     }
-  },
-
-  created () {
-    // Set first preset as default
-    this.properties.source = this.presets[0]
-
-    // Update aspect
-    EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
-
-    // Display errors
-    EventBus.$on('checkForErrors', (check) => { this.displayErrors = check })
   },
 
   methods: {
@@ -143,30 +119,6 @@ export default {
       }
 
       this.properties.source = this.presets.find(preset => preset.id === source)
-    },
-
-    updateImage (image) {
-      this.properties.picture = image
-      this.properties.picturePreview = URL.createObjectURL(image)
-
-      const img = new Image()
-      img.onload = () => {
-        this.properties.pictureAspect = (img.width / img.height > 1) ? 'horizontal' : 'vertical'
-      }
-      img.src = this.properties.picturePreview
-    },
-
-    updateHashtag (hashtag) {
-      if (!hashtag) {
-        this.properties.hashtag = ''
-        return
-      }
-
-      if (hashtag[0] === '#') {
-        this.properties.hashtag = hashtag
-      } else {
-        this.properties.hashtag = '#' + hashtag
-      }
     }
   }
 }
