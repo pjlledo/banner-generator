@@ -228,7 +228,6 @@ export default {
     .quote {
       top: 370px;
 
-
       &-glyph {
         top: -105px;
         font-size: 140px;

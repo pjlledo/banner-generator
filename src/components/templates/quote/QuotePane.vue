@@ -127,8 +127,6 @@ export default {
     position: relative;
   }
 
-
-
   .section {
     padding: 2rem 1.5rem;
   }

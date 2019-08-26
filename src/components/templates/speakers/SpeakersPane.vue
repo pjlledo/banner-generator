@@ -51,14 +51,9 @@
 
 <script>
 import { EventBus } from '@/event-bus.js'
-import RangeSlider from '@/utils/RangeSlider.vue'
 
 export default {
   name: 'quote-pane',
-
-  components: {
-    RangeSlider
-  },
 
   data () {
     return {
@@ -71,7 +66,6 @@ export default {
         date: '',
         time: '',
         place: '',
-        speakers: speakers,
         hasLocalLabel: false,
         localLabel: ''
       },
