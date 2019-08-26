@@ -1,5 +1,5 @@
 <template>
-  <div class="banner-workspace">
+  <div class="banner-workspace" v-if="bannerProperties">
     <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
       <b-tab-item label="1:1" icon="square"></b-tab-item>
       <b-tab-item label="9:16" icon="mobile-android"></b-tab-item>
@@ -43,6 +43,7 @@ export default {
 
   methods: {
     download () {
+      if (!this.bannerProperties) return
       this.displayTooltip = true
       EventBus.$emit('checkForErrors', true)
 
