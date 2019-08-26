@@ -6,13 +6,13 @@
         <b-tab-item label="Frase dalt"></b-tab-item>
       </b-tabs>
     </transition>
-    <b-field label="Frase">
+    <b-field label="Frase" :type="properties.quote ? '' : displayErrors ? 'is-danger' : ''" :message="properties.quote ? '' : displayErrors ? `Has d'omplir la frase` : ''">
       <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.quote" maxlength="120"></b-input>
     </b-field>
     <b-field label="Autor i/o mitjà">
       <b-input type="textarea" class="textarea-small" placeholder="Mónica Oltra a l'entrevista de La Sexta" v-model="properties.author" maxlength="80"></b-input>
     </b-field>
-    <b-field label="Foto" class="image-upload-field">
+    <b-field label="Foto" class="image-upload-field" :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''" :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">>
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -69,7 +69,7 @@ export default {
     properties: {
       handler: function (properties) {
         // Check if canvas can be downloaded
-        this.isDownloadable = (this.properties.quote !== '' && this.properties.picture !== null)
+        this.isDownloadable = (properties.quote !== '' && properties.picture !== null)
       },
       deep: true
     }

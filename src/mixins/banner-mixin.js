@@ -19,8 +19,8 @@ export default {
         hasLocalLabel: false,
         localLabel: ''
       },
-      isDownloadable: true,
       aspect: 0,
+      isDownloadable: false,
       displayErrors: false
     }
   },

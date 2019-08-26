@@ -36,7 +36,7 @@ export default {
       selectedTemplate: null,
       bannerProperties: null,
       isCardModalActive: false,
-      isDownloadable: true
+      isDownloadable: false
     }
   },
 

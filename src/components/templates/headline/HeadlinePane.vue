@@ -35,7 +35,7 @@
     <b-field label="Titular" :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''" :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
       <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline" maxlength="160"></b-input>
     </b-field>
-    <b-field label="Foto" class="image-upload-field">
+    <b-field label="Foto" class="image-upload-field" :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''" :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -110,7 +110,7 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
-        this.isDownloadable = (this.properties.headline !== '' && this.properties.picture !== null)
+        this.isDownloadable = (properties.headline !== '' && properties.picture !== null)
       },
       deep: true
     }
