@@ -14,15 +14,15 @@
     </ul>
     <b-field label="Data">
        <b-datepicker
-            placeholder="Click to select..."
-            icon="calendar-today">
+            placeholder="Dia de l'acte"
+            icon="calendar-alt">
         </b-datepicker>
     </b-field>
     <b-field label="Hora">
       <b-timepicker
         rounded
         inline
-        placeholder="Click to select..."
+        :increment-minutes="15"
         v-model="properties.time"
         icon="clock">
       </b-timepicker>
@@ -103,6 +103,10 @@ export default {
 
     // Update aspect
     EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
+
+    // Set a default time
+    this.properties.time.setHours(10)
+    this.properties.time.setMinutes(0)
   },
 
   methods: {

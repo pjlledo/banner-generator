@@ -10,10 +10,20 @@
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
     <b-field label="Data">
-      <b-input placeholder="21 de Febrer" v-model="properties.date"></b-input>
+       <b-datepicker
+          v-model="properties.date"
+          placeholder="Dia d'emissió"
+          icon="calendar-alt">
+        </b-datepicker>
     </b-field>
     <b-field label="Hora">
-      <b-input placeholder="19h" v-model="properties.time"></b-input>
+      <b-timepicker
+        rounded
+        inline
+        :increment-minutes="15"
+        v-model="properties.time"
+        icon="clock">
+      </b-timepicker>
     </b-field>
     <b-field label="Lloc">
       <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
@@ -73,8 +83,8 @@ export default {
         picturePreview: '',
         picturePos: 50,
         title: '',
-        date: '',
-        time: '',
+        date: new Date(),
+        time: new Date(),
         place: '',
         hasLocalLabel: false,
         localLabel: '',
@@ -100,6 +110,10 @@ export default {
 
     // Update aspect
     EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
+
+    // Set a default time
+    this.properties.time.setHours(10)
+    this.properties.time.setMinutes(0)
   },
 
   methods: {

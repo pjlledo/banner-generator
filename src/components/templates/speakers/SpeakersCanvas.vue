@@ -32,7 +32,7 @@
     </div>
     <div class="speakers-details-wrapper">
       <div class="speakers-details" contenteditable>
-        <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
+        <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
       </div>
       <div class="speakers-details" contenteditable>
         <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
@@ -49,10 +49,13 @@
 </template>
 
 <script>
+import DateMixin from '@/mixins/date-mixin.js'
 import Logo from '@/assets/logo-compromis.svg'
 
 export default {
   name: 'quote-canvas',
+
+  mixins: [DateMixin],
 
   props: {
     bannerProperties: Object,
@@ -71,12 +74,6 @@ export default {
         ? '0% ' + this.bannerProperties.picturePos + '%'
         : this.bannerProperties.picturePos + '% 0%'
       return { objectPosition }
-    }
-  },
-
-  filters: {
-    formatTime: function (time) {
-      return time.getHours() + ':' + (time.getMinutes() < 10 ? '0':'') + time.getMinutes()
     }
   }
 }

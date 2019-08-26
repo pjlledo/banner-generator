@@ -25,13 +25,13 @@
       </div>
       <div class="medium-details">
         <div class="medium-day" contenteditable>
-          <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
+          <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
         </div>
         <div class="medium-time" contenteditable>
-          <b-icon icon="clock"/>{{ bannerProperties.time }}
+          <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
         </div>
         <div v-if="bannerProperties.source" class="medium-channel" :style="{ backgroundImage: 'url(' + bannerProperties.source.logo + ')' }"></div>
-        <div class="medium-programme" :style="{ backgroundColor: bannerProperties.programme.color }">
+        <div v-if="bannerProperties.programme" class="medium-programme" :style="{ backgroundColor: bannerProperties.programme.color }">
           <img :src="bannerProperties.programme.logo" />
         </div>
       </div>
@@ -44,10 +44,13 @@
 </template>
 
 <script>
+import DateMixin from '@/mixins/date-mixin.js'
 import Logo from '@/assets/logo-compromis.svg'
 
 export default {
   name: 'quote-canvas',
+
+  mixins: [DateMixin],
 
   props: {
     bannerProperties: Object,

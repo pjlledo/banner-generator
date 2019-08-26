@@ -19,10 +19,10 @@
       </div>
       <div class="event-details-wrapper">
         <div class="event-details" contenteditable>
-          <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
+          <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
         </div>
         <div class="event-details" contenteditable>
-          <b-icon icon="clock"/>{{ bannerProperties.time }}
+          <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
         </div>
         <div class="event-details" contenteditable>
           <b-icon icon="map-marker-alt"/>{{ bannerProperties.place }}
@@ -37,10 +37,13 @@
 </template>
 
 <script>
+import DateMixin from '@/mixins/date-mixin.js'
 import Logo from '@/assets/logo-compromis.svg'
 
 export default {
   name: 'quote-canvas',
+
+  mixins: [DateMixin],
 
   props: {
     bannerProperties: Object,
