@@ -1,11 +1,20 @@
 <template>
   <div>
+    <!-- Disposition -->
     <transition name="slide">
-      <b-tabs type="is-toggle" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
+      <b-tabs
+        type="is-toggle"
+        size="is-small"
+        v-model="properties.disposition"
+        v-if="!aspect"
+        class="banner-disposition"
+        expanded>
         <b-tab-item label="Titular dalt"></b-tab-item>
         <b-tab-item label="Titular baix"></b-tab-item>
       </b-tabs>
     </transition>
+
+    <!-- Source -->
     <b-field label="Font">
       <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
         <option
@@ -22,6 +31,8 @@
         </option>
       </b-select>
     </b-field>
+
+    <!-- Other source -->
     <transition name="slide">
       <div v-if="properties.source === 'other'">
         <b-field label="Mitjà de comunicació">
@@ -32,10 +43,26 @@
         </b-field>
       </div>
     </transition>
-    <b-field label="Titular" :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''" :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
-      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.headline" maxlength="160"></b-input>
+
+    <!-- Headline -->
+    <b-field
+      label="Titular"
+      :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
+      <b-input
+        type="textarea"
+        placeholder="Un tren descarrila..."
+        v-model="properties.headline"
+        maxlength="160">
+      </b-input>
     </b-field>
-    <b-field label="Foto" class="image-upload-field" :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''" :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
+
+    <!-- Picture -->
+    <b-field
+      label="Foto"
+      class="image-upload-field"
+      :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -47,18 +74,33 @@
           </div>
         </section>
       </b-upload>
-      <b-button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null" class="remove-image" type="is-danger">
+      <b-button
+        v-if="properties.picture"
+        @click="properties.picture = null; properties.picturePreview = null"
+        class="remove-image"
+        type="is-danger">
         <b-icon icon="times" />
       </b-button>
     </b-field>
+
+    <!-- Picture position -->
     <b-field label="Posició de la imatge">
       <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
+
+    <!-- Hashtag -->
     <transition name="slide">
       <b-field label="Hashtag" v-if="!aspect">
-        <b-input placeholder="#" @input="updateHashtag" :value="properties.hashtag" :maxlength="properties.hasLocalLabel ? 18 : 32"></b-input>
+        <b-input
+          placeholder="#"
+          @input="updateHashtag"
+          :value="properties.hashtag"
+          :maxlength="properties.hasLocalLabel ? 18 : 32">
+        </b-input>
       </b-field>
     </transition>
+
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect">
         <b-switch v-model="properties.hasLocalLabel">

@@ -1,8 +1,11 @@
 <template>
   <div>
+    <!-- Title -->
     <b-field label="Titol">
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
+
+    <!-- Speakers -->
     <b-field v-for="speaker in speakers" :key="speaker.id" :label="speaker.id">
       <b-input placeholder="Mónica Oltra" v-model="properties.speaker.name"></b-input>
       <b-input placeholder="Vicepresidenta del govern" v-model="properties.speaker.surname"></b-input>
@@ -12,12 +15,16 @@
        {{ speaker.value.name }}
       </li>
     </ul>
+
+    <!-- Date -->
     <b-field label="Data">
        <b-datepicker
           placeholder="Dia de l'acte"
           icon="calendar-alt">
         </b-datepicker>
     </b-field>
+
+    <!-- Time -->
     <b-field label="Hora">
       <b-timepicker
         rounded
@@ -27,9 +34,13 @@
         icon="clock">
       </b-timepicker>
     </b-field>
+
+    <!-- Venue -->
     <b-field label="Lloc">
       <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
     </b-field>
+
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect">
         <b-switch v-model="properties.hasLocalLabel">

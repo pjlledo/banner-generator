@@ -1,14 +1,28 @@
 <template>
   <div>
+    <!-- Disposition -->
     <transition name="slide">
-      <b-tabs type="is-toggle" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
+      <b-tabs
+        v-model="properties.disposition"
+        v-if="!aspect"
+        type="is-toggle"
+        size="is-small"
+        class="banner-disposition"
+        expanded>
         <b-tab-item label="Frase esquerra"></b-tab-item>
         <b-tab-item label="Frase dalt"></b-tab-item>
       </b-tabs>
     </transition>
-    <b-field label="Titol">
+
+    <!-- Title -->
+    <b-field
+      label="Titol"
+      :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.title ? '' : displayErrors ? `Has d'omplir un títol` : ''">
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
+
+    <!-- Date -->
     <b-field label="Data">
       <b-datepicker
         v-model="properties.date"
@@ -16,6 +30,8 @@
         icon="calendar-alt">
       </b-datepicker>
     </b-field>
+
+    <!-- Time -->
     <b-field label="Hora">
       <b-timepicker
         rounded
@@ -25,10 +41,18 @@
         icon="clock">
       </b-timepicker>
     </b-field>
+
+    <!-- Venue -->
     <b-field label="Lloc">
       <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
     </b-field>
-    <b-field label="Foto" class="image-upload-field" :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''" :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">>
+
+    <!-- Picture -->
+    <b-field
+      label="Foto"
+      class="image-upload-field"
+      :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -40,13 +64,21 @@
           </div>
         </section>
       </b-upload>
-      <b-button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null" class="remove-image" type="is-danger">
+      <b-button
+        v-if="properties.picture"
+        @click="properties.picture = null; properties.picturePreview = null"
+        class="remove-image"
+        type="is-danger">
         <b-icon icon="times" />
       </b-button>
     </b-field>
+
+    <!-- Picture position -->
     <b-field label="Posició de la imatge">
       <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
+
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect">
         <b-switch v-model="properties.hasLocalLabel">

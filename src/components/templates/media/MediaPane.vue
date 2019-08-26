@@ -1,14 +1,21 @@
 <template>
   <div>
+    <!-- Title -->
     <b-field label="Titol">
       <b-input placeholder="Mónica Oltra" v-model="properties.title"></b-input>
     </b-field>
+
+    <!-- Overtitle -->
     <b-field label="Tipus d'acte">
       <b-input placeholder="Debat" v-model="properties.overtitle"></b-input>
     </b-field>
+
+    <!-- Subtitle -->
     <b-field label="Subtítol">
       <b-input placeholder="Models de finançament" v-model="properties.subtitle"></b-input>
     </b-field>
+
+    <!-- Date -->
     <b-field label="Data">
        <b-datepicker
           v-model="properties.date"
@@ -16,6 +23,8 @@
           icon="calendar-alt">
         </b-datepicker>
     </b-field>
+
+    <!-- Time -->
     <b-field label="Hora">
       <b-timepicker
         rounded
@@ -25,7 +34,13 @@
         icon="clock">
       </b-timepicker>
     </b-field>
-    <b-field label="Foto" class="image-upload-field" :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''" :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">>
+
+    <!-- Picture -->
+    <b-field
+      label="Foto"
+      class="image-upload-field"
+      :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">>
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -37,13 +52,21 @@
           </div>
         </section>
       </b-upload>
-      <b-button v-if="properties.picture" @click="properties.picture = null; properties.picturePreview = null" class="remove-image" type="is-danger">
+      <b-button
+        v-if="properties.picture"
+        @click="properties.picture = null; properties.picturePreview = null"
+        class="remove-image"
+        type="is-danger">
         <b-icon icon="times" />
       </b-button>
     </b-field>
+
+    <!-- Picture position -->
     <b-field label="Posició de la imatge">
       <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
     </b-field>
+
+    <!-- Channel -->
     <b-field label="Canal">
       <b-select placeholder="Selecciona un canal" @input="updateSource" expanded>
         <option
@@ -60,6 +83,8 @@
         </option>
       </b-select>
     </b-field>
+
+    <!-- Programme -->
     <b-field label="Programa" v-if="properties.source">
       <b-select placeholder="Selecciona un programa" expanded @input="updateProgramme">
         <option
@@ -71,6 +96,8 @@
         </option>
       </b-select>
     </b-field>
+
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect">
         <b-switch v-model="properties.hasLocalLabel">
