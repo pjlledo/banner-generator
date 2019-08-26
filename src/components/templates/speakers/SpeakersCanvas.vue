@@ -35,7 +35,7 @@
         <b-icon icon="calendar-day"/>{{ bannerProperties.date }}
       </div>
       <div class="speakers-details" contenteditable>
-        <b-icon icon="clock"/>{{ bannerProperties.time }}
+        <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
       </div>
       <div class="speakers-details" contenteditable>
         <b-icon icon="map-marker-alt"/>{{ bannerProperties.place }}
@@ -71,6 +71,12 @@ export default {
         ? '0% ' + this.bannerProperties.picturePos + '%'
         : this.bannerProperties.picturePos + '% 0%'
       return { objectPosition }
+    }
+  },
+
+  filters: {
+    formatTime: function (time) {
+      return time.getHours() + ':' + (time.getMinutes() < 10 ? '0':'') + time.getMinutes()
     }
   }
 }
