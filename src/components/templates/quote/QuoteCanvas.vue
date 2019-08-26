@@ -103,11 +103,9 @@ export default {
       top: -123px;
       left: 35px;
       font-size: 170px;
-      z-index: -10;
-      background: -webkit-linear-gradient(45deg,$gradient-start,$gradient-end);
+      z-index: 1;
+      color: $gradient-start;
       font-weight: bold;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
 
     &-author {
