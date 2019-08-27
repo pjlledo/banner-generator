@@ -71,11 +71,11 @@ export default {
       width: 15rem;
       height: 15rem;
       border-radius: 1rem;
-      box-shadow: 0 13px 27px -5px rgba(50,50,93,.15), 0 8px 16px -8px rgba(0,0,0,.2), 0 -6px 16px -6px rgba(0,0,0,.015);
+      box-shadow: $default-shadow;
       transition: .2s ease-in-out;
 
       &:hover {
-        box-shadow: 0 20px 34px -5px rgba(50,50,93,.15), 0 14px 22px -8px rgba(0,0,0,.2), 0 -12px 22px -6px rgba(0,0,0,.015);
+        box-shadow: $raised-shadow;
         transform: rotate($rotation) scale(1.05);
 
         .template-item-name {
