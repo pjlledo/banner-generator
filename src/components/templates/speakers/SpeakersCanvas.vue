@@ -10,7 +10,7 @@
     v-if="bannerProperties">
     <div class="speakers-items">
       <div v-for="(speaker, i) in bannerProperties.speakers" :key="i" class="speakers-item">
-        <div class="speaker-image">
+        <div class="speakers-image">
           <img :src="speaker.picture" :alt="`Imatge de ${speaker.name}`" v-if="speaker.picture" />
         </div>
         <div class="speakers-name">{{ speaker.name }}</div>
@@ -135,6 +135,19 @@ export default {
       color: $gray-700;
     }
 
+    &-image {
+      height: 188px;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: $gray-200;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
     &-items {
       position: absolute;
       top: 30%;
@@ -191,20 +204,6 @@ export default {
       left: -50%;
       bottom: -90%;
       z-index: 10;
-    }
-
-    &-image {
-      border-radius: 20px;
-      height: 100%;
-      width: 100%;
-      z-index: 20;
-      background: $gray-300;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
   }
 

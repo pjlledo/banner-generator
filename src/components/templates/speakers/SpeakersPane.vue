@@ -11,16 +11,36 @@
     </b-field>
 
     <!-- Speakers -->
-    <label>Ponents</label>
+    <label class="label">Ponents</label>
     <ul class="speakers">
-      <li v-for="(speaker, i) in properties.speakers" :key="i" :label="`Ponent #${i}`">
-        <b-input placeholder="Nom del ponent" v-model="speaker.name"></b-input>
-        <b-input placeholder="Càrrec" v-model="speaker.description"></b-input>
-        <b-button @click="deleteSpeaker(i)">Esborra</b-button>
+      <li v-for="(speaker, i) in properties.speakers" :key="i" class="speaker-item">
+        <b-field class="speaker-name">
+          <b-input placeholder="Nom del ponent" v-model="speaker.name" size="is-small" icon="user"></b-input>
+        </b-field>
+        <b-field class="speaker-description">
+          <b-input placeholder="Càrrec" v-model="speaker.description" size="is-small" icon="credit-card-blank"></b-input>
+        </b-field>
+        <b-field class="speaker-picture">
+          <b-upload @input="(image) => addSpeakerPicture(image, i)" drag-drop>
+            <div class="content has-text-centered" v-if="!speaker.picture">
+              <b-icon icon="upload" size="is-small"></b-icon>
+            </div>
+            <div v-else class="content has-image-centered">
+              <img :src="speaker.picture" alt="Imatge" />
+            </div>
+          </b-upload>
+        </b-field>
+        <div class="speaker-remove">
+          <b-button
+            @click="deleteSpeaker(i)"
+            size="is-small"
+            type="is-danger"
+            icon-right="times"></b-button>
+        </div>
       </li>
     </ul>
-    <div v-if="properties.speakers.length < 4">
-      <b-button @click="addSpeaker">Afegeix ponent</b-button>
+    <div v-if="properties.speakers.length < 4" class="speakers-add">
+      <b-button @click="addSpeaker" size="is-small" rounded icon-left="plus">Afegeix ponent</b-button>
     </div>
 
     <!-- Date -->
@@ -121,18 +141,92 @@ export default {
 
     deleteSpeaker (i) {
       this.properties.speakers.splice(i, 1)
+    },
+
+    addSpeakerPicture (image, i) {
+      const img = new Image()
+      this.properties.speakers[i].picture = URL.createObjectURL(image)
+      img.src = this.properties.speakers[i].picture
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  @import "../../../sass/variables";
+
   .field {
     position: relative;
   }
 
   .section {
     padding: 2rem 1.5rem;
+  }
+
+  .speakers {
+    margin-bottom: .75rem;
+
+    &-add {
+      margin-bottom: .75rem;
+    }
+  }
+
+  .speaker {
+    &-item {
+      display: grid;
+      grid-template-columns: 4.35rem 1fr auto;
+      grid-template-areas: 
+        "picture name remove"
+        "picture description remove";
+      grid-gap: .75rem;
+      border-bottom: 1px $gray-200 solid;
+      padding: .75rem 0;
+
+      .field {
+        margin-bottom: 0;
+      }
+    }
+
+    &-name {
+      grid-area: name;
+    }
+
+    &-description {
+      grid-area: description;
+    }
+
+    &-picture {
+      grid-area: picture;
+      align-self: stretch;
+      display: grid;
+      align-items: stretch;
+
+      .control {
+        display: flex;
+        align-items: stretch;
+      }
+
+      .has-text-centered {
+        padding-top: 1rem;
+      }
+
+      .has-image-centered {
+        margin: .15rem;
+        border-radius: .25rem;
+        overflow: hidden;
+        height: 3.15rem;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-remove {
+      grid-area: remove;
+    }
   }
 
   .remove-image {
@@ -150,7 +244,6 @@ export default {
   }
 
   .image-upload-field {
-
     &.has-addons {
       flex-direction: column;
       width: 100%;
