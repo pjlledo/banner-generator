@@ -9,22 +9,19 @@
     ]"
     v-if="bannerProperties">
     <div class="speakers-items">
-      <div class="speakers-item">
-        <div class="blob-image blob-image-1">
-          <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+      <div v-for="(speaker, i) in bannerProperties.speakers" :key="i" class="speakers-item">
+        <div class="speaker-image">
+          <img :src="speaker.picture" :alt="`Imatge de ${speaker.name}`" v-if="speaker.picture" />
         </div>
-        <div class="speakers-name">Mónica Oltra</div>
-        <div class="speakers-surname">Vicepresidenta de la Generalitat</div>
-      </div>
-      <div class="blob-image blob-image-2">
-        <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+        <div class="speakers-name">{{ speaker.name }}</div>
+        <div class="speakers-description">{{ speaker.description }}</div>
       </div>
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="speakers" contenteditable>
       <div class="speakers-overtitle" contenteditable>
-        {{ bannerProperties.title }}
+        {{ bannerProperties.overtitle }}
       </div>
       <div class="speakers-title" contenteditable>
         {{ bannerProperties.title }}
@@ -131,7 +128,7 @@ export default {
       font-weight: bold;
     }
 
-    &-surname {
+    &-description {
       padding-top: .25rem;
       font-size: 14px;
       line-height: 1;

@@ -5,23 +5,31 @@
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
 
-    <!-- Speakers -->
-    <b-field v-for="speaker in speakers" :key="speaker.id" :label="speaker.id">
-      <b-input placeholder="Mónica Oltra" v-model="properties.speaker.name"></b-input>
-      <b-input placeholder="Vicepresidenta del govern" v-model="properties.speaker.surname"></b-input>
+    <!-- Overtitle -->
+    <b-field label="Tipus d'acte">
+      <b-input placeholder="Debat" maxlength="30" v-model="properties.overtitle"></b-input>
     </b-field>
-    <ul id="example-1">
-      <li v-for="speaker in speakers" :key="speaker.id">
-       {{ speaker.value.name }}
+
+    <!-- Speakers -->
+    <label>Ponents</label>
+    <ul class="speakers">
+      <li v-for="(speaker, i) in properties.speakers" :key="i" :label="`Ponent #${i}`">
+        <b-input placeholder="Nom del ponent" v-model="speaker.name"></b-input>
+        <b-input placeholder="Càrrec" v-model="speaker.description"></b-input>
+        <b-button @click="deleteSpeaker(i)">Esborra</b-button>
       </li>
     </ul>
+    <div v-if="properties.speakers.length < 4">
+      <b-button @click="addSpeaker">Afegeix ponent</b-button>
+    </div>
 
     <!-- Date -->
     <b-field label="Data">
-       <b-datepicker
-          placeholder="Dia de l'acte"
-          icon="calendar-alt">
-        </b-datepicker>
+      <b-datepicker
+        v-model="properties.date"
+        placeholder="Dia d'emissió"
+        icon="calendar-alt">
+      </b-datepicker>
     </b-field>
 
     <!-- Time -->
@@ -70,20 +78,19 @@ export default {
     return {
       properties: {
         title: '',
-        date: '',
+        overtitle: '',
+        date: new Date(),
         time: new Date(),
         place: '',
         speakers: [
           {
-            id: 'speaker1',
-            name: '',
-            surname: '',
+            name: 'Mónica Oltra',
+            description: 'Vicepresidenta',
             picture: null
           },
           {
-            id: 'speaker2',
-            name: '',
-            surname: '',
+            name: 'Fran Ferri',
+            description: 'Síndic',
             picture: null
           }
         ]
@@ -105,6 +112,16 @@ export default {
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)
+  },
+
+  methods: {
+    addSpeaker () {
+      this.properties.speakers.push({ name: '', description: '', picture: null })
+    },
+
+    deleteSpeaker (i) {
+      this.properties.speakers.splice(i, 1)
+    }
   }
 }
 </script>

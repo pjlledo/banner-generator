@@ -22,6 +22,11 @@
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
 
+    <!-- Overtitle -->
+    <b-field label="Tipus d'acte">
+      <b-input placeholder="Debat" maxlength="30" v-model="properties.overtitle"></b-input>
+    </b-field>
+
     <!-- Date -->
     <b-field label="Data">
       <b-datepicker
@@ -108,6 +113,7 @@ export default {
     return {
       properties: {
         title: '',
+        overtitle: '',
         date: new Date(),
         time: new Date(),
         place: '',

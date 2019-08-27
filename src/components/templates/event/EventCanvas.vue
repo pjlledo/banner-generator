@@ -14,6 +14,9 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="event" contenteditable>
+      <div class="event-overtitle" contenteditable>
+        {{ bannerProperties.overtitle }}
+      </div>
       <div class="event-title" contenteditable>
         {{ bannerProperties.title }}
       </div>
@@ -102,6 +105,12 @@ export default {
       word-wrap: break-word;
       font-family: 'Compromis', serif;
       font-weight: bold;
+    }
+
+    &-overtitle {
+      font-size: 19px;
+      letter-spacing: -0.5px;
+      color: $gray-700;
     }
 
     &-details {
