@@ -29,7 +29,7 @@
       <img :src="logo" alt="Compromís" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
     </div>
-    <div class="hashtag" v-if="bannerProperties.hashtag">
+    <div class="hashtag" v-if="bannerProperties.hashtag && aspect === '11'">
       {{ bannerProperties.hashtag }}
     </div>
   </div>
