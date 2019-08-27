@@ -5,7 +5,8 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : ''
+      bannerProperties.localLabel ? 'has-local-label' : '',
+      bannerProperties.title.length > 30 ? 'has-long-title' : 'has-short-title'
     ]"
     v-if="bannerProperties">
     <div class="speakers-items">
@@ -93,36 +94,35 @@ export default {
 
   .speakers {
     position: absolute;
-    top: 80px;
+    top: 50px;
     left: 0;
     z-index: 40;
     padding: 0 45px;
-    width: 650px;
     z-index: 20;
     transition: all .5s ease-in-out;
     font-family: 'Compromis', serif;
 
     &-overtitle {
       font-size: 24px;
-      line-height: 1.1;
+      line-height: 1;
       color: $gray-700;
       letter-spacing: -1px;
-      word-wrap: break-word;
+      margin-bottom: .5rem;
     }
 
     &-title {
       font-size: 42px;
-      line-height: 1.2;
+      line-height: 1;
       color: $gray-900;
       letter-spacing: -1px;
-      display: inline;
       word-wrap: break-word;
       font-weight: bold;
+      width: 325px;
     }
 
     &-name {
       padding-top: .75rem;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1;
       color: $gray-900;
       font-weight: bold;
@@ -136,7 +136,7 @@ export default {
     }
 
     &-image {
-      height: 188px;
+      height: 200px;
       border-radius: 1rem;
       overflow: hidden;
       background: $gray-200;
@@ -155,7 +155,8 @@ export default {
       right: 45px;
       display: grid;
       grid-column-gap: 15px;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      justify-content: center;
+      grid-template-columns: repeat(auto-fit, 200px);
     }
 
     &-details-wrapper {
@@ -196,7 +197,7 @@ export default {
     transition: all .5s ease-in-out;
 
     &-1 {
-      top: -94%;
+      top: -83%;
       left: 50%;
     }
 
@@ -231,6 +232,20 @@ export default {
         font-size: .95rem;
         white-space: normal;
         width: 90px;
+      }
+    }
+  }
+
+  .has-long-title {
+    .blob-1 {
+      top: -93%;
+    }
+
+    .speakers {
+      top: 80px;
+
+      &-title {
+        width: auto;
       }
     }
   }
