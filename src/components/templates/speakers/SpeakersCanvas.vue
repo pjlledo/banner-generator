@@ -215,7 +215,7 @@ export default {
     display: flex;
     position: absolute;
     right: 35px;
-    bottom: 15px;
+    bottom: 25px;
     align-items: center;
 
     img {
