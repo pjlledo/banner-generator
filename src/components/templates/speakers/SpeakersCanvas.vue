@@ -151,11 +151,11 @@ export default {
     &-items {
       position: absolute;
       top: 30%;
-      padding: 0 45px;
+      left: 45px;
+      right: 45px;
       display: grid;
       grid-column-gap: 15px;
-      grid-template-columns: 188px 188px 188px;
-      grid-template-rows: 188px;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 
     &-details-wrapper {

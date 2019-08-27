@@ -35,7 +35,9 @@
             @click="deleteSpeaker(i)"
             size="is-small"
             type="is-danger"
-            icon-right="times"></b-button>
+            icon-right="times"
+            v-if="properties.speakers.length > 1">
+            </b-button>
         </div>
       </li>
     </ul>
