@@ -23,6 +23,11 @@ const templates = [
     id: 'Speakers',
     name: 'Ponents',
     aspects: ['11', '916', 'event']
+  },
+  {
+    id: 'Generic',
+    name: 'Genèric',
+    aspects: ['11', '916']
   }
 ]
 
