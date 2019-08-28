@@ -28,7 +28,7 @@
         {{ bannerProperties.title }}
       </div>
     </div>
-    <div class="speakers-details-wrapper">
+    <div class="speakers-details-wrapper" v-if="aspect !== 'event'">
       <div class="speakers-details" contenteditable>
         <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
       </div>
@@ -308,6 +308,44 @@ export default {
 
     .logo {
       display: none;
+    }
+  }
+
+    // Event aspect
+  .aspect-event {
+    width: 1920px;
+    height: 1080px;
+    transform: scale(.5);
+    margin: -16rem -27rem;
+
+    .blob {
+      &-1 {
+        top: -50%;
+        left: -10%;
+        z-index: 20;
+      }
+
+      &-2 {
+        left: auto;
+        bottom: -50%;
+        right: -10%;
+        z-index: 20;
+      }
+
+      &-image {
+        transform: rotate(0);
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+
+        img {
+          transform: rotate(0) scale(1);
+        }
+      }
     }
   }
 

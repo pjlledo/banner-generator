@@ -173,7 +173,7 @@ export default {
     }
   }
 
-  .accepts-picture {
+  .accepts-picture.accepts-description {
     .speaker-item {
       grid-template-columns: 4.35rem 1fr auto;
       grid-template-areas:
@@ -188,6 +188,15 @@ export default {
       grid-template-areas:
         "name remove"
         "description remove";
+    }
+  }
+
+  .accepts-picture {
+    .speaker-item {
+      grid-template-columns: 4.35rem 1fr auto;
+      grid-template-areas:
+        "picture name remove"
+        "picture description remove";
     }
   }
 </style>

@@ -1,8 +1,22 @@
 <template>
   <div class="workspace">
-    <app-nav class="nav" :is-card-modal-active="isCardModalActive" :template-name="selectedTemplate.name" @back="back" @hide="isCardModalActive = false" />
-    <component class="pane" :is="bannerComponents[`${selectedTemplate.id}Pane`]" @updated="(props) => { bannerProperties = props }" @updateIsDownloadable="setIsDownloadable" />
-    <canvas-container class="canvas-container" :canvas-component="bannerComponents[`${selectedTemplate.id}Canvas`]" :banner-properties="bannerProperties" :is-downloadable="isDownloadable" />
+    <app-nav
+      class="nav"
+      :is-card-modal-active="isCardModalActive"
+      :template-name="selectedTemplate.name"
+      @back="back"
+      @hide="isCardModalActive = false" />
+    <component
+      class="pane"
+      :is="bannerComponents[`${selectedTemplate.id}Pane`]"
+      @updated="(props) => bannerProperties = props"
+      @updateIsDownloadable="setIsDownloadable" />
+    <canvas-container
+      class="canvas-container"
+      :canvas-component="bannerComponents[`${selectedTemplate.id}Canvas`]"
+      :template="selectedTemplate"
+      :banner-properties="bannerProperties"
+      :is-downloadable="isDownloadable" />
   </div>
 </template>
 

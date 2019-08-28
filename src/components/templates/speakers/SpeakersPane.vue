@@ -14,29 +14,35 @@
     <speaker-list @updated="(speakers) => properties.speakers = speakers" />
 
     <!-- Date -->
-    <b-field label="Data">
-      <b-datepicker
-        v-model="properties.date"
-        placeholder="Dia d'emissió"
-        icon="calendar-alt">
-      </b-datepicker>
-    </b-field>
+    <transition name="slide">
+      <b-field label="Data" v-if="aspect !== 2">
+        <b-datepicker
+          v-model="properties.date"
+          placeholder="Dia d'emissió"
+          icon="calendar-alt">
+        </b-datepicker>
+      </b-field>
+    </transition>
 
     <!-- Time -->
-    <b-field label="Hora">
-      <b-timepicker
-        rounded
-        inline
-        :increment-minutes="15"
-        v-model="properties.time"
-        icon="clock">
-      </b-timepicker>
-    </b-field>
+    <transition name="slide">
+      <b-field label="Hora" v-if="aspect !== 2">
+        <b-timepicker
+          rounded
+          inline
+          :increment-minutes="15"
+          v-model="properties.time"
+          icon="clock">
+        </b-timepicker>
+      </b-field>
+    </transition>
 
     <!-- Venue -->
-    <b-field label="Lloc">
-      <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
-    </b-field>
+    <transition name="slide">
+      <b-field label="Lloc" v-if="aspect !== 2">
+        <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
+      </b-field>
+    </transition>
 
     <!-- Local label -->
     <transition name="slide">

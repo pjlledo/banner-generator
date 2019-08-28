@@ -4,8 +4,8 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
       bannerProperties.localLabel ? 'has-local-label' : '',
+      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
       isCrowded ? 'is-crowded' : ''
     ]"
     v-if="bannerProperties">
@@ -21,7 +21,7 @@
       <div class="event-title" contenteditable>
         {{ bannerProperties.title }}
       </div>
-      <div class="event-details-wrapper">
+      <div class="event-details-wrapper" v-if="aspect !== 'event'">
         <div class="event-details" contenteditable>
           <b-icon icon="calendar-day"/> {{ bannerProperties.date | formatDate }}
         </div>
@@ -31,7 +31,7 @@
         <div class="event-details" contenteditable>
           <b-icon icon="map-marker-alt"/> {{ bannerProperties.place }}
         </div>
-        <div class="event-details event-details--speakers" v-if="bannerProperties.speakers" contenteditable>
+        <div class="event-details event-details--speakers" v-if="bannerProperties.speakers && aspect === '11'" contenteditable>
           <b-icon icon="keynote"/>
           <ul>
             <li v-for="(speaker, i) in bannerProperties.speakers" :key="i">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="logo">
+    <div class="logo" v-if="aspect !== 'event'">
       <img :src="logo" alt="Compromís" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
     </div>
@@ -172,12 +172,14 @@ export default {
     }
 
     &-image {
-      top: -15%;
-      right: -32%;
-      height: 680px;
+      top: -5%;
+      right: -5%;
+      height: 605px;
+      width: 420px;
       z-index: 20;
       background: $gray-300;
-      width: 620px;
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
 
       img {
         transform: rotate(-$rotation) scale(1.15);
@@ -248,10 +250,9 @@ export default {
       }
 
       &-image {
-        height: 540px;
-        top: -160px;
-        left: -12px;
-        border-bottom-right-radius: 0;
+        height: 410px;
+        width: 440px;
+        border-top-right-radius: 0;
       }
     }
 
@@ -277,7 +278,45 @@ export default {
     }
   }
 
-  // Quote on top
+  // Event aspect
+  .aspect-event {
+    width: 1920px;
+    height: 1080px;
+    transform: scale(.5);
+    margin: -16rem -27rem;
+
+    .blob {
+      &-1 {
+        top: -50%;
+        left: -10%;
+        z-index: 20;
+      }
+
+      &-2 {
+        left: auto;
+        bottom: -50%;
+        right: -10%;
+        z-index: 20;
+      }
+
+      &-image {
+        transform: rotate(0);
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+
+        img {
+          transform: rotate(0) scale(1);
+        }
+      }
+    }
+  }
+
+  // Title on top
   .disposition-1 {
     .event {
       top: 38px;
@@ -298,26 +337,6 @@ export default {
 
     .hashtag {
       bottom: 668px;
-    }
-
-    .blob {
-      &-1 {
-        left: 69%;
-        top: -60%;
-      }
-
-      &-2 {
-        display: none;
-      }
-
-      &-image {
-        left: auto;
-        top: auto;
-        bottom: -108px;
-        right: 281px;
-        height: 593px;
-        width: 650px;
-      }
     }
   }
 </style>

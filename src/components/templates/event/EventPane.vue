@@ -28,7 +28,7 @@
     </b-field>
 
     <!-- Date -->
-    <b-field label="Data">
+    <b-field label="Data" v-if="aspect !== 2">
       <b-datepicker
         v-model="properties.date"
         placeholder="Dia d'emissió"
@@ -37,7 +37,7 @@
     </b-field>
 
     <!-- Time -->
-    <b-field label="Hora">
+    <b-field label="Hora" v-if="aspect !== 2">
       <b-timepicker
         rounded
         inline
@@ -48,16 +48,19 @@
     </b-field>
 
     <!-- Venue -->
-    <b-field label="Lloc">
+    <b-field label="Lloc" v-if="aspect !== 2">
       <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
     </b-field>
 
     <!-- Speakers -->
-    <speaker-list
-      :accepts-picture="false"
-      :accepts-description="false"
-      :max-speakers="6"
-      @updated="(speakers) => properties.speakers = speakers" />
+    <transition name="slide">
+      <speaker-list
+        v-if="!aspect"
+        :accepts-picture="false"
+        :accepts-description="false"
+        :max-speakers="6"
+        @updated="(speakers) => properties.speakers = speakers" />
+    </transition>
 
     <!-- Picture -->
     <b-field

@@ -1,23 +1,28 @@
 const templates = [
   {
     id: 'Headline',
-    name: 'Titular de premsa'
+    name: 'Titular de premsa',
+    aspects: ['11', '916']
   },
   {
     id: 'Quote',
-    name: 'Frase'
+    name: 'Frase',
+    aspects: ['11', '916']
   },
   {
     id: 'Event',
-    name: 'Esdeveniment'
+    name: 'Esdeveniment',
+    aspects: ['11', '916', 'event']
   },
   {
     id: 'Media',
-    name: 'Mitjans'
+    name: 'Mitjans',
+    aspects: ['11', '916']
   },
   {
     id: 'Speakers',
-    name: 'Ponents'
+    name: 'Ponents',
+    aspects: ['11', '916', 'event']
   }
 ]
 
