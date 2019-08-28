@@ -11,39 +11,7 @@
     </b-field>
 
     <!-- Speakers -->
-    <label class="label">Ponents</label>
-    <ul class="speakers">
-      <li v-for="(speaker, i) in properties.speakers" :key="i" class="speaker-item">
-        <b-field class="speaker-name">
-          <b-input placeholder="Nom del ponent" v-model="speaker.name" size="is-small" icon="user"></b-input>
-        </b-field>
-        <b-field class="speaker-description">
-          <b-input placeholder="Càrrec" v-model="speaker.description" size="is-small" icon="credit-card-blank"></b-input>
-        </b-field>
-        <b-field class="speaker-picture">
-          <b-upload @input="(image) => addSpeakerPicture(image, i)" drag-drop>
-            <div class="content has-text-centered" v-if="!speaker.picture">
-              <b-icon icon="upload" size="is-small"></b-icon>
-            </div>
-            <div v-else class="content has-image-centered">
-              <img :src="speaker.picture" alt="Imatge" />
-            </div>
-          </b-upload>
-        </b-field>
-        <div class="speaker-remove">
-          <b-button
-            @click="deleteSpeaker(i)"
-            size="is-small"
-            type="is-danger"
-            icon-right="times"
-            v-if="properties.speakers.length > 1">
-            </b-button>
-        </div>
-      </li>
-    </ul>
-    <div v-if="properties.speakers.length < 4" class="speakers-add">
-      <b-button @click="addSpeaker" size="is-small" rounded icon-left="plus">Afegeix ponent</b-button>
-    </div>
+    <speaker-list @updated="(speakers) => properties.speakers = speakers" />
 
     <!-- Date -->
     <b-field label="Data">
@@ -90,11 +58,16 @@
 
 <script>
 import BannerMixin from '@/mixins/banner-mixin.js'
+import SpeakerList from '@/utils/SpeakerList.vue'
 
 export default {
   name: 'quote-pane',
 
   mixins: [BannerMixin],
+
+  components: {
+    SpeakerList
+  },
 
   data () {
     return {
@@ -104,18 +77,7 @@ export default {
         date: new Date(),
         time: new Date(),
         place: '',
-        speakers: [
-          {
-            name: 'Mónica Oltra',
-            description: 'Vicepresidenta',
-            picture: null
-          },
-          {
-            name: 'Fran Ferri',
-            description: 'Síndic',
-            picture: null
-          }
-        ]
+        speakers: []
       }
     }
   },
@@ -124,7 +86,7 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
-        this.isDownloadable = (this.properties.quote !== '' && this.properties.picture !== null)
+        this.isDownloadable = (this.properties.title !== '' && this.properties.speakers[0].picture !== null)
       },
       deep: true
     }
@@ -134,22 +96,6 @@ export default {
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)
-  },
-
-  methods: {
-    addSpeaker () {
-      this.properties.speakers.push({ name: '', description: '', picture: null })
-    },
-
-    deleteSpeaker (i) {
-      this.properties.speakers.splice(i, 1)
-    },
-
-    addSpeakerPicture (image, i) {
-      const img = new Image()
-      this.properties.speakers[i].picture = URL.createObjectURL(image)
-      img.src = this.properties.speakers[i].picture
-    }
   }
 }
 </script>
@@ -163,72 +109,6 @@ export default {
 
   .section {
     padding: 2rem 1.5rem;
-  }
-
-  .speakers {
-    margin-bottom: .75rem;
-
-    &-add {
-      margin-bottom: .75rem;
-    }
-  }
-
-  .speaker {
-    &-item {
-      display: grid;
-      grid-template-columns: 4.35rem 1fr auto;
-      grid-template-areas: 
-        "picture name remove"
-        "picture description remove";
-      grid-gap: .75rem;
-      border-bottom: 1px $gray-200 solid;
-      padding: .75rem 0;
-
-      .field {
-        margin-bottom: 0;
-      }
-    }
-
-    &-name {
-      grid-area: name;
-    }
-
-    &-description {
-      grid-area: description;
-    }
-
-    &-picture {
-      grid-area: picture;
-      align-self: stretch;
-      display: grid;
-      align-items: stretch;
-
-      .control {
-        display: flex;
-        align-items: stretch;
-      }
-
-      .has-text-centered {
-        padding-top: 1rem;
-      }
-
-      .has-image-centered {
-        margin: .15rem;
-        border-radius: .25rem;
-        overflow: hidden;
-        height: 3.15rem;
-
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-        }
-      }
-    }
-
-    &-remove {
-      grid-area: remove;
-    }
   }
 
   .remove-image {

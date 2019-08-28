@@ -40,7 +40,7 @@
       label="Foto"
       class="image-upload-field"
       :type="properties.picture ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">>
+      :message="properties.picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
       <b-upload @input="updateImage" drag-drop>
         <section class="section">
           <div class="content has-text-centered" v-if="!properties.picture">
@@ -133,7 +133,7 @@ export default {
         date: new Date(),
         time: new Date(),
         source: null,
-        programme: null,
+        programme: null
       },
       presets: presets
     }

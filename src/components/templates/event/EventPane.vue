@@ -52,6 +52,13 @@
       <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
     </b-field>
 
+    <!-- Speakers -->
+    <speaker-list
+      :accepts-picture="false"
+      :accepts-description="false"
+      :max-speakers="6"
+      @updated="(speakers) => properties.speakers = speakers" />
+
     <!-- Picture -->
     <b-field
       label="Foto"
@@ -103,11 +110,16 @@
 
 <script>
 import BannerMixin from '@/mixins/banner-mixin.js'
+import SpeakerList from '@/utils/SpeakerList.vue'
 
 export default {
   name: 'quote-pane',
 
   mixins: [BannerMixin],
+
+  components: {
+    SpeakerList
+  },
 
   data () {
     return {
@@ -117,6 +129,7 @@ export default {
         date: new Date(),
         time: new Date(),
         place: '',
+        speakers: []
       }
     }
   },

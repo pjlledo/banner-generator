@@ -5,7 +5,8 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : ''
+      bannerProperties.localLabel ? 'has-local-label' : '',
+      isCrowded ? 'is-crowded' : ''
     ]"
     v-if="bannerProperties">
     <div class="blob blob-image">
@@ -22,13 +23,21 @@
       </div>
       <div class="event-details-wrapper">
         <div class="event-details" contenteditable>
-          <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
+          <b-icon icon="calendar-day"/> {{ bannerProperties.date | formatDate }}
         </div>
         <div class="event-details" contenteditable>
-          <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
+          <b-icon icon="clock"/> {{ bannerProperties.time | formatTime }}
         </div>
         <div class="event-details" contenteditable>
-          <b-icon icon="map-marker-alt"/>{{ bannerProperties.place }}
+          <b-icon icon="map-marker-alt"/> {{ bannerProperties.place }}
+        </div>
+        <div class="event-details event-details--speakers" v-if="bannerProperties.speakers" contenteditable>
+          <b-icon icon="keynote"/>
+          <ul>
+            <li v-for="(speaker, i) in bannerProperties.speakers" :key="i">
+              {{ speaker.name }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -65,6 +74,11 @@ export default {
         ? '0% ' + this.bannerProperties.picturePos + '%'
         : this.bannerProperties.picturePos + '% 0%'
       return { objectPosition }
+    },
+
+    isCrowded: function () {
+      return (this.bannerProperties.speakers && this.bannerProperties.title.length > 30)
+        || (this.bannerProperties.title.length > 40)
     }
   }
 }
@@ -129,6 +143,10 @@ export default {
           height: 500px;
         }
       }
+
+      &--speakers {
+        align-items: flex-start;
+      }
     }
   }
 
@@ -148,7 +166,7 @@ export default {
     }
 
     &-2 {
-      left: -63%;
+      left: -60%;
       bottom: -74%;
       z-index: 10;
     }
@@ -209,9 +227,9 @@ export default {
     letter-spacing: -.3px;
   }
 
-  .has-local-label {
+  .is-crowded {
     .blob-2 {
-      left: -60%;
+      bottom: -85%;
     }
   }
 

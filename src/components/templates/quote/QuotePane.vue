@@ -79,7 +79,7 @@ export default {
     return {
       properties: {
         quote: '',
-        author: '',
+        author: ''
       }
     }
   },

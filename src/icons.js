@@ -3,12 +3,12 @@ import {
   faUpload, faMobileAndroid, faSquare, faTimes, faPlus, faArrowToBottom,
   faExclamationTriangle, faChevronLeft, faClock, faCalendarDay, faMapMarkerAlt,
   faCalendarAlt, faAngleLeft, faAngleRight, faExclamationCircle, faUser,
-  faCreditCardBlank
+  faCreditCardBlank, faKeynote
 } from '@fortawesome/pro-regular-svg-icons'
 
 library.add(
   faUpload, faMobileAndroid, faSquare, faTimes, faPlus, faArrowToBottom,
   faExclamationTriangle, faChevronLeft, faClock, faCalendarDay, faMapMarkerAlt,
   faCalendarAlt, faAngleLeft, faAngleRight, faExclamationCircle, faUser,
-  faCreditCardBlank
+  faCreditCardBlank, faKeynote
 )
