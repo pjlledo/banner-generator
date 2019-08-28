@@ -58,6 +58,7 @@
         v-if="!aspect"
         :accepts-picture="false"
         :accepts-description="false"
+        :min-speakers="0"
         :max-speakers="6"
         @updated="(speakers) => properties.speakers = speakers" />
     </transition>

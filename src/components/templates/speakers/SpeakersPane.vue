@@ -11,7 +11,7 @@
     </b-field>
 
     <!-- Speakers -->
-    <speaker-list @updated="(speakers) => properties.speakers = speakers" />
+    <speaker-list :default-speakers="properties.speakers" @updated="(speakers) => properties.speakers = speakers" />
 
     <!-- Date -->
     <transition name="slide">
@@ -83,7 +83,18 @@ export default {
         date: new Date(),
         time: new Date(),
         place: '',
-        speakers: []
+        speakers: [
+          {
+            name: 'Mónica Oltra',
+            description: 'Vicepresidenta',
+            picture: null
+          },
+          {
+            name: 'Fran Ferri',
+            description: 'Síndic',
+            picture: null
+          }
+        ]
       }
     }
   },

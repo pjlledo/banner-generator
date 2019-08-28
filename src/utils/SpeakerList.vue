@@ -28,7 +28,7 @@
             size="is-small"
             type="is-danger"
             icon-right="times"
-            v-if="speakers.length > 1">
+            v-if="speakers.length > minSpeakers">
             </b-button>
         </div>
       </li>
@@ -44,6 +44,10 @@ export default {
   name: 'speaker-list',
 
   props: {
+    defaultSpeakers: {
+      type: Array,
+      default: () => []
+    },
     acceptsPicture: {
       type: Boolean,
       default: true
@@ -51,6 +55,10 @@ export default {
     acceptsDescription: {
       type: Boolean,
       default: true
+    },
+    minSpeakers: {
+      type: Number,
+      default: 1
     },
     maxSpeakers: {
       type: Number,
@@ -60,23 +68,12 @@ export default {
 
   data () {
     return {
-      speakers: [
-        {
-          name: 'Mónica Oltra',
-          description: 'Vicepresidenta',
-          picture: null
-        },
-        {
-          name: 'Fran Ferri',
-          description: 'Síndic',
-          picture: null
-        }
-      ]
+      speakers: []
     }
   },
 
   created () {
-    this.$emit('updated', this.speakers)
+    this.speakers = this.defaultSpeakers
   },
 
   watch: {
