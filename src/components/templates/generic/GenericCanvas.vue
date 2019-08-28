@@ -15,12 +15,15 @@
     <div class="blob blob-2"></div>
     <div class="text" :style="{ alignItems: bannerProperties.textPos, textAlign: bannerProperties.textAlign }">
       <div class="text-holder">
-        <div class="text-lines">{{ bannerProperties.text }}</div>
+        <div class="text-lines" contenteditable>{{ bannerProperties.text }}</div>
       </div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+    </div>
+    <div class="hashtag">
+      {{ bannerProperties.hashtag }}
     </div>
   </div>
 </template>
@@ -74,7 +77,7 @@ export default {
     top: 155px;
     bottom: 175px;
     left: 0;
-    z-index: 40;
+    z-index: 30;
     width: 100%;
     transition: all .5s ease-in-out;
 
@@ -178,7 +181,7 @@ export default {
   .hashtag {
     position: absolute;
     z-index: 30;
-    bottom: 20px;
+    top: 20px;
     left: 35px;
     color: $white;
     font-weight: bold;

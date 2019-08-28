@@ -5,14 +5,14 @@ const templates = [
     aspects: ['11', '916']
   },
   {
-    id: 'Quote',
+    id: 'Generic',
     name: 'Frase',
     aspects: ['11', '916']
   },
   {
-    id: 'Event',
-    name: 'Esdeveniment',
-    aspects: ['11', '916', 'event']
+    id: 'Quote',
+    name: 'Cita',
+    aspects: ['11', '916']
   },
   {
     id: 'Media',
@@ -20,14 +20,14 @@ const templates = [
     aspects: ['11', '916']
   },
   {
-    id: 'Speakers',
-    name: 'Ponents',
+    id: 'Event',
+    name: 'Acte amb foto',
     aspects: ['11', '916', 'event']
   },
   {
-    id: 'Generic',
-    name: 'Genèric',
-    aspects: ['11', '916']
+    id: 'Speakers',
+    name: 'Acte amb ponents',
+    aspects: ['11', '916', 'event']
   }
 ]
 

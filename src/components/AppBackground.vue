@@ -69,7 +69,7 @@ export default {
 
       &-2 {
         animation-name: blob2;
-        top: 20%;
+        top: 40%;
         left: -30rem;
       }
 
@@ -108,6 +108,16 @@ export default {
 
         &-3 {
           top: -38rem;
+        }
+      }
+    }
+  }
+
+  @media (max-height: 700px) {
+    .blobs {
+      .blob {
+        &-1 {
+          bottom: -40rem;
         }
       }
     }
