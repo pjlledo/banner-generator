@@ -1,10 +1,12 @@
 import { EventBus } from '@/event-bus.js'
+import PictureUpload from '@/utils/PictureUpload.vue'
 import RangeSlider from '@/utils/RangeSlider.vue'
 
 export default {
   // Shared components across templates
   components: {
-    RangeSlider
+    RangeSlider,
+    PictureUpload
   },
 
   // Shared data across templates

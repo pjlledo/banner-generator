@@ -109,38 +109,7 @@ export default {
 <style lang="scss" scoped>
   @import "../../../sass/variables";
 
-  .field {
-    position: relative;
-  }
-
-  .section {
-    padding: 2rem 1.5rem;
-  }
-
-  .remove-image {
-    position: absolute;
-    right: 0;
-    top: 2rem;
-  }
-
-  .hashtag {
-    margin-top: .25rem;
-  }
-
   .local-label {
     margin-top: .75rem;
-  }
-
-  .image-upload-field {
-    &.has-addons {
-      flex-direction: column;
-      width: 100%;
-    }
-  }
-</style>
-
-<style lang="scss">
-  .textarea-small .textarea {
-    min-height: 4.3rem;
   }
 </style>

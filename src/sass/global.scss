@@ -50,3 +50,11 @@
 .tabs a {
   background: $white;
 }
+
+.field {
+  position: relative;
+}
+
+.textarea-small .textarea {
+  min-height: 4.3rem;
+}
