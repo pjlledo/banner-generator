@@ -1,6 +1,6 @@
 <template>
   <div class="banner-workspace" v-if="banner">
-    <b-tabs :class="['banner-aspect', `banner-aspect-${template.aspects[aspect]}`]" type="is-toggle-rounded" position="is-centered" v-model="aspect">
+    <b-tabs :class="['banner-aspect', `banner-aspect-${template.aspects[aspect]}`]" type="is-toggle-rounded" position="is-centered" v-model="aspect" @change="resize">
       <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
@@ -40,7 +40,12 @@ export default {
       aspect: 0,
       displayTooltip: false,
       scale: 1,
-      margin: 0
+      margin: 0,
+      aspects: {
+        '11': { width: 720, height: 720, minScale: .35, maxScale: 1, minMargin: -15, maxMargin: 0 },
+        '916': { width: 405, height: 720, minScale: .35, maxScale: 1, minMargin: -15, maxMargin: 0 },
+        'event': { width: 1920, height: 1080, minScale: .25, maxScale: .5, minMargin: -25, maxMargin: -17 }
+      }
     }
   },
 
@@ -51,7 +56,7 @@ export default {
   },
 
   created () {
-    this.handleWindowResize({ srcElement: window })
+    this.resize()
     window.addEventListener("resize", this.handleWindowResize)
   },
 
@@ -60,13 +65,18 @@ export default {
   },
 
   methods: {
+    resize () {
+      this.handleWindowResize({ srcElement: window })
+    },
+
     handleWindowResize (e) {
+      const aspect = this.template.aspects[this.aspect]
       const minHeight = 450
       const maxHeight = 950
-      const minScale = .35
-      const maxScale = 1
-      const minMargin = -15
-      const maxMargin = 0
+      const minScale = this.aspects[aspect].minScale
+      const maxScale = this.aspects[aspect].maxScale
+      const minMargin = this.aspects[aspect].minMargin
+      const maxMargin = this.aspects[aspect].maxMargin
       const height = e.srcElement.innerHeight
       const propHeight = (height - minHeight) / (maxHeight - minHeight)
 
@@ -87,13 +97,8 @@ export default {
       this.displayTooltip = true
       EventBus.$emit('checkForErrors', true)
 
-      const aspects = {
-        '11': { width: 720, height: 720 },
-        '916': { width: 405, height: 720 },
-        'event': { width: 1920, height: 1080 }
-      }
       const aspect = this.template.aspects[this.aspect]
-      const dimensions = aspects[aspect]
+      const dimensions = this.aspects[aspect]
 
       if (this.isDownloadable) {
         domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })
@@ -122,6 +127,12 @@ export default {
     background: $white;
   }
 
+  .canvas-container {
+    display: flex;
+    justify-content: center;
+    transition: .25 ease-in-out;
+  }
+
   .banner-aspect-916 .banner-canvas {
     width: 405px;
   }
@@ -129,11 +140,6 @@ export default {
   .banner-aspect-event .banner-canvas {
     width: 1920px;
     height: 1080px;
-  }
-
-  .banner-aspect.banner-aspect-event .tab-content {
-    transform: scale(.5);
-    margin: -16rem -27rem;
   }
 
   .download-button {

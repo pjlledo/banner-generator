@@ -144,7 +144,8 @@ export default {
     }
 
     .quote {
-      top: 370px;
+      bottom: 153px;
+      top: auto;
 
       &-glyph {
         top: -105px;
@@ -153,6 +154,10 @@ export default {
 
       &-text {
         font-size: 28px;
+      }
+
+      &-author {
+        width: 100%;
       }
     }
 
