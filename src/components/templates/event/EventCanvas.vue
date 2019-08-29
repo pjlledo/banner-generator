@@ -77,8 +77,8 @@ export default {
     },
 
     isCrowded: function () {
-      return (this.bannerProperties.speakers && this.bannerProperties.title.length > 30)
-        || (this.bannerProperties.title.length > 40)
+      return (this.bannerProperties.speakers && this.bannerProperties.title.length > 30) ||
+        (this.bannerProperties.title.length > 40)
     }
   }
 }

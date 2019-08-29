@@ -141,4 +141,3 @@ export default {
     margin-top: .75rem;
   }
 </style>
-

@@ -94,7 +94,7 @@ export default {
       background: linear-gradient(45deg,$gradient-start,$gradient-end);
       letter-spacing: -1px;
       display: inline;
-      white-space: pre-wrap; 
+      white-space: pre-wrap;
       word-wrap: break-word;
       font-family: 'Compromis', serif;
       font-weight: bold;
