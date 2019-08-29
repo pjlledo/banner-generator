@@ -68,18 +68,6 @@ export default {
 <style lang="scss" scoped>
   @import "../../../sass/variables";
 
-  .banner-canvas {
-    box-sizing: content-box;
-    position: relative;
-    width: 720px;
-    height: 720px;
-    border: 1px $white solid;
-    outline: 1px $gray-900 solid;
-    overflow: hidden;
-    transition: all .5s ease-in-out;
-    background: $white;
-  }
-
   .event {
     position: absolute;
     top: 100px;
@@ -132,15 +120,6 @@ export default {
   }
 
   .blob {
-    position: absolute;
-    width: 720px;
-    height: 720px;
-    overflow: hidden;
-    border-radius: $border-radius;
-    background: linear-gradient(45deg,$gradient-start,$gradient-end);
-    transform: rotate($rotation);
-    transition: all .5s ease-in-out;
-
     &-1 {
       top: -87%;
       left: -74%;
@@ -171,45 +150,6 @@ export default {
     }
   }
 
-  .logo {
-    display: flex;
-    position: absolute;
-    right: 35px;
-    bottom: 25px;
-    align-items: center;
-
-    img {
-      height: 30px;
-    }
-
-    &-local-label {
-      border-left: 1px $gray-400 solid;
-      margin-left: .75rem;
-      padding-left: .75rem;
-      font-size: 1.25rem;
-      letter-spacing: -.3px;
-      line-height: 1;
-      white-space: nowrap;
-
-      &--long {
-        font-size: .95rem;
-        white-space: normal;
-        width: 90px;
-      }
-    }
-  }
-
-  .hashtag {
-    position: absolute;
-    z-index: 30;
-    bottom: 20px;
-    left: 35px;
-    color: $white;
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: -.3px;
-  }
-
   .is-crowded {
     .blob-2 {
       bottom: -85%;
@@ -218,8 +158,6 @@ export default {
 
   // Story aspect
   .aspect-916 {
-    width: 405px;
-
     .blob {
       &-1 {
         display: none;
@@ -261,11 +199,6 @@ export default {
 
   // Event aspect
   .aspect-event {
-    width: 1920px;
-    height: 1080px;
-    transform: scale(.5);
-    margin: -16rem -27rem;
-
     .blob {
       &-1 {
         top: -50%;

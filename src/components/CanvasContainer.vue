@@ -1,6 +1,6 @@
 <template>
   <div class="banner-workspace" v-if="banner">
-    <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
+    <b-tabs :class="['banner-aspect', `banner-aspect-${template.aspects[aspect]}`]" type="is-toggle-rounded" position="is-centered" v-model="aspect">
       <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
@@ -50,9 +50,15 @@ export default {
       this.displayTooltip = true
       EventBus.$emit('checkForErrors', true)
 
+      const aspects = {
+        '11': { width: 720, height: 720 },
+        '916': { width: 405, height: 720 },
+        'event': { width: 1920, height: 1080 }
+      }
+      const aspect = this.template.aspects[this.aspect]
+      const dimensions = aspects[aspect]
+
       if (this.isDownloadable) {
-        const aspect = this.aspect === 1 ? '916' : '11'
-        const dimensions = this.aspect === 1 ? { width: 405, height: 720 } : { width: 720, height: 720 }
         domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })
           .then(function (blob) {
             saveAs(blob, 'banner.png')
@@ -68,9 +74,38 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "../sass/variables";
+  @import "../sass/banner";
+
   .button-label {
     position: relative;
     top: -4px;
+  }
+
+  .banner-canvas {
+    box-sizing: content-box;
+    position: relative;
+    width: 720px;
+    height: 720px;
+    border: 1px $white solid;
+    outline: 1px $gray-900 solid;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    background: $white;
+  }
+
+  .banner-aspect-916 .banner-canvas {
+    width: 405px;
+  }
+
+  .banner-aspect-event .banner-canvas {
+    width: 1920px;
+    height: 1080px;
+  }
+
+  .banner-aspect.banner-aspect-event .tab-content {
+    transform: scale(.5);
+    margin: -16rem -27rem;
   }
 
   @media (max-height: 900px) {
