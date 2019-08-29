@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="navbar">
-      <img :src="logo" alt="Compromís" />
+    <div :class="{ 'navbar': true, 'navbar--dark': dark }">
+      <img :src="dark ? logoWhite : logo" alt="Compromís" />
       <div class="nav-label logo-label">Disseny</div>
       <div class="nav-label app-label">Generador de targes</div>
     </div>
@@ -10,13 +10,19 @@
 
 <script>
 import Logo from '@/assets/logo-compromis.svg'
+import LogoWhite from '@/assets/logo-compromis-mono.svg'
 
 export default {
   name: 'app-header',
 
+  props: {
+    dark: Boolean
+  },
+
   data () {
     return {
-      logo: Logo
+      logo: Logo,
+      logoWhite: LogoWhite
     }
   }
 }
@@ -29,11 +35,12 @@ export default {
     background-color: $white;
     padding: .75rem 2rem;
     display: flex;
+    transition: .25s ease-in-out;
 
     img {
       display: flex;
       align-items: center;
-      height: 32px;
+      height: 28px;
     }
 
     .nav-label {
@@ -53,6 +60,11 @@ export default {
 
     .app-label {
       margin-left: auto;
+    }
+
+    &--dark {
+      background: $gray-900;
+      color: $white;
     }
   }
 </style>

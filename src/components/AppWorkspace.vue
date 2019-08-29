@@ -92,7 +92,12 @@ export default {
       "nav nav"
       "pane canvas";
     align-items: center;
-    height: calc(100vh - 4rem);
+    position: fixed;
+    top: 3.25rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
  }
 
   .nav {
@@ -101,16 +106,15 @@ export default {
 
   .pane {
     grid-area: pane;
-    margin: 1rem 1rem 1rem 0;
-    border-radius: 0 1.25rem 1.25rem 0;
     padding: 2rem;
     background-color: $white;
     box-shadow: 0 7px 25px -16px;
+    overflow-y: scroll;
+    height: 100%;
   }
 
   .canvas-container {
     grid-area: canvas;
-    margin: 1rem 0 0 1rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;

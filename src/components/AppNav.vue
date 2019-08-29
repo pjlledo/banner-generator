@@ -38,7 +38,7 @@ export default {
 
   .nav {
     color: $white;
-    background-color: $gray-900;
+    background-color: $gray-800;
     padding: .25rem 2rem;
     display: flex;
 

@@ -4,15 +4,19 @@
       <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
-      <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" />
+      <div class="canvas-container" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
+        <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" />
+      </div>
     </b-tabs>
 
-    <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-top" type="is-dark" :active="!isDownloadable && displayTooltip">
-      <b-button type="is-primary" size="is-large" rounded @click="download">
-        <b-icon icon="arrow-to-bottom" />
-        <span class="button-label">Descarrega</span>
-      </b-button>
-    </b-tooltip>
+    <div class="download-button">
+      <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
+        <b-button type="is-primary" size="is-large" rounded @click="download">
+          <b-icon icon="arrow-to-bottom" />
+          <span class="button-label">Descarrega</span>
+        </b-button>
+      </b-tooltip>
+    </div>
   </div>
 </template>
 
@@ -34,7 +38,9 @@ export default {
   data () {
     return {
       aspect: 0,
-      displayTooltip: false
+      displayTooltip: false,
+      scale: 1,
+      margin: 0
     }
   },
 
@@ -44,7 +50,38 @@ export default {
     }
   },
 
+  created () {
+    this.handleWindowResize({ srcElement: window })
+    window.addEventListener("resize", this.handleWindowResize)
+  },
+
+  destroyed () {
+    window.removeEventListener("resize", this.handleWindowResize)
+  },
+
   methods: {
+    handleWindowResize (e) {
+      const minHeight = 450
+      const maxHeight = 950
+      const minScale = .35
+      const maxScale = 1
+      const minMargin = -15
+      const maxMargin = 0
+      const height = e.srcElement.innerHeight
+      const propHeight = (height - minHeight) / (maxHeight - minHeight)
+
+      if (height > maxHeight) { // Max scale
+        this.scale = maxScale
+        this.margin = maxMargin
+      } else if (height < minHeight) { // Min scale
+        this.scale = minScale
+        this.margin = minMargin
+      } else { // In-between
+        this.scale = minScale + propHeight * (maxScale - minScale)
+        this.margin = minMargin + propHeight * (maxMargin - minMargin)
+      }
+    },
+
     download () {
       if (!this.banner) return
       this.displayTooltip = true
@@ -64,10 +101,6 @@ export default {
             saveAs(blob, 'banner.png')
           })
       }
-    },
-
-    cancel () {
-      this.$emit('cancel', true)
     }
   }
 }
@@ -76,11 +109,6 @@ export default {
 <style lang="scss">
   @import "../sass/variables";
   @import "../sass/banner";
-
-  .button-label {
-    position: relative;
-    top: -4px;
-  }
 
   .banner-canvas {
     box-sizing: content-box;
@@ -108,17 +136,39 @@ export default {
     margin: -16rem -27rem;
   }
 
-  @media (max-height: 900px) {
-    .banner-aspect .tab-content {
-      transform: scale(.75);
-      margin: -5rem 0;
+  .download-button {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+
+    .button-label {
+      position: relative;
+      top: -4px;
+      overflow: hidden;
     }
   }
 
-  @media (max-height: 700px) {
-    .banner-aspect .tab-content {
-      transform: scale(.7);
-      margin: -6.5rem 0;
+  @media (max-width: 1400px) {
+    .download-button {
+      top: 3.65rem;
+
+      .button {
+        &-label {
+          display: inline;
+        }
+
+        &.is-large {
+          font-size: .85rem;
+        }
+        
+        .icon {
+          position: relative;
+          top: 3px;
+          height: .85rem;
+          width: .85rem;
+          margin-right: .35rem !important;
+        }
+      }
     }
   }
 </style>
