@@ -1,5 +1,5 @@
 <template>
-  <input class="slider" type="range" :name="name" :min="min" :max="max" :value="value" @change="updateValue">
+  <input class="slider" type="range" :name="name" :min="min" :max="max" :value="value" @input="updateValue">
 </template>
 
 <script>
