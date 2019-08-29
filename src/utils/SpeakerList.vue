@@ -13,7 +13,7 @@
           <b-input placeholder="Càrrec" v-model="speaker.description" @keyup.enter.native="addSpeaker" size="is-small" icon="credit-card-blank"></b-input>
         </b-field>
         <b-field class="speaker-picture" v-if="acceptsPicture">
-          <b-upload @input="(image) => addSpeakerPicture(image, i)" drag-drop>
+          <b-upload @input="(image) => updateSpeakerPicture(image, i)" drag-drop>
             <div class="content has-text-centered" v-if="!speaker.picture">
               <b-icon icon="upload" size="is-small"></b-icon>
             </div>
