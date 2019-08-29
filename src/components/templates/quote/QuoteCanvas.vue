@@ -4,55 +4,37 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : ''
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      banner.localLabel ? 'has-local-label' : ''
     ]"
-    v-if="bannerProperties">
+    v-if="banner">
     <div class="blob blob-image">
-      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+      <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-2"></div>
     <div class="quote">
       <div class="quote-glyph">“</div>
       <div class="quote-text" contenteditable>
-        {{ bannerProperties.quote }}.”
+        {{ banner.quote | formatString }}.”
       </div>
       <div class="quote-author" contenteditable>
-        {{ bannerProperties.author }}
+        {{ banner.author | formatString }}
       </div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '@/assets/logo-compromis.svg'
+import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
   name: 'quote-canvas',
 
-  props: {
-    bannerProperties: Object,
-    aspect: String
-  },
-
-  data () {
-    return {
-      logo: Logo
-    }
-  },
-
-  computed: {
-    objectPosition: function () {
-      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
-        ? '0% ' + this.bannerProperties.picturePos + '%'
-        : this.bannerProperties.picturePos + '% 0%'
-      return { objectPosition }
-    }
-  }
+  mixins: [CanvasMixin]
 }
 </script>
 

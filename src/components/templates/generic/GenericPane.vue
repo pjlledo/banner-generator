@@ -66,12 +66,12 @@
 </template>
 
 <script>
-import BannerMixin from '@/mixins/banner-mixin.js'
+import PaneMixin from '@/mixins/pane-mixin.js'
 
 export default {
   name: 'generic-pane',
 
-  mixins: [BannerMixin],
+  mixins: [PaneMixin],
 
   data () {
     return {

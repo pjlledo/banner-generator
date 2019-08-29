@@ -4,53 +4,42 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel && bannerProperties.hasLocalLabel ? 'has-local-label' : ''
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : ''
     ]"
-    v-if="bannerProperties">
+    v-if="banner">
     <div class="blob blob-image">
-      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+      <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="text" :style="{ alignItems: bannerProperties.textPos, textAlign: bannerProperties.textAlign }">
+    <div class="text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
       <div class="text-holder">
-        <div class="text-lines" contenteditable>{{ bannerProperties.text }}</div>
+        <div class="text-lines" contenteditable>{{ banner.text | formatString }}</div>
       </div>
     </div>
     <div class="logo">
-      <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+      <img :src="logoWhite" alt="Compromís" />
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
     <div class="hashtag">
-      {{ bannerProperties.hashtag }}
+      {{ banner.hashtag }}
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '@/assets/logo-compromis-mono.svg'
+import CanvasMixin from '@/mixins/canvas-mixin.js'
+import LogoWhite from '@/assets/logo-compromis-mono.svg'
 
 export default {
   name: 'generic-canvas',
 
-  props: {
-    bannerProperties: Object,
-    aspect: String
-  },
+  mixins: [CanvasMixin],
 
   data () {
     return {
-      logo: Logo
-    }
-  },
-
-  computed: {
-    objectPosition: function () {
-      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
-        ? '0% ' + this.bannerProperties.picturePos + '%'
-        : this.bannerProperties.picturePos + '% 0%'
-      return { objectPosition }
+      logoWhite: LogoWhite
     }
   }
 }

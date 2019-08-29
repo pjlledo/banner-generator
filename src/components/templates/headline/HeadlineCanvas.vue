@@ -4,69 +4,53 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : '',
-      bannerProperties.headline.length > 95 ? 'has-long-headline' : ''
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      banner.localLabel ? 'has-local-label' : '',
+      banner.headline.length > 95 ? 'has-long-headline' : ''
     ]"
-    v-if="bannerProperties">
+    v-if="banner">
     <div class="blob blob-image">
-      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+      <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div :class="sourceClass">
-      <div class="headline-source headline-source--custom" v-if="bannerProperties.source === 'other'">
-        <span :style="{ 'color': bannerProperties.customSourceColor }">{{ bannerProperties.customSource }}</span>
+      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'">
+        <span :style="{ 'color': banner.customSourceColor }">{{ banner.customSource }}</span>
       </div>
       <div class="headline-source" v-else>
-        <img :src="bannerProperties.source.logo" :alt="bannerProperties.source.name" :style="{ height: bannerProperties.source.logoHeight + 'px' }" />
+        <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
-      <div class="headline-text" contenteditable :style="{ fontFamily: bannerProperties.source.fontFamily }">
-        {{ bannerProperties.headline }}
+      <div class="headline-text" contenteditable :style="{ fontFamily: banner.source.fontFamily }">
+        {{ banner.headline | formatString }}
       </div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
-    <div class="hashtag" v-if="bannerProperties.hashtag && aspect === '11'">
-      {{ bannerProperties.hashtag }}
+    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
+      {{ banner.hashtag }}
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '@/assets/logo-compromis.svg'
+import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
   name: 'headline-canvas',
 
-  props: {
-    bannerProperties: Object,
-    aspect: String
-  },
-
-  data () {
-    return {
-      logo: Logo
-    }
-  },
+  mixins: [CanvasMixin],
 
   computed: {
     sourceClass: function () {
-      if (!this.bannerProperties) return
-      const name = this.bannerProperties.source === 'other' ? 'other' : this.bannerProperties.source.id
+      if (!this.banner) return
+      const name = this.banner.source === 'other' ? 'other' : this.banner.source.id
       return {
         'headline': true,
         [name]: true
       }
-    },
-
-    objectPosition: function () {
-      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
-        ? '0% ' + this.bannerProperties.picturePos + '%'
-        : this.bannerProperties.picturePos + '% 0%'
-      return { objectPosition }
     }
   }
 }

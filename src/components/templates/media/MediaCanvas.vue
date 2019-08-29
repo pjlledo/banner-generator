@@ -4,73 +4,52 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : ''
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      banner.localLabel ? 'has-local-label' : ''
     ]"
-    v-if="bannerProperties">
+    v-if="banner">
     <div class="blob blob-image">
-      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+      <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="medium" contenteditable>
       <div class="medium-overtitle" contenteditable>
-        {{ bannerProperties.overtitle }}
+        {{ banner.overtitle | formatString }}
       </div>
       <div class="medium-title" contenteditable>
-        {{ bannerProperties.title }}
+        {{ banner.title | formatString }}
       </div>
       <div class="medium-subtitle" contenteditable>
-        {{ bannerProperties.subtitle }}
+        {{ banner.subtitle | formatString }}
       </div>
       <div class="medium-details">
         <div class="medium-day" contenteditable>
-          <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
+          <b-icon icon="calendar-day"/>{{ banner.date | formatDate }}
         </div>
         <div class="medium-time" contenteditable>
-          <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
+          <b-icon icon="clock"/>{{ banner.time | formatTime }}
         </div>
-        <div v-if="bannerProperties.source" class="medium-channel" :style="{ backgroundImage: 'url(' + bannerProperties.source.logo + ')' }"></div>
-        <div v-if="bannerProperties.programme" class="medium-programme" :style="{ backgroundColor: bannerProperties.programme.color }">
-          <img :src="bannerProperties.programme.logo" />
+        <div v-if="banner.source" class="medium-channel" :style="{ backgroundImage: 'url(' + banner.source.logo + ')' }"></div>
+        <div v-if="banner.programme" class="medium-programme" :style="{ backgroundColor: banner.programme.color }">
+          <img :src="banner.programme.logo" />
         </div>
       </div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import DateMixin from '@/mixins/date-mixin.js'
-import Logo from '@/assets/logo-compromis.svg'
+import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [DateMixin],
-
-  props: {
-    bannerProperties: Object,
-    aspect: String
-  },
-
-  data () {
-    return {
-      logo: Logo
-    }
-  },
-
-  computed: {
-    objectPosition: function () {
-      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
-        ? '0% ' + this.bannerProperties.picturePos + '%'
-        : this.bannerProperties.picturePos + '% 0%'
-      return { objectPosition }
-    }
-  }
+  mixins: [CanvasMixin]
 }
 </script>
 

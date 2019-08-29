@@ -1,10 +1,10 @@
 <template>
-  <div class="banner-workspace" v-if="bannerProperties">
+  <div class="banner-workspace" v-if="banner">
     <b-tabs class="banner-aspect" type="is-toggle-rounded" position="is-centered" v-model="aspect">
       <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
-      <component :is="canvasComponent" :banner-properties="bannerProperties" :aspect="template.aspects[aspect]" />
+      <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" />
     </b-tabs>
 
     <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-top" type="is-dark" :active="!isDownloadable && displayTooltip">
@@ -26,7 +26,7 @@ export default {
 
   props: {
     canvasComponent: Function,
-    bannerProperties: Object,
+    banner: Object,
     template: Object,
     isDownloadable: Boolean
   },
@@ -46,7 +46,7 @@ export default {
 
   methods: {
     download () {
-      if (!this.bannerProperties) return
+      if (!this.banner) return
       this.displayTooltip = true
       EventBus.$emit('checkForErrors', true)
 

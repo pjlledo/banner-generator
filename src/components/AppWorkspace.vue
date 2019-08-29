@@ -15,7 +15,7 @@
       class="canvas-container"
       :canvas-component="bannerComponents[`${selectedTemplate.id}Canvas`]"
       :template="selectedTemplate"
-      :banner-properties="bannerProperties"
+      :banner="bannerProperties"
       :is-downloadable="isDownloadable" />
   </div>
 </template>
@@ -47,8 +47,8 @@ export default {
     return {
       templates: templates,
       bannerComponents: bannerComponents,
-      selectedTemplate: null,
       bannerProperties: null,
+      selectedTemplate: null,
       isCardModalActive: false,
       isDownloadable: false
     }

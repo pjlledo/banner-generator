@@ -4,37 +4,37 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      bannerProperties.localLabel ? 'has-local-label' : '',
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
+      banner.localLabel ? 'has-local-label' : '',
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
       isCrowded ? 'is-crowded' : ''
     ]"
-    v-if="bannerProperties">
+    v-if="banner">
     <div class="blob blob-image">
-      <img :src="bannerProperties.picturePreview" alt="Imatge" v-if="bannerProperties.picturePreview" :style="objectPosition" />
+      <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="event" contenteditable>
       <div class="event-overtitle" contenteditable>
-        {{ bannerProperties.overtitle }}
+        {{ banner.overtitle | formatString }}
       </div>
       <div class="event-title" contenteditable>
-        {{ bannerProperties.title }}
+        {{ banner.title | formatString }}
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
         <div class="event-details" contenteditable>
-          <b-icon icon="calendar-day"/> {{ bannerProperties.date | formatDate }}
+          <b-icon icon="calendar-day"/> {{ banner.date | formatDate }}
         </div>
         <div class="event-details" contenteditable>
-          <b-icon icon="clock"/> {{ bannerProperties.time | formatTime }}
+          <b-icon icon="clock"/> {{ banner.time | formatTime }}
         </div>
         <div class="event-details" contenteditable>
-          <b-icon icon="map-marker-alt"/> {{ bannerProperties.place }}
+          <b-icon icon="map-marker-alt"/> {{ banner.place }}
         </div>
-        <div class="event-details event-details--speakers" v-if="bannerProperties.speakers && aspect === '11'" contenteditable>
+        <div class="event-details event-details--speakers" v-if="banner.speakers && aspect === '11'" contenteditable>
           <b-icon icon="keynote"/>
           <ul>
-            <li v-for="(speaker, i) in bannerProperties.speakers" :key="i">
+            <li v-for="(speaker, i) in banner.speakers" :key="i">
               {{ speaker.name }}
             </li>
           </ul>
@@ -43,42 +43,23 @@
     </div>
     <div class="logo" v-if="aspect !== 'event'">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import DateMixin from '@/mixins/date-mixin.js'
-import Logo from '@/assets/logo-compromis.svg'
+import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [DateMixin],
-
-  props: {
-    bannerProperties: Object,
-    aspect: String
-  },
-
-  data () {
-    return {
-      logo: Logo
-    }
-  },
+  mixins: [CanvasMixin],
 
   computed: {
-    objectPosition: function () {
-      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
-        ? '0% ' + this.bannerProperties.picturePos + '%'
-        : this.bannerProperties.picturePos + '% 0%'
-      return { objectPosition }
-    },
-
     isCrowded: function () {
-      return (this.bannerProperties.speakers && this.bannerProperties.title.length > 30) ||
-        (this.bannerProperties.title.length > 40)
+      return (this.banner.speakers && this.banner.title.length > 30) ||
+        (this.banner.title.length > 40)
     }
   }
 }

@@ -4,13 +4,13 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + bannerProperties.disposition : '',
-      bannerProperties.localLabel ? 'has-local-label' : '',
-      bannerProperties.title.length > 30 ? 'has-long-title' : 'has-short-title'
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      banner.localLabel ? 'has-local-label' : '',
+      banner.title.length > 30 ? 'has-long-title' : 'has-short-title'
     ]"
-    v-if="bannerProperties">
+    v-if="banner">
     <div class="speakers-items">
-      <div v-for="(speaker, i) in bannerProperties.speakers" :key="i" class="speakers-item">
+      <div v-for="(speaker, i) in banner.speakers" :key="i" class="speakers-item">
         <div class="speakers-image">
           <img :src="speaker.picture" :alt="`Imatge de ${speaker.name}`" v-if="speaker.picture" />
         </div>
@@ -22,58 +22,37 @@
     <div class="blob blob-2"></div>
     <div class="speakers" contenteditable>
       <div class="speakers-overtitle" contenteditable>
-        {{ bannerProperties.overtitle }}
+        {{ banner.overtitle | formatString }}
       </div>
       <div class="speakers-title" contenteditable>
-        {{ bannerProperties.title }}
+        {{ banner.title | formatString }}
       </div>
     </div>
     <div class="speakers-details-wrapper" v-if="aspect !== 'event'">
       <div class="speakers-details" contenteditable>
-        <b-icon icon="calendar-day"/>{{ bannerProperties.date | formatDate }}
+        <b-icon icon="calendar-day"/>{{ banner.date | formatDate }}
       </div>
       <div class="speakers-details" contenteditable>
-        <b-icon icon="clock"/>{{ bannerProperties.time | formatTime }}
+        <b-icon icon="clock"/>{{ banner.time | formatTime }}
       </div>
       <div class="speakers-details" contenteditable>
-        <b-icon icon="map-marker-alt"/>{{ bannerProperties.place }}
+        <b-icon icon="map-marker-alt"/>{{ banner.place }}
       </div>
     </div>
     <div class="logo">
       <img :src="logo" alt="Compromís" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': bannerProperties.localLabel.length > 18 }" v-if="bannerProperties.localLabel && bannerProperties.hasLocalLabel">{{ bannerProperties.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import DateMixin from '@/mixins/date-mixin.js'
-import Logo from '@/assets/logo-compromis.svg'
+import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [DateMixin],
-
-  props: {
-    bannerProperties: Object,
-    aspect: String
-  },
-
-  data () {
-    return {
-      logo: Logo
-    }
-  },
-
-  computed: {
-    objectPosition: function () {
-      const objectPosition = (this.bannerProperties.pictureAspect === 'vertical')
-        ? '0% ' + this.bannerProperties.picturePos + '%'
-        : this.bannerProperties.picturePos + '% 0%'
-      return { objectPosition }
-    }
-  }
+  mixins: [CanvasMixin]
 }
 </script>
 

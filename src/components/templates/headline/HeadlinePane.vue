@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import BannerMixin from '@/mixins/banner-mixin.js'
+import PaneMixin from '@/mixins/pane-mixin.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
 
@@ -111,7 +111,7 @@ export default {
     Swatches
   },
 
-  mixins: [BannerMixin],
+  mixins: [PaneMixin],
 
   data () {
     return {
