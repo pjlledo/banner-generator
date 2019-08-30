@@ -106,11 +106,27 @@ export default {
 
   .pane {
     grid-area: pane;
-    padding: 2rem;
+    padding: 2rem 1rem 2rem 2rem;
     background-color: $white;
     box-shadow: 0 7px 25px -16px;
     overflow-y: scroll;
-    height: 100%;
+    align-self: stretch;
+
+    &::-webkit-scrollbar {
+      width: 1rem;
+      background-color: $white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $gray-400;
+      border-radius: 4rem;
+      transition: .25s ease-in-out;
+      border: .25rem $white solid;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: $gray-600;
+    }
   }
 
   .canvas-container {
