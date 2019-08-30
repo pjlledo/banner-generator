@@ -9,8 +9,8 @@
         v-if="!aspect"
         class="banner-disposition"
         expanded>
-        <b-tab-item label="Titular dalt"></b-tab-item>
-        <b-tab-item label="Titular baix"></b-tab-item>
+        <b-tab-item label="Titular abaix"></b-tab-item>
+        <b-tab-item label="Titular adalt"></b-tab-item>
       </b-tabs>
     </transition>
 

@@ -100,18 +100,18 @@ export default {
     }
 
     &-image {
-      top: -15%;
-      right: -14%;
-      height: 680px;
+      top: -4%;
+      right: -4%;
+      height: 600px;
       z-index: 20;
-      background: $gray-300;
-      width: 620px;
+      width: 535px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
 
       img {
-        transform: rotate(-$rotation) scale(1.15);
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        margin: 21px -30px;
       }
     }
   }
@@ -136,19 +136,27 @@ export default {
       }
 
       &-image {
-        height: 540px;
-        top: -48px;
+        width: 440px;
+        height: 472px;
+        top: -27px;
         left: -12px;
         border-bottom-right-radius: 0;
+
+        img {
+          width: 96%;
+          margin: 21px 3px;
+        }
       }
     }
 
     .quote {
       bottom: 153px;
       top: auto;
+      padding: 0 30px;
 
       &-glyph {
         top: -105px;
+        left: 21px;
         font-size: 140px;
       }
 

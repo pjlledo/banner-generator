@@ -13,7 +13,7 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
+    <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
       <div class="text-holder">
         <div class="text-lines" contenteditable>{{ banner.text | formatString }}</div>
       </div>
@@ -83,8 +83,8 @@ export default {
 
   .blob {
     &-1 {
-      left: -61%;
-      top: -84%;
+      left: -58%;
+      top: -82%;
       z-index: 20;
     }
 
@@ -111,6 +111,7 @@ export default {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: rotate(0);
       }
     }
   }

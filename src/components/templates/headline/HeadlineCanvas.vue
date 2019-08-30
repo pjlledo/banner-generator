@@ -112,18 +112,18 @@ export default {
     }
 
     &-image {
-      top: -55px;
+      top: -25px;
       left: -30px;
-      height: 440px;
-      z-index: 20;
-      background: $gray-300;
       width: 620px;
+      height: 410px;
+      z-index: 20;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
 
       img {
-        transform: rotate(-$rotation) scale(1.15);
-        width: 100%;
+        width: 98%;
         height: 100%;
-        object-fit: cover;
+        margin: 27px;
       }
     }
   }
@@ -155,10 +155,16 @@ export default {
       }
 
       &-image {
-        top: -65px;
+        top: -20px;
         left: -12px;
         width: 444px;
+        height: 395px;
         border-bottom-right-radius: 0;
+
+        img {
+          width: 93%;
+          margin: 15px 10px;
+        }
       }
     }
 
@@ -205,21 +211,20 @@ export default {
     .blob {
       &-1 {
         top: -90%;
-        left: -40%;
-        bottom: auto;
-        right: auto;
+        right: 40%;
       }
 
       &-2 {
-        display: none;
+        opacity: 0;
       }
 
       &-image {
-        left: auto;
-        top: auto;
-        bottom: -90px;
-        right: -80px;
-        height: 570px;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        top: 248px;
+        left: 130px;
+        height: 500px;
       }
     }
   }

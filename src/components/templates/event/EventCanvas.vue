@@ -133,19 +133,18 @@ export default {
 
     &-image {
       top: -5%;
-      right: -5%;
-      height: 605px;
-      width: 420px;
+      right: -4%;
+      height: 618px;
       z-index: 20;
-      background: $gray-300;
-      border-top-left-radius: 0;
-      border-bottom-right-radius: 0;
+      width: 414px;
+      border-radius: 0;
+      border-bottom-left-radius: $border-radius;
 
       img {
-        transform: rotate(-$rotation) scale(1.15);
+        transform: rotate(-$rotation);
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: 98%;
+        margin: 28px -28px;
       }
     }
   }
@@ -169,9 +168,16 @@ export default {
       }
 
       &-image {
-        height: 410px;
-        width: 440px;
-        border-top-right-radius: 0;
+        height: 404px;
+        width: 431px;
+        top: -23px;
+        left: -3px;
+        border-bottom-right-radius: 0;
+
+        img {
+          margin: 21px -5px;
+          width: 98%;
+        }
       }
     }
 
@@ -225,6 +231,8 @@ export default {
 
         img {
           transform: rotate(0) scale(1);
+          margin: 0;
+          height: 100%;
         }
       }
     }
