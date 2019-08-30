@@ -5,22 +5,22 @@
       :type="picture ? '' : displayErrors ? 'is-danger' : ''"
       :message="picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
       <b-upload @input="(picture) => $emit('upload', picture)" drag-drop>
-        <section class="section">
           <div class="content has-text-centered" v-if="!picture">
             <b-icon icon="upload" size="is-large" />
             <p>Arrosega la foto</p>
           </div>
-          <div class="content has-text-centered" v-else>
-            <p>{{ picture.name }}</p>
+          <div class="picture-preview has-text-centered" v-else>
+            <img :src="preview" alt="Imatge" />
+            <span>{{ picture.name }}</span>
           </div>
-        </section>
       </b-upload>
       <b-button
         v-if="picture"
         @click="$emit('delete')"
         class="remove-image"
-        type="is-danger">
-        <b-icon icon="times" />
+        type="is-danger"
+        size="is-small"
+        icon-right="times">
       </b-button>
     </b-field>
 </template>
@@ -32,20 +32,47 @@ export default {
   props: {
     picture: File,
     displayErrors: Boolean
+  },
+
+  computed: {
+    preview: function () {
+      return URL.createObjectURL(this.picture)
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .image-upload-field {
-  .section {
-    padding: 2rem 1.5rem;
+  .content {
+    padding: 1.5rem;
   }
 
   .remove-image {
     position: absolute;
     right: 0;
     top: 2rem;
+    border-top-right-radius: 6px;
+  }
+
+  .picture-preview {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 4.5rem;
+      height: 4.5rem;
+      object-fit: cover;
+      border-radius: .25rem;
+      margin-right: .5rem;
+    }
+    
+    span {
+      display: block;
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &.has-addons {
