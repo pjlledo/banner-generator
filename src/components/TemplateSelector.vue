@@ -5,9 +5,7 @@
       <ul>
         <li v-for="template in templates" :key="template.id">
           <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
-            <span class="template-item-icon">
-              <img svg-inline class="icon" src="./templates/headline/headline.svg" alt="Headline Icon" />
-            </span>
+            <template-icon :icon="template.id" />
             <span class="template-item-name">{{ template.name }}</span>
           </router-link>
         </li>
@@ -18,9 +16,14 @@
 
 <script>
 import templates from './templates/templates'
+import TemplateIcon from '@/utils/TemplateIcon'
 
 export default {
   name: 'template-selector',
+
+  components: {
+    TemplateIcon
+  },
 
   data () {
     return {
@@ -88,20 +91,6 @@ export default {
       &:active {
         transform: rotate(0) scale(.95);
         opacity: .75;
-      }
-
-      &-icon {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -4rem;
-        margin-left: -3rem;
-
-        svg {
-          width: 6rem;
-          height: 6rem;
-        }
       }
 
       &-name {
