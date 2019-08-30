@@ -37,10 +37,10 @@ export default {
   @import "../sass/variables";
 
   .nav {
+    display: flex;
     color: $white;
     background-color: $gray-800;
     padding: .25rem 2rem;
-    display: flex;
 
     .back-button {
       margin-left: -.75rem;

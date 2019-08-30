@@ -32,6 +32,10 @@ export default {
   @import "../sass/variables";
 
   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: $white;
     padding: .75rem 2rem;
     display: flex;

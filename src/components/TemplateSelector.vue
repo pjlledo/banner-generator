@@ -37,10 +37,9 @@ export default {
     position: relative;
     display: flex;
     align-content: center;
-    height: calc(100vh - 4rem);
 
     &-templates {
-      margin: 0 auto;
+      margin: $navbar-height auto;
     }
 
     h2 {

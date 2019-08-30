@@ -93,7 +93,7 @@ export default {
       "pane canvas";
     align-items: center;
     position: fixed;
-    top: 3.25rem;
+    top: $navbar-height;
     left: 0;
     right: 0;
     bottom: 0;
