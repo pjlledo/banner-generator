@@ -31,7 +31,7 @@
         <div class="event-details" contenteditable>
           <b-icon icon="map-marker-alt"/> {{ banner.place }}
         </div>
-        <div class="event-details event-details--speakers" v-if="banner.speakers && aspect === '11'" contenteditable>
+        <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 && aspect === '11'" contenteditable>
           <b-icon icon="keynote"/>
           <ul>
             <li v-for="(speaker, i) in banner.speakers" :key="i">

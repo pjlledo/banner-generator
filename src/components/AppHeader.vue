@@ -37,6 +37,7 @@ export default {
     transition: .25s ease-in-out;
 
     .logo {
+      color: $white;
       height: 28px;
     }
 

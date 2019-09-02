@@ -8,14 +8,14 @@
 
       <!-- Text align -->
       <b-field label="Alineació del text" class="text-align-group">
-        <b-tabs @change="updateTextAlign" class="text-align" type="is-toggle" size="is-small" expanded>
+        <b-tabs @change="updateTextAlign" :value="1" class="text-align" type="is-toggle" size="is-small" expanded>
           <b-tab-item icon="align-left"></b-tab-item>
           <b-tab-item icon="align-center"></b-tab-item>
           <b-tab-item icon="align-right"></b-tab-item>
         </b-tabs>
 
         <!-- Text position -->
-        <b-tabs @change="updateTextPosition" class="text-position" type="is-toggle" size="is-small" expanded>
+        <b-tabs @change="updateTextPosition" :value="1" class="text-position" type="is-toggle" size="is-small" expanded>
           <b-tab-item icon="arrow-to-top"></b-tab-item>
           <b-tab-item icon="grip-lines"></b-tab-item>
           <b-tab-item icon="arrow-to-bottom"></b-tab-item>
@@ -78,7 +78,9 @@ export default {
       properties: {
         text: '',
         textPos: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        textPosI: 1,
+        textAlignI: 1
       }
     }
   },
