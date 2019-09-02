@@ -29,11 +29,7 @@
 
     <!-- Date -->
     <b-field label="Data" v-if="aspect !== 2">
-      <b-datepicker
-        v-model="properties.date"
-        placeholder="Dia d'emissió"
-        icon="calendar-alt">
-      </b-datepicker>
+      <date-picker v-model="properties.date" />
     </b-field>
 
     <!-- Time -->
@@ -95,7 +91,8 @@
 
 <script>
 import PaneMixin from '@/mixins/pane-mixin.js'
-import SpeakerList from '@/utils/SpeakerList.vue'
+import DatePicker from '@/utils/DatePicker'
+import SpeakerList from '@/utils/SpeakerList'
 
 export default {
   name: 'quote-pane',
@@ -103,6 +100,7 @@ export default {
   mixins: [PaneMixin],
 
   components: {
+    DatePicker,
     SpeakerList
   },
 

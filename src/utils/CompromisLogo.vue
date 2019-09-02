@@ -12,7 +12,7 @@
         <clipPath id="caretaClipPath">
           <use xlink:href="#caretaPath" style="overflow:visible;"/>
         </clipPath>
-        
+
         <linearGradient id="compromisLogoGradient" gradientUnits="userSpaceOnUse" x1="-1191.337" y1="1719.5544" x2="-1190.2043" y2="1719.5544" gradientTransform="matrix(0 34.2228 34.2228 0 -58827.9648 40770.5977)">
           <stop  offset="0" style="stop-color:#F39128"/>
           <stop  offset="0.2358" style="stop-color:#ED8025"/>
