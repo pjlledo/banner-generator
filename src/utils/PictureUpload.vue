@@ -66,10 +66,10 @@ export default {
       border-radius: .25rem;
       margin-right: .5rem;
     }
-    
+
     span {
       display: block;
-      white-space: nowrap; 
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }

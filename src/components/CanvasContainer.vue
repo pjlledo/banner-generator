@@ -42,9 +42,9 @@ export default {
       scale: 1,
       margin: 0,
       aspects: {
-        '11': { width: 720, height: 720, minScale: .35, maxScale: 1, minMargin: -15, maxMargin: 0 },
-        '916': { width: 405, height: 720, minScale: .35, maxScale: 1, minMargin: -15, maxMargin: 0 },
-        'event': { width: 1920, height: 1080, minScale: .25, maxScale: .5, minMargin: -25, maxMargin: -17 }
+        '11': { width: 720, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
+        '916': { width: 405, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
+        'event': { width: 1920, height: 1080, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 }
       }
     }
   },
@@ -57,11 +57,11 @@ export default {
 
   created () {
     this.resize()
-    window.addEventListener("resize", this.handleWindowResize)
+    window.addEventListener('resize', this.handleWindowResize)
   },
 
   destroyed () {
-    window.removeEventListener("resize", this.handleWindowResize)
+    window.removeEventListener('resize', this.handleWindowResize)
   },
 
   methods: {
@@ -166,7 +166,7 @@ export default {
         &.is-large {
           font-size: .85rem;
         }
-        
+
         .icon {
           position: relative;
           top: 3px;

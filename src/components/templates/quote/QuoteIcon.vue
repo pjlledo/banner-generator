@@ -1,0 +1,98 @@
+<template>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 325.66 327.46" xml:space="preserve">
+    <g>
+      <linearGradient id="compromisGradient" gradientUnits="userSpaceOnUse" x1="33" y1="195.9" x2="296.99" y2="195.9">
+        <stop offset="0" style="stop-color:#F19027"/>
+        <stop offset="0.2448" style="stop-color:#EB7F27"/>
+        <stop offset="0.7264" style="stop-color:#DA5427"/>
+        <stop offset="1" style="stop-color:#CF3827"/>
+      </linearGradient>
+
+      <path class="template-icon-background" d="M302.9,326.5H23.1C10.4,326.5,0,316.1,0,303.4V23.6C0,10.9,10.4,0.5,23.1,0.5h279.8
+        c12.7,0,23.1,10.4,23.1,23.1v279.8C326,316.1,315.6,326.5,302.9,326.5z"/>
+
+      <path class="quote-glyph" d="M31.5,159v-40.7c0-24.4,6.3-41,31.3-51.5l9.6,17.5C56.8,91.8,52.9,99.9,52.9,115h21.7v44H31.5z M95.1,159
+      v-40.7c0-24.4,6.9-41,31.9-51.5l9.6,17.5c-15.7,7.5-19.6,15.7-19.6,30.7h21.4v44H95.1z" />
+      <rect class="quote-bar quote-bar--2" x="30" y="185" rx="15" ry="15" width="260" height="28" />
+      <rect class="quote-bar quote-bar--3" x="30" y="225" rx="15" ry="15" width="160" height="28" />
+
+      <g class="quote-active">
+        <path class="quote-glyph-active" d="M31.5,159v-40.7c0-24.4,6.3-41,31.3-51.5l9.6,17.5C56.8,91.8,52.9,99.9,52.9,115h21.7v44H31.5z M95.1,159
+      v-40.7c0-24.4,6.9-41,31.9-51.5l9.6,17.5c-15.7,7.5-19.6,15.7-19.6,30.7h21.4v44H95.1z" fill="url(#compromisGradient)" />
+        <rect class="quote-bar-active quote-bar--2" x="30" y="185" rx="15" ry="15" width="260" height="28" fill="url(#compromisGradient)" />
+        <rect class="quote-bar-active quote-bar--3" x="30" y="225" rx="15" ry="15" width="160" height="28" fill="url(#compromisGradient)" />
+      </g>
+    </g>
+  </svg>
+</template>
+
+<script>
+export default {
+  name: 'quote-icon'
+}
+</script>
+
+<style lang="scss" scoped>
+  @import "../../../sass/variables";
+
+.template-icon {
+  &-background {
+    fill: $gray-200;
+  }
+}
+
+/* Quote icon */
+.quote {
+  &-bar,
+  &-glyph {
+    fill: $gray-300;
+  }
+
+  &-active {
+    .quote-glyph-active {
+      transition: .4s ease-in-out;
+      opacity: 0;
+    }
+
+    .quote-bar--1 {
+      transition: .4s ease-in-out;
+      width: 0;
+    }
+
+    .quote-bar--2 {
+      transition: .4s ease-in-out;
+      transition-delay: .2s;
+      width: 0;
+    }
+
+    .quote-bar--3 {
+      transition: .4s ease-in-out;
+      transition-delay: .3s;
+      width: 0;
+    }
+  }
+}
+
+.template-item {
+  &:hover {
+    .quote-glyph-active {
+      opacity: 1;
+    }
+
+    .quote-bar {
+      &--1 {
+        width: 180px;
+      }
+
+      &--2 {
+        width: 260px;
+      }
+
+      &--3 {
+        width: 160px;
+      }
+    }
+  }
+}
+</style>
