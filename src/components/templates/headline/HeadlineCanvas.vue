@@ -187,8 +187,14 @@ export default {
       top: 100px;
     }
 
+    .blob-image {
+      img {
+        margin: -29px -14px;
+      }
+    }
+
     &.has-long-headline {
-      .blob-image{
+      .blob-image {
         bottom: -130px;
       }
     }
