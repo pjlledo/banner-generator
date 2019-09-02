@@ -1,12 +1,15 @@
 <template>
   <div :class="{ 'navbar': true, 'navbar--dark': dark }">
-    <compromis-logo class="logo" :mono="dark" />
+    <a href="#" @click.prevent="closeWorkspace">
+      <compromis-logo class="logo" :mono="dark" />
+    </a>
     <div class="nav-label logo-label">Disseny</div>
     <div class="nav-label app-label">Generador de targes</div>
   </div>
 </template>
 
 <script>
+import { EventBus } from '@/event-bus.js'
 import CompromisLogo from '@/utils/CompromisLogo'
 
 export default {
@@ -18,6 +21,12 @@ export default {
 
   props: {
     dark: Boolean
+  },
+
+  methods: {
+    closeWorkspace () {
+      EventBus.$emit('closeWorkspace', false)
+    }
   }
 }
 </script>
