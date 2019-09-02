@@ -28,25 +28,31 @@
     </b-field>
 
     <!-- Date -->
-    <b-field label="Data" v-if="aspect !== 2">
-      <date-picker v-model="properties.date" />
-    </b-field>
+    <transition name="slide">
+      <b-field label="Data" v-if="aspect !== 2">
+        <date-picker v-model="properties.date" />
+      </b-field>
+    </transition>
 
     <!-- Time -->
-    <b-field label="Hora" v-if="aspect !== 2">
-      <b-timepicker
-        rounded
-        inline
-        :increment-minutes="15"
-        v-model="properties.time"
-        icon="clock">
-      </b-timepicker>
-    </b-field>
+    <transition name="slide">
+      <b-field label="Hora" v-if="aspect !== 2">
+        <b-timepicker
+          rounded
+          inline
+          :increment-minutes="15"
+          v-model="properties.time"
+          icon="clock">
+        </b-timepicker>
+      </b-field>
+    </transition>
 
     <!-- Venue -->
-    <b-field label="Lloc" v-if="aspect !== 2">
-      <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
-    </b-field>
+    <transition name="slide">
+      <b-field label="Lloc" v-if="aspect !== 2">
+        <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
+      </b-field>
+    </transition>
 
     <!-- Speakers -->
     <transition name="slide">
@@ -90,7 +96,7 @@
 </template>
 
 <script>
-import PaneMixin from '@/mixins/pane-mixin.js'
+import PaneMixin from '@/mixins/pane-mixin'
 import DatePicker from '@/utils/DatePicker'
 import SpeakerList from '@/utils/SpeakerList'
 
