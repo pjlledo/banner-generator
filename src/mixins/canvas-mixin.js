@@ -1,13 +1,10 @@
-import Logo from '@/assets/logo-compromis.svg'
+import CompromisLogo from '@/utils/CompromisLogo'
 import moment from 'moment'
-
 moment.locale('ca')
 
 export default {
-  data () {
-    return {
-      logo: Logo
-    }
+  components: {
+    CompromisLogo
   },
 
   props: {

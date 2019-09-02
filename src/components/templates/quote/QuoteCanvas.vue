@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="logo">
-      <img :src="logo" alt="Compromís" />
+      <compromis-logo />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
   </div>

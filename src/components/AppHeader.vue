@@ -1,29 +1,23 @@
 <template>
-  <div>
-    <div :class="{ 'navbar': true, 'navbar--dark': dark }">
-      <img :src="dark ? logoWhite : logo" alt="Compromís" />
-      <div class="nav-label logo-label">Disseny</div>
-      <div class="nav-label app-label">Generador de targes</div>
-    </div>
+  <div :class="{ 'navbar': true, 'navbar--dark': dark }">
+    <compromis-logo class="logo" :mono="dark" />
+    <div class="nav-label logo-label">Disseny</div>
+    <div class="nav-label app-label">Generador de targes</div>
   </div>
 </template>
 
 <script>
-import Logo from '@/assets/logo-compromis.svg'
-import LogoWhite from '@/assets/logo-compromis-mono.svg'
+import CompromisLogo from '@/utils/CompromisLogo'
 
 export default {
   name: 'app-header',
 
-  props: {
-    dark: Boolean
+  components: {
+    CompromisLogo
   },
 
-  data () {
-    return {
-      logo: Logo,
-      logoWhite: LogoWhite
-    }
+  props: {
+    dark: Boolean
   }
 }
 </script>
@@ -32,18 +26,17 @@ export default {
   @import "../sass/variables";
 
   .navbar {
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     background-color: $white;
     padding: .75rem 2rem;
-    display: flex;
+    height: $navbar-height;
     transition: .25s ease-in-out;
 
-    img {
-      display: flex;
-      align-items: center;
+    .logo {
       height: 28px;
     }
 

@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="logo">
-      <img :src="logoWhite" alt="Compromís" />
+      <compromis-logo :mono="true" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
     <div class="hashtag">
@@ -30,18 +30,11 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import LogoWhite from '@/assets/logo-compromis-mono.svg'
 
 export default {
   name: 'generic-canvas',
 
-  mixins: [CanvasMixin],
-
-  data () {
-    return {
-      logoWhite: LogoWhite
-    }
-  }
+  mixins: [CanvasMixin]
 }
 </script>
 
@@ -117,6 +110,9 @@ export default {
   }
 
   .logo {
+    color: $white;
+    z-index: 20;
+
     &-local-label {
       border-left: 1px $white solid;
       color: $white;
