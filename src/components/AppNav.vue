@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="nav-back">
-      <b-button type="is-text" @click="$emit('back', false)" class="back-button">
+      <b-button ref="close" type="is-text" @click="$emit('back', false)" class="back-button">
         <b-icon icon="chevron-left" />
         <span class="button-text">Enrere</span>
       </b-button>
@@ -9,14 +9,14 @@
     <p class="nav-centered">{{ templateName }}</p>
     <b-modal :active="isCardModalActive" @close="$emit('hide', true)" :width="640" scroll="keep">
       <div class="card content">
-          <b-icon icon="exclamation-triangle" size="is-large" />
-          <h2>Atenció</h2>
-          <p>
-            Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
-            Es perdran els canvis no guardats.
-          </p>
-          <b-button type="is-primary" @click="$emit('back', true)">Si, tancar</b-button>
-          <b-button type="is-light" @click="$emit('hide', true)">No, seguir editant</b-button>
+        <b-icon icon="exclamation-triangle" size="is-large" />
+        <h2>Atenció</h2>
+        <p>
+          Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
+          Es perdran els canvis no guardats.
+        </p>
+        <b-button ref="confirm" type="is-primary" @click="$emit('back', true)">Si, tancar</b-button>
+        <b-button type="is-light" @click="$emit('hide', true)">No, seguir editant</b-button>
       </div>
     </b-modal>
   </div>
@@ -29,6 +29,18 @@ export default {
   props: {
     isCardModalActive: Boolean,
     templateName: String
+  },
+
+  // Autofocus default button on modal shown
+  // Bring focus back to opener button on modal closed
+  watch: {
+    isCardModalActive: function () {
+      const button = this.isCardModalActive ? 'confirm' : 'close'
+
+      this.$nextTick(() => {
+        this.$refs[button].$el.focus()
+      })
+    }
   }
 }
 </script>
@@ -99,7 +111,8 @@ export default {
       }
 
       .icon.is-large {
-      margin-left: -.75rem;
+        margin-left: -.75rem;
+        margin-top: -.75rem;
       }
     }
 
