@@ -14,7 +14,7 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="event" contenteditable>
+    <div class="event">
       <div class="event-overtitle" contenteditable>
         {{ banner.overtitle | formatString }}
       </div>
