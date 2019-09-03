@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- Title -->
-    <b-field label="Titol">
+    <b-field
+      label="Titol"
+      :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.title ? '' : displayErrors ? `Has d'omplir el títol` : ''">
       <b-input placeholder="Mónica Oltra" v-model="properties.title"></b-input>
     </b-field>
 
@@ -48,7 +51,10 @@
     </b-field>
 
     <!-- Channel -->
-    <b-field label="Canal">
+    <b-field
+      label="Canal"
+      :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.source ? '' : displayErrors ? `Has de seleccionar un canal` : ''">
       <b-select placeholder="Selecciona un canal" @input="updateSource" expanded>
         <option
           v-for="source in presets"
@@ -66,7 +72,10 @@
     </b-field>
 
     <!-- Programme -->
-    <b-field label="Programa" v-if="properties.source">
+    <b-field
+      label="Programa" v-if="properties.source"
+      :type="properties.programme ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.programme ? '' : displayErrors ? `Has de seleccionar un programa` : ''">
       <b-select placeholder="Selecciona un programa" expanded @input="updateProgramme">
         <option
           v-for="programme in properties.source.programmes"
@@ -124,16 +133,18 @@ export default {
     properties: {
       handler: function (properties) {
         // Check if canvas can be downloaded
-        this.isDownloadable = (this.properties.title !== '' && this.properties.picture !== null)
+        this.isDownloadable = (
+          properties.title !== '' &&
+          properties.source !== null &&
+          properties.programme !== null &&
+          properties.picture !== null
+        )
       },
       deep: true
     }
   },
 
   created () {
-    // Set first preset as default
-    this.properties.source = this.presets[0]
-
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)

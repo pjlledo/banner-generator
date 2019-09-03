@@ -9,12 +9,18 @@
     </transition>
 
     <!-- Quote -->
-    <b-field label="Frase" :type="properties.quote ? '' : displayErrors ? 'is-danger' : ''" :message="properties.quote ? '' : displayErrors ? `Has d'omplir la frase` : ''">
+    <b-field
+      label="Frase"
+      :type="properties.quote ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.quote ? '' : displayErrors ? `Has d'omplir la frase` : ''">
       <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.quote" maxlength="120"></b-input>
     </b-field>
 
     <!-- Author -->
-    <b-field label="Autor i/o mitjà">
+    <b-field
+      label="Autor i/o mitjà"
+      :type="properties.author ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.author ? '' : displayErrors ? `Has d'omplir la frase` : ''">
       <b-input type="textarea" class="textarea-small" placeholder="Mónica Oltra a l'entrevista de La Sexta" v-model="properties.author" maxlength="80"></b-input>
     </b-field>
 
@@ -69,7 +75,11 @@ export default {
     properties: {
       handler: function (properties) {
         // Check if canvas can be downloaded
-        this.isDownloadable = (properties.quote !== '' && properties.picture !== null)
+        this.isDownloadable = (
+          properties.quote !== '' &&
+          properties.author !== '' &&
+          properties.picture !== null
+        )
       },
       deep: true
     }

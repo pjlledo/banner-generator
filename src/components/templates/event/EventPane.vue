@@ -49,7 +49,11 @@
 
     <!-- Venue -->
     <transition name="slide">
-      <b-field label="Lloc" v-if="aspect !== 2">
+      <b-field
+        label="Lloc"
+        v-if="aspect !== 2"
+        :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
+        :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
         <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
       </b-field>
     </transition>
@@ -126,7 +130,11 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
-        this.isDownloadable = (this.properties.title !== '' && this.properties.picture !== null)
+        this.isDownloadable = (
+          properties.title !== '' &&
+          properties.place !== '' &&
+          properties.picture !== null
+        )
       },
       deep: true
     }

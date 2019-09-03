@@ -15,7 +15,10 @@
     </transition>
 
     <!-- Source -->
-    <b-field label="Font">
+    <b-field
+      label="Font"
+      :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.source ? '' : displayErrors ? `Has se seleccionar una font` : ''">
       <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
         <option
           v-for="source in presets"
@@ -35,7 +38,10 @@
     <!-- Other source -->
     <transition name="slide">
       <div v-if="properties.source === 'other'">
-        <b-field label="Mitjà de comunicació">
+        <b-field
+          label="Mitjà de comunicació"
+          :type="properties.source === 'other' && properties.customSource ? '' : displayErrors ? 'is-danger' : ''"
+          :message="properties.source === 'other' && properties.customSource ? '' : displayErrors ? `Has se seleccionar una font` : ''">
           <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
         </b-field>
         <b-field label="Color">
@@ -125,15 +131,16 @@ export default {
     }
   },
 
-  created () {
-    // Set first preset as default
-    this.properties.source = this.presets[0]
-  },
-
   watch: {
     properties: {
       handler: function (properties) {
-        this.isDownloadable = (properties.headline !== '' && properties.picture !== null)
+        const { headline, picture, source, customSource } = properties
+        const sourceIsValid = source === 'other' ? customSource !== '' : source !== null
+        this.isDownloadable = (
+          headline !== '' &&
+          picture !== null &&
+          sourceIsValid
+        )
       },
       deep: true
     }

@@ -2,18 +2,21 @@
   <div :class="{
     'accepts-description': acceptsDescription,
     'accepts-picture': acceptsPicture
-    }">
+  }">
     <label class="label">Ponents</label>
     <ul class="speakers">
       <li v-for="(speaker, i) in speakers" :key="i" class="speaker-item">
-        <b-field class="speaker-name">
+        <b-field class="speaker-name" :type="speaker.name ? '' : displayErrors ? 'is-danger' : ''">
           <b-input placeholder="Nom del ponent" :ref="`speaker${i}`" v-model="speaker.name" @keyup.enter.native="addSpeaker" size="is-small" icon="user"></b-input>
         </b-field>
         <b-field class="speaker-description" v-if="acceptsDescription">
           <b-input placeholder="Càrrec" v-model="speaker.description" @keyup.enter.native="addSpeaker" size="is-small" icon="credit-card-blank"></b-input>
         </b-field>
         <b-field class="speaker-picture" v-if="acceptsPicture">
-          <b-upload @input="(image) => updateSpeakerPicture(image, i)" drag-drop>
+          <b-upload
+            @input="(image) => updateSpeakerPicture(image, i)"
+            drag-drop
+            :type="speaker.picture ? '' : displayErrors ? 'is-danger' : ''">
             <div class="content has-text-centered" v-if="!speaker.picture">
               <b-icon icon="upload" size="is-small"></b-icon>
             </div>
@@ -63,6 +66,10 @@ export default {
     maxSpeakers: {
       type: Number,
       default: 4
+    },
+    displayErrors: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -200,5 +207,9 @@ export default {
         "picture name remove"
         "picture description remove";
     }
+  }
+
+  .upload-draggable.is-danger {
+    border-color: $danger;
   }
 </style>

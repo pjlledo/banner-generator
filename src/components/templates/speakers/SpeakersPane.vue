@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- Title -->
-    <b-field label="Titol">
+    <b-field
+      label="Titol"
+      :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.title ? '' : displayErrors ? `Has d'omplir un títol` : ''">
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
 
@@ -11,7 +14,10 @@
     </b-field>
 
     <!-- Speakers -->
-    <speaker-list :default-speakers="properties.speakers" @updated="(speakers) => properties.speakers = speakers" />
+    <speaker-list
+      :default-speakers="properties.speakers"
+      @updated="(speakers) => properties.speakers = speakers"
+      :display-errors="displayErrors" />
 
     <!-- Date -->
     <transition name="slide">
@@ -35,7 +41,11 @@
 
     <!-- Venue -->
     <transition name="slide">
-      <b-field label="Lloc" v-if="aspect !== 2">
+      <b-field
+        label="Lloc"
+        v-if="aspect !== 2"
+        :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
+        :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
         <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
       </b-field>
     </transition>
@@ -64,7 +74,7 @@ import DatePicker from '@/utils/DatePicker'
 import SpeakerList from '@/utils/SpeakerList'
 
 export default {
-  name: 'quote-pane',
+  name: 'speakers-pane',
 
   mixins: [PaneMixin],
 
@@ -101,7 +111,12 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
-        this.isDownloadable = (this.properties.title !== '' && this.properties.speakers[0].picture !== null)
+        const speakersAreValid = properties.speakers.every((speaker) => speaker.picture !== null && speaker.name !== '')
+        this.isDownloadable = (
+          properties.title !== '' &&
+          properties.place !== '' &&
+          speakersAreValid
+        )
       },
       deep: true
     }

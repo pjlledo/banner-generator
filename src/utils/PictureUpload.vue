@@ -4,15 +4,18 @@
       class="image-upload-field"
       :type="picture ? '' : displayErrors ? 'is-danger' : ''"
       :message="picture ? '' : displayErrors ? `Has de seleccionar una foto` : ''">
-      <b-upload @input="(picture) => $emit('upload', picture)" drag-drop>
-          <div class="content has-text-centered" v-if="!picture">
-            <b-icon icon="upload" size="is-large" />
-            <p>Arrosega la foto</p>
-          </div>
-          <div class="picture-preview has-text-centered" v-else>
-            <img :src="preview" alt="Imatge" />
-            <span>{{ picture.name }}</span>
-          </div>
+      <b-upload
+        @input="(picture) => $emit('upload', picture)"
+        drag-drop
+        :type="picture ? '' : displayErrors ? 'is-danger' : ''">
+        <div class="content has-text-centered" v-if="!picture">
+          <b-icon icon="upload" size="is-large" />
+          <p>Arrosega la foto</p>
+        </div>
+        <div class="picture-preview has-text-centered" v-else>
+          <img :src="preview" alt="Imatge" />
+          <span>{{ picture.name }}</span>
+        </div>
       </b-upload>
       <b-button
         v-if="picture"
@@ -43,6 +46,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/variables";
+
 .image-upload-field {
   .content {
     padding: 1.5rem;
@@ -73,6 +78,10 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+
+  .upload-draggable.is-danger {
+    border-color: $danger;
   }
 
   &.has-addons {

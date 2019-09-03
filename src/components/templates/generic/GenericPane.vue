@@ -2,7 +2,10 @@
   <div>
     <!-- Text -->
     <div class="text-wrapper">
-      <b-field label="Text" :type="properties.text ? '' : displayErrors ? 'is-danger' : ''" :message="properties.text ? '' : displayErrors ? `Has d'omplir el text` : ''">
+      <b-field
+        label="Text"
+        :type="properties.text ? '' : displayErrors ? 'is-danger' : ''"
+        :message="properties.text ? '' : displayErrors ? `Has d'omplir el text` : ''">
         <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.text" maxlength="60"></b-input>
       </b-field>
 
@@ -89,7 +92,10 @@ export default {
     properties: {
       handler: function (properties) {
         // Check if canvas can be downloaded
-        this.isDownloadable = (properties.quote !== '' && properties.picture !== null)
+        this.isDownloadable = (
+          properties.text !== '' &&
+          properties.picture !== null
+        )
       },
       deep: true
     }

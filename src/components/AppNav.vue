@@ -34,8 +34,8 @@ export default {
   // Autofocus default button on modal shown
   // Bring focus back to opener button on modal closed
   watch: {
-    isCardModalActive: function () {
-      const button = this.isCardModalActive ? 'confirm' : 'close'
+    isCardModalActive: function (isActive) {
+      const button = isActive ? 'confirm' : 'close'
 
       this.$nextTick(() => {
         this.$refs[button].$el.focus()

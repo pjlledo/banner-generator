@@ -14,14 +14,14 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div :class="sourceClass">
+    <div class="headline">
       <div class="headline-source headline-source--custom" v-if="banner.source === 'other'">
         <span :style="{ 'color': banner.customSourceColor }">{{ banner.customSource }}</span>
       </div>
-      <div class="headline-source" v-else>
+      <div class="headline-source" v-else-if="banner.source">
         <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
-      <div class="headline-text" contenteditable :style="{ fontFamily: banner.source.fontFamily }">
+      <div class="headline-text" contenteditable :style="{ fontFamily: banner.source ? banner.source.fontFamily : false }">
         {{ banner.headline | formatString }}
       </div>
     </div>
@@ -41,18 +41,7 @@ import CanvasMixin from '@/mixins/canvas-mixin.js'
 export default {
   name: 'headline-canvas',
 
-  mixins: [CanvasMixin],
-
-  computed: {
-    sourceClass: function () {
-      if (!this.banner) return
-      const name = this.banner.source === 'other' ? 'other' : this.banner.source.id
-      return {
-        'headline': true,
-        [name]: true
-      }
-    }
-  }
+  mixins: [CanvasMixin]
 }
 </script>
 
