@@ -7,6 +7,7 @@
       <b-upload
         @input="(picture) => $emit('upload', picture)"
         drag-drop
+        accept="image/*"
         :type="picture ? '' : displayErrors ? 'is-danger' : ''">
         <div class="content has-text-centered" v-if="!picture">
           <b-icon icon="upload" size="is-large" />

@@ -7,15 +7,16 @@
     <ul class="speakers">
       <li v-for="(speaker, i) in speakers" :key="i" class="speaker-item">
         <b-field class="speaker-name" :type="speaker.name ? '' : displayErrors ? 'is-danger' : ''">
-          <b-input placeholder="Nom del ponent" :ref="`speaker${i}`" v-model="speaker.name" @keyup.enter.native="addSpeaker" size="is-small" icon="user"></b-input>
+          <b-input placeholder="Nom del ponent" :ref="`speaker${i}`" :name="`speaker${i}`"  v-model="speaker.name" @keyup.enter.native="addSpeaker" size="is-small" icon="user"></b-input>
         </b-field>
         <b-field class="speaker-description" v-if="acceptsDescription">
-          <b-input placeholder="Càrrec" v-model="speaker.description" @keyup.enter.native="addSpeaker" size="is-small" icon="credit-card-blank"></b-input>
+          <b-input placeholder="Càrrec" v-model="speaker.description" @keyup.enter.native="addSpeaker" :name="`speaker_desc${i}`"  size="is-small" icon="credit-card-blank"></b-input>
         </b-field>
         <b-field class="speaker-picture" v-if="acceptsPicture">
           <b-upload
             @input="(image) => updateSpeakerPicture(image, i)"
             drag-drop
+            accept="image/*"
             :type="speaker.picture ? '' : displayErrors ? 'is-danger' : ''">
             <div class="content has-text-centered" v-if="!speaker.picture">
               <b-icon icon="upload" size="is-small"></b-icon>
