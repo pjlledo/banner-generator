@@ -50,7 +50,10 @@ export default {
 
 .image-upload-field {
   .content {
-    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .75rem;
   }
 
   .remove-image {
@@ -80,8 +83,15 @@ export default {
     }
   }
 
-  .upload-draggable.is-danger {
-    border-color: $danger;
+  .upload-draggable {
+    &:hover {
+      border-color: $primary;
+      background: mix($primary, $white, 5%);
+    }
+
+    &.is-danger {
+      border-color: $danger;
+    }
   }
 
   &.has-addons {
