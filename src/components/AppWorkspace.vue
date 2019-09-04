@@ -8,12 +8,12 @@
       @hide="isCardModalActive = false" />
     <component
       class="pane"
-      :is="bannerComponents[`${selectedTemplate.id}Pane`]"
+      :is="selectedTemplate.components.pane"
       @updated="(props) => bannerProperties = props"
       @updateIsDownloadable="setIsDownloadable" />
     <canvas-container
       class="canvas-container"
-      :canvas-component="bannerComponents[`${selectedTemplate.id}Canvas`]"
+      :canvas-component="selectedTemplate.components.canvas"
       :template="selectedTemplate"
       :banner="bannerProperties"
       :is-downloadable="isDownloadable" />
@@ -25,28 +25,17 @@ import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
 import templates from './templates/templates'
 
-/* Templates */
-const bannerComponents = {}
-templates.map(template => {
-  const canvas = `${template.id}Canvas`
-  const pane = `${template.id}Pane`
-  bannerComponents[canvas] = () => import(`./templates/${template.id.toLowerCase()}/${canvas}`)
-  bannerComponents[pane] = () => import(`./templates/${template.id.toLowerCase()}/${pane}`)
-})
-
 export default {
   name: 'app-workspace',
 
   components: {
     AppNav,
-    CanvasContainer,
-    ...bannerComponents
+    CanvasContainer
   },
 
   data () {
     return {
       templates: templates,
-      bannerComponents: bannerComponents,
       bannerProperties: null,
       selectedTemplate: null,
       isCardModalActive: false,

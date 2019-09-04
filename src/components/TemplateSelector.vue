@@ -6,7 +6,7 @@
         <li v-for="template in templates" :key="template.id">
           <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
             <span class="template-item-icon">
-              <component :is="icons[`${template.id}Icon`]" />
+              <component :is="template.components.icon" />
             </span>
             <span class="template-item-name">{{ template.name }}</span>
           </router-link>
@@ -19,23 +19,12 @@
 <script>
 import templates from './templates/templates'
 
-const icons = {}
-templates.map(template => {
-  const name = `${template.id}Icon`
-  icons[name] = () => import(/* webpackMode: "eager" */ `./templates/${template.id.toLowerCase()}/${name}`)
-})
-
 export default {
   name: 'template-selector',
 
-  components: {
-    ...icons
-  },
-
   data () {
     return {
-      templates: templates,
-      icons: icons
+      templates: templates
     }
   }
 }
