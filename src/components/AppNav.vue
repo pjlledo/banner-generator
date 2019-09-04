@@ -13,10 +13,10 @@
         <h2>Atenció</h2>
         <p>
           Vols tancar l'editor i tornar a la pantalla d'escollir tarja?
-          Es perdran els canvis no guardats.
+          Es perdran tots els canvis.
         </p>
-        <b-button ref="confirm" type="is-primary" @click="$emit('back', true)">Si, tancar</b-button>
-        <b-button type="is-light" @click="$emit('hide', true)">No, seguir editant</b-button>
+        <b-button ref="confirm" type="is-primary" @click="$emit('back', true)">Si, tanca</b-button>
+        <b-button type="is-light" @click="$emit('hide', true)">No, continua editant</b-button>
       </div>
     </b-modal>
   </div>
