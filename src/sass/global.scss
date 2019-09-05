@@ -46,6 +46,7 @@
 .banner-disposition .tab-content {
   display: none;
 }
+
 .tabs a {
   background: $white;
 }
@@ -56,14 +57,4 @@
 
 .textarea-small .textarea {
   min-height: 4.3rem;
-}
-
-*[contenteditable]:hover {
-  background: mix($orange, $white, 10%);
-  outline: .5rem mix($orange, $white, 10%) solid;
-  // box-shadow: 0 0 0 .6rem $orange;
-}
-*[contenteditable]:focus {
-  background: mix($orange, $white, 20%);
-  outline: .5rem mix($orange, $white, 20%) solid;
 }

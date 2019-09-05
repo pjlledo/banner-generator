@@ -6,7 +6,7 @@
         label="Text"
         :type="properties.text ? '' : displayErrors ? 'is-danger' : ''"
         :message="properties.text ? '' : displayErrors ? `Has d'omplir el text` : ''">
-        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.text" maxlength="60"></b-input>
+        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.text" maxlength="100"></b-input>
       </b-field>
 
       <!-- Text align -->

@@ -14,8 +14,8 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
-      <div class="text-holder">
-        <div class="text-lines" contenteditable>{{ banner.text | formatString }}</div>
+      <div class="text-holder" contenteditable>
+        <div class="text-lines" :style="{ fontSize }">{{ banner.text | formatString }}</div>
       </div>
     </div>
     <div class="logo">
@@ -34,7 +34,17 @@ import CanvasMixin from '@/mixins/canvas-mixin.js'
 export default {
   name: 'generic-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin],
+
+  computed: {
+    fontSize () {
+      const maxFontSize = 80
+      const minFontSize = 35
+      const propLength = this.banner.text.length / 100
+      const fontSize = maxFontSize + propLength * (minFontSize - maxFontSize)
+      return fontSize + 'px'
+    }
+  }
 }
 </script>
 
@@ -53,6 +63,8 @@ export default {
 
     &-holder {
       width: 100%;
+      padding: 0 45px;
+      -webkit-line-break: normal;
     }
 
     &-lines {
@@ -70,7 +82,7 @@ export default {
       font-weight: bold;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
-      margin: 0 45px;
+      -webkit-line-break: normal;
     }
   }
 

@@ -8,7 +8,7 @@ const pwaArgs = {
 
 module.exports = {
   chainWebpack: config => {
-    config.plugin('pwa').tap(args => {
+    config.plugin('pwa').tap(() => {
       return [pwaArgs]
     })
   }

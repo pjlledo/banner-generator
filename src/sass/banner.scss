@@ -59,4 +59,13 @@
     font-size: 20px;
     letter-spacing: -.3px;
   }
+
+  [contenteditable]:hover {
+    background: rgba($primary, .1);
+    outline: .5rem rgba($primary, .1) solid;
+  }
+  [contenteditable]:focus {
+    background: rgba($primary, .2);
+    outline: .5rem rgba($primary, .2) solid;
+  }
 }
