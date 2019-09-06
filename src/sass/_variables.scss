@@ -60,7 +60,7 @@ $input-shadow: 0;
 // Banners
 $gradient-start: #d23517;
 $gradient-end: #f39128;
-$gradient: linear-gradient($gradient-start, $gradient-end);
+$gradient: linear-gradient(var(--gradient-orientation, 45deg), $gradient-start, $gradient-end);
 $rotation: -5deg;
 $border-radius: 5rem;
 

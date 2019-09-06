@@ -1,25 +1,22 @@
 <template>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-    viewBox="0 0 325.66 327.46" xml:space="preserve">
-    <g>
-      <linearGradient id="compromisGradient" gradientUnits="userSpaceOnUse" x1="33" y1="195.9" x2="296.99" y2="195.9">
-        <stop offset="0" style="stop-color:#F19027"/>
-        <stop offset="0.2448" style="stop-color:#EB7F27"/>
-        <stop offset="0.7264" style="stop-color:#DA5427"/>
-        <stop offset="1" style="stop-color:#CF3827"/>
-      </linearGradient>
-
-      <path class="template-icon-background" d="M302.9,326.5H23.1C10.4,326.5,0,316.1,0,303.4V23.6C0,10.9,10.4,0.5,23.1,0.5h279.8
-        c12.7,0,23.1,10.4,23.1,23.1v279.8C326,316.1,315.6,326.5,302.9,326.5z"/>
-
-      <rect class="headline-bar headline-bar--1" x="32" y="150" rx="10" ry="10" width="50" height="17" />
-      <rect class="headline-bar headline-bar--2" x="30" y="185" rx="15" ry="15" width="260" height="28" />
-      <rect class="headline-bar headline-bar--3" x="30" y="225" rx="15" ry="15" width="160" height="28" />
-
-      <g class="headline-active">
-        <rect class="headline-bar-active headline-bar--1" x="32" y="150" rx="10" ry="10" width="50" height="17" fill="url(#compromisGradient)" />
-        <rect class="headline-bar-active headline-bar--2" x="30" y="185" rx="15" ry="15" width="260" height="28" fill="url(#compromisGradient)" />
-        <rect class="headline-bar-active headline-bar--3" x="30" y="225" rx="15" ry="15" width="160" height="28" fill="url(#compromisGradient)" />
+    viewBox="0 0 325.7 325.7" style="enable-background:new 0 0 325.7 325.7;" xml:space="preserve">
+    <g class="headline-icon">
+      <path class="background" d="M302,325H23.5c-12.6,0-23-10.4-23-23V23.5c0-12.6,10.4-23,23-23H302c12.6,0,23,10.4,23,23V302
+        C325,314.6,314.7,325,302,325z"/>
+      <g>
+        <line class="line line-off" x1="40.3" y1="158.5" x2="73.5" y2="158.5"/>
+        <line class="line line-off line-thick" x1="44.2" y1="199.2" x2="276.4" y2="199.2"/>
+        <line class="line line-off line-thick" x1="43.9" y1="239" x2="175.6" y2="239"/>
+      </g>
+      <g>
+        <linearGradient id="compromisGradient" gradientUnits="userSpaceOnUse" x1="29.9265" y1="239" x2="189.6048" y2="239">
+          <stop offset="0" class="gradient-start"/>
+          <stop offset="1" class="gradient-end" />
+        </linearGradient>
+        <line class="line line-on line-1" x1="40.3" y1="158.5" x2="73.5" y2="158.5"/>
+        <line class="line line-on line-thick line-2" x1="44.2" y1="199.2" x2="276.4" y2="199.2"/>
+        <line class="line line-on line-thick line-3" x1="43.9" y1="239" x2="175.6" y2="239"/>
       </g>
     </g>
   </svg>
@@ -31,56 +28,66 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import "../../../sass/variables";
 
-.template-icon {
-  &-background {
-    fill: $gray-200;
-  }
-}
-
-/* Headline icon */
-.headline {
-  &-bar {
-    fill: $gray-300;
-  }
-
-  &-active {
-    .headline-bar--1 {
-      transition: .4s ease-in-out;
-      width: 0;
+  .headline-icon {
+    .background {
+      fill: $gray-200;
     }
 
-    .headline-bar--2 {
-      transition: .4s ease-in-out;
-      transition-delay: .2s;
-      width: 0;
-    }
-
-    .headline-bar--3 {
-      transition: .4s ease-in-out;
-      transition-delay: .3s;
-      width: 0;
-    }
-  }
-}
-
-.template-item {
-  &:hover {
-    .headline-bar {
-      &--1 {
-        width: 50px;
+    .gradient {
+      &-start {
+        stop-color: $gradient-start;
       }
 
-      &--2 {
-        width: 260px;
+      &-end {
+        stop-color: $gradient-end;
+      }
+    }
+
+    .line {
+      fill: none;
+      stroke: $gray-300;
+      stroke-width: 17;
+      stroke-linecap: round;
+      stroke-miterlimit: 10;
+
+      &-on {
+        stroke: url(#compromisGradient);
+        stroke-dasharray: 235;
+        stroke-dashoffset: 235;
+        opacity: 0;
+        transition: stroke-dashoffset .5s ease-in-out, opacity .5s ease-out;
       }
 
-      &--3 {
-        width: 160px;
+      &-thick {
+        stroke-width: 28;
+      }
+
+      &-1 {
+        stroke-dasharray: 40;
+        stroke-dashoffset: 40;
+      }
+
+      &-2 {
+        transition-delay: .2s;
+      }
+
+      &-3 {
+        stroke-dasharray: 180;
+        stroke-dashoffset: 180;
+        transition-delay: .3s;
       }
     }
   }
-}
+
+  .template-item:hover {
+    .headline-icon {
+      .line-on {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+  }
 </style>
