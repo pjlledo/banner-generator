@@ -19,7 +19,7 @@
         {{ banner.overtitle | formatString }}
       </div>
       <div class="event-title" contenteditable>
-        {{ banner.title | formatString }}
+        <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
         <div class="event-details" contenteditable>
@@ -190,7 +190,7 @@ export default {
         color: white;
         padding: 0 10px;
         border-radius: 2px;
-        background: linear-gradient(45deg,$gradient-start,$gradient-end);
+        background: $gradient;
         letter-spacing: -1px;
         display: inline;
         box-decoration-break: clone;
@@ -205,6 +205,39 @@ export default {
 
   // Event aspect
   .aspect-event {
+    .event {
+      position: static;
+
+      &-title {
+        position: absolute;
+        bottom: 300px;
+        left: 100px;
+        right: 100px;
+        z-index: 20;
+
+        span {
+          font-size: 10rem;
+          background: $white;
+          color: $gray-900;
+          padding: .25rem 2rem;
+          border-radius: 6px;
+          line-height: 1.42;
+          -webkit-box-decoration-break: clone;
+          -webkit-line-break: normal;
+          letter-spacing: -4px;
+        }
+      }
+
+      &-overtitle {
+        position: absolute;
+        color: $white;
+        font-size: 4rem;
+        top: 40px;
+        left: 100px;
+        z-index: 20;
+      }
+    } 
+
     .blob {
       &-1 {
         top: -50%;
@@ -217,6 +250,7 @@ export default {
         bottom: -50%;
         right: -10%;
         z-index: 20;
+        --gradient-orientation: -45deg;
       }
 
       &-image {
