@@ -33,5 +33,13 @@ export default {
     formatString (string) {
       return string.replace(/'/g, '’')
     }
+  },
+
+  methods: {
+    fontSize (maxFontSize, minFontSize, maxLength) {
+      const propLength = this.banner.headline.length / maxLength
+      const fontSize = maxFontSize + propLength * (minFontSize - maxFontSize)
+      return `${fontSize}px`
+    }
   }
 }

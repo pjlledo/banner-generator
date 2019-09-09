@@ -236,7 +236,7 @@ export default {
         left: 100px;
         z-index: 20;
       }
-    } 
+    }
 
     .blob {
       &-1 {
