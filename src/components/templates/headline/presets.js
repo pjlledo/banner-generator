@@ -9,6 +9,7 @@ import LasextaSVG from './logos/lasexta.svg'
 import ApuntSVG from './logos/apunt.svg'
 import SerSVG from './logos/ser.svg'
 import ValenciaplazaSVG from './logos/valenciaplaza.svg'
+import InformacionSVG from './logos/informacion.svg'
 
 const sources = [
   {
@@ -85,6 +86,13 @@ const sources = [
     id: 'valenciaplaza',
     name: 'Valencia Plaza',
     logo: ValenciaplazaSVG,
+    logoHeight: 24,
+    fontFamily: 'Tiempos Headline'
+  },
+  {
+    id: 'informacion',
+    name: 'Diario Información',
+    logo: InformacionSVG,
     logoHeight: 24,
     fontFamily: 'Tiempos Headline'
   }
