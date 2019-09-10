@@ -17,7 +17,9 @@
     <speaker-list
       :default-speakers="properties.speakers"
       @updated="(speakers) => properties.speakers = speakers"
-      :display-errors="displayErrors" />
+      :display-errors="displayErrors"
+      :min-speakers="2"
+      :max-speakers="4" />
 
     <!-- Date -->
     <transition name="slide">

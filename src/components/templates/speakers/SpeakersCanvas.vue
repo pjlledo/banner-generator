@@ -6,7 +6,8 @@
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
       banner.localLabel ? 'has-local-label' : '',
-      banner.title.length > 30 ? 'has-long-title' : 'has-short-title'
+      banner.title.length > 30 && banner.speakers.length !== 2 ? 'has-long-title' : 'has-short-title',
+      `has-${banner.speakers.length}-speakers`
     ]"
     v-if="banner">
     <div class="speakers-items">
@@ -61,7 +62,7 @@ export default {
 
   .speakers {
     position: absolute;
-    top: 50px;
+    top: 45px;
     left: 0;
     z-index: 40;
     padding: 0 45px;
@@ -121,9 +122,10 @@ export default {
       left: 45px;
       right: 45px;
       display: grid;
+      margin-top: 1rem;
       grid-column-gap: 15px;
-      justify-content: center;
-      grid-template-columns: repeat(auto-fit, 200px);
+      justify-content: start;
+      grid-template-columns: repeat(auto-fit, var(--image-size, 200px));
     }
 
     &-details-wrapper {
@@ -176,6 +178,25 @@ export default {
 
       &-title {
         width: auto;
+      }
+    }
+  }
+
+  .has-2-speakers {
+    .blob-1 {
+      top: -42%;
+      left: 69%;
+    }
+  }
+
+  .has-4-speakers {
+    .speakers {
+      &-items {
+        --image-size: 145px;
+      }
+
+      &-image {
+        height: 145px;
       }
     }
   }
