@@ -54,7 +54,11 @@
         v-if="aspect !== 2"
         :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
         :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
-        <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
+        <b-input
+          placeholder="Riu Túria"
+          v-model="properties.place"
+          maxlength="40">
+        </b-input>
       </b-field>
     </transition>
 
@@ -66,6 +70,8 @@
         :accepts-description="false"
         :min-speakers="0"
         :max-speakers="6"
+        :max-length-name="25"
+        :max-length-description="50"
         @updated="(speakers) => properties.speakers = speakers" />
     </transition>
 

@@ -7,10 +7,27 @@
     <ul class="speakers">
       <li v-for="(speaker, i) in speakers" :key="i" class="speaker-item">
         <b-field class="speaker-name" :type="speaker.name ? '' : displayErrors ? 'is-danger' : ''">
-          <b-input placeholder="Nom del ponent" :ref="`speaker${i}`" :name="`speaker${i}`"  v-model="speaker.name" @keyup.enter.native="addSpeaker" size="is-small" icon="user"></b-input>
+          <b-input
+            placeholder="Nom del ponent"
+            :ref="`speaker${i}`"
+            :name="`speaker${i}`"
+            v-model="speaker.name"
+            @keyup.enter.native="addSpeaker"
+            size="is-small"
+            icon="user"
+            :maxlength="maxLengthName">
+          </b-input>
         </b-field>
         <b-field class="speaker-description" v-if="acceptsDescription">
-          <b-input placeholder="Càrrec" v-model="speaker.description" @keyup.enter.native="addSpeaker" :name="`speaker_desc${i}`"  size="is-small" icon="credit-card-blank"></b-input>
+          <b-input
+            placeholder="Càrrec"
+            v-model="speaker.description"
+            @keyup.enter.native="addSpeaker"
+            :name="`speaker_desc${i}`"
+            size="is-small"
+            icon="credit-card-blank"
+            :maxlength="maxLengthDescription">
+          </b-input>
         </b-field>
         <b-field class="speaker-picture" v-if="acceptsPicture">
           <b-upload
@@ -67,6 +84,14 @@ export default {
     maxSpeakers: {
       type: Number,
       default: 4
+    },
+    maxLengthName: {
+      type: Number,
+      default: 25
+    },
+    maxLengthDescription: {
+      type: Number,
+      default: 50
     },
     displayErrors: {
       type: Boolean,
@@ -147,6 +172,19 @@ export default {
 
     &-description {
       grid-area: description;
+    }
+
+    &-name, &-description {
+      .control .help.counter {
+        margin-right: 0.8em;
+        position: relative;
+        margin-top: -1.4rem;
+        z-index: 10;
+      }
+
+      .input {
+        padding-right: 3rem;
+      }
     }
 
     &-picture {
