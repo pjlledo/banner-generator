@@ -81,7 +81,7 @@ export default {
     }
 
     &-text {
-      font-size: 30px;
+      font-size: 27px;
       line-height: 1.1;
       word-wrap: break-word;
     }
@@ -161,7 +161,7 @@ export default {
       top: 430px;
 
       &-text {
-        font-size: 26px;
+        font-size: 23px;
       }
     }
 
