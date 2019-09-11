@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
     <!-- Title -->
     <b-field
       label="Titol"
@@ -59,7 +59,13 @@
 
     <!-- Picture position -->
     <b-field label="Posició de la imatge">
-      <range-slider name="points" :min="0" :max="100" v-model="properties.picturePos" />
+      <range-slider
+        name="points"
+        :min="0"
+        :max="100"
+        v-model="properties.picturePos"
+        @touchstart="dimPane(true)"
+        @touchend="dimPane(false)" />
     </b-field>
 
     <!-- Channel -->
@@ -101,7 +107,7 @@
 
     <!-- Local label -->
     <transition name="slide">
-      <div v-if="!aspect">
+      <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
           Afegir text al logo
         </b-switch>

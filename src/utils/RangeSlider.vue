@@ -1,5 +1,14 @@
 <template>
-  <input class="slider" type="range" :name="name" :min="min" :max="max" :value="value" @input="updateValue">
+  <input
+    class="slider"
+    type="range"
+    :name="name"
+    :min="min"
+    :max="max"
+    :value="value"
+    @input="updateValue"
+    @touchstart="$emit('touchstart')"
+    @touchend="$emit('touchend')" />
 </template>
 
 <script>

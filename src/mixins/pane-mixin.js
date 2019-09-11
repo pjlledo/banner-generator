@@ -23,7 +23,8 @@ export default {
       },
       aspect: 0,
       isDownloadable: false,
-      displayErrors: false
+      displayErrors: false,
+      paneDimmed: false
     }
   },
 
@@ -76,6 +77,10 @@ export default {
       } else {
         this.properties.hashtag = '#' + hashtag
       }
+    },
+
+    dimPane (dimmed) {
+      this.paneDimmed = dimmed
     }
   }
 }

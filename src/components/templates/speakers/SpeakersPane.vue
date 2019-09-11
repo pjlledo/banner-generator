@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
     <!-- Title -->
     <b-field
       label="Titol"
@@ -54,7 +54,7 @@
 
     <!-- Local label -->
     <transition name="slide">
-      <div v-if="!aspect">
+      <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
           Afegir text al logo
         </b-switch>
