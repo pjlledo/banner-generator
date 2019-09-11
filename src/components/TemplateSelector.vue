@@ -6,7 +6,7 @@
         <li v-for="template in templates" :key="template.id">
           <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
             <span class="template-item-icon">
-              <component :is="template.components.icon" />
+              <b-icon :icon="template.icon" size="is-large" />
             </span>
             <span class="template-item-name">{{ template.name }}</span>
           </router-link>
@@ -74,15 +74,23 @@ export default {
       box-shadow: $default-shadow;
       transition: .2s ease-in-out;
 
+      .icon {
+        transition: color .5s ease-in-out;
+      }
+
       &:hover {
         box-shadow: $raised-shadow;
         transform: rotate($rotation) scale(1.05);
 
-        .template-item-name {
-          background: linear-gradient(45deg, $gradient-start, $gradient-end);
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        .template-item {
+          &-name,
+          &-icon .icon {
+            color: $gray-800;
+            background: linear-gradient(45deg, $gradient-start, $gradient-end);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
         }
       }
 
@@ -92,16 +100,22 @@ export default {
       }
 
       &-icon {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         top: 50%;
         left: 50%;
         margin-top: -4rem;
         margin-left: -3rem;
+        background: $gray-200;
+        color: $gray-500;
+        width: 6rem;
+        height: 6rem;
+        border-radius: .5rem;
 
-        svg {
-          width: 6rem;
-          height: 6rem;
+        .icon {
+          transform: scale(1.5);
         }
       }
 
