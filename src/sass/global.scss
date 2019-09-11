@@ -58,3 +58,13 @@
 .textarea-small .textarea {
   min-height: 4.3rem;
 }
+
+.control .help.counter {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+}
+
+.field:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
