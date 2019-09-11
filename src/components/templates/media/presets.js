@@ -11,7 +11,7 @@ import cuatro from './logos/channels/cuatro.png'
 import la8mediterraneo from './logos/channels/la8mediterraneo.jpg'
 import laPoblaTv from './logos/channels/lapoblatv.jpg'
 import levanteTv from './logos/channels/levantetv.jpg'
-import riberaTv from './logos/channels/riberatv.jpg'
+import riberaTv from './logos/channels/riberatv.png'
 
 import tele7 from './logos/channels/tele7.jpg'
 import telecinco from './logos/channels/telecinco.jpg'
