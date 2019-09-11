@@ -130,4 +130,19 @@ export default {
       text-align: center;
     }
   }
+
+  @media (max-width: $xs-breakpoint) {
+    .nav {
+      padding: .25rem 1rem;
+
+      &-back {
+        display: flex;
+        width: 100%;
+      }
+
+      &-centered {
+        display: none;
+      }
+    }
+  }
 </style>

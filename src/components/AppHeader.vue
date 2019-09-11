@@ -67,4 +67,15 @@ export default {
       color: $white;
     }
   }
+
+  @media (max-width: $xs-breakpoint) {
+    .navbar {
+      z-index: 400;
+      padding: .75rem 1rem;
+
+      .nav-label {
+        display: none !important;
+      }
+    }
+  }
 </style>

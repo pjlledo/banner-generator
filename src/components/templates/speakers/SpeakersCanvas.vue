@@ -183,6 +183,10 @@ export default {
   }
 
   .has-2-speakers {
+    .speakers-title {
+
+    }
+
     .blob-1 {
       top: -42%;
       left: 69%;

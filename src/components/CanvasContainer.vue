@@ -4,7 +4,7 @@
       <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
-      <div class="canvas-container" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
+      <div class="canvas-wrapper" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
         <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" />
       </div>
     </b-tabs>
@@ -127,7 +127,7 @@ export default {
     background: $white;
   }
 
-  .canvas-container {
+  .canvas-wrapper {
     display: flex;
     justify-content: center;
     transition: .25 ease-in-out;
@@ -154,7 +154,20 @@ export default {
     }
   }
 
-  @media (max-width: 1400px) {
+  @media (max-width: $xs-breakpoint) {
+    .canvas-wrapper {
+      transform: scale(0.4321) !important;
+      margin: -12.49rem !important;
+    }
+
+    .b-tabs,
+    .tab-content {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  @media (max-width: $xl-breakpoint) {
     .download-button {
       top: 3.65rem;
 

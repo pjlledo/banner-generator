@@ -12,7 +12,7 @@
       @updated="(props) => bannerProperties = props"
       @updateIsDownloadable="setIsDownloadable" />
     <canvas-container
-      class="canvas-container"
+      class="canvas"
       :canvas-component="selectedTemplate.components.canvas"
       :template="selectedTemplate"
       :banner="bannerProperties"
@@ -118,12 +118,51 @@ export default {
     }
   }
 
-  .canvas-container {
+  .canvas {
     grid-area: canvas;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width: $xs-breakpoint) {
+    .workspace {
+      position: relative;
+      margin-top: $navbar-height;
+      grid-template-areas:
+        "nav"
+        "canvas"
+        "pane";
+      grid-template-columns: 1fr;
+      grid-template-rows: 20px 400px 1fr;
+    }
+
+    .canvas {
+      position: fixed;
+      top: 100px;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .nav {
+      z-index: 40;
+      position: fixed;
+      top: $navbar-height;
+      width: 100%;
+    }
+
+    .pane {
+      position: relative;
+      z-index: 15;
+      box-shadow: 0 -.4rem 1.7rem -.3rem rgba($gray-900, .15),
+        0 -.2rem 1rem -.5rem rgba($gray-900, .2),
+        0 .4rem 1rem -.4rem rgba($gray-900, .015);
+      border-radius: 1.5rem 1.5rem 0 0;
+      overflow: visible;
+      padding: 1.5rem 1rem;
+      width: 100vw;
+    }
   }
 </style>
