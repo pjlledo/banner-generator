@@ -21,7 +21,7 @@
       <div class="headline-source" v-else-if="banner.source">
         <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
-      <div class="headline-text" contenteditable :style="{ fontFamily: banner.source ? banner.source.fontFamily : false, fontSize: fontSize(50, 30, 160) }">
+      <div class="headline-text" contenteditable :style="{ fontFamily: banner.source ? banner.source.fontFamily : false, fontSize: fontSize('headline', 50, 30, 160) }">
         {{ banner.headline | formatString }}
       </div>
     </div>
@@ -161,7 +161,7 @@ export default {
       top: 430px;
 
       &-text {
-        font-size: 23px;
+        font-size: 20px;
       }
     }
 

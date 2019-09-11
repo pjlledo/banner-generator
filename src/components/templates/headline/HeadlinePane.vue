@@ -96,7 +96,7 @@
     <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
+        <b-switch v-model="properties.hasLocalLabel" @input="properties.hashtag = properties.hashtag.substring(0, 18)">
           Afegir text al logo
         </b-switch>
         <transition name="slide">
