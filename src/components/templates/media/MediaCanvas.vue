@@ -31,9 +31,28 @@
           <b-icon icon="clock"/>{{ banner.time | formatTime }}
         </div>
         <div class="medium-broadcast">
-          <div v-if="banner.source" class="medium-channel" :style="{ backgroundImage: `url(${banner.source.logo$})`, backgroundColor: banner.source['color'], padding: banner.source['padding'] }"></div>
-          <div v-if="banner.programme" class="medium-programme" :style="{ backgroundColor: banner.programme['color'], padding: `${banner.programme['padding']}rem` }">
-            <img :src="banner.programme.logo" />
+          <div v-if="banner.source"
+            :class="{
+              'medium-channel': true,
+              'medium-channel-custom': banner.source === 'other'
+            }"
+            :style="{
+              backgroundColor: banner.source === 'other' ? banner.customSourceColor : banner.source['color'],
+              padding: banner.source['padding']
+            }">
+            <img v-if="banner.source !== 'other'" :src="banner.source.logo" />
+            <span v-else>{{ banner.customSource }}</span>
+          </div>
+          <div v-if="banner.programme || (banner.programme === 'other' && banner.customProgramme)"
+            :class="{
+              'medium-programme': true,
+              'medium-programme-custom': banner.programme === 'other'
+            }"
+            :style="{
+              backgroundColor: banner.programme === 'other' ? banner.customProgrammeColor : banner.programme['color'],
+              padding: banner.programme ? `${banner.programme['padding']}rem` : null }">
+            <img v-if="banner.programme !== 'other'" :src="banner.programme.logo" />
+            <span v-else>{{ banner.customProgramme }}</span>
           </div>
         </div>
       </div>
@@ -115,10 +134,20 @@ export default {
       height: 50px;
       overflow: hidden;
       box-sizing: border-box;
+      flex-shrink: 0;
+
+      &-custom {
+        padding: 1rem;
+        color: $white;
+        font-weight: bold;
+        width: 170px;
+        align-items: center;
+      }
     }
 
     &-broadcast {
       display: flex;
+      flex-wrap: wrap;
     }
 
     .icon {

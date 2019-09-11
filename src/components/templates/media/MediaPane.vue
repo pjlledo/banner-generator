@@ -91,7 +91,7 @@
 
     <!-- Programme -->
     <b-field
-      label="Programa" v-if="properties.source"
+      label="Programa" v-if="properties.source && properties.source !== 'other'"
       :type="properties.programme ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.programme ? '' : displayErrors ? `Has de seleccionar un programa` : ''">
       <b-select placeholder="Selecciona un programa" expanded @input="updateProgramme">
@@ -102,8 +102,39 @@
           :selected="properties.programme === programme.id">
           {{ programme.name }}
         </option>
+        <option
+          value="other"
+          :selected="properties.programme === 'other'">
+          Altre...
+        </option>
       </b-select>
     </b-field>
+
+    <div v-if="properties.source === 'other'">
+      <b-field label="Nom del canal">
+        <b-input
+          placeholder="TeleElx"
+          v-model="properties.customSource"
+          maxlength="30">
+        </b-input>
+      </b-field>
+      <b-field label="Color">
+        <swatches v-model="properties.customSourceColor"></swatches>
+      </b-field>
+    </div>
+
+    <div v-if="properties.source === 'other' || properties.programme === 'other'">
+      <b-field label="Nom del programa">
+        <b-input
+          placeholder="TeleElx"
+          v-model="properties.customProgramme"
+          maxlength="30">
+        </b-input>
+      </b-field>
+      <b-field label="Color del programa">
+        <swatches v-model="properties.customProgrammeColor"></swatches>
+      </b-field>
+    </div>
 
     <!-- Local label -->
     <transition name="slide">
@@ -126,9 +157,14 @@
 <script>
 import PaneMixin from '@/mixins/pane-mixin.js'
 import presets from './presets'
+import Swatches from 'vue-swatches'
 
 export default {
   name: 'media-pane',
+
+  components: {
+    Swatches
+  },
 
   mixins: [PaneMixin],
 
@@ -141,7 +177,11 @@ export default {
         date: new Date(),
         time: new Date(),
         source: null,
-        programme: null
+        programme: null,
+        customSource: '',
+        customSourceColor: '#1CA085',
+        customProgramme: '',
+        customProgrammeColor: '#1CA085'
       },
       presets: presets
     }
@@ -172,6 +212,7 @@ export default {
     updateSource (source) {
       if (source === 'other') {
         this.properties.source = 'other'
+        this.properties.programme = 'other'
         return
       }
 
