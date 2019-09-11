@@ -15,7 +15,7 @@
     <div class="blob blob-2"></div>
     <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
       <div class="text-holder" contenteditable>
-        <div class="text-lines" :style="{ fontSize: fontSize(80, 35, 110) }">{{ banner.text | formatString }}</div>
+        <div class="text-lines" :style="{ fontSize: fontSize('text', 80, 35, 110) }">{{ banner.text | formatString }}</div>
       </div>
     </div>
     <div class="logo">

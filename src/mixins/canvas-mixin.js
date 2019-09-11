@@ -32,12 +32,14 @@ export default {
 
     formatString (string) {
       return string.replace(/'/g, '’')
+                   .replace(/Mònica Oltra/gi, 'Mónica Oltra')
+                   .replace(/Monica Oltra/gi, 'Mónica Oltra')
     }
   },
 
   methods: {
-    fontSize (maxFontSize, minFontSize, maxLength) {
-      const propLength = this.banner.headline.length / maxLength
+    fontSize (prop, maxFontSize, minFontSize, maxLength) {
+      const propLength = this.banner[prop].length / maxLength
       const fontSize = maxFontSize + propLength * (minFontSize - maxFontSize)
       return `${fontSize}px`
     }
