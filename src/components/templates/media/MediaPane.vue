@@ -216,7 +216,15 @@ export default {
         return
       }
 
-      this.properties.source = this.presets.find(preset => preset.id === source)
+      const channel = this.presets.find(preset => preset.id === source)
+
+      this.properties.source = channel
+
+      if (!channel.programmes.length) {
+        this.properties.programme = 'other'
+      } else {
+        this.properties.programme = null
+      }
     },
 
     updateProgramme (programme) {

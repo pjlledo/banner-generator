@@ -127,7 +127,7 @@ export default {
 
     &-channel, &-programme {
       display: inline-flex;
-      margin: 1rem .5rem 0 0;
+      margin: .5rem .5rem 0 0;
       background-color: $gray-800;
       border-radius: 5px;
       width: 50px;
@@ -137,17 +137,21 @@ export default {
       flex-shrink: 0;
 
       &-custom {
-        padding: 1rem;
+        padding: .5rem 1rem;
         color: $white;
         font-weight: bold;
         width: 170px;
         align-items: center;
+        height: auto;
+        max-height: 50px;
       }
     }
 
     &-broadcast {
       display: flex;
       flex-wrap: wrap;
+      align-items: stretch;
+      margin-top: .5rem;
     }
 
     .icon {
