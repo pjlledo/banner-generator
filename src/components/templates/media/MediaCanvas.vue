@@ -50,7 +50,7 @@
             }"
             :style="{
               backgroundColor: banner.programme === 'other' ? banner.customProgrammeColor : banner.programme['color'],
-              padding: banner.programme ? `${banner.programme['padding']}rem` : null }">
+              padding: banner.programme !== 'other' ? `${banner.programme['padding']}rem` : null }">
             <img v-if="banner.programme !== 'other'" :src="banner.programme.logo" />
             <span v-else>{{ banner.customProgramme }}</span>
           </div>
@@ -151,7 +151,7 @@ export default {
     }
 
     .icon {
-        padding-right: .3rem;
+      padding-right: .3rem;
     }
   }
 
@@ -233,7 +233,7 @@ export default {
         -webkit-box-decoration-break: clone;
         color: white;
         border-radius: 2px;
-        background: linear-gradient(45deg,$gradient-start,$gradient-end);
+        background: linear-gradient(45deg, $gradient-start, $gradient-end);
         letter-spacing: -1px;
         display: inline;
         line-height: 1.42;

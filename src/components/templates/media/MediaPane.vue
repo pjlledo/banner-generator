@@ -123,7 +123,7 @@
       </b-field>
     </div>
 
-    <div v-if="properties.source === 'other' || properties.programme === 'other'">
+    <div v-if="properties.programme === 'other'">
       <b-field label="Nom del programa">
         <b-input
           placeholder="TeleElx"
