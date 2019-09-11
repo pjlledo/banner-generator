@@ -54,6 +54,10 @@
 
 .field {
   position: relative;
+
+  &:last-child {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .textarea-small .textarea {
@@ -68,4 +72,8 @@
 
 .field:not(:last-child) {
   margin-bottom: 1.5rem;
+}
+
+.dropdown-item .field {
+  margin-bottom: 0;
 }
