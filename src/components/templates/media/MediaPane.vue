@@ -5,17 +5,29 @@
       label="Titol"
       :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.title ? '' : displayErrors ? `Has d'omplir el títol` : ''">
-      <b-input placeholder="Mónica Oltra" v-model="properties.title"></b-input>
+      <b-input
+        placeholder="Mónica Oltra"
+        v-model="properties.title"
+        maxlength="30">
+      </b-input>
     </b-field>
 
     <!-- Overtitle -->
     <b-field label="Tipus d'acte">
-      <b-input placeholder="Debat" v-model="properties.overtitle"></b-input>
+      <b-input
+        placeholder="Debat"
+        v-model="properties.overtitle"
+        maxlength="30">
+      </b-input>
     </b-field>
 
     <!-- Subtitle -->
     <b-field label="Subtítol">
-      <b-input placeholder="Models de finançament" v-model="properties.subtitle"></b-input>
+      <b-input
+        placeholder="Models de finançament"
+        v-model="properties.subtitle"
+        maxlength="40">
+      </b-input>
     </b-field>
 
     <!-- Date -->

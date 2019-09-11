@@ -179,6 +179,10 @@ export default {
     .quote {
       top: 22%;
       width: 600px;
+
+      &-author {
+        width: 122px;
+      }
     }
 
     &.has-local-label {
@@ -205,8 +209,9 @@ export default {
       &-image {
         left: auto;
         top: auto;
-        bottom: -73px;
-        right: -90px;
+        border-top-left-radius: 5rem;
+        bottom: -55px;
+        right: -115px;
         height: 570px;
         width: 650px;
       }

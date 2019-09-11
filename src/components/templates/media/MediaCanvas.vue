@@ -64,7 +64,7 @@ export default {
     left: 0;
     z-index: 40;
     padding: 0 45px;
-    width: 260px;
+    width: 240px;
     z-index: 20;
     transition: all .5s ease-in-out;
     font-family: 'Compromis', serif;
