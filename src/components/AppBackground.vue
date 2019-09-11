@@ -100,6 +100,14 @@ export default {
     }
   }
 
+  @media (max-width: $xs-breakpoint) {
+    .blob {
+      &-2 {
+        display: none;
+      }
+    }
+  }
+
   @media (max-width: 1024px) {
     .blobs {
       .blob {

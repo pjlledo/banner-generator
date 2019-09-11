@@ -83,15 +83,14 @@
       @delete="properties.picture = null; properties.picturePreview = null" />
 
     <!-- Picture position -->
-    <b-field label="Posició de la imatge">
+    <b-field label="Posició de la imatge" class="range">
       <range-slider
         name="points"
         :min="0"
         :max="100"
         v-model="properties.picturePos"
         @touchstart="dimPane(true)"
-        @touchend="dimPane(false)"
-        class="range" />
+        @touchend="dimPane(false)" />
     </b-field>
 
     <!-- Local label -->

@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'navbar': true, 'navbar--dark': dark }">
-    <router-link to="/">
+    <router-link to="/" class="logo-link">
       <compromis-logo class="logo" :mono="dark" />
     </router-link>
     <div class="nav-label logo-label">Disseny</div>
@@ -73,8 +73,18 @@ export default {
       z-index: 400;
       padding: .75rem 1rem;
 
-      .nav-label {
+      .logo-label {
         display: none !important;
+      }
+
+      .app-label {
+        margin-left: .5rem;
+      }
+
+      .logo-link {
+        display: inline-block;
+        width: 30px;
+        overflow: hidden;
       }
     }
   }

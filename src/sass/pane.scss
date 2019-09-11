@@ -1,26 +1,28 @@
-.pane {
-  transition: background .25s ease-in-out;
+@media (max-width: $xs-breakpoint) {
+  .pane {
+    transition: background .25s ease-in-out;
 
-  .field {
-    transition: opacity .25s ease-in-out;
-  }
-
-  .field.range {
-    padding: 1rem;
-    margin: -1rem -1rem .5rem -1rem;
-    border-radius: 10px;
-  }
-
-  &-dimmed {
-    background: transparent !important;
-  
     .field {
-      opacity: 0;
+      transition: opacity .25s ease-in-out;
+    }
 
-      &.range {
-        opacity: 1;
-        background: white;
-        box-shadow: $default-shadow;
+    .field.range {
+      padding: 1rem;
+      margin: -1rem -1rem .5rem -1rem;
+      border-radius: 10px;
+    }
+
+    &-dimmed {
+      background: transparent !important;
+    
+      .field {
+        opacity: 0;
+
+        &.range {
+          opacity: 1;
+          background: white;
+          box-shadow: $default-shadow;
+        }
       }
     }
   }

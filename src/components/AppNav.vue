@@ -143,6 +143,11 @@ export default {
       &-centered {
         display: none;
       }
+
+      .card {
+        margin: 0 1rem;
+        padding: 1.25rem;
+      }
     }
   }
 </style>

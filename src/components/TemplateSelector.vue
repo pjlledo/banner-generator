@@ -49,6 +49,7 @@ export default {
       font-size: 3rem;
       font-weight: bold;
       letter-spacing: -1px;
+      line-height: 1;
     }
 
     ul {
@@ -110,6 +111,32 @@ export default {
         bottom: 0;
         left: 0;
         padding: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: $xs-breakpoint) {
+    .template-selector {
+      h2 {
+        font-size: 2.25rem;
+        margin-top: 6rem;
+        width: 18rem;
+      }
+
+      ul {
+        justify-content: center;
+      }
+
+      .template-item {
+        width: 10rem;
+        height: 10rem;
+        margin: .5rem;
+        border-radius: .5rem;
+
+        &-name {
+          font-size: 1rem;
+          padding: .75rem;
+        }
       }
     }
   }
