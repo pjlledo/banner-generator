@@ -30,9 +30,11 @@
         <div class="medium-time" contenteditable>
           <b-icon icon="clock"/>{{ banner.time | formatTime }}
         </div>
-        <div v-if="banner.source" class="medium-channel" :style="{ backgroundImage: 'url(' + banner.source.logo + ')' }"></div>
-        <div v-if="banner.programme" class="medium-programme" :style="{ backgroundColor: banner.programme.color }">
-          <img :src="banner.programme.logo" />
+        <div class="medium-broadcast">
+          <div v-if="banner.source" class="medium-channel" :style="{ backgroundImage: `url(${banner.source.logo$})`, backgroundColor: banner.source['color'], padding: banner.source['padding'] }"></div>
+          <div v-if="banner.programme" class="medium-programme" :style="{ backgroundColor: banner.programme['color'], padding: `${banner.programme['padding']}rem` }">
+            <img :src="banner.programme.logo" />
+          </div>
         </div>
       </div>
     </div>
@@ -104,13 +106,19 @@ export default {
       padding-top: .25rem;
     }
 
-    &-channel, &-programme{
-      display: inline-block;
+    &-channel, &-programme {
+      display: inline-flex;
       margin: 1rem .5rem 0 0;
       background-color: $gray-800;
       border-radius: 5px;
       width: 50px;
       height: 50px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    &-broadcast {
+      display: flex;
     }
 
     .icon {

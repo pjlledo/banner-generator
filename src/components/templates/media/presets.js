@@ -19,7 +19,8 @@ const sources = [
         id: 'alrojovivo',
         name: 'Al Rojo Vivo',
         logo: alRojoVivo,
-        color: 'red'
+        color: '#d4001f',
+        padding: 0.25
       }
     ]
   }
