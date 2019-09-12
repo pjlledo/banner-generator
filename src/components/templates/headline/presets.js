@@ -59,7 +59,8 @@ const sources = [
     name: 'À punt',
     logo: ApuntSVG,
     logoHeight: 28,
-    fontFamily: 'Montserrat'
+    fontFamily: 'Gotham',
+    letterSpacing: '-0.5px'
   },
   {
     id: 'elpais',
@@ -80,7 +81,8 @@ const sources = [
     name: 'Cadena Ser',
     logo: SerSVG,
     logoHeight: 24,
-    fontFamily: 'Montserrat'
+    fontFamily: 'Gotham',
+    letterSpacing: '-0.5px'
   },
   {
     id: 'valenciaplaza',
