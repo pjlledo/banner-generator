@@ -148,10 +148,23 @@ export default {
     right: 2rem;
     bottom: 2rem;
 
-    .button-label {
-      position: relative;
-      top: -4px;
-      overflow: hidden;
+    .button {
+      transition: .25s ease-in-out;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: $raised-shadow;
+      }
+
+      &:active {
+        transform: translateY(2px);
+      }
+
+      &-label {
+        position: relative;
+        top: -4px;
+        overflow: hidden;
+      }
     }
   }
 

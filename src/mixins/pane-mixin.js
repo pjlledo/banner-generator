@@ -36,7 +36,16 @@ export default {
     EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
 
     // Display errors
-    EventBus.$on('checkForErrors', (check) => { this.displayErrors = check })
+    EventBus.$on('checkForErrors', (check) => { 
+      this.displayErrors = check
+
+      if (check && !this.isDownloadable) {
+        window.scrollTo({
+          top: 400,
+          behavior: 'smooth'
+        })
+      }
+    })
   },
 
   // Emit banner property changes to canvas
