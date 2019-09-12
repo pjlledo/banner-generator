@@ -15,8 +15,8 @@ export default {
   computed: {
     objectPosition: function () {
       const objectPosition = (this.banner.pictureAspect === 'vertical')
-        ? '0% ' + this.banner.picturePos + '%'
-        : this.banner.picturePos + '% 0%'
+        ? '0% ' + (100 - this.banner.picturePos) + '%'
+        : (100 - this.banner.picturePos) + '% 0%'
       return { objectPosition }
     }
   },
