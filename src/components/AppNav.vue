@@ -5,6 +5,10 @@
         <b-icon icon="chevron-left" />
         <span class="button-text">Enrere</span>
       </b-button>
+      <b-button ref="download" type="is-primary" @click="download" class="download-button is-hidden-tablet">
+        <b-icon icon="arrow-to-bottom" />
+        <span class="button-text">Descarrega</span>
+      </b-button>
     </div>
     <p class="nav-centered">{{ templateName }}</p>
     <b-modal :active="isCardModalActive" @close="$emit('hide', true)" :width="640" scroll="keep">
@@ -23,6 +27,8 @@
 </template>
 
 <script>
+import { EventBus } from '@/event-bus'
+
 export default {
   name: 'app-nav',
 
@@ -41,6 +47,12 @@ export default {
         this.$refs[button].$el.focus()
       })
     }
+  },
+
+  methods: {
+    download () {
+      EventBus.$emit('download')
+    }
   }
 }
 </script>
@@ -56,6 +68,10 @@ export default {
 
     .back-button {
       margin-left: -.75rem;
+    }
+
+    .download-button {
+      margin-left: auto;
     }
 
     .button {

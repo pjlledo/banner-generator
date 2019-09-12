@@ -9,7 +9,7 @@
       </div>
     </b-tabs>
 
-    <div class="download-button">
+    <div class="primary-download-button">
       <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
         <b-button type="is-primary" size="is-large" rounded @click="download">
           <b-icon icon="arrow-to-bottom" />
@@ -58,6 +58,7 @@ export default {
   created () {
     this.resize()
     window.addEventListener('resize', this.handleWindowResize)
+    EventBus.$on('download', this.download)
   },
 
   destroyed () {
@@ -142,7 +143,7 @@ export default {
     height: 1080px;
   }
 
-  .download-button {
+  .primary-download-button {
     position: fixed;
     right: 2rem;
     bottom: 2rem;
@@ -168,7 +169,7 @@ export default {
   }
 
   @media (max-width: $xl-breakpoint) {
-    .download-button {
+    .primary-download-button {
       top: 3.65rem;
 
       .button {
