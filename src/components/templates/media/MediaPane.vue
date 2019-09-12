@@ -6,7 +6,7 @@
       :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.title ? '' : displayErrors ? `Has d'omplir el títol` : ''">
       <b-input
-        placeholder="Mónica Oltra"
+        placeholder="Models de Finançament"
         v-model="properties.title"
         maxlength="30">
       </b-input>
@@ -24,7 +24,7 @@
     <!-- Subtitle -->
     <b-field label="Subtítol">
       <b-input
-        placeholder="Models de finançament"
+        placeholder="amb Mónica Oltra"
         v-model="properties.subtitle"
         maxlength="40">
       </b-input>
@@ -32,11 +32,7 @@
 
     <!-- Date -->
     <b-field label="Data">
-       <b-datepicker
-          v-model="properties.date"
-          placeholder="Dia d'emissió"
-          icon="calendar-alt">
-        </b-datepicker>
+       <date-picker v-model="properties.date" />
     </b-field>
 
     <!-- Time -->
@@ -90,51 +86,57 @@
     </b-field>
 
     <!-- Programme -->
-    <b-field
-      label="Programa" v-if="properties.source && properties.source !== 'other'"
-      :type="properties.programme ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.programme ? '' : displayErrors ? `Has de seleccionar un programa` : ''">
-      <b-select placeholder="Selecciona un programa" expanded @input="updateProgramme">
-        <option
-          v-for="programme in properties.source.programmes"
-          :value="programme.id"
-          :key="programme.id"
-          :selected="properties.programme === programme.id">
-          {{ programme.name }}
-        </option>
-        <option
-          value="other"
-          :selected="properties.programme === 'other'">
-          Altre...
-        </option>
-      </b-select>
-    </b-field>
+    <transition name="slide">
+      <b-field
+        label="Programa" v-if="properties.source && properties.source !== 'other' && properties.source.programmes.length > 0"
+        :type="properties.programme ? '' : displayErrors ? 'is-danger' : ''"
+        :message="properties.programme ? '' : displayErrors ? `Has de seleccionar un programa` : ''">
+        <b-select placeholder="Selecciona un programa" expanded @input="updateProgramme">
+          <option
+            v-for="programme in properties.source.programmes"
+            :value="programme.id"
+            :key="programme.id"
+            :selected="properties.programme === programme.id">
+            {{ programme.name }}
+          </option>
+          <option
+            value="other"
+            :selected="properties.programme === 'other'">
+            Altre...
+          </option>
+        </b-select>
+      </b-field>
+    </transition>
 
-    <div v-if="properties.source === 'other'">
-      <b-field label="Nom del canal">
-        <b-input
-          placeholder="TeleElx"
-          v-model="properties.customSource"
-          maxlength="30">
-        </b-input>
-      </b-field>
-      <b-field label="Color">
-        <swatches v-model="properties.customSourceColor"></swatches>
-      </b-field>
-    </div>
+    <transition name="slide">
+      <div v-if="properties.source === 'other'" class="media-input-group">
+        <b-field label="Nom del canal" class="media-input-name">
+          <b-input
+            placeholder="TeleElx"
+            v-model="properties.customSource"
+            maxlength="30">
+          </b-input>
+        </b-field>
+        <b-field label="Color" class="media-input-color">
+          <swatches v-model="properties.customSourceColor"></swatches>
+        </b-field>
+      </div>
+    </transition>
 
-    <div v-if="properties.programme === 'other'">
-      <b-field label="Nom del programa">
-        <b-input
-          placeholder="TeleElx"
-          v-model="properties.customProgramme"
-          maxlength="30">
-        </b-input>
-      </b-field>
-      <b-field label="Color del programa">
-        <swatches v-model="properties.customProgrammeColor"></swatches>
-      </b-field>
-    </div>
+    <transition name="slide">
+      <div v-if="properties.programme === 'other'" class="media-input-group">
+        <b-field label="Nom del programa" class="media-input-name">
+          <b-input
+            placeholder="El Análisis"
+            v-model="properties.customProgramme"
+            maxlength="30">
+          </b-input>
+        </b-field>
+        <b-field label="Color" class="media-input-color">
+          <swatches v-model="properties.customProgrammeColor"></swatches>
+        </b-field>
+      </div>
+    </transition>
 
     <!-- Local label -->
     <transition name="slide">
@@ -158,12 +160,14 @@
 import PaneMixin from '@/mixins/pane-mixin.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
+import DatePicker from '@/utils/DatePicker'
 
 export default {
   name: 'media-pane',
 
   components: {
-    Swatches
+    Swatches,
+    DatePicker
   },
 
   mixins: [PaneMixin],
@@ -239,8 +243,40 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  @import "../../../sass/variables";
+
   .local-label {
     margin-top: .75rem;
+  }
+
+  .media-input {
+    &-group {
+      display: flex;
+
+      label {
+        font-size: .85rem;
+        color: $gray-600;
+      }
+    }
+
+    &-name {
+      flex-grow: 1;
+      order: 1;
+    }
+
+    &-color {
+      margin-right: .5rem;
+    }
+  }
+
+  .vue-swatches__trigger {
+    height: 36px !important;
+    width: 36px !important;
+    border-radius: 4px !important;
+  }
+
+  .pane {
+    padding-bottom: 12rem !important;
   }
 </style>

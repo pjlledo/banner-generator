@@ -31,9 +31,10 @@ export default {
     },
 
     formatString (string) {
-      return string.replace(/'/g, '’')
-                   .replace(/Mònica Oltra/gi, 'Mónica Oltra')
-                   .replace(/Monica Oltra/gi, 'Mónica Oltra')
+      return string
+        .replace(/'/g, '’')
+        .replace(/Mònica Oltra/gi, 'Mónica Oltra')
+        .replace(/Monica Oltra/gi, 'Mónica Oltra')
     }
   },
 

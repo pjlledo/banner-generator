@@ -41,7 +41,7 @@ const sources = [
         name: 'Los desayunos de TVE',
         logo: desayunos,
         color: 'black'
-      },
+      }
     ]
   },
   {
@@ -55,13 +55,13 @@ const sources = [
     name: 'Antena 3',
     logo: antena3,
     programmes: [
-    {
-      id: 'espejopublico',
-      name: 'Espejo Público',
-      logo: espejoPublico,
-      programmes: []
-    },
-  ]
+      {
+        id: 'espejopublico',
+        name: 'Espejo Público',
+        logo: espejoPublico,
+        programmes: []
+      }
+    ]
   },
   {
     id: 'apunt',
@@ -85,7 +85,7 @@ const sources = [
         name: 'À punt Notícies',
         logo: apuntNtc,
         programmes: []
-      },
+      }
     ]
   },
   {
