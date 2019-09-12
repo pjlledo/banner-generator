@@ -161,6 +161,13 @@ export default {
       margin: -12.49rem !important;
     }
 
+    .banner-aspect-event {
+      .canvas-wrapper {
+        transform: scale(0.1871) !important;
+        margin: -24.49rem !important;
+      }
+    }
+
     .b-tabs,
     .tab-content {
       padding-left: 0 !important;
@@ -171,6 +178,7 @@ export default {
   @media (max-width: $xl-breakpoint) {
     .primary-download-button {
       top: 3.65rem;
+      bottom: auto;
 
       .button {
         &-label {
