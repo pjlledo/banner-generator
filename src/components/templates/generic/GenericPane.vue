@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
+  <div :class="{ 'pane generic-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
     <!-- Text -->
     <div class="text-wrapper">
       <b-field
@@ -24,6 +24,12 @@
           <b-tab-item icon="arrow-to-bottom"></b-tab-item>
         </b-tabs>
       </b-field>
+
+      <article class="message is-info is-small" v-if="aspect === 1">
+        <div class="message-body">
+          Es recomana utilitzar la ferramenta de text nativa d'Instragram per a afegir text en aquest model de tarja.
+        </div>
+      </article>
     </div>
 
     <!-- Picture -->
@@ -51,7 +57,7 @@
           placeholder="#"
           @input="updateHashtag"
           :value="properties.hashtag"
-          :maxlength="properties.hasLocalLabel ? 18 : 32">
+          :maxlength="25">
         </b-input>
       </b-field>
     </transition>
@@ -126,7 +132,7 @@ export default {
     flex-direction: column;
 
     .b-tabs {
-      margin-bottom: .75rem;
+      margin-bottom: .25rem;
     }
   }
 
@@ -136,6 +142,19 @@ export default {
 
   .local-label {
     margin-top: .75rem;
+  }
+
+  .message-body {
+    font-size: .85rem;
+  }
+
+  .pane-916 {
+    display: flex;
+    flex-direction: column;
+
+    .text-wrapper {
+      order: 1;
+    }
   }
 </style>
 
