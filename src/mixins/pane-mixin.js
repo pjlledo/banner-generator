@@ -36,7 +36,7 @@ export default {
     EventBus.$on('aspectUpdated', (aspect) => { this.aspect = aspect })
 
     // Display errors
-    EventBus.$on('checkForErrors', (check) => { 
+    EventBus.$on('checkForErrors', (check) => {
       this.displayErrors = check
 
       if (check && !this.isDownloadable) {

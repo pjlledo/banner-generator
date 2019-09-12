@@ -92,7 +92,6 @@ export default {
     flex-direction: column;
     justify-content: center;
 
-
     &-source {
       margin-bottom: .25rem;
 

@@ -178,12 +178,14 @@ export default {
       .control .help.counter {
         margin-right: 0.8em;
         position: relative;
-        margin-top: -1.4rem;
+        margin-top: -2.9rem;
         z-index: 10;
+        color: $gray-600;
+        font-size: .65rem;
       }
 
       .input {
-        padding-right: 3rem;
+        padding-right: 2.75rem;
       }
     }
 
