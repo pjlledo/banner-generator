@@ -81,10 +81,12 @@ export default {
         return
       }
 
+      const formattedHashtag = hashtag.replace(/ /g, '')
+
       if (hashtag[0] === '#') {
-        this.properties.hashtag = hashtag
+        this.properties.hashtag = formattedHashtag
       } else {
-        this.properties.hashtag = '#' + hashtag
+        this.properties.hashtag = '#' + formattedHashtag
       }
     },
 
