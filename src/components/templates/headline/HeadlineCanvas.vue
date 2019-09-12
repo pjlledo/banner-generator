@@ -21,7 +21,13 @@
       <div class="headline-source" v-else-if="banner.source">
         <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
-      <div class="headline-text" contenteditable :style="{ fontFamily: banner.source ? banner.source.fontFamily : false, fontSize: fontSize('headline', 50, 30, 160) }">
+      <div class="headline-text"
+        contenteditable
+        :style="{
+          fontFamily: banner.source ? banner.source.fontFamily : false,
+          fontSize: aspect === '11' ? fontSize('headline', 50, 30, 160) : fontSize('headline', 35, 23.5, 160),
+          letterSpacing: banner.source ? banner.source['letterSpacing'] : false
+        }">
         {{ banner.headline | formatString }}
       </div>
     </div>
@@ -62,21 +68,37 @@ export default {
     font-style: normal;
   }
 
+   @font-face {
+    font-family: 'Gotham';
+    src: url('../../../assets/fonts/gotham-bold-webfont.eot');
+    src: url('../../../assets/fonts/gotham-bold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../../../assets/fonts/gotham-bold-webfont.woff2') format('woff2'),
+        url('../../../assets/fonts/gotham-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+
   .headline {
+    display: flex;
     position: absolute;
-    top: 460px;
+    top: 425px;
     left: 0;
     z-index: 30;
+    height: 200px;
     padding: 0 40px;
     font-family: 'Tiempos Headline', serif;
     font-weight: 700;
     transition: all .5s ease-in-out;
+    flex-direction: column;
+    justify-content: center;
+
 
     &-source {
       margin-bottom: .25rem;
 
       &--custom {
         margin-bottom: 4px;
+        font-size: 1.35rem;
       }
     }
 
@@ -173,18 +195,13 @@ export default {
   // Headline on top
   .disposition-1 {
     .headline {
-      top: 100px;
+      top: 90px;
+      height: 172px;
     }
 
     .blob-image {
       img {
         margin: -29px -14px;
-      }
-    }
-
-    &.has-long-headline {
-      .blob-image {
-        bottom: -130px;
       }
     }
 
@@ -217,7 +234,7 @@ export default {
         border-top-left-radius: $border-radius;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        top: 248px;
+        top: 285px;
         left: 130px;
         height: 500px;
       }
