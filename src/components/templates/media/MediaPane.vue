@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
+  <div :class="{ 'pane media-pane': true, 'pane-dimmed': paneDimmed }">
     <!-- Title -->
     <b-field
       label="Titol"
@@ -246,37 +246,37 @@ export default {
 <style lang="scss">
   @import "../../../sass/variables";
 
-  .local-label {
-    margin-top: .75rem;
-  }
+  .media-pane {
+    padding-bottom: 12rem !important;
 
-  .media-input {
-    &-group {
-      display: flex;
+    .local-label {
+      margin-top: .75rem;
+    }
 
-      label {
-        font-size: .85rem;
-        color: $gray-600;
+    .media-input {
+      &-group {
+        display: flex;
+
+        label {
+          font-size: .85rem;
+          color: $gray-600;
+        }
+      }
+
+      &-name {
+        flex-grow: 1;
+        order: 1;
+      }
+
+      &-color {
+        margin-right: .5rem;
       }
     }
 
-    &-name {
-      flex-grow: 1;
-      order: 1;
+    .vue-swatches__trigger {
+      height: 36px !important;
+      width: 36px !important;
+      border-radius: 4px !important;
     }
-
-    &-color {
-      margin-right: .5rem;
-    }
-  }
-
-  .vue-swatches__trigger {
-    height: 36px !important;
-    width: 36px !important;
-    border-radius: 4px !important;
-  }
-
-  .pane {
-    padding-bottom: 12rem !important;
   }
 </style>

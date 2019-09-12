@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
+  <div :class="{ 'pane headline-pane': true, 'pane-dimmed': paneDimmed }">
     <!-- Disposition -->
     <transition name="slide">
       <b-tabs
@@ -37,14 +37,15 @@
 
     <!-- Other source -->
     <transition name="slide">
-      <div v-if="properties.source === 'other'">
+      <div v-if="properties.source === 'other'" class="source-input-group">
         <b-field
+          class="source-input-name"
           label="Mitjà de comunicació"
           :type="properties.source === 'other' && properties.customSource ? '' : displayErrors ? 'is-danger' : ''"
           :message="properties.source === 'other' && properties.customSource ? '' : displayErrors ? `Has se seleccionar una font` : ''">
           <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
         </b-field>
-        <b-field label="Color">
+        <b-field label="Color" class="source-input-color">
           <swatches v-model="properties.customSourceColor"></swatches>
         </b-field>
       </div>
@@ -165,12 +166,42 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .hashtag {
-    margin-top: .25rem;
-  }
+<style lang="scss">
+  @import "../../../sass/variables";
 
-  .local-label {
-    margin-top: .75rem;
+  .headline-pane {
+    .hashtag {
+      margin-top: .25rem;
+    }
+
+    .local-label {
+      margin-top: .75rem;
+    }
+
+    .source-input {
+      &-group {
+        display: flex;
+
+        label {
+          font-size: .85rem;
+          color: $gray-600;
+        }
+      }
+
+      &-name {
+        flex-grow: 1;
+        order: 1;
+      }
+
+      &-color {
+        margin-right: .5rem;
+      }
+    }
+
+    .vue-swatches__trigger {
+      height: 36px !important;
+      width: 36px !important;
+      border-radius: 4px !important;
+    }
   }
 </style>
