@@ -13,6 +13,12 @@
         </li>
       </ul>
     </div>
+    <svg width="0" height="0">
+      <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
+        <stop class="gradient-start" offset="0" />
+        <stop class="gradient-end" offset="1" />
+      </radialGradient>
+    </svg>
   </div>
 </template>
 
@@ -30,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../sass/variables';
 
   .template-selector {
@@ -85,11 +91,14 @@ export default {
         .template-item {
           &-name,
           &-icon .icon {
-            color: $gray-800;
             background: linear-gradient(45deg, $gradient-start, $gradient-end);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+
+            svg * {
+              fill: url(#compromisGradient) !important;
+            }
           }
         }
       }
@@ -127,6 +136,14 @@ export default {
         padding: 1rem;
       }
     }
+  }
+
+  .gradient-start {
+    stop-color: $gradient-start;
+  }
+
+  .gradient-end {
+    stop-color: $gradient-end;
   }
 
   @media (max-width: $xs-breakpoint) {

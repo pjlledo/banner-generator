@@ -5,7 +5,7 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
-      banner.localLabel ? 'has-local-label' : '',
+      banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
       banner.headline.length > 95 ? 'has-long-headline' : ''
     ]"
     v-if="banner">
@@ -91,7 +91,6 @@ export default {
     transition: all .5s ease-in-out;
     flex-direction: column;
     justify-content: center;
-
 
     &-source {
       margin-bottom: .25rem;

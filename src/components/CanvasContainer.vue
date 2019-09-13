@@ -121,8 +121,6 @@ export default {
     position: relative;
     width: 720px;
     height: 720px;
-    border: 1px $white solid;
-    outline: 1px $gray-900 solid;
     overflow: hidden;
     transition: all .5s ease-in-out;
     background: $white;
@@ -132,6 +130,8 @@ export default {
     display: flex;
     justify-content: center;
     transition: .25 ease-in-out;
+    border: 1px $white solid;
+    outline: 1px $gray-900 solid;
   }
 
   .banner-aspect-916 .banner-canvas {
@@ -148,10 +148,23 @@ export default {
     right: 2rem;
     bottom: 2rem;
 
-    .button-label {
-      position: relative;
-      top: -4px;
-      overflow: hidden;
+    .button {
+      transition: .25s ease-in-out;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: $raised-shadow;
+      }
+
+      &:active {
+        transform: translateY(2px);
+      }
+
+      &-label {
+        position: relative;
+        top: -4px;
+        overflow: hidden;
+      }
     }
   }
 
