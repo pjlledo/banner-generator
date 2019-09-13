@@ -14,12 +14,12 @@
     <div class="blob blob-2"></div>
     <div class="quote">
       <div class="quote-glyph">“</div>
-      <div class="quote-text" contenteditable>
-        {{ banner.quote | formatString }}.”
+      <div class="quote-text-wrapper">
+        <div class="quote-text" :style="{fontSize: fontSize('quote', 47, 30, 140)}">
+          {{ banner.quote | formatString }}<span v-if="banner.quote.substring(banner.quote.length - 1, banner.quote.length) !== '.'">.</span><span>”</span>
+        </div>
       </div>
-      <div class="quote-author" contenteditable>
-        {{ banner.author | formatString }}
-      </div>
+      <div class="quote-author">{{ banner.author | formatString }}</div>
     </div>
     <div class="logo">
       <compromis-logo />
@@ -42,13 +42,18 @@ export default {
   @import "../../../sass/variables";
 
   .quote {
+    display: flex;
     position: absolute;
-    top: 200px;
+    top: 50px;
     left: 0;
     z-index: 40;
+    box-sizing: border-box;
     padding: 0 45px;
-    width: 320px;
+    width: 420px;
+    height: 550px;
     z-index: 20;
+    flex-direction: column;
+    justify-content: center;
     transition: all .5s ease-in-out;
     font-family: 'Compromis', serif;
 
@@ -66,25 +71,31 @@ export default {
       font-weight: bold;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
+
+      &-wrapper {
+        position: relative;
+      }
     }
 
     &-glyph {
-      position: absolute;
-      top: -123px;
-      left: 35px;
       font-size: 170px;
-      z-index: 1;
       color: $gradient-start;
       font-weight: bold;
+      margin-bottom: -134px;
+      margin-left: -10px;
+      margin-top: -58px;
     }
 
     &-author {
       font-size: 19px;
       letter-spacing: -0.5px;
       margin-top: .75rem;
-      line-height: 1.1;
-      width: 150px;
+      line-height: 1.2;
+      width: 165px;
       color: $gray-600;
+      white-space: pre-line;
+      max-height: 90px;
+      overflow: hidden;
     }
   }
 
@@ -124,6 +135,24 @@ export default {
 
   // Story aspect
   .aspect-916 {
+    .quote {
+      bottom: 153px;
+      top: 221px;
+      padding: 0 30px;
+      height: 415px;
+      justify-content: flex-end;
+      width: 95%;
+
+      &-text {
+        font-size: 28px;
+      }
+
+      &-author {
+        width: 100%;
+        max-height: 120px;
+      }
+    }
+
     .blob {
       &-1 {
         top: -43%;
@@ -149,26 +178,6 @@ export default {
       }
     }
 
-    .quote {
-      bottom: 153px;
-      top: auto;
-      padding: 0 30px;
-
-      &-glyph {
-        top: -105px;
-        left: 21px;
-        font-size: 140px;
-      }
-
-      &-text {
-        font-size: 28px;
-      }
-
-      &-author {
-        width: 100%;
-      }
-    }
-
     .logo {
       display: none;
     }
@@ -177,23 +186,32 @@ export default {
   // Quote on top
   .disposition-1 {
     .quote {
-      top: 22%;
-      width: 600px;
+      top: 18%;
+      align-items: flex-end;
+      text-align: right;
+      right: 10px;
+      left: auto;
+
+      &-text {
+        margin: 0 -10px;
+      }
+
+      &-glyph {
+        margin-right: -20px;
+        color: #eb7a24;
+      }
 
       &-author {
         width: 122px;
-      }
-    }
-
-    &.has-local-label {
-      .blob-2 {
-        left: -60%;
-        top: -88%;
+        text-align: right;
+        margin-right: -10px;
       }
     }
 
     .logo {
-      bottom: 666px;
+      bottom: 665px;
+      left: 30px;
+      right: auto;
     }
 
     .hashtag {
@@ -202,18 +220,23 @@ export default {
 
     .blob {
       &-2 {
-        left: -50%;
-        bottom: 90%;
+        left: 444px;
+         bottom: 640px;
       }
 
       &-image {
         left: auto;
         top: auto;
-        border-top-left-radius: 5rem;
-        bottom: -55px;
-        right: -115px;
-        height: 570px;
-        width: 650px;
+        border-top-right-radius: 5rem;
+        border-bottom-left-radius: 0;
+        bottom: -26px;
+        right: 236px;
+        height: 620px;
+        width: 511px;
+
+        img {
+          margin: -18px 28px;
+        }
       }
     }
   }

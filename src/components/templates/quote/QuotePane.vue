@@ -13,7 +13,7 @@
       label="Frase"
       :type="properties.quote ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.quote ? '' : displayErrors ? `Has d'omplir la frase` : ''">
-      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.quote" maxlength="120"></b-input>
+      <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.quote" maxlength="140"></b-input>
     </b-field>
 
     <!-- Author -->
@@ -21,7 +21,7 @@
       label="Autor i/o mitjà"
       :type="properties.author ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.author ? '' : displayErrors ? `Has d'omplir la frase` : ''">
-      <b-input type="textarea" class="textarea-small" placeholder="Mónica Oltra a l'entrevista de La Sexta" v-model="properties.author" maxlength="80"></b-input>
+      <b-input type="textarea" class="textarea-small" placeholder="Mónica Oltra a l'entrevista de La Sexta" v-model="properties.author" maxlength="70"></b-input>
     </b-field>
 
     <!-- Picture -->
