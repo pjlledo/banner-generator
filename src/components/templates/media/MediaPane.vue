@@ -73,7 +73,7 @@
         <optgroup v-for="(category, i) in presets" :label="category.name" :key="i">
           <option
             v-for="source in category.channels"
-            :value="source.id"
+            :value="source"
             :key="source.id"
             :selected="properties.source === source.id">
             {{ source.name }}
@@ -222,11 +222,10 @@ export default {
         return
       }
 
-      const channel = this.presets.find(preset => preset.id === source)
+      // const channel = this.presets.find(preset => preset.id === source)
+      this.properties.source = source
 
-      this.properties.source = channel
-
-      if (!channel.programmes.length) {
+      if (!source.programmes.length) {
         this.properties.programme = 'other'
       } else {
         this.properties.programme = null
