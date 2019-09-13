@@ -4,8 +4,7 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + banner.disposition : '',
-      banner.localLabel ? 'has-local-label' : ''
+      aspect === '11' ? 'disposition-' + banner.disposition : ''
     ]"
     v-if="banner">
     <div class="blob blob-image">
@@ -14,13 +13,13 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="medium">
-      <div class="medium-overtitle" contenteditable>
+      <div class="medium-overtitle">
         {{ banner.overtitle | formatString }}
       </div>
-      <div class="medium-title" contenteditable>
+      <div class="medium-title">
         {{ banner.title | formatString }}
       </div>
-      <div class="medium-subtitle" contenteditable>
+      <div class="medium-subtitle">
         {{ banner.subtitle | formatString }}
       </div>
       <div class="medium-details">
@@ -78,25 +77,30 @@ export default {
   @import "../../../sass/variables";
 
   .medium {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: absolute;
     top: 100px;
     left: 0;
     z-index: 40;
-    padding: 0 45px;
-    width: 240px;
+    padding: 0 35px;
+    width: 265px;
+    height: 400px;
     z-index: 20;
     transition: all .5s ease-in-out;
     font-family: 'Compromis', serif;
 
     &-title {
-      font-size: 30px;
-      line-height: 1.2;
+      display: block;
+      font-size: 33px;
+      line-height: 1.1;
       color: $gray-900;
       letter-spacing: -1px;
-      display: inline;
       word-wrap: break-word;
       font-family: 'Compromis', serif;
       font-weight: bold;
+      margin: 10px 0;
     }
 
     &-subtitle {
@@ -105,6 +109,7 @@ export default {
       font-size: 19px;
       letter-spacing: -0.5px;
       color: $gray-700;
+      line-height: 1.1;
     }
 
     &-overtitle {
@@ -113,6 +118,7 @@ export default {
       font-size: 19px;
       letter-spacing: -0.5px;
       color: $gray-700;
+      line-height: 1.1;
     }
 
     &-details {
@@ -186,12 +192,6 @@ export default {
         height: 98%;
         margin: 28px -28px;
       }
-    }
-  }
-
-  .has-local-label {
-    .blob-2 {
-      left: -60%;
     }
   }
 
