@@ -5,7 +5,7 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
-      banner.localLabel ? 'has-local-label' : '',
+      banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
       banner.headline.length > 95 ? 'has-long-headline' : ''
     ]"
     v-if="banner">
