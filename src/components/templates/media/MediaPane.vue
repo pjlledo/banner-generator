@@ -70,13 +70,15 @@
       :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.source ? '' : displayErrors ? `Has de seleccionar un canal` : ''">
       <b-select placeholder="Selecciona un canal" @input="updateSource" expanded>
-        <option
-          v-for="source in presets"
-          :value="source.id"
-          :key="source.id"
-          :selected="properties.source === source.id">
-          {{ source.name }}
-        </option>
+        <optgroup v-for="(category, i) in presets" :label="category.name" :key="i">
+          <option
+            v-for="source in category.channels"
+            :value="source.id"
+            :key="source.id"
+            :selected="properties.source === source.id">
+            {{ source.name }}
+          </option>
+        </optgroup>
         <option
           value="other"
           :selected="properties.source === 'other'">
