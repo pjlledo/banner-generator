@@ -24,7 +24,7 @@
 
     <!-- Overtitle -->
     <b-field label="Tipus d'acte">
-      <b-input placeholder="Debat" maxlength="30" v-model="properties.overtitle"></b-input>
+      <b-input placeholder="Debat" maxlength="20" v-model="properties.overtitle"></b-input>
     </b-field>
 
     <!-- Date -->

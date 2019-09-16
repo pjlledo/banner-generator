@@ -18,7 +18,7 @@
       <div class="event-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div class="event-title" :style="{fontSize: fontSize('title', 45, 30, 60)}">
+      <div class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 155, 130, 60) : fontSize('title', 45, 30, 60)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
@@ -108,6 +108,10 @@ export default {
       font-size: 17.5px;
       letter-spacing: -0.5px;
       color: $gray-700;
+
+      &-wrapper {
+        margin-top: 1rem;
+      }
 
       .icon {
         padding-right: .3rem;
@@ -232,17 +236,17 @@ export default {
   // Event aspect
   .aspect-event {
     .event {
-      position: static;
+      display: flex;
+      align-items: center;
+      top: 200px;
+      bottom: 200px;
+      width: 100%;
+      height: auto;
+      padding: 0 100px;
+      box-sizing: border-box;
 
       &-title {
-        position: absolute;
-        bottom: 300px;
-        left: 100px;
-        right: 100px;
-        z-index: 20;
-
         span {
-          font-size: 10rem;
           background: $white;
           color: $gray-900;
           padding: .25rem 2rem;
@@ -257,18 +261,23 @@ export default {
       &-overtitle {
         position: absolute;
         color: $white;
-        font-size: 4rem;
-        top: 40px;
+        font-size: 3rem;
+        letter-spacing: -1px;
+        font-weight: bold;
+        top: -150px;
         left: 100px;
         z-index: 20;
       }
     }
 
     .blob {
+      border-radius: 10rem;
+
       &-1 {
         top: -50%;
-        left: -10%;
+        left: -6%;
         z-index: 20;
+        border-bottom-left-radius: 0;
       }
 
       &-2 {
@@ -287,7 +296,7 @@ export default {
         left: 0;
         bottom: 0;
         right: 0;
-        border-radius: 0;
+        border-radius: 0rem;
 
         img {
           transform: rotate(0) scale(1);
