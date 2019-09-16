@@ -44,19 +44,18 @@ const sources = [
             id: 'assumptesinterns',
             name: 'Assumptes Interns',
             logo: assumptesInterms,
-            programmes: []
+            width: '100px'
           },
           {
             id: 'docs',
             name: 'Docs',
             logo: docs,
-            programmes: []
           },
           {
             id: 'apuntntc',
             name: 'À punt Notícies',
             logo: apuntNtc,
-            programmes: []
+            width: '88px'
           }
         ]
       }
@@ -75,7 +74,8 @@ const sources = [
             id: 'desayunos',
             name: 'Los desayunos de TVE',
             logo: desayunos,
-            color: 'black'
+            color: 'black',
+            width: '100px'
           }
         ]
       },
@@ -103,7 +103,8 @@ const sources = [
         id: 'cuatro',
         name: 'Cuatro',
         logo: cuatro,
-        programmes: []
+        programmes: [],
+        color: 'white'
       },
       {
         id: 'telecinco',
@@ -136,20 +137,20 @@ const sources = [
         name: '24h tve',
         logo: horas24,
         programmes: []
-      },
+      }
     ]
   },
 
-  //radios
+  // radios
   {
     name: 'Ràdios Estatals',
     channels: [
       {
-      id: 'cadenaser',
-      name: 'Cadena SER',
-      logo: cadenaSer,
-      padding: '5px',
-      programmes: []
+        id: 'cadenaser',
+        name: 'Cadena SER',
+        logo: cadenaSer,
+        padding: '5px',
+        programmes: []
       },
       {
         id: 'ondacero',
@@ -162,11 +163,11 @@ const sources = [
         name: 'Ràdio Nacional',
         logo: rne,
         programmes: []
-      },
+      }
     ]
   },
 
-  //televisions locals
+  // televisions locals
   {
     name: 'Televisions Locals',
     channels: [
@@ -198,7 +199,8 @@ const sources = [
         id: 'riberatv',
         name: 'Ribera TV',
         logo: riberaTv,
-        programmes: []
+        programmes: [],
+        color: 'white'
       },
       {
         id: 'tele7',
@@ -229,7 +231,7 @@ const sources = [
         name: 'Tele Sagunt',
         logo: teleSagunto,
         programmes: []
-      },
+      }
     ]
   }
 ]

@@ -30,40 +30,6 @@
       </b-input>
     </b-field>
 
-    <!-- Date -->
-    <b-field label="Data">
-       <date-picker v-model="properties.date" />
-    </b-field>
-
-    <!-- Time -->
-    <b-field label="Hora">
-      <b-timepicker
-        rounded
-        inline
-        :increment-minutes="15"
-        v-model="properties.time"
-        icon="clock">
-      </b-timepicker>
-    </b-field>
-
-    <!-- Picture -->
-    <picture-upload
-      :picture="properties.picture"
-      :display-errors="displayErrors"
-      @upload="updateImage"
-      @delete="properties.picture = null; properties.picturePreview = null" />
-
-    <!-- Picture position -->
-    <b-field label="Posició de la imatge" class="range">
-      <range-slider
-        name="points"
-        :min="0"
-        :max="100"
-        v-model="properties.picturePos"
-        @touchstart="dimPane(true)"
-        @touchend="dimPane(false)" />
-    </b-field>
-
     <!-- Channel -->
     <b-field
       label="Canal"
@@ -116,7 +82,7 @@
           <b-input
             placeholder="TeleElx"
             v-model="properties.customSource"
-            maxlength="30">
+            maxlength="20">
           </b-input>
         </b-field>
         <b-field label="Color" class="media-input-color">
@@ -139,6 +105,40 @@
         </b-field>
       </div>
     </transition>
+
+    <!-- Date -->
+    <b-field label="Data">
+       <date-picker v-model="properties.date" />
+    </b-field>
+
+    <!-- Time -->
+    <b-field label="Hora">
+      <b-timepicker
+        rounded
+        inline
+        :increment-minutes="15"
+        v-model="properties.time"
+        icon="clock">
+      </b-timepicker>
+    </b-field>
+
+    <!-- Picture -->
+    <picture-upload
+      :picture="properties.picture"
+      :display-errors="displayErrors"
+      @upload="updateImage"
+      @delete="properties.picture = null; properties.picturePreview = null" />
+
+    <!-- Picture position -->
+    <b-field label="Posició de la imatge" class="range">
+      <range-slider
+        name="points"
+        :min="0"
+        :max="100"
+        v-model="properties.picturePos"
+        @touchstart="dimPane(true)"
+        @touchend="dimPane(false)" />
+    </b-field>
 
     <!-- Local label -->
     <transition name="slide">

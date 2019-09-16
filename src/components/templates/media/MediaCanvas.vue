@@ -14,13 +14,13 @@
     <div class="blob blob-2"></div>
     <div class="medium">
       <div class="medium-overtitle">
-        {{ banner.overtitle | formatString }}
+        <span>{{ banner.overtitle | formatString }}</span>
       </div>
       <div class="medium-title">
-        {{ banner.title | formatString }}
+        <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="medium-subtitle">
-        {{ banner.subtitle | formatString }}
+        <span>{{ banner.subtitle | formatString }}</span>
       </div>
       <div class="medium-details">
         <div class="medium-day" contenteditable>
@@ -49,7 +49,9 @@
             }"
             :style="{
               backgroundColor: banner.programme === 'other' ? banner.customProgrammeColor : banner.programme['color'],
-              padding: banner.programme !== 'other' ? `${banner.programme['padding']}rem` : null }">
+              padding: banner.programme !== 'other' ? `${banner.programme['padding']}rem` : null,
+              width: banner.programme !== 'other' ? `${banner.programme['width']}` : null,
+            }">
             <img v-if="banner.programme !== 'other'" :src="banner.programme.logo" />
             <span v-else>{{ banner.customProgramme }}</span>
           </div>
@@ -123,12 +125,15 @@ export default {
 
     &-details {
       padding-top: 3rem;
+      font-size: 18px;
+      letter-spacing: -0.5px;
     }
 
     &-day, &-time {
       display: flex;
       align-content: center;
-      padding-top: .25rem;
+      padding-top: .75rem;
+      color: $gray-700;
     }
 
     &-channel, &-programme {
@@ -150,6 +155,7 @@ export default {
         align-items: center;
         height: auto;
         max-height: 50px;
+        line-height: 1.1;
       }
     }
 
@@ -222,7 +228,11 @@ export default {
     }
 
     .medium {
-      top: 330px;
+      display: flex;
+      top: 245px;
+      align-content: center;
+      width: 100%;
+      box-sizing: border-box;
 
       &-title {
         font-size: 34px;
@@ -232,16 +242,36 @@ export default {
         padding-top: 1.5rem;
       }
 
+      &-channel-custom, &-programme-custom {
+        width: auto;
+        flex-grow: 1;
+      }
+
       &-title, &-subtitle, &-overtitle {
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-        color: white;
-        border-radius: 2px;
-        background: linear-gradient(45deg, $gradient-start, $gradient-end);
-        letter-spacing: -1px;
-        display: inline;
-        line-height: 1.42;
-        padding: 0 10px;
+        span {
+          box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
+          color: white;
+          border-radius: 2px;
+          background: $gradient;
+          letter-spacing: -1px;
+          display: inline;
+          line-height: 1.42;
+          padding: 0 10px;
+        }
+      }
+
+      &-overtitle,
+      &-subtitle {
+        span {
+          background: $white;
+          color: $gray-800;
+        }
+      }
+
+      &-channel-custom ~ .medium-programme-custom,
+      &-channel-custom {
+        width: 47%;
       }
     }
 
