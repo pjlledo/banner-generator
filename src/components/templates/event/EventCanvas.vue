@@ -15,10 +15,10 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="event">
-      <div class="event-overtitle" contenteditable>
-        {{ banner.overtitle | formatString }}
+      <div class="event-overtitle">
+        <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div class="event-title" contenteditable>
+      <div class="event-title" :style="{fontSize: fontSize('title', 45, 30, 60)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
@@ -28,7 +28,7 @@
         <div class="event-details" contenteditable>
           <b-icon icon="clock"/> {{ banner.time | formatTime }}
         </div>
-        <div class="event-details" contenteditable>
+        <div class="event-details">
           <b-icon icon="map-marker-alt"/> {{ banner.place }}
         </div>
         <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 && aspect === '11'" contenteditable>
@@ -58,8 +58,7 @@ export default {
 
   computed: {
     isCrowded: function () {
-      return (this.banner.speakers && this.banner.title.length > 30) ||
-        (this.banner.title.length > 40)
+      return this.banner.speakers.length > 3
     }
   }
 }
@@ -69,19 +68,23 @@ export default {
   @import "../../../sass/variables";
 
   .event {
+    display: flex;
     position: absolute;
-    top: 100px;
+    top: 90px;
     left: 0;
+    height: 415px;
     z-index: 40;
-    padding: 0 45px;
+    padding: 0 35px;
     width: 260px;
+    flex-direction: column;
+    justify-content: center;
     z-index: 20;
     transition: all .5s ease-in-out;
     font-family: 'Compromis', serif;
 
     &-title {
       font-size: 40px;
-      line-height: 1.2;
+      line-height: 1.1;
       color: $gray-900;
       letter-spacing: -1px;
       display: inline;
@@ -91,22 +94,25 @@ export default {
     }
 
     &-overtitle {
-      font-size: 19px;
+      font-size: 18px;
       letter-spacing: -0.5px;
       color: $gray-700;
+      line-height: 1.1;
+      padding-bottom: .25rem;
     }
 
     &-details {
-      padding-top: .9rem;
+      padding-top: .75rem;
       display: flex;
-      align-items: center;
-      font-size: 19px;
+      align-content: center;
+      font-size: 17.5px;
       letter-spacing: -0.5px;
-      width: 290px;
       color: $gray-700;
 
       .icon {
         padding-right: .3rem;
+        flex-shrink: 0;
+
         svg {
           width: 500px;
           height: 500px;
@@ -150,8 +156,12 @@ export default {
   }
 
   .is-crowded {
+    .event {
+      height: auto;
+      top: 100px;
+    }
     .blob-2 {
-      bottom: -85%;
+      bottom: -88%;
     }
   }
 
@@ -182,19 +192,35 @@ export default {
     }
 
     .event {
-      top: 360px;
+      top: 252px;
+      width: 100%;
+      height: 400px;
+      box-sizing: border-box;
+
+      &-overtitle {
+        span{
+          background: $white;
+          padding: 0 10px;
+          border-radius: 2px;
+          letter-spacing: -1px;
+          box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
+        }
+      }
 
       &-title {
         font-size: 34px;
         line-height: 1.42;
-        color: white;
-        padding: 0 10px;
-        border-radius: 2px;
-        background: $gradient;
-        letter-spacing: -1px;
-        display: inline;
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
+
+        span {
+          color: $white;
+          padding: 0 10px;
+          border-radius: 2px;
+          background: $gradient;
+          letter-spacing: -1px;
+          box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
+        }
       }
     }
 
@@ -275,24 +301,37 @@ export default {
   // Title on top
   .disposition-1 {
     .event {
-      top: 38px;
+      left: auto;
+      right: 0;
+      text-align: right;
 
-      &-details-wrapper {
-        position: absolute;
-        bottom: -400px;
-        right: -451px;
+      &-details {
+        text-align: right;
+        justify-content: flex-end;
+        .icon {
+          order: 1;
+          margin-left: .25rem;
+        }
       }
     }
 
-    &.has-local-label {
-      .blob-2 {
-        left: -60%;
-        top: -88%;
-      }
+    .blob-image {
+      top: -3%;
+      right: 41%;
+      height: 550px;
+      z-index: 20;
+      width: 460px;
+      border-radius: 0;
+      border-bottom-right-radius: 5rem;
     }
+
+    .blob-2 {
+      display: none
+    }
+
 
     .hashtag {
-      bottom: 668px;
+
     }
   }
 </style>

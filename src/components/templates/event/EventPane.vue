@@ -57,7 +57,7 @@
         <b-input
           placeholder="Riu Túria"
           v-model="properties.place"
-          maxlength="40">
+          maxlength="60">
         </b-input>
       </b-field>
     </transition>
