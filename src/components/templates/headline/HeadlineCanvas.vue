@@ -55,6 +55,7 @@ export default {
   @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web:700&display=swap');
 
   @font-face {
     font-family: 'Tiempos Headline';

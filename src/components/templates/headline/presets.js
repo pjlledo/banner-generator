@@ -13,6 +13,11 @@ import InformacionSVG from './logos/informacion.svg'
 import VeinteMinutosSVG from './logos/20_minutos.svg'
 import LaVeuSVG from './logos/laveu.svg'
 import EuropaPressSVG from './logos/europapress.svg'
+import InfoLibrePNG from './logos/infolibre.png'
+import ElPeriodicoDeAquiJPG from './logos/elperiodicodeaqui.jpg'
+import ValenciaExtraPNG from './logos/valencia-extra.png'
+import ElPeriodicSVG from './logos/elperiodic.svg'
+import ElConfidencialPNG from './logos/elconfidencial.png'
 
 const sources = [
   {
@@ -121,6 +126,41 @@ const sources = [
     logo: EuropaPressSVG,
     logoHeight: 18,
     fontFamily: 'Roboto Slab'
+  },
+  {
+    id: 'infolibre',
+    name: 'InfoLibre',
+    logo: InfoLibrePNG,
+    logoHeight: 22,
+    fontFamily: 'Georgia'
+  },
+  {
+    id: 'elperiodicodeaqui',
+    name: 'El Periódico de Aquí',
+    logo: ElPeriodicoDeAquiJPG,
+    logoHeight: 28,
+    fontFamily: 'Tiempos Headline'
+  },
+  {
+    id: 'elconfidencial',
+    name: 'El Confidencial',
+    logo: ElConfidencialPNG,
+    logoHeight: 24,
+    fontFamily: 'Tiempos Headline'
+  },
+  {
+    id: 'elperiodic',
+    name: 'elperiòdic.com',
+    logo: ElPeriodicSVG,
+    logoHeight: 24,
+    fontFamily: 'Roboto Slab'
+  },
+  {
+    id: 'valenciaextra',
+    name: 'València Extra',
+    logo: ValenciaExtraPNG,
+    logoHeight: 24,
+    fontFamily: 'Titillium Web'
   }
 ]
 
