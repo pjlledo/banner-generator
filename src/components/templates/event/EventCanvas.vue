@@ -18,7 +18,7 @@
       <div class="event-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 155, 130, 60) : fontSize('title', 45, 30, 60)}">
+      <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 155, 130, 60) : fontSize('title', 45, 30, 60)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
@@ -58,7 +58,7 @@ export default {
 
   computed: {
     isCrowded: function () {
-      return this.banner.speakers.length > 3
+      return this.banner.speakers.length > 2
     }
   }
 }
@@ -264,8 +264,8 @@ export default {
         font-size: 3rem;
         letter-spacing: -1px;
         font-weight: bold;
-        top: -150px;
-        left: 100px;
+        bottom: -150px;
+        right: 60px;
         z-index: 20;
       }
     }
@@ -275,7 +275,7 @@ export default {
 
       &-1 {
         top: -50%;
-        left: -6%;
+        left: -3%;
         z-index: 20;
         border-bottom-left-radius: 0;
       }
@@ -283,8 +283,9 @@ export default {
       &-2 {
         left: auto;
         bottom: -50%;
-        right: -10%;
+        right: -4%;
         z-index: 20;
+        border-top-right-radius: 0;
         --gradient-orientation: -45deg;
       }
 

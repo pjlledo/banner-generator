@@ -1,19 +1,5 @@
 <template>
   <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
-    <!-- Disposition -->
-    <transition name="slide">
-      <b-tabs
-        v-model="properties.disposition"
-        v-if="!aspect"
-        type="is-toggle"
-        size="is-small"
-        class="banner-disposition"
-        expanded>
-        <b-tab-item label="Frase esquerra"></b-tab-item>
-        <b-tab-item label="Frase dalt"></b-tab-item>
-      </b-tabs>
-    </transition>
-
     <!-- Title -->
     <b-field
       label="Titol"
