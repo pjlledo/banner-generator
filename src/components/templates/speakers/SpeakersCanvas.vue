@@ -25,19 +25,19 @@
       <div class="speakers-overtitle" contenteditable>
         {{ banner.overtitle | formatString }}
       </div>
-      <div class="speakers-title" :style="{fontSize: fontSize('title', 50, 33 , 60)}">
+      <div class="speakers-title" :style="{ fontSize: aspect === 11 ? fontSize('title', 50, 33 , 60) : fontSize('title', 40, 25 , 60) }">
         {{ banner.title | formatString }}
       </div>
     </div>
     <div class="speakers-details-wrapper" v-if="aspect !== 'event'">
       <div class="speakers-details speakers-date" contenteditable>
-        <font-awesome-icon :icon="['far', 'calendar-day']" /> {{ banner.date | formatDate }}
+        <font-awesome-icon :icon="['far', 'calendar-day']" fixed-width /> {{ banner.date | formatDate }}
       </div>
       <div class="speakers-details" contenteditable>
-        <font-awesome-icon :icon="['far', 'clock']" /> {{ banner.time | formatTime }}
+        <font-awesome-icon :icon="['far', 'clock']" fixed-width /> {{ banner.time | formatTime }}
       </div>
       <div class="speakers-details" contenteditable>
-        <font-awesome-icon :icon="['far', 'map-marker-alt']" /> {{ banner.place }}
+        <font-awesome-icon :icon="['far', 'map-marker-alt']" fixed-width /> {{ banner.place }}
       </div>
     </div>
     <div class="logo">
@@ -100,12 +100,14 @@ export default {
       line-height: 1;
       color: $gray-900;
       font-weight: bold;
+      letter-spacing: -0.5px;
     }
 
     &-description {
       padding-top: .25rem;
       font-size: 14px;
       line-height: 1;
+      letter-spacing: -0.5px;
       color: $gray-700;
     }
 
@@ -145,7 +147,7 @@ export default {
       display: flex;
       align-items: center;
       font-size: 18px;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
       width: auto;
       color: $gray-700;
       padding-right: 1.25rem;
@@ -228,12 +230,14 @@ export default {
   .aspect-916 {
     .blob {
       &-1 {
-        display: none;
+        left: -125%;
+        top: -88%;
       }
 
       &-2 {
-        left: -110%;
-        bottom: -94%;
+        left: 60%;
+        bottom: -88%;
+        --gradient-orientation: -45deg;
       }
 
       &-image {
@@ -244,20 +248,95 @@ export default {
       }
     }
 
-    .event {
-      top: 360px;
+    .speakers {
+      padding: 0 30px;
+      box-sizing: border-box;
+      width: 100%;
+      top: 98px;
 
-      &-title {
-        font-size: 34px;
-        line-height: 1.42;
-        color: white;
-        padding: 0 10px;
-        border-radius: 2px;
-        background: linear-gradient(45deg,$gradient-start,$gradient-end);
-        letter-spacing: -1px;
-        display: inline;
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
+      &-overtitle{
+        font-size: 20px;
+      }
+
+      &-items {
+        top: 30%;
+        left: 30px;
+        right: 30px;
+        grid-row-gap: 10px;
+        grid-column-gap: 0;
+        justify-content: start;
+        grid-template-columns: 1fr;
+        height: 250px;
+        align-content: center;
+      }
+
+      &-item {
+        display: grid;
+        grid-template-columns: var(--image-size, 75px) auto;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+          "image name"
+          "image description";
+        grid-column-gap: 10px;
+        grid-row-gap: 5px;
+      }
+
+      &-name {
+        grid-area: name;
+        align-self: end;
+      }
+
+      &-description {
+        grid-area: description;
+        align-self: start;
+      }
+
+      &-image {
+        grid-area: image;
+        height: 75px;
+        border-radius: 100%;
+      }
+
+      &-details-wrapper {
+        padding: 0 30px;
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column;
+        bottom: 10%;
+      }
+
+      &-details {
+        margin: .4rem 0;
+        font-size: 19px;
+
+        svg {
+          margin-right: .25rem;
+        }
+      }
+    }
+
+    &.has-2-speakers {
+      .speakers {
+        &-item {
+          --image-size: 90px;
+        }
+
+        &-image {
+          height: 90px;
+        }
+      }
+    }
+
+    &.has-4-speakers {
+      .speakers {
+        &-item {
+          --image-size: 60px;
+          grid-row-gap: 0;
+        }
+
+        &-image {
+          height: 60px;
+        }
       }
     }
 
