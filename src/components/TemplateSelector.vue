@@ -138,14 +138,6 @@ export default {
     }
   }
 
-  .gradient-start {
-    stop-color: $gradient-start;
-  }
-
-  .gradient-end {
-    stop-color: $gradient-end;
-  }
-
   @media (max-width: $xs-breakpoint) {
     .template-selector {
       h2 {

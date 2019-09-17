@@ -48,7 +48,7 @@
         v-if="aspect !== 2"
         :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
         :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
-        <b-input placeholder="Riu Túria" v-model="properties.place"></b-input>
+        <b-input placeholder="Riu Túria" v-model="properties.place" maxlength="60"></b-input>
       </b-field>
     </transition>
 

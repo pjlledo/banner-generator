@@ -10,10 +10,10 @@ import 'vue-swatches/dist/vue-swatches.min.css'
 
 Vue.config.productionTip = false
 Vue.use(Buefy, {
-  defaultIconComponent: 'vue-fontawesome',
+  defaultIconComponent: 'font-awesome-icon',
   defaultIconPack: 'far'
 })
-Vue.component('vue-fontawesome', FontAwesomeIcon)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 new Vue({
   router,

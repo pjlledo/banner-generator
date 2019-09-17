@@ -77,3 +77,11 @@
 .dropdown-item .field {
   margin-bottom: 0;
 }
+
+.gradient-start {
+  stop-color: $gradient-start;
+}
+
+.gradient-end {
+  stop-color: $gradient-end;
+}

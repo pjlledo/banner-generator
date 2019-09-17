@@ -5,7 +5,7 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
-      banner.localLabel ? 'has-local-label' : '',
+      banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
       banner.title.length > 30 && banner.speakers.length !== 2 ? 'has-long-title' : 'has-short-title',
       `has-${banner.speakers.length}-speakers`
     ]"
@@ -25,25 +25,31 @@
       <div class="speakers-overtitle" contenteditable>
         {{ banner.overtitle | formatString }}
       </div>
-      <div class="speakers-title" contenteditable>
+      <div class="speakers-title" :style="{fontSize: fontSize('title', 50, 33 , 60)}">
         {{ banner.title | formatString }}
       </div>
     </div>
     <div class="speakers-details-wrapper" v-if="aspect !== 'event'">
-      <div class="speakers-details" contenteditable>
-        <b-icon icon="calendar-day"/>{{ banner.date | formatDate }}
+      <div class="speakers-details speakers-date" contenteditable>
+        <font-awesome-icon :icon="['far', 'calendar-day']" /> {{ banner.date | formatDate }}
       </div>
       <div class="speakers-details" contenteditable>
-        <b-icon icon="clock"/>{{ banner.time | formatTime }}
+        <font-awesome-icon :icon="['far', 'clock']" /> {{ banner.time | formatTime }}
       </div>
       <div class="speakers-details" contenteditable>
-        <b-icon icon="map-marker-alt"/>{{ banner.place }}
+        <font-awesome-icon :icon="['far', 'map-marker-alt']" /> {{ banner.place }}
       </div>
     </div>
     <div class="logo">
       <compromis-logo />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
+    <svg width="0" height="0">
+      <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
+        <stop class="gradient-start" offset="0" />
+        <stop class="gradient-end" offset="1" />
+      </radialGradient>
+    </svg>
   </div>
 </template>
 
@@ -131,28 +137,35 @@ export default {
     &-details-wrapper {
       display: flex;
       position: absolute;
-      bottom: 23%;
+      bottom: 18%;
       padding: 0 45px;
     }
 
     &-details {
       display: flex;
       align-items: center;
-      font-size: 19px;
+      font-size: 18px;
       letter-spacing: -0.5px;
       width: auto;
       color: $gray-700;
-      padding-right: .5rem;
+      padding-right: 1.25rem;
+      line-height: 1.1;
 
-      .icon {
-        padding-right: .3rem;
-        svg {
-          width: 500px;
-          height: 500px;
+      svg {
+        padding-right: .5rem;
+        font-size: 1.75rem;
+
+        * {
+          fill: url(#compromisGradient) !important;
         }
       }
     }
 
+    &-date {
+      width: 250px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
   }
 
   .blob {
