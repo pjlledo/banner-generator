@@ -338,7 +338,6 @@ export default {
       display: none
     }
 
-
     .hashtag {
 
     }

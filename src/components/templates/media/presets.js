@@ -49,7 +49,7 @@ const sources = [
           {
             id: 'docs',
             name: 'Docs',
-            logo: docs,
+            logo: docs
           },
           {
             id: 'apuntntc',
