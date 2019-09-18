@@ -22,7 +22,6 @@
         <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
       <div class="headline-text"
-        contenteditable
         :style="{
           fontFamily: banner.source ? banner.source.fontFamily : false,
           fontSize: aspect === '11' ? fontSize('headline', 50, 30, 160) : fontSize('headline', 35, 23.5, 160),
@@ -55,7 +54,8 @@ export default {
   @import "../../../sass/variables";
   @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web:700&display=swap');
 
   @font-face {
     font-family: 'Tiempos Headline';

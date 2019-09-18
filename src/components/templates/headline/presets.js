@@ -10,6 +10,14 @@ import ApuntSVG from './logos/apunt.svg'
 import SerSVG from './logos/ser.svg'
 import ValenciaplazaSVG from './logos/valenciaplaza.svg'
 import InformacionSVG from './logos/informacion.svg'
+import VeinteMinutosSVG from './logos/20_minutos.svg'
+import LaVeuSVG from './logos/laveu.svg'
+import EuropaPressSVG from './logos/europapress.svg'
+import InfoLibrePNG from './logos/infolibre.png'
+import ElPeriodicoDeAquiJPG from './logos/elperiodicodeaqui.jpg'
+import ValenciaExtraPNG from './logos/valencia-extra.png'
+import ElPeriodicSVG from './logos/elperiodic.svg'
+import ElConfidencialPNG from './logos/elconfidencial.png'
 
 const sources = [
   {
@@ -52,7 +60,7 @@ const sources = [
     name: 'Levante',
     logo: LevanteSVG,
     logoHeight: 20,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Roboto Condensed'
   },
   {
     id: 'apunt',
@@ -88,7 +96,7 @@ const sources = [
     id: 'valenciaplaza',
     name: 'Valencia Plaza',
     logo: ValenciaplazaSVG,
-    logoHeight: 24,
+    logoHeight: 26,
     fontFamily: 'Tiempos Headline'
   },
   {
@@ -97,6 +105,62 @@ const sources = [
     logo: InformacionSVG,
     logoHeight: 24,
     fontFamily: 'Tiempos Headline'
+  },
+  {
+    id: '20minutos',
+    name: '20 Minutos',
+    logo: VeinteMinutosSVG,
+    logoHeight: 34,
+    fontFamily: 'Helvetica, Arial'
+  },
+  {
+    id: 'laveu',
+    name: 'La Veu',
+    logo: LaVeuSVG,
+    logoHeight: 24,
+    fontFamily: 'Gotham'
+  },
+  {
+    id: 'europapress',
+    name: 'EuropaPress',
+    logo: EuropaPressSVG,
+    logoHeight: 18,
+    fontFamily: 'Roboto Slab'
+  },
+  {
+    id: 'infolibre',
+    name: 'InfoLibre',
+    logo: InfoLibrePNG,
+    logoHeight: 22,
+    fontFamily: 'Georgia'
+  },
+  {
+    id: 'elperiodicodeaqui',
+    name: 'El Periódico de Aquí',
+    logo: ElPeriodicoDeAquiJPG,
+    logoHeight: 28,
+    fontFamily: 'Tiempos Headline'
+  },
+  {
+    id: 'elconfidencial',
+    name: 'El Confidencial',
+    logo: ElConfidencialPNG,
+    logoHeight: 24,
+    fontFamily: 'Tiempos Headline'
+  },
+  {
+    id: 'elperiodic',
+    name: 'elperiòdic.com',
+    logo: ElPeriodicSVG,
+    logoHeight: 24,
+    fontFamily: 'Roboto Slab'
+  },
+  {
+    id: 'valenciaextra',
+    name: 'València Extra',
+    logo: ValenciaExtraPNG,
+    logoHeight: 24,
+    fontFamily: 'Titillium Web'
   }
 ]
 
