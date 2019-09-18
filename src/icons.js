@@ -4,7 +4,7 @@ import {
   faExclamationTriangle, faChevronLeft, faClock, faCalendarDay, faMapMarkerAlt,
   faCalendarAlt, faAngleLeft, faAngleRight, faExclamationCircle, faUser,
   faCreditCardBlank, faKeynote, faRectangleLandscape, faAlignLeft, faAlignCenter, faAlignRight,
-  faArrowToTop, faGripLines, faBroadcastTower, faFont, faQuoteLeft, faNewspaper, faPortrait,
+  faArrowToTop, faGripLines, faBroadcastTower, faFont, faQuoteLeft, faNewspaper, faPortrait, faUserCircle,
   faQuestionCircle
 } from '@fortawesome/pro-regular-svg-icons'
 
@@ -13,6 +13,6 @@ library.add(
   faExclamationTriangle, faChevronLeft, faClock, faCalendarDay, faMapMarkerAlt,
   faCalendarAlt, faAngleLeft, faAngleRight, faExclamationCircle, faUser,
   faCreditCardBlank, faKeynote, faRectangleLandscape, faAlignLeft, faAlignCenter, faAlignRight,
-  faArrowToTop, faGripLines, faBroadcastTower, faFont, faQuoteLeft, faNewspaper, faPortrait,
+  faArrowToTop, faGripLines, faBroadcastTower, faFont, faQuoteLeft, faNewspaper, faPortrait, faUserCircle,
   faQuestionCircle
 )

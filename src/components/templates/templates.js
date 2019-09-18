@@ -58,6 +58,16 @@ const templates = [
       pane: () => import(/* webpackChunkName: "speakers" */ './speakers/SpeakersPane'),
       canvas: () => import(/* webpackChunkName: "speakers" */ './speakers/SpeakersCanvas')
     }
+  },
+  {
+    id: 'Social',
+    name: 'Icona per a Xarxes',
+    aspects: ['11'],
+    icon: 'user-circle',
+    components: {
+      pane: () => import(/* webpackChunkName: "speakers" */ './social/SocialPane'),
+      canvas: () => import(/* webpackChunkName: "speakers" */ './social/SocialCanvas')
+    }
   }
 ]
 

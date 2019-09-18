@@ -21,11 +21,11 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="speakers" contenteditable>
-      <div class="speakers-overtitle" contenteditable>
+    <div class="speakers">
+      <div class="speakers-overtitle">
         {{ banner.overtitle | formatString }}
       </div>
-      <div class="speakers-title" :style="{ fontSize: aspect === 11 ? fontSize('title', 50, 33 , 60) : fontSize('title', 40, 25 , 60) }">
+      <div class="speakers-title" :style="{ fontSize: aspect === 11 ? fontSize('title', 50, 33 , 60) : aspect === 'event' ? fontSize('title', 110, 80 , 60) : fontSize('title', 40, 25 , 60) }">
         {{ banner.title | formatString }}
       </div>
     </div>
@@ -198,9 +198,6 @@ export default {
   }
 
   .has-2-speakers {
-    .speakers-title {
-
-    }
 
     .blob-1 {
       top: -42%;
@@ -348,33 +345,56 @@ export default {
     // Event aspect
   .aspect-event {
     .blob {
+      border-radius: 9rem;
+
       &-1 {
         top: -50%;
-        left: -10%;
+        left: 70%;
         z-index: 20;
       }
 
       &-2 {
         left: auto;
         bottom: -50%;
-        right: -10%;
+        right: 70%;
         z-index: 20;
+      }
+    }
+
+    .speakers {
+      top: 0;
+      padding: 80px;
+
+      &-items {
+        --image-size: 415px;
+        grid-column-gap: 35px;
+        left: 60px;
+        right: 60px;
+        top: 35%;
+        justify-content: center;
       }
 
       &-image {
-        transform: rotate(0);
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
-
-        img {
-          transform: rotate(0) scale(1);
-        }
+        height: 415px;
+        border-radius: 3rem;
       }
+
+      &-name, &-description {
+        display: none;
+      }
+
+      &-title {
+        width: 1200px;
+      }
+
+      &-overtitle {
+        font-size: 3rem;
+      }
+
+    }
+
+    .logo {
+      display: none;
     }
   }
 </style>
