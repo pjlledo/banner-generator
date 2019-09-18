@@ -4,7 +4,7 @@
       <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
-      <div class="canvas-wrapper" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
+      <div :class="['canvas-wrapper', `template-${template.id.toLowerCase()}`]" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
         <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" />
       </div>
     </b-tabs>
@@ -166,6 +166,13 @@ export default {
         overflow: hidden;
       }
     }
+  }
+
+  .template-social {
+    border-radius: 100%;
+    overflow: hidden;
+    outline: 0;
+    border-color: $gray-900;
   }
 
   @media (max-width: $xs-breakpoint) {
