@@ -70,7 +70,7 @@ export default {
 
   @media (max-width: $xs-breakpoint) {
     .navbar {
-      z-index: 400;
+      z-index: 100;
       padding: .75rem 1rem;
 
       .logo-label {

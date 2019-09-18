@@ -17,12 +17,14 @@
       :template="selectedTemplate"
       :banner="bannerProperties"
       :is-downloadable="isDownloadable" />
+    <help-form class="help-form" />
   </div>
 </template>
 
 <script>
 import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
+import HelpForm from './HelpForm'
 import templates from './templates/templates'
 
 export default {
@@ -30,7 +32,8 @@ export default {
 
   components: {
     AppNav,
-    CanvasContainer
+    CanvasContainer,
+    HelpForm
   },
 
   data () {
@@ -86,7 +89,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 100;
+    z-index: 40;
  }
 
   .nav {
@@ -127,6 +130,12 @@ export default {
     justify-content: center;
   }
 
+  .help-form {
+    position: absolute;
+    top: 4rem;
+    right: 1.5rem;
+  }
+
   @media (max-width: $xs-breakpoint) {
     .workspace {
       position: relative;
@@ -147,7 +156,7 @@ export default {
     }
 
     .nav {
-      z-index: 40;
+      z-index: 35;
       position: fixed;
       top: $navbar-height;
       width: 100%;
@@ -163,6 +172,13 @@ export default {
       overflow: visible;
       padding: 1.5rem 1rem;
       width: 100vw;
+    }
+
+    .help-form {
+      position: fixed;
+      top: 7.5rem;
+      right: 1rem;
+      z-index: 35;
     }
   }
 </style>
