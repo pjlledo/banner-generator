@@ -15,7 +15,7 @@
     <div class="quote">
       <div class="quote-glyph">“</div>
       <div class="quote-text-wrapper">
-        <div class="quote-text" :style="{fontSize: fontSize('quote', 47, 30, 140)}">
+        <div class="quote-text" :style="{fontSize: aspect === '11' ? fontSize('quote', 47, 30, 140) : fontSize('quote', 47, 20, 140)}">
           {{ banner.quote | formatString }}<span v-if="banner.quote.substring(banner.quote.length - 1, banner.quote.length) !== '.'">.</span><span>”</span>
         </div>
       </div>
