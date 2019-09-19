@@ -53,6 +53,12 @@ export default {
     this.selectedTemplate = this.templates.find(template => template.id.toLowerCase() === this.$route.params.pathMatch)
   },
 
+  watch: {
+    '$route': function (newRoute) {
+      this.selectedTemplate = this.templates.find(template => template.id.toLowerCase() === newRoute.params.pathMatch)
+    }
+  },
+
   methods: {
     back (confirmed) {
       this.$router.push({ name: 'start', params: { confirmed } })

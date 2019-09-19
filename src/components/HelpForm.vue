@@ -10,15 +10,22 @@
       @submit.prevent="submit">
       <input type="hidden" name="form-name" value="ask-question" />
       <b-field label="E-mail">
-        <b-input placeholder="joan@compromis.net" v-model="form.email"></b-input>
+        <b-input type="email" placeholder="joan@compromis.net" v-model="form.email" required></b-input>
       </b-field>
       <b-field label="Dubte o suggeriment">
-        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="form.text"></b-input>
+        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="form.text" required></b-input>
       </b-field>
       <b-button native-type="submit" type="is-primary">Enviar</b-button>
     </form>
-    <div v-else>
-      SUccess
+    <div v-if="formSubmitted">
+       <b-message type="is-success" has-icon aria-close-label="Close message">
+          Gràcies pel teu missatge. Et donarem una resposta com més aviat possible.
+        </b-message>
+    </div>
+    <div v-if="formSubmitted === false">
+       <b-message type="is-danger" has-icon aria-close-label="Close message">
+          Hi ha hagut un problema enviant el teu missatge. Torna a intentar-ho més tard o escriu-nos directament a <a href="mailto:disseny@compromis.net"><strong>disseny@compromis.net</strong></a>.
+        </b-message>
     </div>
   </div>
 </template>
@@ -35,37 +42,38 @@
           email: '',
           text: ''
         },
-        formSubmitted: false
+        formSubmitted: null
       }
     },
 
     methods: {
-      encode (data) {
-      return Object.keys(data)
-        .map(
-            key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-          )
-          .join("&")
-      },
       submit () {
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         }
         axios.post(
           "/",
-          this.encode({
+          {
             "form-name": "ask-question",
             ...this.form
-          }),
+          },
           axiosConfig
         ).then(() => {
           this.formSubmitted = true
+        }).catch((error) => {
+          this.formSubmitted = false
         })
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  .message {
+    margin-top: 1rem;
 
+    .media {
+      align-items: center;
+    }
+  }
 </style>

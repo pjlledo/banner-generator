@@ -6,7 +6,8 @@ const templates = [
     icon: 'newspaper',
     components: {
       pane: () => import(/* webpackChunkName: "headline" */ './headline/HeadlinePane'),
-      canvas: () => import(/* webpackChunkName: "headline" */ './headline/HeadlineCanvas')
+      canvas: () => import(/* webpackChunkName: "headline" */ './headline/HeadlineCanvas'),
+      help: () => import(/* webpackChunkName: "headline" */ './headline/HeadlineHelp')
     }
   },
   {
@@ -16,7 +17,8 @@ const templates = [
     icon: 'font',
     components: {
       pane: () => import(/* webpackChunkName: "generic" */ './generic/GenericPane'),
-      canvas: () => import(/* webpackChunkName: "generic" */ './generic/GenericCanvas')
+      canvas: () => import(/* webpackChunkName: "generic" */ './generic/GenericCanvas'),
+      help: () => import(/* webpackChunkName: "generic" */ './generic/GenericHelp')
     }
   },
   {
@@ -26,7 +28,8 @@ const templates = [
     icon: 'quote-left',
     components: {
       pane: () => import(/* webpackChunkName: "quote" */ './quote/QuotePane'),
-      canvas: () => import(/* webpackChunkName: "quote" */ './quote/QuoteCanvas')
+      canvas: () => import(/* webpackChunkName: "quote" */ './quote/QuoteCanvas'),
+      help: () => import(/* webpackChunkName: "quote" */ './quote/QuoteHelp')
     }
   },
   {
@@ -36,7 +39,8 @@ const templates = [
     icon: 'broadcast-tower',
     components: {
       pane: () => import(/* webpackChunkName: "media" */ './media/MediaPane'),
-      canvas: () => import(/* webpackChunkName: "media" */ './media/MediaCanvas')
+      canvas: () => import(/* webpackChunkName: "media" */ './media/MediaCanvas'),
+      help: () => import(/* webpackChunkName: "media" */ './media/MediaHelp')
     }
   },
   {
@@ -57,7 +61,8 @@ const templates = [
     icon: 'keynote',
     components: {
       pane: () => import(/* webpackChunkName: "speakers" */ './speakers/SpeakersPane'),
-      canvas: () => import(/* webpackChunkName: "speakers" */ './speakers/SpeakersCanvas')
+      canvas: () => import(/* webpackChunkName: "speakers" */ './speakers/SpeakersCanvas'),
+      help: () => import(/* webpackChunkName: "speakers" */ './speakers/SpeakersHelp')
     }
   },
   {
@@ -67,7 +72,8 @@ const templates = [
     icon: 'user-circle',
     components: {
       pane: () => import(/* webpackChunkName: "speakers" */ './social/SocialPane'),
-      canvas: () => import(/* webpackChunkName: "speakers" */ './social/SocialCanvas')
+      canvas: () => import(/* webpackChunkName: "speakers" */ './social/SocialCanvas'),
+      help: () => import(/* webpackChunkName: "speakers" */ './social/SocialHelp')
     }
   }
 ]

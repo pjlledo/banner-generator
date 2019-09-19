@@ -44,6 +44,12 @@ export default {
     toggleForm () {
       this.formIsActive = !this.formIsActive
     }
+  },
+
+  watch: {
+    '$route': function () {
+      this.formIsActive = false
+    }
   }
 }
 </script>
