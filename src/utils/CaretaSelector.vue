@@ -1,9 +1,25 @@
 <template>
-  <ul class="careta-selector">
-    <li :class="{'active' : value === 'normal'}" @click="$emit('input', 'normal')"><careta logo-style="normal"></careta></li>
-    <li :class="{'active' : value === 'feminista'}" @click="$emit('input', 'feminista')"><careta logo-style="feminista"></careta></li>
-    <li :class="{'active' : value === 'lgtb'}" @click="$emit('input', 'lgtb')"><careta logo-style="lgtb"></careta></li>
-  </ul>
+  <div>
+    <ul class="careta-selector">
+      <li :class="{'active' : value === 'normal'}" @click="$emit('input', 'normal')">
+          <careta logo-style="normal"></careta>
+      </li>
+      <li :class="{'active' : value === 'feminista'}" @click="$emit('input', 'feminista')">
+          <careta logo-style="feminista"></careta>
+      </li>
+      <li :class="{'active' : value === 'lgtb'}" @click="$emit('input', 'lgtb')">
+          <careta logo-style="lgtb"></careta>
+      </li>
+    </ul>
+    <b-message v-if="value === 'feminista'" type="is-warning" size="is-small">
+      El logo Compromís Feminista està pensat per ser utilitzat a les xarxes únicament
+      el 8 de març o altres dates simbòliques del feminisme.
+    </b-message>
+    <b-message v-if="value === 'lgtb'" type="is-warning" size="is-small">
+      El logo Compromís LGTB està pensat per ser utilitzat a les xarxes únicament
+      durant el mes de l'orgull o altres dates simbòliques del moviment LGTB.
+    </b-message>
+  </div>
 </template>
 
 <script>
@@ -25,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../sass/variables";
 
 .careta-selector {
@@ -59,5 +75,10 @@ export default {
       }
     }
   }
+}
+
+.message-body {
+  font-size: .85rem;
+  margin-top: 1rem;
 }
 </style>
