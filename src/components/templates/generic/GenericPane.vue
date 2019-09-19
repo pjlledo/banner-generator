@@ -2,10 +2,7 @@
   <div :class="{ 'pane generic-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
     <!-- Text -->
     <div class="text-wrapper">
-      <b-field
-        label="Text"
-        :type="properties.text ? '' : displayErrors ? 'is-danger' : ''"
-        :message="properties.text ? '' : displayErrors ? `Has d'omplir el text` : ''">
+      <b-field label="Text">
         <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.text" maxlength="100"></b-input>
       </b-field>
 
@@ -105,7 +102,6 @@ export default {
       handler: function (properties) {
         // Check if canvas can be downloaded
         this.isDownloadable = (
-          properties.text !== '' &&
           properties.picture !== null
         )
       },
