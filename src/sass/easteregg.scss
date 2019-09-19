@@ -1,0 +1,25 @@
+.easter-egg {
+    .headline-text,
+    .quote-text,
+    .quote-author,
+    .quote-glyph,
+    .medium,
+    .event,
+    .medium-title,
+    .event-title,
+    .speakers,
+    .speakers-title,
+    .speakers-items,
+    .speakers-details,
+    .text-lines {
+        font-family: 'Comic Sans MS', 'Comic Sans' !important;
+    }
+
+    .blob {
+        background: linear-gradient(red, magenta, blue, cyan, lime, yellow, orange);
+
+        &-image {
+            background: $gray-200;
+        }
+    }
+}
