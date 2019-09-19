@@ -16,9 +16,7 @@
     </p>
 
     <div class="help-examples">
-      <img src="./examples/11.png" alt="Exemple 1:1" />
-      <img src="./examples/916.png" alt="Exemple 9:16" />
-      <img src="./examples/event.png" alt="Exemple Portada" />
+      <img style="border-radius: 100%" src="./examples/11.png" alt="Exemple 1:1" />
     </div>
   </div>
 </template>

@@ -16,7 +16,7 @@
       <div class="medium-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div class="medium-title">
+      <div class="medium-title" :style="{fontSize: fontSize('title', 60, 40, 30)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="medium-subtitle">
@@ -96,7 +96,7 @@ export default {
     &-title {
       display: block;
       font-size: 33px;
-      line-height: 1.1;
+      line-height: 1;
       color: $gray-900;
       letter-spacing: -1px;
       word-wrap: break-word;

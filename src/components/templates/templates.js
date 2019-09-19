@@ -71,9 +71,9 @@ const templates = [
     aspects: ['11'],
     icon: 'user-circle',
     components: {
-      pane: () => import(/* webpackChunkName: "speakers" */ './social/SocialPane'),
-      canvas: () => import(/* webpackChunkName: "speakers" */ './social/SocialCanvas'),
-      help: () => import(/* webpackChunkName: "speakers" */ './social/SocialHelp')
+      pane: () => import(/* webpackChunkName: "social" */ './social/SocialPane'),
+      canvas: () => import(/* webpackChunkName: "social" */ './social/SocialCanvas'),
+      help: () => import(/* webpackChunkName: "social" */ './social/SocialHelp')
     }
   }
 ]

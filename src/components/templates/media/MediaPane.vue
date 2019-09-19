@@ -6,7 +6,7 @@
       :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.title ? '' : displayErrors ? `Has d'omplir el títol` : ''">
       <b-input
-        placeholder="Models de Finançament"
+        placeholder="Mónica Oltra"
         v-model="properties.title"
         maxlength="30">
       </b-input>
@@ -15,7 +15,7 @@
     <!-- Overtitle -->
     <b-field label="Tipus d'acte">
       <b-input
-        placeholder="Debat"
+        placeholder="Entrevista"
         v-model="properties.overtitle"
         maxlength="30">
       </b-input>
@@ -24,7 +24,7 @@
     <!-- Subtitle -->
     <b-field label="Subtítol">
       <b-input
-        placeholder="amb Mónica Oltra"
+        placeholder="a Assumptes Interns"
         v-model="properties.subtitle"
         maxlength="40">
       </b-input>

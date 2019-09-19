@@ -164,7 +164,6 @@ export default {
     }
 
     &-date {
-      width: 250px;
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -394,6 +393,12 @@ export default {
 
     .logo {
       display: none;
+    }
+
+    &.has-2-speakers {
+      .speakers-items {
+        transform: scale(1.2);
+      }
     }
   }
 </style>
