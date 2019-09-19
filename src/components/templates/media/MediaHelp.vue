@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'event-help'
-  }
+export default {
+  name: 'event-help'
+}
 </script>

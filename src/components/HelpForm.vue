@@ -31,41 +31,40 @@
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    name: 'help-form',
+export default {
+  name: 'help-form',
 
-    data() {
-      return {
-        form: {
-          email: '',
-          text: ''
+  data () {
+    return {
+      form: {
+        email: '',
+        text: ''
+      },
+      formSubmitted: null
+    }
+  },
+
+  methods: {
+    submit () {
+      const axiosConfig = {
+        header: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      }
+      axios.post('/',
+        {
+          'form-name': 'ask-question',
+          ...this.form
         },
-        formSubmitted: null
-      }
-    },
-
-    methods: {
-      submit () {
-        const axiosConfig = {
-          header: { "Content-Type": "application/x-www-form-urlencoded" }
-        }
-        axios.post(
-          "/",
-          {
-            "form-name": "ask-question",
-            ...this.form
-          },
-          axiosConfig
-        ).then(() => {
-          this.formSubmitted = true
-        }).catch((error) => {
-          this.formSubmitted = false
-        })
-      }
+        axiosConfig
+      ).then(() => {
+        this.formSubmitted = true
+      }).catch(() => {
+        this.formSubmitted = false
+      })
     }
   }
+}
 </script>
 
 <style lang="scss">

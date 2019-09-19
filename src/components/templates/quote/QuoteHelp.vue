@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'generic-help'
-  }
+export default {
+  name: 'generic-help'
+}
 </script>

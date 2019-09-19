@@ -31,9 +31,8 @@ export default {
     },
 
     formatString (string) {
-
       if (string.includes('graphic design is my passion')) {
-        const body = document.getElementsByTagName("body")[0]
+        const body = document.getElementsByTagName('body')[0]
         body.classList.add('easter-egg')
       }
 

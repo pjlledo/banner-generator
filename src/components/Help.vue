@@ -24,14 +24,14 @@ export default {
   name: 'help',
 
   components: {
-    HelpForm,
+    HelpForm
   },
 
   props: {
     template: {
       type: Object,
       required: true
-    },
+    }
   },
 
   data () {
