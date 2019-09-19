@@ -31,7 +31,7 @@
         <div class="event-details">
           <b-icon icon="map-marker-alt"/> {{ banner.place }}
         </div>
-        <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 && aspect === '11'" contenteditable>
+        <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 && aspect === '11'">
           <b-icon icon="keynote"/>
           <ul>
             <li v-for="(speaker, i) in banner.speakers" :key="i">
@@ -58,7 +58,8 @@ export default {
 
   computed: {
     isCrowded: function () {
-      return this.banner.speakers.length > 2
+      return (this.banner.speakers.length > 2 && (this.banner.title.length > 30 || this.banner.place.length > 50)) ||
+        this.banner.speakers.length > 4
     }
   }
 }
@@ -264,8 +265,8 @@ export default {
         font-size: 3rem;
         letter-spacing: -1px;
         font-weight: bold;
-        bottom: -150px;
-        right: 60px;
+        top: -150px;
+        left: 60px;
         z-index: 20;
       }
     }

@@ -1,60 +1,71 @@
 <template>
   <div>
-    <b-tooltip label="Ajuda i suggeriments" position="is-left" type="is-dark">
-      <b-button type="is-text" class="help-button" @click="toggleForm">
-        <b-icon icon="question-circle" size="is-large" />
-      </b-button>
-    </b-tooltip>
-
-    <b-modal :active.sync="formIsActive" scroll="keep">
-      <div class="card content">
-        dsdsad
-      </div>
-    </b-modal>
+    <h2>Més dubtes?</h2>
+    <form
+      v-if="!formSubmitted"
+      name="ask-question"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      @submit.prevent="submit">
+      <input type="hidden" name="form-name" value="ask-question" />
+      <b-field label="E-mail">
+        <b-input placeholder="joan@compromis.net" v-model="form.email"></b-input>
+      </b-field>
+      <b-field label="Dubte o suggeriment">
+        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="form.text"></b-input>
+      </b-field>
+      <b-button native-type="submit" type="is-primary">Enviar</b-button>
+    </form>
+    <div v-else>
+      SUccess
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'help-form',
+  import axios from 'axios'
 
-  data () {
-    return {
-      formIsActive: false
-    }
-  },
+  export default {
+    name: 'help-form',
 
-  methods: {
-    toggleForm () {
-      this.formIsActive = !this.formIsActive
+    data() {
+      return {
+        form: {
+          email: '',
+          text: ''
+        },
+        formSubmitted: false
+      }
+    },
+
+    methods: {
+      encode (data) {
+      return Object.keys(data)
+        .map(
+            key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+          )
+          .join("&")
+      },
+      submit () {
+        const axiosConfig = {
+          header: { "Content-Type": "application/x-www-form-urlencoded" }
+        }
+        axios.post(
+          "/",
+          this.encode({
+            "form-name": "ask-question",
+            ...this.form
+          }),
+          axiosConfig
+        ).then(() => {
+          this.formSubmitted = true
+        })
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
-  @import '../sass/variables';
 
-  .help-button {
-    opacity: .5;
-    transition: .25s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  .card {
-    padding: 2rem;
-    border-radius: 1rem;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  @media (max-width: $xs-breakpoint) {
-    .card {
-      margin: 0 1rem;
-      padding: 1.25rem;
-    }
-  }
 </style>

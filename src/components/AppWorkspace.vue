@@ -17,14 +17,16 @@
       :template="selectedTemplate"
       :banner="bannerProperties"
       :is-downloadable="isDownloadable" />
-    <help-form class="help-form" />
+    <help
+      class="help"
+      :template="selectedTemplate" />
   </div>
 </template>
 
 <script>
 import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
-import HelpForm from './HelpForm'
+import Help from './Help'
 import templates from './templates/templates'
 
 export default {
@@ -33,7 +35,7 @@ export default {
   components: {
     AppNav,
     CanvasContainer,
-    HelpForm
+    Help
   },
 
   data () {
@@ -130,7 +132,7 @@ export default {
     justify-content: center;
   }
 
-  .help-form {
+  .help {
     position: absolute;
     top: 4rem;
     right: 1.5rem;
@@ -174,7 +176,7 @@ export default {
       width: 100vw;
     }
 
-    .help-form {
+    .help {
       position: fixed;
       top: 7.5rem;
       right: 1rem;

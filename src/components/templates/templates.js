@@ -46,7 +46,8 @@ const templates = [
     icon: 'portrait',
     components: {
       pane: () => import(/* webpackChunkName: "event" */ './event/EventPane'),
-      canvas: () => import(/* webpackChunkName: "event" */ './event/EventCanvas')
+      canvas: () => import(/* webpackChunkName: "event" */ './event/EventCanvas'),
+      help: () => import(/* webpackChunkName: "event" */ './event/EventHelp')
     }
   },
   {

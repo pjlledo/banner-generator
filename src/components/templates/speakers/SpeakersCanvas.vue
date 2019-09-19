@@ -390,7 +390,6 @@ export default {
       &-overtitle {
         font-size: 3rem;
       }
-
     }
 
     .logo {
