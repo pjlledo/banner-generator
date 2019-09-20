@@ -1,7 +1,7 @@
 <template>
   <div class="banner-workspace" v-if="banner">
     <b-tabs :class="['banner-aspect', `banner-aspect-${template.aspects[aspect]}`]" type="is-toggle-rounded" position="is-centered" v-model="aspect" @change="resize">
-      <b-tab-item v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
+      <b-tab-item id="aspect-tabs" v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
       <div :class="['canvas-wrapper', `template-${template.id.toLowerCase()}`]" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
@@ -9,7 +9,7 @@
       </div>
     </b-tabs>
 
-    <div class="primary-download-button">
+    <div id="download-button" class="primary-download-button">
       <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
         <b-button type="is-primary" size="is-large" rounded @click="download">
           <b-icon icon="arrow-to-bottom" />

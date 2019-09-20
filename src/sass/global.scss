@@ -86,3 +86,9 @@
 .gradient-end {
   stop-color: $gradient-end;
 }
+
+.v-step__content {
+  strong {
+    color: $white;
+  }
+}

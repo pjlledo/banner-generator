@@ -1,10 +1,10 @@
 <template>
   <div class="template-selector">
     <div class="template-selector-templates">
-      <h2>Selecciona un model de tarja</h2>
+      <h2 class="template-selector-header">Selecciona un model de tarja</h2>
       <ul>
         <li v-for="template in templates" :key="template.id">
-          <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
+          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`]">
             <span class="template-item-icon">
               <b-icon :icon="template.icon" size="is-large" />
             </span>
@@ -13,6 +13,7 @@
         </li>
       </ul>
     </div>
+    <v-tour name="selectorTour" :steps="selectorSteps"></v-tour>
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
         <stop class="gradient-start" offset="0" />
@@ -30,9 +31,33 @@ export default {
 
   data () {
     return {
-      templates: templates
+      templates: templates,
+      selectorSteps: [
+        {
+          target: '.template-selector-header',
+          content: `<strong>Hola! Estàs al generador de targes de Compromís</strong>,
+          una ferramenta per a crear gràfics per a xarxes socials ràpidament i fàcilment.
+          Si vols, et podem fer una curteta visita guiada per l'aplicació.`
+        },
+        {
+          target: '.template-selector-header',
+          content: `Aquesta és la pantalla principal. Ací podràs seleccionar entre els diferents models de tarja.`
+        },
+        {
+          target: '.template-item-headline',
+          content: `Per exemple, el model de titular serveix per a destacar una notícia publicada a premsa. Fes clic i t'ensenyem com crear-la`,
+          params: {
+            placement: 'bottom'
+          }
+        },
+      ]
     }
-  }
+  },
+
+  mounted: function () {
+    this.$tours['selectorTour'].start()
+  },
+
 }
 </script>
 
