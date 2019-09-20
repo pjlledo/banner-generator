@@ -81,7 +81,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import "../sass/variables";
 
  .workspace {
@@ -184,9 +184,13 @@ export default {
 
     .help {
       position: fixed;
-      top: 7.5rem;
-      right: 1rem;
+      top: 3.25rem;
+      right: 10rem;
       z-index: 35;
+
+      .button.is-text {
+        color: $white;
+      }
     }
   }
 </style>

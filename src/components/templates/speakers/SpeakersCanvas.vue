@@ -25,7 +25,7 @@
       <div class="speakers-overtitle">
         {{ banner.overtitle | formatString }}
       </div>
-      <div class="speakers-title" :style="{ fontSize: aspect === 11 ? fontSize('title', 50, 33 , 60) : aspect === 'event' ? fontSize('title', 110, 80 , 60) : fontSize('title', 40, 25 , 60) }">
+      <div class="speakers-title" :style="{ fontSize: aspect === '11' ? fontSize('title', 50, 35 , 60) : aspect === 'event' ? fontSize('title', 110, 80 , 60) : fontSize('title', 40, 27 , 60) }">
         {{ banner.title | formatString }}
       </div>
     </div>
