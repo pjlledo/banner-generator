@@ -15,7 +15,7 @@
       <b-field label="Dubte o suggeriment">
         <b-input type="textarea" placeholder="Un tren descarrila..." v-model="form.text" required></b-input>
       </b-field>
-      <b-button native-type="submit" type="is-primary">Enviar</b-button>
+      <b-button native-type="submit" type="is-primary" :loading="formSubmitting">Envia</b-button>
     </form>
     <div v-if="formSubmitted">
        <b-message type="is-success" has-icon aria-close-label="Close message">
@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'help-form',
 
@@ -42,22 +40,30 @@ export default {
         email: '',
         text: ''
       },
+      formSubmitting: false,
       formSubmitted: null
     }
   },
 
   methods: {
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join('&')
+    },
     submit () {
-      const axiosConfig = {
-        header: { 'Content-Type': 'application/x-www-form-urlencoded' }
-      }
-      axios.post('/',
-        {
-          'form-name': 'ask-question',
-          ...this.form
-        },
-        axiosConfig
-      ).then(() => {
+      fetch('https://compromis.net/espai/targes/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: this.encode({ ...this.form })
+      }).then(function (response) {
+        if (!response.ok) {
+            throw Error(response.statusText)
+        }
+        return response
+      }).then(() => {
         this.formSubmitted = true
       }).catch(() => {
         this.formSubmitted = false
