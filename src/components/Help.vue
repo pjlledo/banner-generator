@@ -1,16 +1,23 @@
 <template>
   <div class="help">
+    <div v-if="isText" class="text">
+      Si tens qualsevol dubte o suggeriment, pots <a href="#" @click.prevent="toggleForm">contactar-nos</a>.
+    </div>
+    <div v-else>
     <b-tooltip label="Ajuda i suggeriments" position="is-left" type="is-dark">
       <b-button type="is-text" class="help-button" @click="toggleForm">
         <b-icon icon="question-circle" size="is-large" />
       </b-button>
     </b-tooltip>
+    </div>
 
     <b-modal :active.sync="formIsActive" scroll="keep">
       <div class="content">
-        <h1>{{ template.name }}</h1>
-        <component :is="template.components.help" class="help-content" />
-        <hr>
+        <div v-if="template">
+          <h1>{{ template.name }}</h1>
+          <component :is="template.components.help" class="help-content" />
+          <hr>
+        </div>
         <help-form />
       </div>
     </b-modal>
@@ -28,10 +35,8 @@ export default {
   },
 
   props: {
-    template: {
-      type: Object,
-      required: true
-    }
+    template: Object,
+    isText: Boolean
   },
 
   data () {
@@ -60,6 +65,10 @@ export default {
   .help {
     h1 {
       font-size: 2.5rem;
+    }
+
+    .text {
+      font-size: 1rem;
     }
 
     &-content {

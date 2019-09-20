@@ -60,7 +60,7 @@ export default {
         body: this.encode({ ...this.form })
       }).then(function (response) {
         if (!response.ok) {
-            throw Error(response.statusText)
+          throw Error(response.statusText)
         }
         return response
       }).then(() => {

@@ -98,51 +98,51 @@ export default {
     right: 0;
     bottom: 0;
     z-index: 40;
- }
 
-  .nav {
-    grid-area: nav;
-  }
+    .nav {
+      grid-area: nav;
+    }
 
-  .pane {
-    grid-area: pane;
-    padding: 2rem 1rem 2rem 2rem;
-    background-color: $white;
-    box-shadow: 0 7px 25px -16px;
-    overflow-y: scroll;
-    align-self: stretch;
-
-    &::-webkit-scrollbar {
-      width: 1rem;
+    .pane {
+      grid-area: pane;
+      padding: 2rem 1rem 2rem 2rem;
       background-color: $white;
+      box-shadow: 0 7px 25px -16px;
+      overflow-y: scroll;
+      align-self: stretch;
+
+      &::-webkit-scrollbar {
+        width: 1rem;
+        background-color: $white;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $gray-400;
+        border-radius: 4rem;
+        transition: .25s ease-in-out;
+        border: .25rem $white solid;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: $gray-600;
+      }
     }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: $gray-400;
-      border-radius: 4rem;
-      transition: .25s ease-in-out;
-      border: .25rem $white solid;
+    .canvas {
+      grid-area: canvas;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: $gray-600;
+    .help {
+      position: absolute;
+      top: 4rem;
+      right: 1.5rem;
     }
-  }
-
-  .canvas {
-    grid-area: canvas;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .help {
-    position: absolute;
-    top: 4rem;
-    right: 1.5rem;
-  }
+ }
 
   @media (max-width: $xs-breakpoint) {
     .workspace {
@@ -154,42 +154,42 @@ export default {
         "pane";
       grid-template-columns: 1fr;
       grid-template-rows: 20px 400px 1fr;
-    }
 
-    .canvas {
-      position: fixed;
-      top: 100px;
-      z-index: 10;
-      width: 100%;
-    }
+      .canvas {
+        position: fixed;
+        top: 100px;
+        z-index: 10;
+        width: 100%;
+      }
 
-    .nav {
-      z-index: 35;
-      position: fixed;
-      top: $navbar-height;
-      width: 100%;
-    }
+      .nav {
+        z-index: 35;
+        position: fixed;
+        top: $navbar-height;
+        width: 100%;
+      }
 
-    .pane {
-      position: relative;
-      z-index: 15;
-      box-shadow: 0 -.4rem 1.7rem -.3rem rgba($gray-900, .15),
-        0 -.2rem 1rem -.5rem rgba($gray-900, .2),
-        0 .4rem 1rem -.4rem rgba($gray-900, .015);
-      border-radius: 1.5rem 1.5rem 0 0;
-      overflow: visible;
-      padding: 1.5rem 1rem;
-      width: 100vw;
-    }
+      .pane {
+        position: relative;
+        z-index: 15;
+        box-shadow: 0 -.4rem 1.7rem -.3rem rgba($gray-900, .15),
+          0 -.2rem 1rem -.5rem rgba($gray-900, .2),
+          0 .4rem 1rem -.4rem rgba($gray-900, .015);
+        border-radius: 1.5rem 1.5rem 0 0;
+        overflow: visible;
+        padding: 1.5rem 1rem;
+        width: 100vw;
+      }
 
-    .help {
-      position: fixed;
-      top: 3.25rem;
-      right: 10rem;
-      z-index: 35;
+      .help {
+        position: fixed;
+        top: 3.25rem;
+        right: 10rem;
+        z-index: 35;
 
-      .button.is-text {
-        color: $white;
+        .button.is-text {
+          color: $white;
+        }
       }
     }
   }

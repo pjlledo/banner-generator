@@ -13,6 +13,7 @@
         </li>
       </ul>
     </div>
+    <app-footer />
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
         <stop class="gradient-start" offset="0" />
@@ -24,9 +25,14 @@
 
 <script>
 import templates from './templates/templates'
+import AppFooter from './AppFooter'
 
 export default {
   name: 'template-selector',
+
+  components: {
+    AppFooter
+  },
 
   data () {
     return {
@@ -40,29 +46,29 @@ export default {
   @import '../sass/variables';
 
   .template-selector {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding-top: $navbar-height + 2rem;
     position: relative;
-    display: flex;
-    align-content: center;
+    height: 100vh;
+    max-width: 70rem;
+    margin: 0 auto;
 
     &-templates {
-      margin: $navbar-height auto;
-    }
-
-    h2 {
-      color: rgba($gray-900, .25);
-      padding: 1rem;
-      margin-top: 2rem;
-      font-size: 3rem;
-      font-weight: bold;
-      letter-spacing: -1px;
-      line-height: 1;
+      h2 {
+        color: rgba($gray-900, .25);
+        padding: 1rem;
+        font-size: 3rem;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+      }
     }
 
     ul {
       display: flex;
       flex-wrap: wrap;
       margin: 0 auto;
-      max-width: 70rem;
     }
 
     .template-item {
@@ -136,13 +142,21 @@ export default {
         padding: 1rem;
       }
     }
+
+    footer {
+      padding: 1rem;
+      backdrop-filter: blur(4px);
+      background-color: rgba($body-background-color, .75);
+      border-radius: .5rem;
+      margin-bottom: 1rem;
+    }
   }
 
   @media (max-width: $xs-breakpoint) {
     .template-selector {
       h2 {
         font-size: 2.25rem;
-        margin-top: 6rem;
+        margin-top: 4rem;
         width: 18rem;
       }
 
@@ -161,6 +175,12 @@ export default {
           padding: .75rem;
         }
       }
+    }
+
+    footer {
+      background: rgba($white, .75);
+      backdrop-filter: blur(4px);
+      margin-top: 2rem;
     }
   }
 </style>
