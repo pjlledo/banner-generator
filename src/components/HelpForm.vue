@@ -13,7 +13,7 @@
         <b-input type="email" placeholder="joan@compromis.net" v-model="form.email" required></b-input>
       </b-field>
       <b-field label="Dubte o suggeriment">
-        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="form.text" required></b-input>
+        <b-input type="textarea" placeholder="No em funciona el condensador de flux..." v-model="form.text" required></b-input>
       </b-field>
       <b-button native-type="submit" type="is-primary" :loading="formSubmitting">Envia</b-button>
     </form>
