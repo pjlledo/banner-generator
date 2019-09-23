@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <v-tour name="selectorTour" :steps="selectorSteps"></v-tour>
+    <v-tour name="selectorTour" :steps="selectorSteps" :callbacks="tourCallbacks"></v-tour>
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
         <stop class="gradient-start" offset="0" />
@@ -24,7 +24,9 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import templates from './templates/templates'
+import { selectorSteps } from '../tour'
 
 export default {
   name: 'template-selector',
@@ -32,32 +34,22 @@ export default {
   data () {
     return {
       templates: templates,
-      selectorSteps: [
-        {
-          target: '.template-selector-header',
-          content: `<strong>Hola! Estàs al generador de targes de Compromís</strong>,
-          una ferramenta per a crear gràfics per a xarxes socials ràpidament i fàcilment.
-          Si vols, et podem fer una curteta visita guiada per l'aplicació.`
-        },
-        {
-          target: '.template-selector-header',
-          content: `Aquesta és la pantalla principal. Ací podràs seleccionar entre els diferents models de tarja.`
-        },
-        {
-          target: '.template-item-headline',
-          content: `Per exemple, el model de titular serveix per a destacar una notícia publicada a premsa. Fes clic i t'ensenyem com crear-la`,
-          params: {
-            placement: 'bottom'
-          }
-        },
-      ]
+      selectorSteps: selectorSteps,
+      tourCallbacks: {
+        onStop: this.onTourStop
+      }
     }
   },
 
-  mounted: function () {
-    this.$tours['selectorTour'].start()
+  mounted () {
+    if (!Cookies.get('visited_selector_tour')) this.$tours['selectorTour'].start()
   },
 
+  methods: {
+    onTourStop () {
+      Cookies.set('visited_selector_tour', 'true')
+    }
+  }
 }
 </script>
 
