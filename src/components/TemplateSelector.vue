@@ -15,6 +15,7 @@
     </div>
     <app-footer />
     <v-tour name="selectorTour" :steps="selectorSteps" :callbacks="tourCallbacks" :options="{ labels }"></v-tour>
+    <BrowserWarning />
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
         <stop class="gradient-start" offset="0" />
@@ -26,15 +27,18 @@
 
 <script>
 import Cookies from 'js-cookie'
+import browser from 'browser-detect'
 import templates from './templates/templates'
 import AppFooter from './AppFooter'
 import { selectorSteps, labels } from '../tour'
+import BrowserWarning from '../utils/BrowserWarning'
 
 export default {
   name: 'template-selector',
 
   components: {
-    AppFooter
+    AppFooter,
+    BrowserWarning
   },
 
   data () {
@@ -49,7 +53,8 @@ export default {
   },
 
   mounted () {
-    if (!Cookies.get('visited_selector_tour')) this.$tours['selectorTour'].start()
+    const result = browser()
+    if (!Cookies.get('visited_selector_tour') && !result.mobile) this.$tours['selectorTour'].start()
   },
 
   methods: {
