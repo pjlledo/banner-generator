@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import { EventBus } from '@/event-bus'
 import PaneMixin from '@/mixins/pane-mixin.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
@@ -141,6 +142,10 @@ export default {
       },
       presets: presets
     }
+  },
+
+  mounted () {
+    EventBus.$emit('paneLoaded', true)
   },
 
   watch: {

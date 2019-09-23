@@ -31,7 +31,8 @@ import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
 import Help from './Help'
 import templates from './templates/templates'
-import { workspaceSteps, labels } from '../tour'
+import { workspaceSteps, labels } from '@/tour'
+import { EventBus } from '@/event-bus'
 
 export default {
   name: 'app-workspace',
@@ -63,8 +64,10 @@ export default {
   },
 
   mounted () {
-    if (!Cookies.get('visited_workspace_tour') && this.selectedTemplate.id === 'Headline') {
-      this.$tours['workspaceTour'].start()
+    if (!Cookies.get('visited_workspace_tour')) {
+      EventBus.$on('paneLoaded', () => {
+        this.$tours['workspaceTour'].start()
+      })
     }
   },
 
