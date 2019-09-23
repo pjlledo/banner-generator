@@ -3,6 +3,7 @@
     <!-- Disposition -->
     <transition name="slide">
       <b-tabs
+        id="disposition-tabs"
         type="is-toggle"
         size="is-small"
         v-model="properties.disposition"
@@ -16,6 +17,7 @@
 
     <!-- Source -->
     <b-field
+      id="source-field"
       label="Font"
       :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.source ? '' : displayErrors ? `Has se seleccionar una font` : ''">
@@ -53,6 +55,7 @@
 
     <!-- Headline -->
     <b-field
+      id="headline-field"
       label="Titular"
       :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
@@ -66,13 +69,14 @@
 
     <!-- Picture -->
     <picture-upload
+      id="picture-field"
       :picture="properties.picture"
       :display-errors="displayErrors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
     <!-- Picture position -->
-    <b-field label="Posició de la imatge" class="range">
+    <b-field id="picture-position-field" label="Posició de la imatge" class="range">
       <range-slider
         name="points"
         :min="0"
@@ -86,6 +90,7 @@
     <transition name="slide">
       <b-field label="Hashtag" v-if="!aspect">
         <b-input
+          id="hashtag-field"
           placeholder="#"
           @input="updateHashtag"
           :value="properties.hashtag"
@@ -96,7 +101,7 @@
 
     <!-- Local label -->
     <transition name="slide">
-      <div v-if="!aspect" class="field">
+      <div v-if="!aspect" class="field" id="local-label-field">
         <b-switch v-model="properties.hasLocalLabel" @input="properties.hashtag = properties.hashtag.substring(0, 18)">
           Afegir text al logo
         </b-switch>

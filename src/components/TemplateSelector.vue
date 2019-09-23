@@ -1,10 +1,10 @@
 <template>
   <div class="template-selector">
     <div class="template-selector-templates">
-      <h2>Selecciona un model de tarja</h2>
+      <h2 class="template-selector-header">Selecciona un model de tarja</h2>
       <ul>
         <li v-for="template in templates" :key="template.id">
-          <router-link :to="`/${template.id.toLowerCase()}`" class="template-item">
+          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`]">
             <span class="template-item-icon">
               <b-icon :icon="template.icon" size="is-large" />
             </span>
@@ -14,6 +14,7 @@
       </ul>
     </div>
     <app-footer />
+    <v-tour name="selectorTour" :steps="selectorSteps" :callbacks="tourCallbacks" :options="{ labels }"></v-tour>
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
         <stop class="gradient-start" offset="0" />
@@ -24,8 +25,10 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import templates from './templates/templates'
 import AppFooter from './AppFooter'
+import { selectorSteps, labels } from '../tour'
 
 export default {
   name: 'template-selector',
@@ -36,7 +39,22 @@ export default {
 
   data () {
     return {
-      templates: templates
+      templates: templates,
+      selectorSteps: selectorSteps,
+      tourCallbacks: {
+        onStop: this.onTourStop
+      },
+      labels: labels
+    }
+  },
+
+  mounted () {
+    if (!Cookies.get('visited_selector_tour')) this.$tours['selectorTour'].start()
+  },
+
+  methods: {
+    onTourStop () {
+      Cookies.set('visited_selector_tour', 'true')
     }
   }
 }

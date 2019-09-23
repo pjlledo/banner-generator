@@ -18,16 +18,20 @@
       :banner="bannerProperties"
       :is-downloadable="isDownloadable" />
     <help
+      id="help-button"
       class="help"
       :template="selectedTemplate" />
+    <v-tour name="workspaceTour" :steps="workspaceSteps" :callbacks="tourCallbacks" :options="{ startTimeout: 500, labels }"></v-tour>
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
 import Help from './Help'
 import templates from './templates/templates'
+import { workspaceSteps, labels } from '../tour'
 
 export default {
   name: 'app-workspace',
@@ -44,13 +48,24 @@ export default {
       bannerProperties: null,
       selectedTemplate: null,
       isCardModalActive: false,
-      isDownloadable: false
+      isDownloadable: false,
+      workspaceSteps: workspaceSteps,
+      tourCallbacks: {
+        onStop: this.onTourStop
+      },
+      labels: labels
     }
   },
 
   created () {
     // Find and set selected template based on route param
     this.selectedTemplate = this.templates.find(template => template.id.toLowerCase() === this.$route.params.pathMatch)
+  },
+
+  mounted () {
+    if (!Cookies.get('visited_workspace_tour') && this.selectedTemplate.id === 'Headline') {
+      this.$tours['workspaceTour'].start()
+    }
   },
 
   watch: {
@@ -66,6 +81,10 @@ export default {
 
     setIsDownloadable (isDownloadable) {
       this.isDownloadable = isDownloadable
+    },
+
+    onTourStop () {
+      Cookies.set('visited_workspace_tour', 'true')
     }
   },
 
