@@ -1,3 +1,10 @@
+export const labels = {
+  buttonSkip: 'Omet tour',
+  buttonPrevious: 'Anterior',
+  buttonNext: 'Següent',
+  buttonStop: 'Finalitza'
+}
+
 export const selectorSteps = [
   {
     target: '.template-selector-header',

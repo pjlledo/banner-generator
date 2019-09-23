@@ -21,7 +21,7 @@
       id="help-button"
       class="help"
       :template="selectedTemplate" />
-    <v-tour name="workspaceTour" :steps="workspaceSteps" :callbacks="tourCallbacks"></v-tour>
+    <v-tour name="workspaceTour" :steps="workspaceSteps" :callbacks="tourCallbacks" :options="{ startTimeout: 500, labels }"></v-tour>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
 import Help from './Help'
 import templates from './templates/templates'
-import { workspaceSteps } from '../tour'
+import { workspaceSteps, labels } from '../tour'
 
 export default {
   name: 'app-workspace',
@@ -52,7 +52,8 @@ export default {
       workspaceSteps: workspaceSteps,
       tourCallbacks: {
         onStop: this.onTourStop
-      }
+      },
+      labels: labels
     }
   },
 
@@ -63,7 +64,7 @@ export default {
 
   mounted () {
     if (!Cookies.get('visited_workspace_tour') && this.selectedTemplate.id === 'Headline') {
-      setTimeout(() => { this.$tours['workspaceTour'].start() }, 500)
+      this.$tours['workspaceTour'].start()
     }
   },
 

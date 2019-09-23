@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <v-tour name="selectorTour" :steps="selectorSteps" :callbacks="tourCallbacks"></v-tour>
+    <v-tour name="selectorTour" :steps="selectorSteps" :callbacks="tourCallbacks" :options="{ labels }"></v-tour>
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
         <stop class="gradient-start" offset="0" />
@@ -26,7 +26,7 @@
 <script>
 import Cookies from 'js-cookie'
 import templates from './templates/templates'
-import { selectorSteps } from '../tour'
+import { selectorSteps, labels } from '../tour'
 
 export default {
   name: 'template-selector',
@@ -37,7 +37,8 @@ export default {
       selectorSteps: selectorSteps,
       tourCallbacks: {
         onStop: this.onTourStop
-      }
+      },
+      labels: labels
     }
   },
 
