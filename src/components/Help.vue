@@ -1,11 +1,11 @@
 <template>
-  <div class="help">
+  <div class="help-block">
     <div v-if="isText" class="text">
       Si tens qualsevol dubte o suggeriment, pots <a href="#" @click.prevent="toggleForm">contactar-nos</a>.
     </div>
     <div v-else>
     <b-tooltip label="Ajuda i suggeriments" position="is-left" type="is-dark">
-      <b-button type="is-text" class="help-button" @click="toggleForm">
+      <b-button type="is-text" class="help-block-button" @click="toggleForm">
         <b-icon icon="question-circle" size="is-large" />
       </b-button>
     </b-tooltip>
@@ -15,7 +15,7 @@
       <div class="content">
         <div v-if="template">
           <h1>{{ template.name }}</h1>
-          <component :is="template.components.help" class="help-content" />
+          <component :is="template.components.help" class="help-block-content" />
           <hr>
         </div>
         <help-form />
@@ -62,7 +62,7 @@ export default {
 <style lang="scss">
   @import '../sass/variables';
 
-  .help {
+  .help-block {
     h1 {
       font-size: 2.5rem;
     }
@@ -85,7 +85,7 @@ export default {
       }
     }
 
-    &-examples {
+    .help-examples {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -114,8 +114,8 @@ export default {
   }
 
   @media (max-width: $xs-breakpoint) {
-    .help {
-      &-examples {
+    .help-block {
+      .help-examples {
         img {
           max-width: 80%;
         }

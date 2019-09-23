@@ -19,7 +19,7 @@
       :is-downloadable="isDownloadable" />
     <help
       id="help-button"
-      class="help"
+      class="help-block"
       :template="selectedTemplate" />
     <v-tour name="workspaceTour" :steps="workspaceSteps" :callbacks="tourCallbacks" :options="{ startTimeout: 500, labels }"></v-tour>
   </div>
@@ -156,7 +156,7 @@ export default {
       justify-content: center;
     }
 
-    .help {
+    .help-block {
       position: absolute;
       top: 4rem;
       right: 1.5rem;
@@ -200,7 +200,7 @@ export default {
         width: 100vw;
       }
 
-      .help {
+      .help-block {
         position: fixed;
         top: 3.25rem;
         right: 10rem;
