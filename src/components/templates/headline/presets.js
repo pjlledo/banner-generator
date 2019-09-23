@@ -18,6 +18,7 @@ import ElPeriodicoDeAquiJPG from './logos/elperiodicodeaqui.jpg'
 import ValenciaExtraPNG from './logos/valencia-extra.png'
 import ElPeriodicSVG from './logos/elperiodic.svg'
 import ElConfidencialPNG from './logos/elconfidencial.png'
+import CSInfoPNG from './logos/csinfo.png'
 
 const sources = [
   {
@@ -161,6 +162,13 @@ const sources = [
     logo: ValenciaExtraPNG,
     logoHeight: 24,
     fontFamily: 'Titillium Web'
+  },
+  {
+    id: 'castelloninformacion',
+    name: 'Castellón Información',
+    logo: CSInfoPNG,
+    logoHeight: 28,
+    fontFamily: 'Gotham'
   }
 ]
 
