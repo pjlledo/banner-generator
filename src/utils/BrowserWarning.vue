@@ -15,24 +15,24 @@
 </template>
 
 <script>
-  import browser from 'browser-detect'
+import browser from 'browser-detect'
 
-  export default {
-    name: 'browser-warning',
+export default {
+  name: 'browser-warning',
 
-    data() {
-      return {
-        isModalActive: true,
-      }
-    },
+  data () {
+    return {
+      isModalActive: true
+    }
+  },
 
-    created () {
-      const result = browser();
-      if (['chrome', 'firefox', 'opera'].includes(result.name)) {
-        this.isModalActive = false
-      }
-    },
+  created () {
+    const result = browser()
+    if (['chrome', 'firefox', 'opera'].includes(result.name)) {
+      this.isModalActive = false
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
