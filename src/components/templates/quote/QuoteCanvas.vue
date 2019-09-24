@@ -127,12 +127,6 @@ export default {
     }
   }
 
-  .has-local-label {
-    .blob-2 {
-      left: -60%;
-    }
-  }
-
   // Story aspect
   .aspect-916 {
     .quote {
