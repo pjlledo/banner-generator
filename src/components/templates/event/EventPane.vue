@@ -51,7 +51,7 @@
     <!-- Speakers -->
     <transition name="slide">
       <speaker-list
-        v-if="!aspect"
+        v-show="!aspect"
         :accepts-picture="false"
         :accepts-description="false"
         :min-speakers="0"
