@@ -59,7 +59,7 @@ export default {
 
   methods: {
     onTourStop () {
-      Cookies.set('visited_selector_tour', 'true')
+      Cookies.set('visited_selector_tour', 'true', { expires: 365 })
     }
   }
 }

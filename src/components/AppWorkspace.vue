@@ -87,7 +87,7 @@ export default {
     },
 
     onTourStop () {
-      Cookies.set('visited_workspace_tour', 'true')
+      Cookies.set('visited_workspace_tour', 'true', { expires: 365 })
     }
   },
 
