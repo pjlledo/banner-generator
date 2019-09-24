@@ -3,7 +3,7 @@
     <!-- Text -->
     <div class="text-wrapper">
       <b-field label="Text">
-        <b-input type="textarea" placeholder="Un tren descarrila..." v-model="properties.text" maxlength="100"></b-input>
+        <b-input type="textarea" placeholder="48152342 usuaris de bicicleta en 2023" v-model="properties.text" maxlength="100"></b-input>
       </b-field>
 
       <!-- Text align -->

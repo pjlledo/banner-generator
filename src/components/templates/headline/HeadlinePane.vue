@@ -61,7 +61,7 @@
       :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
       <b-input
         type="textarea"
-        placeholder="Un tren descarrila..."
+        placeholder="L'ús de la bici està per damunt de 9000..."
         v-model="properties.headline"
         maxlength="160">
       </b-input>
