@@ -22,6 +22,7 @@
       class="help-block"
       :template="selectedTemplate" />
     <v-tour name="workspaceTour" :steps="workspaceSteps" :callbacks="tourCallbacks" :options="{ startTimeout: 500, labels }"></v-tour>
+    <loading :active.sync="loadingTemplate" :is-full-page="true" color="#ff6600"></loading>
   </div>
 </template>
 
@@ -30,9 +31,11 @@ import Cookies from 'js-cookie'
 import AppNav from './AppNav'
 import CanvasContainer from './CanvasContainer'
 import Help from './Help'
+import Loading from 'vue-loading-overlay'
 import templates from './templates/templates'
 import { workspaceSteps, labels } from '@/tour'
 import { EventBus } from '@/event-bus'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 export default {
   name: 'app-workspace',
@@ -40,7 +43,8 @@ export default {
   components: {
     AppNav,
     CanvasContainer,
-    Help
+    Help,
+    Loading
   },
 
   data () {
@@ -48,6 +52,7 @@ export default {
       templates: templates,
       bannerProperties: null,
       selectedTemplate: null,
+      loadingTemplate: true,
       isCardModalActive: false,
       isDownloadable: false,
       workspaceSteps: workspaceSteps,
@@ -61,10 +66,13 @@ export default {
   created () {
     // Find and set selected template based on route param
     this.selectedTemplate = this.templates.find(template => template.id.toLowerCase() === this.$route.params.pathMatch)
+
+    // Hide loading indicator when template finishes loading
+    EventBus.$on('paneLoaded', () => { this.loadingTemplate = false })
   },
 
   mounted () {
-    if (!Cookies.get('visited_workspace_tour')) {
+    if (!Cookies.get('visited_workspace_tour') && this.selectedTemplate.id === 'Headline') {
       EventBus.$on('paneLoaded', () => {
         this.$tours['workspaceTour'].start()
       })

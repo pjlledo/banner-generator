@@ -48,6 +48,10 @@ export default {
     })
   },
 
+  mounted () {
+    EventBus.$emit('paneLoaded', true)
+  },
+
   // Emit banner property changes to canvas
   watch: {
     properties: {

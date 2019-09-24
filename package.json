@@ -22,6 +22,7 @@
     "parallax-js": "^3.1.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
+    "vue-loading-overlay": "^3.2.0",
     "vue-router": "^3.0.3",
     "vue-swatches": "^1.0.3",
     "vue-tour": "^1.1.0"
