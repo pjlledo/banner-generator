@@ -1,3 +1,4 @@
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const manifestJSON = require('./public/manifest.json')
 
 const pwaArgs = {
@@ -11,5 +12,11 @@ module.exports = {
     config.plugin('pwa').tap(() => {
       return [pwaArgs]
     })
+  },
+  configureWebpack: {
+    devtool: 'source-map',
+    plugins: [
+      new ImageminPlugin()
+    ]
   }
 }
