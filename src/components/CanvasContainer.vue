@@ -105,6 +105,10 @@ export default {
         domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })
           .then(function (blob) {
             saveAs(blob, 'banner.png')
+            gtag('event', 'banner_download', {
+              event_category: 'banners',
+              event_label: aspect
+            })
           })
       }
     }

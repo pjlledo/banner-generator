@@ -213,7 +213,7 @@ export default {
 
       .help-block {
         position: fixed;
-        top: 3.25rem;
+        top: 3.5rem;
         right: 10rem;
         z-index: 35;
 
