@@ -52,31 +52,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Titillium+Web:700&display=swap');
-
-  @font-face {
-    font-family: 'Tiempos Headline';
-    src: url('../../../assets/fonts/TiemposHeadline-Medium.eot');
-    src: url('../../../assets/fonts/TiemposHeadline-Medium.eot?#iefix') format('embedded-opentype'),
-        url('../../../assets/fonts/TiemposHeadline-Medium.woff2') format('woff2'),
-        url('../../../assets/fonts/TiemposHeadline-Medium.woff') format('woff'),
-        url('../../../assets/fonts/TiemposHeadline-Medium.svg#TiemposHeadline-Medium') format('svg');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-   @font-face {
-    font-family: 'Gotham';
-    src: url('../../../assets/fonts/gotham-bold-webfont.eot');
-    src: url('../../../assets/fonts/gotham-bold-webfont.eot?#iefix') format('embedded-opentype'),
-        url('../../../assets/fonts/gotham-bold-webfont.woff2') format('woff2'),
-        url('../../../assets/fonts/gotham-bold-webfont.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-  }
+  @import "../../../sass/fonts";
 
   .headline {
     display: flex;
