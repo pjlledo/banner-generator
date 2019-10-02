@@ -72,11 +72,11 @@ export default {
   },
 
   mounted () {
-    if (!Cookies.get('visited_workspace_tour') && this.selectedTemplate.id === 'Headline') {
-      EventBus.$on('paneLoaded', () => {
-        this.$tours['workspaceTour'].start()
-      })
-    }
+    this.startTour()
+  },
+
+  destroyed () {
+    this.$tours['workspaceTour'].stop()
   },
 
   watch: {
@@ -96,6 +96,14 @@ export default {
 
     onTourStop () {
       Cookies.set('visited_workspace_tour', 'true', { expires: 365 })
+    },
+
+    startTour () {
+      EventBus.$on('paneLoaded', () => {
+        if (!Cookies.get('visited_workspace_tour') && this.selectedTemplate.id === 'Headline') {
+          this.$tours['workspaceTour'].start()
+        }
+      })
     }
   },
 
