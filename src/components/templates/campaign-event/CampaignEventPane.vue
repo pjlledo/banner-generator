@@ -81,22 +81,6 @@
         @touchstart="dimPane(true)"
         @touchend="dimPane(false)" />
     </b-field>
-
-    <!-- Local label -->
-    <transition name="slide">
-      <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
-    </transition>
   </div>
 </template>
 
