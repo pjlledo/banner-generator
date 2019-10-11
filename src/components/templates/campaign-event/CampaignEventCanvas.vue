@@ -44,6 +44,9 @@
       <compromis-logo />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
+    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
+      {{ banner.hashtag }}
+    </div>
   </div>
 </template>
 
@@ -176,6 +179,14 @@ export default {
         transform: rotate(0);
       }
     }
+  }
+
+  .hashtag {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: $cpn-navy;
+    font-family: "MesCompromis", sans-serif;
   }
 
   // Story aspect
