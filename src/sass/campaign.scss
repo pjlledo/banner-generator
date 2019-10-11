@@ -1,0 +1,21 @@
+$colors: (
+  'yellow': $cpn-yellow,
+  'red': $cpn-red,
+  'orange': $cpn-orange,
+  'turquoise': $cpn-turquoise,
+  'navy': $cpn-navy,
+  'beige': $cpn-beige,
+  'white': $cpn-white
+);
+
+@each $color-name, $color in $colors {
+  .combo-#{$color-name} {
+    background: $color !important;
+  }
+
+  .has-#{$color-name}-headline h2,
+  .has-#{$color-name}-text,
+  .has-#{$color-name}-headline .icon {
+    color: $color !important;
+  }
+}

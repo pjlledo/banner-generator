@@ -12,17 +12,17 @@
     <div class="blob blob-image">
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
     <div class="event">
-      <div class="event-overtitle">
-        <span>{{ banner.overtitle | formatString }}</span>
+      <div class="event-title-wrapper" :class="computedComboPrimary">
+        <div class="event-overtitle">
+          <span>{{ banner.overtitle | formatString }}</span>
+        </div>
+        <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 155, 130, 60) : fontSize('title', 45, 30, 60)}">
+          <h2>{{ banner.title | formatString }}</h2>
+        </div>
       </div>
-      <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 155, 130, 60) : fontSize('title', 45, 30, 60)}">
-        <span>{{ banner.title | formatString }}</span>
-      </div>
-      <div class="event-details-wrapper" v-if="aspect !== 'event'">
-        <div class="event-details" contenteditable>
+      <div class="event-details-wrapper" v-if="aspect !== 'event'" :class="computedComboSecondary">
+        <div class="event-details event-details-first" contenteditable>
           <b-icon icon="calendar-day"/> {{ banner.date | formatDate }}
         </div>
         <div class="event-details" contenteditable>
@@ -31,14 +31,13 @@
         <div class="event-details">
           <b-icon icon="map-marker-alt"/> {{ banner.place }}
         </div>
-        <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 && aspect === '11'">
-          <b-icon icon="keynote"/>
-          <ul>
-            <li v-for="(speaker, i) in banner.speakers" :key="i">
-              {{ speaker.name }}
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div class="event-speakers-wrapper" v-if="banner.speakers.length > 0 && aspect === '11'">
+        <ul>
+          <li v-for="(speaker, i) in banner.speakers" :key="i">
+            {{ speaker.name }}
+          </li>
+        </ul>
       </div>
     </div>
     <div class="logo" v-if="aspect !== 'event'">
@@ -49,12 +48,13 @@
 </template>
 
 <script>
+import CampaignMixin from '@/mixins/campaign-mixin.js'
 import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [CanvasMixin],
+  mixins: [CampaignMixin, CanvasMixin],
 
   computed: {
     isCrowded: function () {
@@ -67,6 +67,7 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
+  @import "../../../sass/campaign";
 
   .event {
     display: flex;
@@ -76,28 +77,33 @@ export default {
     height: 415px;
     z-index: 40;
     padding: 0 35px;
-    width: 260px;
     flex-direction: column;
     justify-content: center;
     z-index: 20;
     transition: all .5s ease-in-out;
-    font-family: 'Compromis', serif;
+    font-family: 'MesCompromis', serif;
+    align-items: flex-start;
 
     &-title {
       font-size: 40px;
       line-height: 1.1;
-      color: $gray-900;
       letter-spacing: -1px;
       display: inline;
       word-wrap: break-word;
-      font-family: 'Compromis', serif;
+      font-family: 'MesCompromis', serif;
       font-weight: bold;
+
+      &-wrapper {
+        background: $cpn-red;
+        padding: 1rem;
+        border-radius: $cpn-sm-radius;
+        max-width: 350px;
+      }
     }
 
     &-overtitle {
       font-size: 18px;
       letter-spacing: -0.5px;
-      color: $gray-700;
       line-height: 1.1;
       padding-bottom: .25rem;
     }
@@ -108,10 +114,18 @@ export default {
       align-content: center;
       font-size: 17.5px;
       letter-spacing: -0.5px;
-      color: $gray-700;
+
+      &:first-child {
+        padding-top: 0;
+      }
 
       &-wrapper {
         margin-top: 1rem;
+        background: $cpn-turquoise;
+        padding: 1rem;
+        border-radius: $cpn-sm-radius;
+        margin-left: 2rem;
+        max-width: 275px;
       }
 
       .icon {
@@ -123,36 +137,40 @@ export default {
           height: 500px;
         }
       }
+    }
 
-      &--speakers {
-        align-items: flex-start;
+    &-speakers {
+      &-wrapper {
+        margin-top: 1rem;
+        max-width: 400px;
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        li {
+          background: $cpn-navy;
+          color: $cpn-white;
+          padding: .25rem .5rem;
+          border-radius: $cpn-xs-radius;
+          margin: 0 .5rem .5rem 0;
+        }
       }
     }
   }
 
   .blob {
-    &-1 {
-      top: -87%;
-      left: -74%;
-    }
-
-    &-2 {
-      left: -60%;
-      bottom: -74%;
-      z-index: 10;
-    }
-
     &-image {
-      top: -5%;
-      right: -4%;
-      height: 618px;
+      top: 30px;
+      right: 30px;
+      height: 580px;
       z-index: 20;
-      width: 414px;
-      border-radius: 0;
-      border-bottom-left-radius: $border-radius;
+      width: 560px;
+      border-radius: $cpn-bg-radius;
+      transform: rotate(0);
 
       img {
-        transform: rotate(-$rotation);
         width: 100%;
         height: 98%;
         margin: 28px -28px;
@@ -173,26 +191,12 @@ export default {
   // Story aspect
   .aspect-916 {
     .blob {
-      &-1 {
-        display: none;
-      }
-
-      &-2 {
-        left: -110%;
-        bottom: -94%;
-      }
-
       &-image {
         height: 404px;
         width: 431px;
-        top: -23px;
-        left: -3px;
-        border-bottom-right-radius: 0;
-
-        img {
-          margin: 21px -5px;
-          width: 98%;
-        }
+        top: 0;
+        left: 0;
+        border-radius: 0;
       }
     }
 
@@ -204,8 +208,6 @@ export default {
 
       &-overtitle {
         span{
-          background: $white;
-          padding: 0 10px;
           border-radius: 2px;
           letter-spacing: -1px;
           box-decoration-break: clone;
@@ -247,49 +249,20 @@ export default {
       box-sizing: border-box;
 
       &-title {
-        span {
-          background: $white;
-          color: $gray-900;
-          padding: .25rem 2rem;
-          border-radius: 6px;
-          line-height: 1.42;
-          -webkit-box-decoration-break: clone;
-          -webkit-line-break: normal;
-          letter-spacing: -4px;
+        &-wrapper {
+          max-width: 80%;
+          padding: 2rem;
         }
       }
 
       &-overtitle {
-        position: absolute;
-        color: $white;
         font-size: 3rem;
         letter-spacing: -1px;
         font-weight: bold;
-        top: -150px;
-        left: 60px;
-        z-index: 20;
       }
     }
 
     .blob {
-      border-radius: 10rem;
-
-      &-1 {
-        top: -50%;
-        left: -3%;
-        z-index: 20;
-        border-bottom-left-radius: 0;
-      }
-
-      &-2 {
-        left: auto;
-        bottom: -50%;
-        right: -4%;
-        z-index: 20;
-        border-top-right-radius: 0;
-        --gradient-orientation: -45deg;
-      }
-
       &-image {
         transform: rotate(0);
         height: 100%;

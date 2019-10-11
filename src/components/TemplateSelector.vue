@@ -4,7 +4,7 @@
       <h2 class="template-selector-header">Selecciona un model de tarja</h2>
       <ul>
         <li v-for="template in templates" :key="template.id">
-          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`]">
+          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`, template['isCampaign'] ? 'template-item-campaign' : '']">
             <span class="template-item-icon">
               <b-icon :icon="template.icon" size="is-large" />
             </span>
@@ -163,6 +163,34 @@ export default {
         bottom: 0;
         left: 0;
         padding: 1rem;
+      }
+
+      &-campaign {
+        background: $cpn-turquoise;
+        color: $cpn-navy;
+
+        .template-item-icon {
+          background: rgba($white, .15);
+
+          .icon {
+            color: $cpn-navy;
+          }
+        }
+
+        &:hover {
+          background: $cpn-navy;
+
+          .template-item-name {
+            background: linear-gradient($cpn-yellow, $cpn-yellow);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          
+          .template-item-icon .icon svg * {
+            fill: $cpn-yellow !important;
+          }
+        }
       }
     }
 
