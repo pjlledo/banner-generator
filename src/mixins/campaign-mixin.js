@@ -1,3 +1,5 @@
+import { EventBus } from '@/event-bus.js'
+
 export default {
   data () {
     return {
@@ -6,7 +8,7 @@ export default {
       allowedCombos: {
         yellow: {
           headline: ['red', 'navy', 'turquoise'],
-          text: ['red', 'navy', 'turquoise'],
+          text: ['red', 'navy'],
           disallowedCombo: ['orange']
         },
         red: {
@@ -14,8 +16,8 @@ export default {
           text: ['yellow', 'navy', 'white']
         },
         orange: {
-          headline: ['white', 'yellow', 'navy'],
-          text: ['white', 'yellow', 'navy']
+          headline: ['white', 'navy'],
+          text: ['white', 'navy']
         },
         navy: {
           headline: ['yellow', 'turquoise', 'red', 'white'],
@@ -25,12 +27,15 @@ export default {
           headline: ['navy', 'white', 'red'],
           text: ['navy', 'white', 'red']
         }
-      }
+      },
+      whiteOrNavy: null
     }
   },
 
   mounted () {
     this.currentPrimaryCombo = this.getPrimaryCombo()
+
+    EventBus.$on('campaignNewColor', () => { this.currentPrimaryCombo = this.getPrimaryCombo() })
   },
 
   computed: {
@@ -49,8 +54,15 @@ export default {
 
   methods: {
     getCombo (color) {
-      const text = this.allowedCombos[color].text[this.randomNumber(0, this.allowedCombos[color].text.length - 1)]
       const headline = this.allowedCombos[color].headline[this.randomNumber(0, this.allowedCombos[color].headline.length - 1)]
+
+      let text
+      if (['navy', 'white'].includes(headline) || ['navy', 'beige'].includes(color)) {
+        text = this.allowedCombos[color].text[this.randomNumber(0, this.allowedCombos[color].text.length - 1)]
+      } else {
+        this.whiteOrNavy = this.whiteOrNavy === null ? ['navy', 'white'][this.randomNumber(0, 1)] : this.whiteOrNavy
+        text = this.whiteOrNavy
+      }
 
       if (text === headline) return this.getCombo(color)
 
@@ -61,6 +73,8 @@ export default {
       const color = this.colors[this.randomNumber(0, 4)]
 
       if (color === 'beige') return this.getSecondaryCombo()
+
+      EventBus.$emit('campaignColorUpdated', color)
 
       return color
     },

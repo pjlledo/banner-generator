@@ -67,7 +67,6 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
-  @import "../../../sass/campaign";
 
   .event {
     display: flex;

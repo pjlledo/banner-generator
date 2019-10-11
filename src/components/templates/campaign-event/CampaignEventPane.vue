@@ -1,5 +1,8 @@
 <template>
   <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
+    <!-- Randomizer -->
+    <campaign-randomizer />
+
     <!-- Title -->
     <b-field
       label="Titol"
@@ -101,6 +104,7 @@
 import PaneMixin from '@/mixins/pane-mixin'
 import DatePicker from '@/utils/DatePicker'
 import SpeakerList from '@/utils/SpeakerList'
+import CampaignRandomizer from '@/utils/CampaignRandomizer'
 
 export default {
   name: 'quote-pane',
@@ -109,7 +113,8 @@ export default {
 
   components: {
     DatePicker,
-    SpeakerList
+    SpeakerList,
+    CampaignRandomizer
   },
 
   data () {
