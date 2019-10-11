@@ -202,6 +202,10 @@ export default {
     font-family: "MesCompromis", sans-serif;
   }
 
+  .logo {
+    width: 290px;
+  }
+
   // Story aspect
   .aspect-916 {
     .blob {
@@ -213,7 +217,6 @@ export default {
         border-radius: 0;
       }
     }
-  }
 
   .event {
     top: 252px;
@@ -249,6 +252,7 @@ export default {
   .logo {
     display: none;
   }
+}
 
 // Event aspect
 .aspect-event {
@@ -321,13 +325,6 @@ export default {
     width: 460px;
     border-radius: 0;
     border-bottom-right-radius: 5rem;
-  }
-
-  .blob-2 {
-    display: none;
-  }
-
-  .hashtag {
   }
 }
 </style>
