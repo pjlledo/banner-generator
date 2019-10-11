@@ -186,7 +186,7 @@ export default {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
           }
-          
+
           .template-item-icon .icon svg * {
             fill: $cpn-yellow !important;
           }

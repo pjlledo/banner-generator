@@ -7,25 +7,25 @@
 </template>
 
 <script>
-  import { EventBus } from '@/event-bus.js'
+import { EventBus } from '@/event-bus.js'
 
-  export default {
-    data () {
-      return {
-        buttonColor: 'navy'
-      }
-    },
+export default {
+  data () {
+    return {
+      buttonColor: 'navy'
+    }
+  },
 
-    mounted () {
-      EventBus.$on('campaignColorUpdated', (newColor) => this.buttonColor = newColor)
-    },
+  mounted () {
+    EventBus.$on('campaignColorUpdated', (newColor) => this.buttonColor = newColor)
+  },
 
-    methods: {
-      getNewColor () {
-        EventBus.$emit('campaignNewColor')
-      }
+  methods: {
+    getNewColor () {
+      EventBus.$emit('campaignNewColor')
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

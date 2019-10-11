@@ -1,6 +1,11 @@
 import { EventBus } from '@/event-bus.js'
+import MescompromisLogo from '@/utils/MescompromisLogo'
 
 export default {
+  components: {
+    MescompromisLogo
+  },
+
   data () {
     return {
       currentPrimaryCombo: 'yellow',
@@ -35,32 +40,48 @@ export default {
   mounted () {
     this.currentPrimaryCombo = this.getPrimaryCombo()
 
-    EventBus.$on('campaignNewColor', () => { this.currentPrimaryCombo = this.getPrimaryCombo() })
+    EventBus.$on('campaignNewColor', () => {
+      this.currentPrimaryCombo = this.getPrimaryCombo()
+    })
   },
 
   computed: {
     computedComboPrimary () {
       const combo = this.getCombo(this.currentPrimaryCombo)
-      return [`combo combo-${this.currentPrimaryCombo} has-${combo.text}-text has-${combo.headline}-headline`]
+      return [
+        `combo combo-${this.currentPrimaryCombo} has-${combo.text}-text has-${combo.headline}-headline`
+      ]
     },
 
     computedComboSecondary () {
       const color = this.getSecondaryCombo()
       const combo = this.getCombo(color)
 
-      return [`combo combo-${color} has-${combo.text}-text has-${combo.headline}-headline`]
+      return [
+        `combo combo-${color} has-${combo.text}-text has-${combo.headline}-headline`
+      ]
     }
   },
 
   methods: {
     getCombo (color) {
-      const headline = this.allowedCombos[color].headline[this.randomNumber(0, this.allowedCombos[color].headline.length - 1)]
+      const headline = this.allowedCombos[color].headline[
+        this.randomNumber(0, this.allowedCombos[color].headline.length - 1)
+      ]
 
       let text
-      if (['navy', 'white'].includes(headline) || ['navy', 'beige'].includes(color)) {
-        text = this.allowedCombos[color].text[this.randomNumber(0, this.allowedCombos[color].text.length - 1)]
+      if (
+        ['navy', 'white'].includes(headline) ||
+        ['navy', 'beige'].includes(color)
+      ) {
+        text = this.allowedCombos[color].text[
+          this.randomNumber(0, this.allowedCombos[color].text.length - 1)
+        ]
       } else {
-        this.whiteOrNavy = this.whiteOrNavy === null ? ['navy', 'white'][this.randomNumber(0, 1)] : this.whiteOrNavy
+        this.whiteOrNavy =
+          this.whiteOrNavy === null
+            ? ['navy', 'white'][this.randomNumber(0, 1)]
+            : this.whiteOrNavy
         text = this.whiteOrNavy
       }
 

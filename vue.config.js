@@ -16,7 +16,7 @@ module.exports = {
   configureWebpack: {
     devtool: 'source-map',
     plugins: [
-      new ImageminPlugin()
+      // new ImageminPlugin()
     ]
   }
 }
