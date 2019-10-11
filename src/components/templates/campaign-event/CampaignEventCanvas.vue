@@ -249,7 +249,6 @@ export default {
   .logo {
     display: none;
   }
-}
 
 // Event aspect
 .aspect-event {
