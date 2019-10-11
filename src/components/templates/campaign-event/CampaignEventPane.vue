@@ -82,20 +82,17 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Local label -->
+    <!-- Hashtag -->
     <transition name="slide">
-      <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
+      <b-field label="Hashtag" v-if="!aspect">
+        <b-input
+          id="hashtag-field"
+          placeholder="#"
+          @input="updateHashtag"
+          :value="properties.hashtag"
+          :maxlength="properties.hasLocalLabel ? 18 : 32">
+        </b-input>
+      </b-field>
     </transition>
   </div>
 </template>

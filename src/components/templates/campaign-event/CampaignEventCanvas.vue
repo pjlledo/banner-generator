@@ -54,6 +54,9 @@
     <div class="logo" v-if="aspect !== 'event'">
       <mescompromis-logo />
     </div>
+    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
+      {{ banner.hashtag }}
+    </div>
   </div>
 </template>
 
@@ -191,15 +194,24 @@ export default {
   }
 }
 
-// Story aspect
-.aspect-916 {
-  .blob {
-    &-image {
-      height: 404px;
-      width: 431px;
-      top: 0;
-      left: 0;
-      border-radius: 0;
+  .hashtag {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: $cpn-navy;
+    font-family: "MesCompromis", sans-serif;
+  }
+
+  // Story aspect
+  .aspect-916 {
+    .blob {
+      &-image {
+        height: 404px;
+        width: 431px;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+      }
     }
   }
 
