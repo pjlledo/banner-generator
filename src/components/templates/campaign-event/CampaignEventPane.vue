@@ -1,0 +1,153 @@
+<template>
+  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
+    <!-- Title -->
+    <b-field
+      label="Titol"
+      :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
+      :message="properties.title ? '' : displayErrors ? `Has d'omplir un títol` : ''">
+      <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
+    </b-field>
+
+    <!-- Overtitle -->
+    <b-field label="Tipus d'acte">
+      <b-input placeholder="Debat" maxlength="20" v-model="properties.overtitle"></b-input>
+    </b-field>
+
+    <!-- Date -->
+    <transition name="slide">
+      <b-field label="Data" v-if="aspect !== 2">
+        <date-picker v-model="properties.date" />
+      </b-field>
+    </transition>
+
+    <!-- Time -->
+    <transition name="slide">
+      <b-field label="Hora" v-if="aspect !== 2">
+        <b-timepicker
+          rounded
+          inline
+          :increment-minutes="15"
+          v-model="properties.time"
+          icon="clock">
+        </b-timepicker>
+      </b-field>
+    </transition>
+
+    <!-- Venue -->
+    <transition name="slide">
+      <b-field
+        label="Lloc"
+        v-if="aspect !== 2"
+        :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
+        :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
+        <b-input
+          placeholder="Riu Túria"
+          v-model="properties.place"
+          maxlength="60">
+        </b-input>
+      </b-field>
+    </transition>
+
+    <!-- Speakers -->
+    <transition name="slide">
+      <speaker-list
+        v-show="!aspect"
+        :accepts-picture="false"
+        :accepts-description="false"
+        :min-speakers="0"
+        :max-speakers="6"
+        :max-length-name="25"
+        :max-length-description="50"
+        @updated="(speakers) => properties.speakers = speakers" />
+    </transition>
+
+    <!-- Picture -->
+    <picture-upload
+      :picture="properties.picture"
+      :display-errors="displayErrors"
+      @upload="updateImage"
+      @delete="properties.picture = null; properties.picturePreview = null" />
+
+    <!-- Picture position -->
+    <b-field label="Posició de la imatge" class="range">
+      <range-slider
+        name="points"
+        :min="0"
+        :max="100"
+        v-model="properties.picturePos"
+        @touchstart="dimPane(true)"
+        @touchend="dimPane(false)" />
+    </b-field>
+
+    <!-- Local label -->
+    <transition name="slide">
+      <div v-if="!aspect" class="field">
+        <b-switch v-model="properties.hasLocalLabel">
+          Afegir text al logo
+        </b-switch>
+        <transition name="slide">
+          <div v-if="properties.hasLocalLabel" class="local-label">
+            <b-field>
+              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
+            </b-field>
+          </div>
+        </transition>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<script>
+import PaneMixin from '@/mixins/pane-mixin'
+import DatePicker from '@/utils/DatePicker'
+import SpeakerList from '@/utils/SpeakerList'
+
+export default {
+  name: 'quote-pane',
+
+  mixins: [PaneMixin],
+
+  components: {
+    DatePicker,
+    SpeakerList
+  },
+
+  data () {
+    return {
+      properties: {
+        title: '',
+        overtitle: '',
+        date: new Date(),
+        time: new Date(),
+        place: '',
+        speakers: []
+      }
+    }
+  },
+
+  watch: {
+    properties: {
+      handler: function (properties) {
+        this.isDownloadable = (
+          properties.title !== '' &&
+          properties.place !== '' &&
+          properties.picture !== null
+        )
+      },
+      deep: true
+    }
+  },
+
+  created () {
+    // Set a default time
+    this.properties.time.setHours(10)
+    this.properties.time.setMinutes(0)
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+  .local-label {
+    margin-top: .75rem;
+  }
+</style>

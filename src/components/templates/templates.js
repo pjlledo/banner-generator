@@ -1,5 +1,17 @@
 const templates = [
   {
+    id: 'CampaignEvent',
+    name: 'Acte de campanya',
+    aspects: ['11', '916', 'event'],
+    icon: 'portrait',
+    isCampaign: true,
+    components: {
+      pane: () => import(/* webpackChunkName: "campaign-event" */ './campaign-event/CampaignEventPane'),
+      canvas: () => import(/* webpackChunkName: "campaign-event" */ './campaign-event/CampaignEventCanvas'),
+      help: () => import(/* webpackChunkName: "campaign-event" */ './campaign-event/CampaignEventHelp')
+    }
+  },
+  {
     id: 'Headline',
     name: 'Titular de premsa',
     aspects: ['11', '916'],
