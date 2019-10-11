@@ -171,19 +171,10 @@ export default {
 
       img {
         width: 100%;
-        height: 98%;
-        margin: 28px -28px;
+        height: 100%;
+        margin: 0;
+        transform: rotate(0);
       }
-    }
-  }
-
-  .is-crowded {
-    .event {
-      height: auto;
-      top: 100px;
-    }
-    .blob-2 {
-      bottom: -88%;
     }
   }
 
