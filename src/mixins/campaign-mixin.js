@@ -87,7 +87,7 @@ export default {
     },
 
     getPrimaryCombo () {
-      const color = this.colors[this.randomNumber(0, this.colors.length-1)]
+      const color = this.colors[this.randomNumber(0, this.colors.length - 1)]
 
       if (color === 'beige') return this.getSecondaryCombo()
 
@@ -97,7 +97,7 @@ export default {
     },
 
     getSecondaryCombo () {
-      const color = this.colors[this.randomNumber(0, this.colors.length-1)]
+      const color = this.colors[this.randomNumber(0, this.colors.length - 1)]
 
       if (color === this.currentPrimaryCombo) return this.getSecondaryCombo()
 

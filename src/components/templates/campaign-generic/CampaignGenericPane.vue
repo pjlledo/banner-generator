@@ -10,6 +10,7 @@
       </b-field>
 
         <!-- Text position -->
+      <b-field label="Alineació del text">
         <b-tabs @change="updateTextPosition" :value="1" class="text-position" type="is-toggle" size="is-small" expanded>
           <b-tab-item icon="arrow-to-top"></b-tab-item>
           <b-tab-item icon="grip-lines"></b-tab-item>

@@ -19,7 +19,7 @@
       />
     </div>
     <div class="event">
-      <div class="event-title-wrapper" :class="computedComboPrimary">
+      <div :class="['event-title-wrapper', computedComboPrimary]">
         <div class="event-overtitle">
           <span>{{ banner.overtitle | formatString }}</span>
         </div>
@@ -31,7 +31,7 @@
           <h2>{{ banner.title | formatString }}</h2>
         </div>
       </div>
-      <div class="event-details-wrapper" v-if="aspect !== 'event'" :class="computedComboSecondary">
+      <div v-if="aspect !== 'event'" :class="['event-details-wrapper', computedComboSecondary]">
         <div class="event-details event-details-first" contenteditable>
           <b-icon icon="calendar-day" />
           {{ banner.date | formatDate }}
