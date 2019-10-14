@@ -4,18 +4,17 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + banner.disposition : '',
-      banner.headline.length > 95 ? 'has-long-headline' : ''
+      'disposition-' + banner.disposition
     ]"
     v-if="banner">
     <div class="blob blob-image">
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="headline">
-      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="{ 'backgroundColor': banner.customSourceColor }">
+      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="{ backgroundColor: banner.customSourceColor }">
         <span>{{ banner.customSource }}</span>
       </div>
-      <div class="headline-source" v-else-if="banner.source">
+      <div class="headline-source" v-else-if="banner.source" :style="{ backgroundColor: banner.source.color }">
         <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
       <div class="headline-text"
@@ -72,8 +71,8 @@ export default {
     overflow: hidden;
 
     &-source {
-      background: #ED7B3E;
-      padding: 6px 32px;
+      background: $cpn-navy;
+      padding: 8px 32px;
       margin: -16px -32px 16px -32px;
 
       img {
@@ -143,8 +142,6 @@ export default {
   // Story aspect
   .aspect-916 {
     .headline {
-      top: 430px;
-
       &-text {
         font-size: 20px;
       }

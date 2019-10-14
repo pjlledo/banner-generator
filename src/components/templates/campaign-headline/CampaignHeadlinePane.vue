@@ -8,12 +8,11 @@
           type="is-toggle"
           size="is-small"
           v-model="properties.disposition"
-          v-if="!aspect"
           class="banner-disposition"
           expanded>
-          <b-tab-item icon="arrow-to-top"></b-tab-item>
-          <b-tab-item icon="grip-lines"></b-tab-item>
           <b-tab-item icon="arrow-to-bottom"></b-tab-item>
+          <b-tab-item icon="grip-lines"></b-tab-item>
+          <b-tab-item icon="arrow-to-top"></b-tab-item>
         </b-tabs>
       </b-field>
     </transition>
