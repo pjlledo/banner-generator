@@ -26,42 +26,48 @@ const sources = [
     name: 'eldiario.es',
     logo: EldiarioSVG,
     logoHeight: 24,
-    fontFamily: 'Roboto Slab'
+    fontFamily: 'Roboto Slab',
+    color: '#235690'
   },
   {
     id: 'lavanguardia',
     name: 'La Vanguardia',
     logo: LaVanguardiaSVG,
     logoHeight: 18,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#071C49'
   },
   {
     id: 'antena3',
     name: 'Antena 3',
     logo: Antena3SVG,
     logoHeight: 22,
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    color: '#ED7B38'
   },
   {
     id: 'abc',
     name: 'ABC',
     logo: AbcSVG,
     logoHeight: 20,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#000'
   },
   {
     id: 'lasprovincias',
     name: 'Las Provincias',
     logo: LasprovinciasSVG,
     logoHeight: 18,
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    color: '#000'
   },
   {
     id: 'levante',
     name: 'Levante',
     logo: LevanteSVG,
     logoHeight: 20,
-    fontFamily: 'Roboto Condensed'
+    fontFamily: 'Roboto Condensed',
+    color: '#386998'
   },
   {
     id: 'apunt',
@@ -69,21 +75,24 @@ const sources = [
     logo: ApuntSVG,
     logoHeight: 28,
     fontFamily: 'Gotham',
-    letterSpacing: '-0.5px'
+    letterSpacing: '-0.5px',
+    color: '#000'
   },
   {
     id: 'elpais',
     name: 'El País',
     logo: ElpaisSVG,
     logoHeight: 22,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#1F4D80'
   },
   {
     id: 'lasexta',
     name: 'La Sexta',
     logo: LasextaSVG,
     logoHeight: 26,
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    color: '#63AB54'
   },
   {
     id: 'ser',
@@ -91,84 +100,96 @@ const sources = [
     logo: SerSVG,
     logoHeight: 24,
     fontFamily: 'Gotham',
-    letterSpacing: '-0.5px'
+    letterSpacing: '-0.5px',
+    color: '#000'
   },
   {
     id: 'valenciaplaza',
     name: 'Valencia Plaza',
     logo: ValenciaplazaSVG,
     logoHeight: 26,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#5881B4'
   },
   {
     id: 'informacion',
     name: 'Diario Información',
     logo: InformacionSVG,
     logoHeight: 24,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#306E9B'
   },
   {
     id: '20minutos',
     name: '20 Minutos',
     logo: VeinteMinutosSVG,
     logoHeight: 34,
-    fontFamily: 'Helvetica, Arial'
+    fontFamily: 'Helvetica, Arial',
+    color: '#1C4295'
   },
   {
     id: 'laveu',
     name: 'La Veu',
     logo: LaVeuSVG,
     logoHeight: 24,
-    fontFamily: 'Gotham'
+    fontFamily: 'Gotham',
+    color: '#E83334'
   },
   {
     id: 'europapress',
     name: 'EuropaPress',
     logo: EuropaPressSVG,
     logoHeight: 18,
-    fontFamily: 'Roboto Slab'
+    fontFamily: 'Roboto Slab',
+    color: '#BA261A'
   },
   {
     id: 'infolibre',
     name: 'InfoLibre',
     logo: InfoLibrePNG,
     logoHeight: 22,
-    fontFamily: 'Georgia'
+    fontFamily: 'Georgia',
+    color: '#B22726'
   },
   {
     id: 'elperiodicodeaqui',
     name: 'El Periódico de Aquí',
     logo: ElPeriodicoDeAquiJPG,
     logoHeight: 28,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#AA3D3A'
   },
   {
     id: 'elconfidencial',
     name: 'El Confidencial',
     logo: ElConfidencialPNG,
     logoHeight: 24,
-    fontFamily: 'Tiempos Headline'
+    fontFamily: 'Tiempos Headline',
+    color: '#163A4D'
   },
   {
     id: 'elperiodic',
     name: 'elperiòdic.com',
     logo: ElPeriodicSVG,
     logoHeight: 24,
-    fontFamily: 'Roboto Slab'
+    fontFamily: 'Roboto Slab',
+    color: '#364E79'
   },
   {
     id: 'valenciaextra',
     name: 'València Extra',
     logo: ValenciaExtraPNG,
     logoHeight: 24,
-    fontFamily: 'Titillium Web'
+    fontFamily: 'Titillium Web',
+    color: '#E3803B'
   },
   {
     id: 'castelloninformacion',
     name: 'Castellón Información',
     logo: CSInfoPNG,
     logoHeight: 28,
-    fontFamily: 'Gotham'
+    fontFamily: 'Gotham',
+    color: '#ED9A3E'
   }
 ]
 
