@@ -218,6 +218,7 @@ export default {
       background-color: rgba($body-background-color, .75);
       border-radius: .5rem;
       margin-bottom: 1rem;
+      margin-top: 2rem;
     }
   }
 

@@ -48,6 +48,18 @@ const templates = [
     }
   },
   {
+    id: 'CampaignSpeakers',
+    name: 'Acte amb ponents',
+    aspects: ['11', '916', 'event'],
+    icon: 'keynote',
+    isCampaign: true,
+    components: {
+      pane: () => import(/* webpackChunkName: "campaign-speakers" */ './campaign-speakers/CampaignSpeakersPane'),
+      canvas: () => import(/* webpackChunkName: "campaign-speakers" */ './campaign-speakers/CampaignSpeakersCanvas'),
+      help: () => import(/* webpackChunkName: "campaign-speakers" */ './campaign-speakers/CampaignSpeakersHelp')
+    }
+  },
+  {
     id: 'Headline',
     name: 'Titular de premsa',
     aspects: ['11', '916'],

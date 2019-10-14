@@ -1,8 +1,6 @@
 <template>
   <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
-    <!-- Randomizer -->
     <campaign-randomizer />
-
     <!-- Title -->
     <b-field
       label="Titol"
@@ -13,8 +11,16 @@
 
     <!-- Overtitle -->
     <b-field label="Tipus d'acte">
-      <b-input placeholder="Debat" maxlength="20" v-model="properties.overtitle"></b-input>
+      <b-input placeholder="Debat" maxlength="30" v-model="properties.overtitle"></b-input>
     </b-field>
+
+    <!-- Speakers -->
+    <speaker-list
+      :default-speakers="properties.speakers"
+      @updated="(speakers) => properties.speakers = speakers"
+      :display-errors="displayErrors"
+      :min-speakers="2"
+      :max-speakers="4" />
 
     <!-- Date -->
     <transition name="slide">
@@ -43,44 +49,9 @@
         v-if="aspect !== 2"
         :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
         :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
-        <b-input
-          placeholder="Riu Túria"
-          v-model="properties.place"
-          maxlength="60">
-        </b-input>
+        <b-input placeholder="Riu Túria" v-model="properties.place" maxlength="60"></b-input>
       </b-field>
     </transition>
-
-    <!-- Speakers -->
-    <transition name="slide">
-      <speaker-list
-        v-show="!aspect"
-        :accepts-picture="false"
-        :accepts-description="false"
-        :min-speakers="0"
-        :max-speakers="6"
-        :max-length-name="25"
-        :max-length-description="50"
-        @updated="(speakers) => properties.speakers = speakers" />
-    </transition>
-
-    <!-- Picture -->
-    <picture-upload
-      :picture="properties.picture"
-      :display-errors="displayErrors"
-      @upload="updateImage"
-      @delete="properties.picture = null; properties.picturePreview = null" />
-
-    <!-- Picture position -->
-    <b-field label="Posició de la imatge" class="range">
-      <range-slider
-        name="points"
-        :min="0"
-        :max="100"
-        v-model="properties.picturePos"
-        @touchstart="dimPane(true)"
-        @touchend="dimPane(false)" />
-    </b-field>
 
     <!-- Hashtag -->
     <transition name="slide">
@@ -104,7 +75,7 @@ import SpeakerList from '@/utils/SpeakerList'
 import CampaignRandomizer from '@/utils/CampaignRandomizer'
 
 export default {
-  name: 'campaign-quote-pane',
+  name: 'speakers-pane',
 
   mixins: [PaneMixin],
 
@@ -122,18 +93,31 @@ export default {
         date: new Date(),
         time: new Date(),
         place: '',
-        speakers: []
+        speakers: [
+          {
+            name: 'Mónica Oltra',
+            description: 'Vicepresidenta',
+            picture: null
+          },
+          {
+            name: 'Fran Ferri',
+            description: 'Síndic',
+            picture: null
+          }
+        ]
       }
     }
   },
 
+  // Emit state to parent component
   watch: {
     properties: {
       handler: function (properties) {
+        const speakersAreValid = properties.speakers.every((speaker) => speaker.picture !== null && speaker.name !== '')
         this.isDownloadable = (
           properties.title !== '' &&
           properties.place !== '' &&
-          properties.picture !== null
+          speakersAreValid
         )
       },
       deep: true
@@ -147,9 +131,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .local-label {
-    margin-top: .75rem;
-  }
-</style>
