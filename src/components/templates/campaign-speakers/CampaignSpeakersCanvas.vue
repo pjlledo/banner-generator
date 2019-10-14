@@ -199,47 +199,37 @@ export default {
         height: 145px;
       }
 
-      &-name-wrapper {
-        margin-top: 10px;
+      &-name {
+        font-size: 13px;
+
+        &-wrapper {
+          margin-top: 10px;
+          padding: 4px 6px;
+        }
+      }
+
+      &-description {
+        font-size: 11px;
       }
     }
   }
 
   // Story aspect
   .aspect-916 {
-    .blob {
-      &-1 {
-        left: -125%;
-        top: -88%;
-      }
-
-      &-2 {
-        left: 60%;
-        bottom: -88%;
-        --gradient-orientation: -45deg;
-      }
-
-      &-image {
-        height: 540px;
-        top: -160px;
-        left: -12px;
-        border-bottom-right-radius: 0;
-      }
-    }
-
     .speakers {
-      padding: 0 30px;
+      padding: 14px 20px;
       box-sizing: border-box;
-      width: 100%;
-      top: 98px;
+      top: 88px;
+      left: 20px;
+      max-width: 340px;
 
-      &-overtitle{
+      &-overtitle {
         font-size: 20px;
       }
 
       &-items {
-        top: 30%;
-        left: 30px;
+        top: 215px;
+        left: 45px;
         right: 30px;
         grid-row-gap: 10px;
         grid-column-gap: 0;
@@ -252,41 +242,39 @@ export default {
       &-item {
         display: grid;
         grid-template-columns: var(--image-size, 75px) auto;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr;
         grid-template-areas:
-          "image name"
-          "image description";
+          "image name";
         grid-column-gap: 10px;
         grid-row-gap: 5px;
       }
 
-      &-name {
+      &-name-wrapper {
         grid-area: name;
-        align-self: end;
-      }
-
-      &-description {
-        grid-area: description;
-        align-self: start;
+        align-self: center;
+        margin: 0;
+        margin-left: -25px;
+        justify-self: start;
       }
 
       &-image {
         grid-area: image;
         height: 75px;
-        border-radius: 100%;
       }
 
       &-details-wrapper {
-        padding: 0 30px;
-        width: 100%;
+        padding: 14px 20px;
+        left: 20px;
+        right: 20px;
         box-sizing: border-box;
         flex-direction: column;
         bottom: 10%;
+        max-width: 350px;
       }
 
       &-details {
-        margin: .4rem 0;
-        font-size: 19px;
+        margin: .2rem 0;
+        font-size: 17px;
 
         svg {
           margin-right: .25rem;
