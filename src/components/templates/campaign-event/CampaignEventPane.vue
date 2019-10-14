@@ -104,7 +104,7 @@ import SpeakerList from '@/utils/SpeakerList'
 import CampaignRandomizer from '@/utils/CampaignRandomizer'
 
 export default {
-  name: 'quote-pane',
+  name: 'campaign-quote-pane',
 
   mixins: [PaneMixin],
 

@@ -39,6 +39,6 @@
 
 <script>
 export default {
-  name: 'event-help'
+  name: 'campaign-event-help'
 }
 </script>

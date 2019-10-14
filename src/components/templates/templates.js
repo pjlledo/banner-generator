@@ -16,6 +16,18 @@ const templates = [
     name: 'Titular de premsa',
     aspects: ['11', '916'],
     icon: 'newspaper',
+    isCampaign: true,
+    components: {
+      pane: () => import(/* webpackChunkName: "headline" */ './campaign-headline/CampaignHeadlinePane'),
+      canvas: () => import(/* webpackChunkName: "headline" */ './campaign-headline/CampaignHeadlineCanvas'),
+      help: () => import(/* webpackChunkName: "headline" */ './campaign-headline/CampaignHeadlineHelp')
+    }
+  },
+  {
+    id: 'Headline',
+    name: 'Titular de premsa',
+    aspects: ['11', '916'],
+    icon: 'newspaper',
     components: {
       pane: () => import(/* webpackChunkName: "headline" */ './headline/HeadlinePane'),
       canvas: () => import(/* webpackChunkName: "headline" */ './headline/HeadlineCanvas'),
