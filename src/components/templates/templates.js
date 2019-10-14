@@ -12,6 +12,18 @@ const templates = [
     }
   },
   {
+    id: 'CampaignGeneric',
+    name: 'Frase',
+    aspects: ['11', '916'],
+    icon: 'font',
+    isCampaign: true,
+    components: {
+      pane: () => import(/* webpackChunkName: "campaign-generic" */ './campaign-generic/CampaignGenericPane'),
+      canvas: () => import(/* webpackChunkName: "campaign-generic" */ './campaign-generic/CampaignGenericCanvas'),
+      help: () => import(/* webpackChunkName: "campaign-generic" */ './campaign-generic/CampaignGenericHelp')
+    }
+  },
+  {
     id: 'Headline',
     name: 'Titular de premsa',
     aspects: ['11', '916'],
