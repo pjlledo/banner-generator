@@ -4,7 +4,8 @@
       <h2 class="template-selector-header">Selecciona un model de tarja</h2>
       <ul>
         <li v-for="template in templates" :key="template.id">
-          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`]">
+          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`, template['isCampaign'] ? 'template-item-campaign' : '']">
+            <span class="template-item-label" v-if="template['isCampaign']">Campanya</span>
             <span class="template-item-icon">
               <b-icon :icon="template.icon" size="is-large" />
             </span>
@@ -164,6 +165,51 @@ export default {
         left: 0;
         padding: 1rem;
       }
+
+      &-label {
+        background: $cpn-navy;
+        padding: .25rem .5rem;
+        border-radius: .25rem;
+        color: $white;
+        font-size: .85rem;
+        position: absolute;
+        right: 1rem;
+        top: -.55rem;
+        transition: .25s ease-in-out;
+      }
+
+      &-campaign {
+        background: $cpn-turquoise;
+        color: $cpn-navy;
+
+        .template-item-icon {
+          background: rgba($white, .15);
+
+          .icon {
+            color: $cpn-navy;
+          }
+        }
+
+        &:hover {
+          background: $cpn-navy;
+
+          .template-item-name {
+            background: linear-gradient($cpn-yellow, $cpn-yellow);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
+          .template-item-label {
+            background: $cpn-yellow;
+            color: $cpn-navy;
+          }
+
+          .template-item-icon .icon svg * {
+            fill: $cpn-yellow !important;
+          }
+        }
+      }
     }
 
     footer {
@@ -172,6 +218,7 @@ export default {
       background-color: rgba($body-background-color, .75);
       border-radius: .5rem;
       margin-bottom: 1rem;
+      margin-top: 2rem;
     }
   }
 
