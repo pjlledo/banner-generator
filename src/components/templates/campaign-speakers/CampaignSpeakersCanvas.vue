@@ -25,7 +25,7 @@
       <div class="speakers-overtitle">
         {{ banner.overtitle | formatString }}
       </div>
-      <h2 class="speakers-title" :style="{ fontSize: aspect === '11' ? fontSize('title', 50, 35 , 60) : aspect === 'event' ? fontSize('title', 110, 80 , 60) : fontSize('title', 40, 27 , 60) }">
+      <h2 class="speakers-title" :style="{ fontSize: aspect === '11' ? fontSize('title', 50, 35 , 60) : aspect === 'event' ? fontSize('title', 110, 80 , 60) : fontSize('title', 40, 22, 60) }">
         {{ banner.title | formatString }}
       </h2>
     </div>
@@ -130,7 +130,7 @@ export default {
 
     &-items {
       position: absolute;
-      top: 30%;
+      top: 35%;
       left: 60px;
       right: 45px;
       display: grid;
@@ -149,7 +149,7 @@ export default {
     &-details-wrapper {
       display: flex;
       position: absolute;
-      bottom: 18%;
+      bottom: 12%;
       padding: 16px;
       right: 45px;
       border-radius: $cpn-sm-radius;
@@ -160,7 +160,7 @@ export default {
     &-details {
       display: flex;
       align-items: center;
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: -1px;
       width: auto;
       padding-right: 1.25rem;
