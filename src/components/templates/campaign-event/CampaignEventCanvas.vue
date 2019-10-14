@@ -82,117 +82,117 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../sass/variables";
+  @import "../../../sass/variables";
 
-.event {
-  display: flex;
-  position: absolute;
-  top: 90px;
-  left: 0;
-  height: 415px;
-  z-index: 40;
-  padding: 0 35px;
-  flex-direction: column;
-  justify-content: center;
-  z-index: 20;
-  transition: all 0.5s ease-in-out;
-  font-family: "MesCompromis", serif;
-  align-items: flex-start;
-
-  &-title {
-    font-size: 40px;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    display: inline;
-    word-wrap: break-word;
-    font-family: "MesCompromis", serif;
-    font-weight: bold;
-
-    &-wrapper {
-      background: $cpn-red;
-      padding: 1rem;
-      border-radius: $cpn-sm-radius;
-      max-width: 350px;
-    }
-  }
-
-  &-overtitle {
-    font-size: 18px;
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-    padding-bottom: 0.25rem;
-  }
-
-  &-details {
-    padding-top: 0.75rem;
+  .event {
     display: flex;
-    align-content: center;
-    font-size: 17.5px;
-    letter-spacing: -0.5px;
-
-    &:first-child {
-      padding-top: 0;
-    }
-
-    &-wrapper {
-      margin-top: 1rem;
-      background: $cpn-turquoise;
-      padding: 1rem;
-      border-radius: $cpn-sm-radius;
-      margin-left: 2rem;
-      max-width: 275px;
-    }
-
-    .icon {
-      padding-right: 0.3rem;
-      flex-shrink: 0;
-
-      svg {
-        width: 500px;
-        height: 500px;
-      }
-    }
-  }
-
-  &-speakers {
-    &-wrapper {
-      margin-top: 1rem;
-      max-width: 400px;
-
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      li {
-        background: $cpn-navy;
-        color: $cpn-white;
-        padding: 0.25rem 0.5rem;
-        border-radius: $cpn-xs-radius;
-        margin: 0 0.5rem 0.5rem 0;
-      }
-    }
-  }
-}
-
-.blob {
-  &-image {
-    top: 30px;
-    right: 30px;
-    height: 580px;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    height: 415px;
+    z-index: 40;
+    padding: 0 35px;
+    flex-direction: column;
+    justify-content: center;
     z-index: 20;
-    width: 560px;
-    border-radius: $cpn-bg-radius;
-    transform: rotate(0);
+    transition: all 0.5s ease-in-out;
+    font-family: "MesCompromis", serif;
+    align-items: flex-start;
 
-    img {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      transform: rotate(0);
+    &-title {
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      display: inline;
+      word-wrap: break-word;
+      font-family: "MesCompromis", serif;
+      font-weight: bold;
+
+      &-wrapper {
+        background: $cpn-red;
+        padding: 1rem;
+        border-radius: $cpn-sm-radius;
+        max-width: 350px;
+      }
+    }
+
+    &-overtitle {
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      padding-bottom: 0.25rem;
+    }
+
+    &-details {
+      padding-top: 0.75rem;
+      display: flex;
+      align-content: center;
+      font-size: 17.5px;
+      letter-spacing: -0.5px;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &-wrapper {
+        margin-top: 1rem;
+        background: $cpn-turquoise;
+        padding: 1rem;
+        border-radius: $cpn-sm-radius;
+        margin-left: 2rem;
+        max-width: 275px;
+      }
+
+      .icon {
+        padding-right: 0.3rem;
+        flex-shrink: 0;
+
+        svg {
+          width: 500px;
+          height: 500px;
+        }
+      }
+    }
+
+    &-speakers {
+      &-wrapper {
+        margin-top: 1rem;
+        max-width: 400px;
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        li {
+          background: $cpn-navy;
+          color: $cpn-white;
+          padding: 0.25rem 0.5rem;
+          border-radius: $cpn-xs-radius;
+          margin: 0 0.5rem 0.5rem 0;
+        }
+      }
     }
   }
-}
+
+  .blob {
+    &-image {
+      top: 30px;
+      right: 30px;
+      height: 580px;
+      z-index: 20;
+      width: 560px;
+      border-radius: $cpn-bg-radius;
+      transform: rotate(0);
+
+      img {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        transform: rotate(0);
+      }
+    }
+  }
 
   .hashtag {
     position: absolute;
