@@ -13,11 +13,11 @@ import InformacionSVG from './logos/informacion.svg'
 import VeinteMinutosSVG from './logos/20_minutos.svg'
 import LaVeuSVG from './logos/laveu.svg'
 import EuropaPressSVG from './logos/europapress.svg'
-import InfoLibrePNG from './logos/infolibre.png'
-import ElPeriodicoDeAquiJPG from './logos/elperiodicodeaqui.jpg'
+import InfoLibreSVG from './logos/infolibre.svg'
+import ElPeriodicoDeAquiPNG from './logos/elperiodicodeaqui.png'
 import ValenciaExtraPNG from './logos/valencia-extra.png'
 import ElPeriodicSVG from './logos/elperiodic.svg'
-import ElConfidencialPNG from './logos/elconfidencial.png'
+import ElConfidencialSVG from './logos/elconfidencial.svg'
 import CSInfoPNG from './logos/csinfo.png'
 
 const sources = [
@@ -146,7 +146,7 @@ const sources = [
   {
     id: 'infolibre',
     name: 'InfoLibre',
-    logo: InfoLibrePNG,
+    logo: InfoLibreSVG,
     logoHeight: 22,
     fontFamily: 'Georgia',
     color: '#B22726'
@@ -154,7 +154,7 @@ const sources = [
   {
     id: 'elperiodicodeaqui',
     name: 'El Periódico de Aquí',
-    logo: ElPeriodicoDeAquiJPG,
+    logo: ElPeriodicoDeAquiPNG,
     logoHeight: 28,
     fontFamily: 'Tiempos Headline',
     color: '#AA3D3A'
@@ -162,7 +162,7 @@ const sources = [
   {
     id: 'elconfidencial',
     name: 'El Confidencial',
-    logo: ElConfidencialPNG,
+    logo: ElConfidencialSVG,
     logoHeight: 24,
     fontFamily: 'Tiempos Headline',
     color: '#163A4D'
