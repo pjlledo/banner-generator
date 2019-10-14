@@ -65,7 +65,7 @@ import CampaignMixin from '@/mixins/campaign-mixin.js'
 import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
-  name: 'campaign-event-canvas',
+  name: 'campaign-quote-canvas',
 
   mixins: [CampaignMixin, CanvasMixin],
 

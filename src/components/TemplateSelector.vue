@@ -5,6 +5,7 @@
       <ul>
         <li v-for="template in templates" :key="template.id">
           <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`, template['isCampaign'] ? 'template-item-campaign' : '']">
+            <span class="template-item-label" v-if="template['isCampaign']">Campanya</span>
             <span class="template-item-icon">
               <b-icon :icon="template.icon" size="is-large" />
             </span>
@@ -165,6 +166,18 @@ export default {
         padding: 1rem;
       }
 
+      &-label {
+        background: $cpn-navy;
+        padding: .25rem .5rem;
+        border-radius: .25rem;
+        color: $white;
+        font-size: .85rem;
+        position: absolute;
+        right: 1rem;
+        top: -.55rem;
+        transition: .25s ease-in-out;
+      }
+
       &-campaign {
         background: $cpn-turquoise;
         color: $cpn-navy;
@@ -185,6 +198,11 @@ export default {
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+          }
+
+          .template-item-label {
+            background: $cpn-yellow;
+            color: $cpn-navy;
           }
 
           .template-item-icon .icon svg * {
