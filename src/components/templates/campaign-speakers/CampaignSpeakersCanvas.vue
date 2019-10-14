@@ -344,29 +344,35 @@ export default {
     }
 
     .speakers {
-      top: 0;
-      padding: 80px;
+      padding: 40px;
+      max-width: 1300px;
+      border-radius: 1.5rem;
+      margin: 2.5rem;
+
+      &-title {
+        line-height: 1.1;
+      }
 
       &-items {
         --image-size: 415px;
         grid-column-gap: 35px;
-        left: 60px;
-        right: 60px;
-        top: 35%;
-        justify-content: center;
+        left: 80px;
+        top: 45%;
       }
 
       &-image {
         height: 415px;
-        border-radius: 3rem;
+        border-radius: 1.2rem;
+      }
+
+      &-name-wrapper {
+        max-width: 17rem;
+        padding: 1rem;
+        margin-top: -3rem;
       }
 
       &-name, &-description {
-        display: none;
-      }
-
-      &-title {
-        width: 1200px;
+        font-size: 1.7rem;;
       }
 
       &-overtitle {
@@ -380,7 +386,7 @@ export default {
 
     &.has-2-speakers {
       .speakers-items {
-        transform: scale(1.2);
+        transform: scale(1.2) translateX(650px) translateY(20px);
       }
     }
   }
