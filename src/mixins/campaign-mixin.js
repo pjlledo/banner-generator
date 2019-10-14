@@ -9,7 +9,7 @@ export default {
   data () {
     return {
       currentPrimaryCombo: 'yellow',
-      colors: ['yellow', 'red', 'orange', 'navy', 'beige'],
+      colors: ['yellow', 'red', 'orange', 'navy', 'beige', 'turquoise'],
       allowedCombos: {
         yellow: {
           headline: ['red', 'navy', 'turquoise'],
@@ -31,6 +31,10 @@ export default {
         beige: {
           headline: ['navy', 'white', 'red'],
           text: ['navy', 'white', 'red']
+        },
+        turquoise: {
+          headline: ['navy', 'white', 'yellow'],
+          text: ['navy', 'white', 'yellow']
         }
       },
       whiteOrNavy: null
@@ -48,18 +52,14 @@ export default {
   computed: {
     computedComboPrimary () {
       const combo = this.getCombo(this.currentPrimaryCombo)
-      return [
-        `combo combo-${this.currentPrimaryCombo} has-${combo.text}-text has-${combo.headline}-headline`
-      ]
+      return `combo combo-${this.currentPrimaryCombo} has-${combo.text}-text has-${combo.headline}-headline`
     },
 
     computedComboSecondary () {
       const color = this.getSecondaryCombo()
       const combo = this.getCombo(color)
 
-      return [
-        `combo combo-${color} has-${combo.text}-text has-${combo.headline}-headline`
-      ]
+      return `combo combo-${color} has-${combo.text}-text has-${combo.headline}-headline`
     }
   },
 
@@ -87,7 +87,7 @@ export default {
     },
 
     getPrimaryCombo () {
-      const color = this.colors[this.randomNumber(0, 4)]
+      const color = this.colors[this.randomNumber(0, this.colors.length-1)]
 
       if (color === 'beige') return this.getSecondaryCombo()
 
@@ -97,7 +97,7 @@ export default {
     },
 
     getSecondaryCombo () {
-      const color = this.colors[this.randomNumber(0, 4)]
+      const color = this.colors[this.randomNumber(0, this.colors.length-1)]
 
       if (color === this.currentPrimaryCombo) return this.getSecondaryCombo()
 

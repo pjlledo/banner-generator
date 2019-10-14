@@ -11,15 +11,17 @@
     <div class="blob-image">
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
-    <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
-      <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 80, 35, 110) : fontSize('text', 70, 25, 110) }">{{ banner.text | formatString }}</div>
+    <div class='text' v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
+      <div :class="['text-lines', computedComboPrimary]" :style="{ fontSize: aspect === '11' ? fontSize('text', 70, 35, 110) : fontSize('text', 70, 25, 110) }">{{ banner.text | formatString }}</div>
     </div>
-    <div class="logo">
-      <mescompromis-logo />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
-    </div>
-    <div class="hashtag" v-if="aspect === '11'">
-      {{ banner.hashtag }}
+    <div class="blob-footer">
+      <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
+        {{ banner.hashtag }}
+      </div>
+      <div class="logo">
+        <mescompromis-logo />
+        <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -41,20 +43,23 @@ export default {
   .text {
     display: flex;
     position: absolute;
-    top: 155px;
-    bottom: 175px;
+    top: 0;
+    bottom: 70px;
     left: 0;
     z-index: 30;
     width: 100%;
     transition: all .5s ease-in-out;
-    font-family: "MesCompromis", serif;
-    background: $cpn-red;
-    padding: 1rem;
-    border-radius: $cpn-sm-radius;
 
-    &-holder {
+    &-lines {
       width: 100%;
       padding: 0 45px;
+      margin: 3rem;
+      font-family: "MesCompromis", serif;
+      background: $cpn-red;
+      padding: 1rem;
+      border-radius: $cpn-sm-radius;
+      text-align: left;
+      line-height: 1;
     }
   }
 
@@ -78,40 +83,40 @@ export default {
     }
   }
 
-  .logo {
-    color: $white;
-    z-index: 20;
+  .blob-footer {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    right: 32px;
+    border-radius: $cpn-sm-radius;
+    z-index: 30;
+    background: $white;
+    padding: 16px 32px;
+    display: flex;
 
-    &-local-label {
-      border-left: 1px $white solid;
-      color: $white;
+    .logo {
+      position: relative;
+      width: 290px;
+      top: -2px;
+      left: auto;
+      right: auto;
+      margin-left: auto;
     }
-  }
 
-  .hashtag {
-    top: 20px;
-    left: 35px;
-    bottom: auto;
+    .hashtag {
+      position: static;
+      color: $cpn-navy;
+    }
   }
 
   // Story aspect
   .aspect-916 {
-
-    .quote {
-      top: 370px;
-
-      &-glyph {
-        top: -105px;
-        font-size: 140px;
-      }
-
-      &-text {
-        font-size: 28px;
-      }
-    }
-
-    .logo {
+    .blob-footer {
       display: none;
+    }
+    .text {
+      top: 60px;
+      bottom: 60px;
     }
   }
 </style>

@@ -1,18 +1,13 @@
 <template>
   <div :class="{ 'pane generic-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
+    <!-- Randomizer -->
+    <campaign-randomizer />
+
     <!-- Text -->
     <div class="text-wrapper">
       <b-field label="Text">
         <b-input type="textarea" placeholder="48152342 usuaris de bicicleta en 2023" v-model="properties.text" maxlength="100"></b-input>
       </b-field>
-
-      <!-- Text align -->
-      <b-field label="Alineació del text" class="text-align-group">
-        <b-tabs @change="updateTextAlign" :value="1" class="text-align" type="is-toggle" size="is-small" expanded>
-          <b-tab-item icon="align-left"></b-tab-item>
-          <b-tab-item icon="align-center"></b-tab-item>
-          <b-tab-item icon="align-right"></b-tab-item>
-        </b-tabs>
 
         <!-- Text position -->
         <b-tabs @change="updateTextPosition" :value="1" class="text-position" type="is-toggle" size="is-small" expanded>
@@ -21,12 +16,6 @@
           <b-tab-item icon="arrow-to-bottom"></b-tab-item>
         </b-tabs>
       </b-field>
-
-      <article class="message is-info is-small" v-if="aspect === 1">
-        <div class="message-body">
-          Es recomana utilitzar la ferramenta de text nativa d'Instragram per a afegir text en aquest model de tarja.
-        </div>
-      </article>
     </div>
 
     <!-- Picture -->
@@ -58,32 +47,21 @@
         </b-input>
       </b-field>
     </transition>
-
-    <!-- Local label -->
-    <transition name="slide">
-      <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
 import PaneMixin from '@/mixins/pane-mixin.js'
+import CampaignRandomizer from '@/utils/CampaignRandomizer'
 
 export default {
   name: 'campaign-generic-pane',
 
   mixins: [PaneMixin],
+
+  components: {
+    CampaignRandomizer
+  },
 
   data () {
     return {
