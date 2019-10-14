@@ -13,10 +13,14 @@ module.exports = {
       return [pwaArgs]
     })
   },
-  configureWebpack: {
-    devtool: 'source-map',
-    plugins: [
-      // new ImageminPlugin()
-    ]
+  configureWebpack: () => {
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        devtool: 'source-map',
+        plugins: [
+          new ImageminPlugin()
+        ]
+      }
+    }
   }
 }

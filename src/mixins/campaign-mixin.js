@@ -65,18 +65,14 @@ export default {
 
   methods: {
     getCombo (color) {
-      const headline = this.allowedCombos[color].headline[
-        this.randomNumber(0, this.allowedCombos[color].headline.length - 1)
-      ]
+      const headline = this.allowedCombos[color].headline[this.randomNumber(0, this.allowedCombos[color].headline.length - 1)]
 
       let text
       if (
         ['navy', 'white'].includes(headline) ||
         ['navy', 'beige'].includes(color)
       ) {
-        text = this.allowedCombos[color].text[
-          this.randomNumber(0, this.allowedCombos[color].text.length - 1)
-        ]
+        text = this.allowedCombos[color].text[this.randomNumber(0, this.allowedCombos[color].text.length - 1)]
       } else {
         this.whiteOrNavy =
           this.whiteOrNavy === null

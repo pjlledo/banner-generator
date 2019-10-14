@@ -17,7 +17,7 @@ export default {
   },
 
   mounted () {
-    EventBus.$on('campaignColorUpdated', (newColor) => this.buttonColor = newColor)
+    EventBus.$on('campaignColorUpdated', (newColor) => { this.buttonColor = newColor })
   },
 
   methods: {
