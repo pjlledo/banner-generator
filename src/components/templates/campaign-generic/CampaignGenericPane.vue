@@ -41,9 +41,7 @@
     <transition name="slide">
       <b-field label="Hashtag" v-if="!aspect">
         <b-input
-          placeholder="#"
-          @input="updateHashtag"
-          :value="properties.hashtag"
+          v-model="properties.slogan"
           :maxlength="25">
         </b-input>
       </b-field>
@@ -71,7 +69,8 @@ export default {
         textPos: 'center',
         textAlign: 'center',
         textPosI: 1,
-        textAlignI: 1
+        textAlignI: 1,
+        slogan: 'Acordar, la política útil'
       }
     }
   },

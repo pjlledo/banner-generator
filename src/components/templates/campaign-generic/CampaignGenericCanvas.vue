@@ -15,8 +15,8 @@
       <div :class="['text-lines', computedComboPrimary]" :style="{ fontSize: aspect === '11' ? fontSize('text', 70, 35, 110) : fontSize('text', 70, 25, 110) }">{{ banner.text | formatString }}</div>
     </div>
     <div class="blob-footer">
-      <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
-        {{ banner.hashtag }}
+      <div class="hashtag" v-if="banner.slogan && aspect === '11'">
+        {{ banner.slogan }}
       </div>
       <div class="logo">
         <mescompromis-logo />

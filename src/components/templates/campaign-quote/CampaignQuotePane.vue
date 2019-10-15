@@ -49,9 +49,7 @@
       <b-field label="Hashtag" v-if="!aspect">
         <b-input
           id="hashtag-field"
-          placeholder="#"
-          @input="updateHashtag"
-          :value="properties.hashtag"
+          v-model="properties.slogan"
           :maxlength="32">
         </b-input>
       </b-field>
@@ -76,7 +74,8 @@ export default {
     return {
       properties: {
         quote: '',
-        author: ''
+        author: '',
+        slogan: 'Acordar, la política útil'
       }
     }
   },
