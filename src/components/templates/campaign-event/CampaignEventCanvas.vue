@@ -54,8 +54,8 @@
     <div class="logo" v-if="aspect !== 'event'">
       <mescompromis-logo />
     </div>
-    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
-      {{ banner.hashtag }}
+    <div class="hashtag" v-if="banner.slogan && aspect === '11'">
+      {{ banner.slogan }}
     </div>
   </div>
 </template>

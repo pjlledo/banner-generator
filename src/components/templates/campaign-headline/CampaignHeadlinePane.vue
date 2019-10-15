@@ -93,9 +93,7 @@
       <b-field label="Hashtag" v-if="!aspect">
         <b-input
           id="hashtag-field"
-          placeholder="#"
-          @input="updateHashtag"
-          :value="properties.hashtag"
+          v-model="properties.slogan"
           :maxlength="32">
         </b-input>
       </b-field>
@@ -139,7 +137,8 @@ export default {
         headline: '',
         source: null,
         customSource: '',
-        customSourceColor: '#1CA085'
+        customSourceColor: '#1CA085',
+        slogan: 'Acordar, la política útil'
       },
       presets: presets
     }
