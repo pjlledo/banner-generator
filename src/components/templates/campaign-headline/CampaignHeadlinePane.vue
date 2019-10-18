@@ -98,22 +98,6 @@
         </b-input>
       </b-field>
     </transition>
-
-    <!-- Local label -->
-    <transition name="slide">
-      <div v-if="!aspect" class="field" id="local-label-field">
-        <b-switch v-model="properties.hasLocalLabel" @input="properties.hashtag = properties.hashtag.substring(0, 18)">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
-    </transition>
   </div>
 </template>
 
