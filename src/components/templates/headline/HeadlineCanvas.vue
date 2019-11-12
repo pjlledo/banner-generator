@@ -4,7 +4,8 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      aspect === '11' || banner.card ? 'disposition-' + banner.disposition : '',
+      banner.card ? 'cards' : 'no-cards',
       banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
       banner.headline.length > 95 ? 'has-long-headline' : ''
     ]"
@@ -15,10 +16,10 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="headline">
-      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'">
-        <span :style="{ 'color': banner.customSourceColor }">{{ banner.customSource }}</span>
+      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="banner.card ? { backgroundColor: banner.customSourceColor } : null">
+        <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
       </div>
-      <div class="headline-source" v-else-if="banner.source">
+      <div class="headline-source" v-else-if="banner.source" :style="banner.card ? { backgroundColor: banner.source.color } : null">
         <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
       <div class="headline-text"
@@ -31,7 +32,7 @@
       </div>
     </div>
     <div class="logo">
-      <compromis-logo />
+      <compromis-logo :mono="banner.card" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
     <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
@@ -168,7 +169,7 @@ export default {
   }
 
   // Headline on top
-  .disposition-1 {
+  .disposition-1.no-cards {
     .headline {
       top: 90px;
       height: 172px;
@@ -212,6 +213,108 @@ export default {
         top: 285px;
         left: 130px;
         height: 500px;
+      }
+    }
+  }
+
+  .cards {
+    .headline {
+      z-index: 30;
+      left: 40px;
+      right: 40px;
+      bottom: 90px;
+      top: auto;
+      background: $white;
+      box-shadow: $raised-shadow;
+      border-radius: $card-radius;
+      height: auto;
+      padding: 26px;
+      overflow: hidden;
+
+      &-source {
+        background: $green;
+        margin: -26px -26px 26px -26px;
+        padding: 8px 26px;
+
+        img {
+          position: relative;
+          top: 3px;
+          filter: grayscale(100%) brightness(0) invert(1);
+        }
+
+        &--custom {
+          font-size: 1.35rem;
+          color: $white;
+          font-family: Compromis, sans-serif;
+        }
+      }
+    }
+
+    .blob {
+      &-1 {
+        left: -58%;
+        top: -82%;
+        z-index: 20;
+      }
+
+      &-2 {
+        left: auto;
+        right: -57%;
+        bottom: -81%;
+        z-index: 20;
+        --gradient-orientation: -45deg;
+      }
+
+      &-image {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotate(0);
+        border-radius: 0;
+        z-index: 0;
+      }
+    }
+
+    .logo {
+      z-index: 30;
+      color: $white;
+    }
+
+    .hashtag {
+      top: 20px;
+      left: 35px;
+      bottom: auto;
+    }
+
+    &.disposition-1 {
+      .headline {
+        top: 88px;
+        bottom: auto;
+      }
+    }
+
+    &.aspect-916 {
+      .headline {
+        left: 16px;
+        right: 16px;
+      }
+
+      .blob {
+        &-1 {
+          left: -118%;
+        }
+
+        &-2 {
+          right: -104%;
+        }
+      }
+
+      &.disposition-1 {
+        .headline {
+          top: 88px;
+          bottom: auto;
+        }
       }
     }
   }

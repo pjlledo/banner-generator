@@ -76,6 +76,7 @@ $gradient-end: #f39128;
 $gradient: linear-gradient(var(--gradient-orientation, 45deg), $gradient-start, $gradient-end);
 $rotation: -5deg;
 $border-radius: 5rem;
+$card-radius: 1rem;
 
 // Shadows
 $default-shadow: 0 .8rem 1.7rem -.3rem rgba($gray-900, .15),

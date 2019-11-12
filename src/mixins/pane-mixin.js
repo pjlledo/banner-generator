@@ -14,6 +14,7 @@ export default {
     return {
       properties: {
         disposition: 0,
+        card: 1,
         picture: null,
         picturePreview: '',
         picturePos: 50,

@@ -1,18 +1,32 @@
 <template>
   <div :class="{ 'pane headline-pane': true, 'pane-dimmed': paneDimmed }">
-    <!-- Disposition -->
-    <transition name="slide">
+    <b-field label="Estil">
       <b-tabs
-        id="disposition-tabs"
+        id="style-tabs"
         type="is-toggle"
         size="is-small"
-        v-model="properties.disposition"
-        v-if="!aspect"
-        class="banner-disposition"
+        v-model="properties.card"
+        class="tabs"
         expanded>
-        <b-tab-item label="Titular baix"></b-tab-item>
-        <b-tab-item label="Titular dalt"></b-tab-item>
+        <b-tab-item label="Fons blanc"></b-tab-item>
+        <b-tab-item label="Targeta"></b-tab-item>
       </b-tabs>
+    </b-field>
+
+    <!-- Disposition -->
+    <transition name="slide">
+      <b-field label="Posició del titular" v-if="(!aspect && !properties.card) || (properties.card)">
+        <b-tabs
+          id="disposition-tabs"
+          type="is-toggle"
+          size="is-small"
+          v-model="properties.disposition"
+          class="tabs"
+          expanded>
+          <b-tab-item label="Titular baix"></b-tab-item>
+          <b-tab-item label="Titular dalt"></b-tab-item>
+        </b-tabs>
+      </b-field>
     </transition>
 
     <!-- Source -->
