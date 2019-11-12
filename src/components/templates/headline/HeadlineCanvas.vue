@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="logo">
-      <compromis-logo :mono="banner.card" />
+      <compromis-logo :mono="banner.card ? true : false" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
     <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
@@ -217,6 +217,7 @@ export default {
     }
   }
 
+  /* Card style */
   .cards {
     .headline {
       z-index: 30;
@@ -273,6 +274,12 @@ export default {
         transform: rotate(0);
         border-radius: 0;
         z-index: 0;
+
+        img {
+          transform: rotate(0);
+          width: 100%;
+          margin: 0;
+        }
       }
     }
 
@@ -287,6 +294,13 @@ export default {
       bottom: auto;
     }
 
+    &.has-local-label {
+      .blob-2 {
+        right: -44%;
+      }
+    }
+
+    /* Cards with headline on top */
     &.disposition-1 {
       .headline {
         top: 88px;
@@ -294,10 +308,17 @@ export default {
       }
     }
 
+    /* Cards in story aspect */
     &.aspect-916 {
       .headline {
         left: 16px;
         right: 16px;
+        padding: 18px;
+
+        &-source {
+          margin: -18px -18px 18px -18px;
+          padding: 8px 18px;
+        }
       }
 
       .blob {
@@ -310,6 +331,7 @@ export default {
         }
       }
 
+      /* Cards in story aspect with headline on top */
       &.disposition-1 {
         .headline {
           top: 88px;

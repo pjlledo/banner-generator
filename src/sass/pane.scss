@@ -1,3 +1,69 @@
+.upload {
+  width: 100%;
+
+  .upload-draggable {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.banner-disposition .tab-content {
+  display: none;
+}
+
+.tabs a {
+  background: $white;
+}
+
+.tabs-field {
+  .tab-content {
+    display: none;
+  }
+}
+
+.field {
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.textarea-small .textarea {
+  min-height: 4.3rem;
+}
+
+.control .help.counter {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+}
+
+.field:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.dropdown-item .field {
+  margin-bottom: 0;
+}
+
+.gradient-start {
+  stop-color: $gradient-start;
+}
+
+.gradient-end {
+  stop-color: $gradient-end;
+}
+
+.v-step__content {
+  strong {
+    color: $white;
+  }
+}
+
 @media (max-width: $xs-breakpoint) {
   .pane {
     transition: background .25s ease-in-out;

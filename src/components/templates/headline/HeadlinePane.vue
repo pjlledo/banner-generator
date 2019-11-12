@@ -6,7 +6,7 @@
         type="is-toggle"
         size="is-small"
         v-model="properties.card"
-        class="tabs"
+        class="tabs-field"
         expanded>
         <b-tab-item label="Fons blanc"></b-tab-item>
         <b-tab-item label="Targeta"></b-tab-item>
@@ -21,7 +21,7 @@
           type="is-toggle"
           size="is-small"
           v-model="properties.disposition"
-          class="tabs"
+          class="tabs-field"
           expanded>
           <b-tab-item label="Titular baix"></b-tab-item>
           <b-tab-item label="Titular dalt"></b-tab-item>
