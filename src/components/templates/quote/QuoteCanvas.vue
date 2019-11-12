@@ -5,12 +5,14 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
+      banner.card ? 'cards' : 'no-cards',
       banner.localLabel ? 'has-local-label' : ''
     ]"
     v-if="banner">
     <div class="blob blob-image">
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
+    <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="quote">
       <div class="quote-glyph">“</div>
@@ -22,7 +24,7 @@
       <div class="quote-author">{{ banner.author | formatString }}</div>
     </div>
     <div class="logo">
-      <compromis-logo />
+      <compromis-logo :mono="banner.card ? true : false" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
   </div>
@@ -232,6 +234,99 @@ export default {
           margin: -18px 28px;
         }
       }
+    }
+  }
+
+  .cards {
+    .quote {
+      top: 100px;
+
+      &-text {
+        background: $white;
+        color: $gray-900;
+      }
+
+      &-glyph {
+        color: $white;
+      }
+
+      &-author {
+        font-weight: bold;
+        color: $white;
+        text-shadow: 0 0 8px $black;
+        overflow: visible;
+        width: 250px;
+      }
+    }
+    .blob {
+      &-image {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: rotate(0);
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+
+        img {
+          transform: rotate(0);
+          margin: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &-1 {
+        display: block;
+        left: -58%;
+        top: -82%;
+        z-index: 20;
+      }
+
+      &-2 {
+        left: auto;
+        right: -57%;
+        bottom: -81%;
+        z-index: 20;
+        --gradient-orientation: -45deg;
+      }
+    }
+
+    .logo {
+      color: $white;
+      z-index: 25;
+    }
+
+    &.has-local-label {
+      .blob-2 {
+        right: -44%;
+      }
+    }
+
+    &.aspect-916 {
+      .blob {
+        &-1 {
+          left: -118%;
+        }
+
+        &-2 {
+          right: -104%;
+        }
+      }
+    }
+
+    &.disposition-1 {
+      .quote {
+        top: 40px;
+      }
+
+      .logo {
+        right: 35px;
+        bottom: 25px;
+        left: auto;
+      }  
     }
   }
 </style>

@@ -1,11 +1,27 @@
 <template>
   <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
+    <!-- Style -->
+    <b-field label="Estil">
+      <b-tabs
+        id="style-tabs"
+        type="is-toggle"
+        size="is-small"
+        v-model="properties.card"
+        class="tabs-field"
+        expanded>
+        <b-tab-item label="Fons blanc"></b-tab-item>
+        <b-tab-item label="Fons imatge"></b-tab-item>
+      </b-tabs>
+    </b-field>
+
     <!-- Disposition -->
     <transition name="slide">
-      <b-tabs type="is-toggle" size="is-small" v-model="properties.disposition" v-if="!aspect" class="banner-disposition" expanded>
-        <b-tab-item label="Frase esquerra"></b-tab-item>
-        <b-tab-item label="Frase dalt"></b-tab-item>
-      </b-tabs>
+      <b-field label="Posició de la frase" v-if="!aspect">
+        <b-tabs type="is-toggle" size="is-small" v-model="properties.disposition" class="tabs-field" expanded>
+          <b-tab-item label="Frase esquerra"></b-tab-item>
+          <b-tab-item label="Frase dreta"></b-tab-item>
+        </b-tabs>
+      </b-field>
     </transition>
 
     <!-- Quote -->
