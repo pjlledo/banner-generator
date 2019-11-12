@@ -18,6 +18,8 @@ import ElPeriodicoDeAquiPNG from './logos/elperiodicodeaqui.png'
 import ValenciaExtraPNG from './logos/valencia-extra.png'
 import ElPeriodicSVG from './logos/elperiodic.svg'
 import ElConfidencialSVG from './logos/elconfidencial.svg'
+import LaMarinaPlazaSVG from './logos/marinaplaza.svg'
+import ElMundoSVG from './logos/elmundo.svg'
 import CSInfoPNG from './logos/csinfo.png'
 
 const sources = [
@@ -144,6 +146,14 @@ const sources = [
     color: '#BA261A'
   },
   {
+    id: 'elmundo',
+    name: 'El Mundo',
+    logo: ElMundoSVG,
+    logoHeight: 18,
+    fontFamily: 'Tiempos Headline',
+    color: '#6887A6'
+  },
+  {
     id: 'infolibre',
     name: 'InfoLibre',
     logo: InfoLibreSVG,
@@ -158,6 +168,14 @@ const sources = [
     logoHeight: 28,
     fontFamily: 'Tiempos Headline',
     color: '#AA3D3A'
+  },
+  {
+    id: 'lamarinaplaza',
+    name: 'La Marina Plaça',
+    logo: LaMarinaPlazaSVG,
+    logoHeight: 28,
+    fontFamily: 'Tiempos Headline',
+    color: '#146f9C'
   },
   {
     id: 'elconfidencial',
