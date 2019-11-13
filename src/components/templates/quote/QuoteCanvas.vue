@@ -6,7 +6,8 @@
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
       banner.card ? 'cards' : 'no-cards',
-      banner.localLabel ? 'has-local-label' : ''
+      banner.localLabel ? 'has-local-label' : '',
+      'blobs-' + color
     ]"
     v-if="banner">
     <div class="blob blob-image">
@@ -326,7 +327,7 @@ export default {
         right: 35px;
         bottom: 25px;
         left: auto;
-      }  
+      }
     }
   }
 </style>

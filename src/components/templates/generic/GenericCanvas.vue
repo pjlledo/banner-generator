@@ -5,7 +5,8 @@
       'banner-canvas',
       'aspect-' + aspect,
       aspect === '11' ? 'disposition-' + banner.disposition : '',
-      banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : ''
+      banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
+      'blobs-' + color
     ]"
     v-if="banner">
     <div class="blob blob-image">

@@ -7,7 +7,8 @@
       aspect === '11' || banner.card ? 'disposition-' + banner.disposition : '',
       banner.card ? 'cards' : 'no-cards',
       banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
-      banner.headline.length > 95 ? 'has-long-headline' : ''
+      banner.headline.length > 95 ? 'has-long-headline' : '',
+      'blobs-' + color
     ]"
     v-if="banner">
     <div class="blob blob-image">

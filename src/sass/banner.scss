@@ -1,4 +1,17 @@
 .banner-canvas {
+  &.blobs {
+    &-feminista {
+      .blob-1, .blob-2 {
+        background: $gradient-feminista;
+      }
+    }
+    &-lgtb {
+      .blob-1, .blob-2 {
+        background: $gradient-lgtb;
+        background-size: 100% 33.4%;
+      }
+    }
+  }
   .blob {
     position: absolute;
     width: 720px;

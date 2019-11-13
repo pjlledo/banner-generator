@@ -5,9 +5,10 @@
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
       <div :class="['canvas-wrapper', `template-${template.id.toLowerCase()}`]" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
-        <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" />
+        <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" :color="color" />
       </div>
     </b-tabs>
+    <careta-selector v-model="color" is-rounded v-if="template.id != 'Social'" />
 
     <div id="download-button" class="primary-download-button">
       <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
@@ -24,6 +25,7 @@
 import { EventBus } from '@/event-bus.js'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
+import CaretaSelector from '@/utils/CaretaSelector'
 
 export default {
   name: 'canvas-container',
@@ -35,9 +37,14 @@ export default {
     isDownloadable: Boolean
   },
 
+  components: {
+    CaretaSelector
+  },
+
   data () {
     return {
       aspect: 0,
+      color: 'normal',
       displayTooltip: false,
       scale: 1,
       margin: 0,

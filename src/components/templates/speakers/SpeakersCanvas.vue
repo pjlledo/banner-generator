@@ -7,7 +7,8 @@
       aspect === '11' ? 'disposition-' + banner.disposition : '',
       banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
       banner.title.length > 30 && banner.speakers.length !== 2 ? 'has-long-title' : 'has-short-title',
-      `has-${banner.speakers.length}-speakers`
+      `has-${banner.speakers.length}-speakers`,
+      'blobs-' + color
     ]"
     v-if="banner">
     <div class="speakers-items">
@@ -220,6 +221,10 @@ export default {
     .blob-2 {
       left: -60%;
     }
+  }
+
+  .blobs-lgtb.has-2-speakers .blob-1 {
+    background-size: 100% 68%;
   }
 
   // Story aspect

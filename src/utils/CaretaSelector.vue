@@ -1,21 +1,21 @@
 <template>
   <div>
-    <ul class="careta-selector">
-      <li :class="{'active' : value === 'normal'}" @click="$emit('input', 'normal')">
-          <careta logo-style="normal"></careta>
+    <ul :class="{'careta-selector': true, 'is-rounded': isRounded }">
+      <li :class="{'normal' : true, 'active': value === 'normal'}" @click="$emit('input', 'normal')">
+          <careta v-if="!isRounded" logo-style="normal"></careta>
       </li>
-      <li :class="{'active' : value === 'feminista'}" @click="$emit('input', 'feminista')">
-          <careta logo-style="feminista"></careta>
+      <li :class="{'feminista' : true, 'active': value === 'feminista'}" @click="$emit('input', 'feminista')">
+          <careta v-if="!isRounded" logo-style="feminista"></careta>
       </li>
-      <li :class="{'active' : value === 'lgtb'}" @click="$emit('input', 'lgtb')">
-          <careta logo-style="lgtb"></careta>
+      <li :class="{'lgtb' : true, 'active': value === 'lgtb'}" @click="$emit('input', 'lgtb')">
+          <careta v-if="!isRounded" logo-style="lgtb"></careta>
       </li>
     </ul>
-    <b-message v-if="value === 'feminista'" type="is-warning" size="is-small">
+    <b-message v-if="value === 'feminista' && isRounded === false" type="is-warning" size="is-small">
       El logo Compromís Feminista està pensat per ser utilitzat a les xarxes únicament
       el 8 de març o altres dates simbòliques del feminisme.
     </b-message>
-    <b-message v-if="value === 'lgtb'" type="is-warning" size="is-small">
+    <b-message v-if="value === 'lgtb' && isRounded === false" type="is-warning" size="is-small">
       El logo Compromís LGTB està pensat per ser utilitzat a les xarxes únicament
       durant el mes de l'orgull o altres dates simbòliques del moviment LGTB.
     </b-message>
@@ -33,9 +33,13 @@ export default {
   },
 
   props: {
+    isRounded: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: String,
-      default: 'normal'
+      default: 'normal',
     }
   }
 }
@@ -72,6 +76,39 @@ export default {
 
       svg {
         border-color: $white;
+      }
+    }
+  }
+
+  &.is-rounded {
+    opacity: .5;
+    transition: .25s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+    li {
+      height: 2.25rem;
+      width: 2.25rem;
+      background: $gradient;
+      border-radius: 50%;
+      border-color: $white;
+      border-width: .2rem;
+      box-shadow: 0 0 0 2px $gray-400;
+
+      &:hover {
+        box-shadow: 0 0 0 2px $gray-600;
+      }
+
+      &.active {
+        box-shadow: 0 0 0 2px $orange;
+      }
+
+      &.feminista {
+        background: $gradient-feminista;
+      }
+      &.lgtb {
+        background: $gradient-lgtb;
       }
     }
   }

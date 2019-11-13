@@ -4,7 +4,8 @@
     :class="[
       'banner-canvas',
       'aspect-' + aspect,
-      aspect === '11' ? 'disposition-' + banner.disposition : ''
+      aspect === '11' ? 'disposition-' + banner.disposition : '',
+      'blobs-' + color
     ]"
     v-if="banner">
     <div class="blob blob-image">

@@ -6,7 +6,8 @@
       'aspect-' + aspect,
       banner.localLabel ? 'has-local-label' : '',
       aspect === '11' ? 'disposition-' + banner.disposition : '',
-      isCrowded ? 'is-crowded' : ''
+      isCrowded ? 'is-crowded' : '',
+      'blobs-' + color
     ]"
     v-if="banner">
     <div class="blob blob-image">
