@@ -25,7 +25,8 @@
     "vue-loading-overlay": "^3.2.0",
     "vue-router": "^3.0.3",
     "vue-swatches": "^1.0.3",
-    "vue-tour": "^1.1.0"
+    "vue-tour": "^1.1.0",
+    "vue2-editor": "^2.10.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",

@@ -22,6 +22,17 @@ const templates = [
     }
   },
   {
+    id: 'Text',
+    name: 'Text',
+    aspects: ['11'],
+    icon: 'font',
+    components: {
+      pane: () => import(/* webpackChunkName: "text" */ './text/TextPane'),
+      canvas: () => import(/* webpackChunkName: "text" */ './text/TextCanvas'),
+      help: () => import(/* webpackChunkName: "text" */ './text/TextHelp')
+    }
+  },
+  {
     id: 'Quote',
     name: 'Cita',
     aspects: ['11', '916'],
