@@ -39,7 +39,7 @@ export default {
     },
     value: {
       type: String,
-      default: 'normal',
+      default: 'normal'
     }
   }
 }

@@ -69,9 +69,9 @@ export default {
         text: '',
       },
       customToolbar: [
-        [{ header: 1 }],
-        ["bold", "underline"],
-        [{ list: "ordered" }, { list: "bullet" }]
+        [{ header: 1 }, { header: 2 }],
+        ['bold', 'underline'],
+        [{ list: 'check' }, { list: 'bullet' }, { list: 'ordered' }]
       ]
     }
   },

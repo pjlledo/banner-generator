@@ -14,7 +14,7 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="text" v-if="banner.text">
+    <div class="text text-wysiwyg" v-if="banner.text">
       <div v-html="banner.text"></div>
     </div>
     <div class="logo">
@@ -41,38 +41,15 @@ export default {
   @import "../../../sass/variables";
 
   .text {
-    display: flex;
     position: absolute;
-    top: 155px;
-    bottom: 175px;
-    left: 0;
+    background: $white;
+    bottom: 80px;
+    left: 40px;
+    right: 40px;
     z-index: 30;
-    width: 100%;
-    transition: all .5s ease-in-out;
-
-    &-holder {
-      width: 100%;
-      padding: 0 45px;
-      -webkit-line-break: normal;
-    }
-
-    &-lines {
-      font-size: 45px;
-      line-height: 1.42;
-      color: white;
-      padding: 0 10px;
-      border-radius: 2px;
-      background: linear-gradient(45deg,$gradient-start,$gradient-end);
-      letter-spacing: -1px;
-      display: inline;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      font-family: 'Compromis', serif;
-      font-weight: bold;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      -webkit-line-break: normal;
-    }
+    box-shadow: $raised-shadow;
+    border-radius: $card-radius;
+    padding: 24px 24px;
   }
 
   .blob {
@@ -146,21 +123,53 @@ export default {
       }
     }
 
-    .quote {
-      top: 370px;
+    .logo {
+      display: none;
+    }
+  }
+</style>
 
-      &-glyph {
-        top: -105px;
-        font-size: 140px;
-      }
+<style lang="scss">
+  @import "../../../sass/variables";
 
-      &-text {
-        font-size: 28px;
+  .text-wysiwyg {
+    font-size: 1.15rem;
+
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: -1px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    h2 {
+      background: $gray-100;
+      padding: 16px 24px;
+      margin: 16px -24px;
+      font-size: 1.5rem;
+      letter-spacing: -.5px;
+    }
+
+    ol {
+      li {
+        margin-left: 1rem;
       }
     }
 
-    .logo {
-      display: none;
+    ul[data-checked] {
+      li::before {
+        content: '✅';
+      }
+    }
+
+    ul {
+      li::before {
+        content: '❌';
+      }
+    }
+
+    u {
+      color: $orange;
     }
   }
 </style>
