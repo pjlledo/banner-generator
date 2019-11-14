@@ -1,11 +1,11 @@
 <template>
   <div>
     <p>
-      Aquesta tarja serveix per a <strong>difondre un missatge genèric a xarxes</strong>,
+      Aquesta tarja serveix per a <strong>difondre contingut més extens (com dades, llistes, etc.)</strong>,
       que no puga ser difós amb la resta de models de tarja.
     </p>
     <p>
-      Recomanem usar una <strong>foto representativa</strong> de la temàtica del missatge, i una frase curta i directa.
+      Recomanem usar una <strong>foto representativa</strong> de la temàtica del missatge, i un text o llista amb títol i/o subtítol.
     </p>
     <p>
       És pot afegir, si és adient, un hashtag relacionat amb la temàtica, així com el nom del col·lectiu al costat del logo, utilizant els camps "hashtag" i "afegir text al logo".

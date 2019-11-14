@@ -155,6 +155,7 @@ export default {
       margin: 16px -24px;
       font-size: 1.5rem;
       letter-spacing: -.5px;
+      line-height: 1.1;
     }
 
     p {
@@ -206,6 +207,24 @@ export default {
 
     u {
       color: $orange;
+    }
+  }
+
+  .aspect-916 {
+    h2 {
+      padding: 16px;
+      margin: 16px -16px;
+      font-size: 1.25rem;
+    }
+
+    ol, ul {
+      li {
+        padding-left: 28px;
+
+        &::before {
+          left: 16px;
+        }
+      }
     }
   }
 </style>
