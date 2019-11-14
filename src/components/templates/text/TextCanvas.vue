@@ -133,13 +133,14 @@ export default {
   @import "../../../sass/variables";
 
   .text-wysiwyg {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
 
     h1 {
       font-size: 2.5rem;
       letter-spacing: -1px;
       font-weight: bold;
       margin: 0;
+      line-height: 1.1;
     }
 
     h2 {
@@ -150,21 +151,50 @@ export default {
       letter-spacing: -.5px;
     }
 
-    ol {
-      li {
-        margin-left: 1rem;
-      }
+    p {
+      line-height: 1.1;
+      margin: .5rem 0;
     }
 
-    ul[data-checked] {
-      li::before {
-        content: '✅';
+    ol {
+      list-style: none;
+      counter-reset: list-counter;
+
+      li {
+        counter-increment: list-counter;
+        padding-left: 2rem;
+        line-height: 1;
+        margin-bottom: .75rem;
+
+        &::before {
+          position: absolute;
+          content: counter(list-counter) ". ";
+          color: $orange;
+          font-weight: bold;
+          left: 2rem;
+        }
       }
     }
 
     ul {
-      li::before {
-        content: '❌';
+      li {
+        padding-left: 2rem;
+        line-height: 1;
+        margin-bottom: .75rem;
+
+        &::before {
+          position: absolute;
+          content: '➡️';
+          color: $orange;
+          font-weight: bold;
+          left: 2rem;
+        }
+      }
+
+      &[data-checked] {
+        li::before {
+          content: '✅';
+        }
       }
     }
 
