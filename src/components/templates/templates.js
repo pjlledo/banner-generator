@@ -22,6 +22,17 @@ const templates = [
     }
   },
   {
+    id: 'Text',
+    name: 'Text lliure',
+    aspects: ['11', '916'],
+    icon: 'align-left',
+    components: {
+      pane: () => import(/* webpackChunkName: "text" */ './text/TextPane'),
+      canvas: () => import(/* webpackChunkName: "text" */ './text/TextCanvas'),
+      help: () => import(/* webpackChunkName: "text" */ './text/TextHelp')
+    }
+  },
+  {
     id: 'Quote',
     name: 'Cita',
     aspects: ['11', '916'],
@@ -30,6 +41,17 @@ const templates = [
       pane: () => import(/* webpackChunkName: "quote" */ './quote/QuotePane'),
       canvas: () => import(/* webpackChunkName: "quote" */ './quote/QuoteCanvas'),
       help: () => import(/* webpackChunkName: "quote" */ './quote/QuoteHelp')
+    }
+  },
+  {
+    id: 'Comparison',
+    name: 'Comparativa',
+    aspects: ['11'],
+    icon: 'columns',
+    components: {
+      pane: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonPane'),
+      canvas: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonCanvas'),
+      help: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonHelp')
     }
   },
   {
