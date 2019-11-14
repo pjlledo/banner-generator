@@ -44,6 +44,17 @@ const templates = [
     }
   },
   {
+    id: 'Comparison',
+    name: 'Comparativa',
+    aspects: ['11'],
+    icon: 'columns',
+    components: {
+      pane: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonPane'),
+      canvas: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonCanvas'),
+      help: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonHelp')
+    }
+  },
+  {
     id: 'Media',
     name: 'Mitjans',
     aspects: ['11', '916'],
@@ -85,17 +96,6 @@ const templates = [
       pane: () => import(/* webpackChunkName: "social" */ './social/SocialPane'),
       canvas: () => import(/* webpackChunkName: "social" */ './social/SocialCanvas'),
       help: () => import(/* webpackChunkName: "social" */ './social/SocialHelp')
-    }
-  },
-  {
-    id: 'Comparison',
-    name: 'Comparativa',
-    aspects: ['11'],
-    icon: 'user-circle',
-    components: {
-      pane: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonPane'),
-      canvas: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonCanvas'),
-      help: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonHelp')
     }
   }
 ]

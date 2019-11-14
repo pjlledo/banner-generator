@@ -14,25 +14,24 @@
       <img :src="banner.pictureBeforePreview" alt="Imatge" v-if="banner.pictureBeforePreview" :style="objectPositionBefore" />
       <img :src="banner.pictureAfterPreview" alt="Imatge" v-if="banner.pictureAfterPreview" :style="objectPositionAfter" />
     </div>
-    <div class="blob blob-1">
-      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="banner.card ? { backgroundColor: banner.customSourceColor } : null">
-        <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
-      </div>
-      <div class="headline-source" v-else-if="banner.source" :style="banner.card ? { backgroundColor: banner.source.color } : null">
-        <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
-      </div>
-    </div>
+    <div class="blob blob-1"  :style="banner.source === 'other' ? { background: banner.customSourceColor } : banner.source ? { background: banner.source.color } : { background: 'gray' }"></div>
     <div class="blob blob-2"></div>
+    <div class="before-party before-party--custom" v-if="banner.source === 'other'" >
+      {{ banner.customSource }}
+    </div>
+    <div class="before-party" v-else-if="banner.source" >
+      <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
+    </div>
     <div class="comparison">
       <div class="comparison-text comparison-text-before"
         :style="{
-          fontSize: fontSize('textBefore', 50, 30, 160),
+          fontSize: fontSize('textBefore', 45, 30, 160),
         }">
         {{ banner.textBefore | formatString }}
       </div>
       <div class="comparison-text comparison-text-after"
         :style="{
-          fontSize: fontSize('textAfter', 50, 30, 160),
+          fontSize: fontSize('textAfter', 45, 30, 160),
         }">
         {{ banner.textAfter | formatString }}
       </div>
@@ -75,25 +74,14 @@ export default {
   .comparison {
     display: flex;
     position: absolute;
-    top: 425px;
+    top: 0;
+    bottom: 0;
     left: 0;
+    right: 0;
     z-index: 30;
-    height: 200px;
-    padding: 0 40px;
     font-family: 'Compromis', sans-serif;
     font-weight: 700;
     transition: all .5s ease-in-out;
-    flex-direction: column;
-    justify-content: center;
-
-    &-source {
-      margin-bottom: .25rem;
-
-      &--custom {
-        margin-bottom: 4px;
-        font-size: 1.35rem;
-      }
-    }
 
     &-images {
       display: grid;
@@ -120,34 +108,51 @@ export default {
       border-radius: $card-radius;
       box-shadow: $raised-shadow;
       position: absolute;
-      top: -176%;
+      letter-spacing: -.5px;
+
+      &-before {
+        top: 90px;
+        left: 30px;
+      }
 
       &-after {
-        top: auto;
-        bottom: -3%;
-        left: 490%;
+        bottom: 90px;
+        right: 30px;
       }
     }
   }
 
   .blob {
     &-1 {
-      top: -83%;
-      right: 50%;
+      top: -82%;
+      right: 58%;
       z-index: 10;
     }
 
     &-2 {
-      left: 50%;
+      left: 58%;
       bottom: -83%;
       z-index: 10;
     }
   }
 
+  .before-party {
+    z-index: 20;
+    position: absolute;
+    left: 35px;
+    top: 25px;
+
+    &--custom {
+      margin-bottom: 4px;
+      font-size: 1.5rem;
+      color: $white;
+      font-weight: bold;
+    }
+  }
 
   .has-local-label {
     .blob-2 {
-      left: 48%;
+      left: 42%;
       bottom: -81%;
     }
   }

@@ -28,10 +28,10 @@
       <div v-if="properties.source === 'other'" class="source-input-group">
         <b-field
           class="source-input-name"
-          label="Formació Política"
+          label="Formació política"
           :type="properties.source === 'other' && properties.customSource ? '' : displayErrors ? 'is-danger' : ''"
           :message="properties.source === 'other' && properties.customSource ? '' : displayErrors ? `Has de seleccionar una font` : ''">
-          <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
+          <b-input placeholder="La Veu" v-model="properties.customSource" maxlength="23"></b-input>
         </b-field>
         <b-field label="Color" class="source-input-color">
           <swatches v-model="properties.customSourceColor"></swatches>
@@ -41,10 +41,9 @@
 
     <!-- Before Text  -->
     <b-field
-      id="headline-field"
       label="Text Abans"
       :type="properties.textBefore ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.textBefore ? '' : displayErrors ? `Has d'omplir un titular` : ''">
+      :message="properties.textBefore ? '' : displayErrors ? `Has d'omplir un text` : ''">
       <b-input
         type="textarea"
         placeholder="L'ús de la bici està per damunt de 9000..."
@@ -74,10 +73,9 @@
 
     <!-- After Text  -->
     <b-field
-      id="headline-field"
       label="Text Després"
       :type="properties.textAfter ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.textAfter ? '' : displayErrors ? `Has d'omplir un titular` : ''">
+      :message="properties.textAfter ? '' : displayErrors ? `Has d'omplir un text` : ''">
       <b-input
         type="textarea"
         placeholder="L'ús de la bici està per damunt de 9000..."
@@ -159,11 +157,13 @@ export default {
   watch: {
     properties: {
       handler: function (properties) {
-        const { headline, picture, source, customSource } = properties
+        const { textBefore, textAfter, pictureBefore, pictureAfter, source, customSource } = properties
         const sourceIsValid = source === 'other' ? customSource !== '' : source !== null
         this.isDownloadable = (
-          headline !== '' &&
-          picture !== null &&
+          textBefore !== '' &&
+          textAfter !== '' &&
+          pictureBefore !== null &&
+          pictureAfter !== null &&
           sourceIsValid
         )
       },

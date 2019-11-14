@@ -1,29 +1,26 @@
 <template>
   <div>
     <p>
-      Aquesta tarja serveix per a <strong>destacar un titular de premsa</strong>.
+      Aquesta tarja serveix per a <strong>comparar dos accions de govern distintes</strong>.
     </p>
     <p>
-      Recomanem usar la <strong>foto que acompanya la notícia</strong> i, en cas de no tindre prou resolcuió, buscar-ne una de similar.
+      Recomanem usar dues <strong>fotos representatives de canvi</strong>, per a poder contrastar una amb l'altra.
     </p>
     <p>
-      Sel·leccioneu una font del llistat, o introduiu-ne una manualment si no la trobeu al llistat (publicacions locals o d'àmbit reduït). Ens podeu suggerir
-      afegir una font utilitzant el formulari que hi ha més avall.
+      Sel·leccioneu una partit del llistat, o introduiu-ne un manualment si no el trobeu al llistat (coalicions o partits locals, etc.).
     </p>
     <p>
-      És pot afegir, si és adient, un hashtag relacionat amb la temàtica, així com el nom del col·lectiu al costat del logo, utilizant els camps "hashtag" i "afegir text al logo".
+      A continuació, afegiu un text explicatiu de la situació abans i després.
     </p>
     <p>
-      Aquest model de tarja accepta els següents formats:
+      Aquest model de tarja accepta el següent format:
     </p>
     <ul>
-      <li><strong>1:1</strong>: model genèric per a compartir en la majoria de xarxes socials (Facebook, Instagram, Twitter, canals de Telegram i Whatsapp, etc.). Aquest model compta amb dues disposicions. És recomana alternar entre les dues si publiqueu amb freqüència.</li>
-      <li><strong>9:16</strong>: model per a stories (Instagram, Facebook, Whatsapp). Aquest model no inclou el logo de Comporomís perquè ja és mostra a la part superior esquerra quan es comparteix en l'aplicació.</li>
+      <li><strong>1:1</strong>: model genèric per a compartir en la majoria de xarxes socials (Facebook, Instagram, Twitter, canals de Telegram i Whatsapp, etc.)</li>
     </ul>
 
     <div class="help-examples">
       <img src="./examples/11.png" alt="Exemple 1:1" />
-      <img src="./examples/916.png" alt="Exemple 9:16" />
     </div>
   </div>
 </template>
