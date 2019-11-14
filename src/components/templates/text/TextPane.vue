@@ -66,7 +66,7 @@ export default {
   data () {
     return {
       properties: {
-        text: '',
+        text: ''
       },
       customToolbar: [
         [{ header: 1 }, { header: 2 }],

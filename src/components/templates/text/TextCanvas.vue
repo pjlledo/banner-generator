@@ -123,6 +123,12 @@ export default {
       }
     }
 
+    .text {
+      left: 16px;
+      right: 16px;
+      padding: 16px;
+    }
+
     .logo {
       display: none;
     }
