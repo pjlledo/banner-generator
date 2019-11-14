@@ -23,9 +23,9 @@ const templates = [
   },
   {
     id: 'Text',
-    name: 'Text',
-    aspects: ['11'],
-    icon: 'font',
+    name: 'Text lliure',
+    aspects: ['11', '916'],
+    icon: 'align-left',
     components: {
       pane: () => import(/* webpackChunkName: "text" */ './text/TextPane'),
       canvas: () => import(/* webpackChunkName: "text" */ './text/TextCanvas'),
