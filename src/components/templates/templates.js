@@ -75,17 +75,6 @@ const templates = [
       canvas: () => import(/* webpackChunkName: "social" */ './social/SocialCanvas'),
       help: () => import(/* webpackChunkName: "social" */ './social/SocialHelp')
     }
-  },
-  {
-    id: 'Comparison',
-    name: 'Comparativa',
-    aspects: ['11'],
-    icon: 'user-circle',
-    components: {
-      pane: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonPane'),
-      canvas: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonCanvas'),
-      help: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonHelp')
-    }
   }
 ]
 
