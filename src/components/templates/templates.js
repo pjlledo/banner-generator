@@ -26,6 +26,7 @@ const templates = [
     name: 'Text lliure',
     aspects: ['11', '916'],
     icon: 'align-left',
+    isNew: true,
     components: {
       pane: () => import(/* webpackChunkName: "text" */ './text/TextPane'),
       canvas: () => import(/* webpackChunkName: "text" */ './text/TextCanvas'),
@@ -48,6 +49,7 @@ const templates = [
     name: 'Comparativa',
     aspects: ['11'],
     icon: 'columns',
+    isNew: true,
     components: {
       pane: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonPane'),
       canvas: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonCanvas'),
