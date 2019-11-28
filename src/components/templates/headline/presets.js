@@ -21,6 +21,10 @@ import ElConfidencialSVG from './logos/elconfidencial.svg'
 import LaMarinaPlazaSVG from './logos/marinaplaza.svg'
 import ElMundoSVG from './logos/elmundo.svg'
 import CSInfoPNG from './logos/csinfo.png'
+import CastellonPlazaPNG from './logos/castellon-plaza.png'
+import AlicantePlazaPNG from './logos/alicante-plaza.png'
+import CastelloTVPNG from './logos/castello-tv.png'
+import MediterraneoCsPNG from './logos/mediterraneo-cs.png'
 
 const sources = [
   {
@@ -208,6 +212,38 @@ const sources = [
     logoHeight: 28,
     fontFamily: 'Gotham',
     color: '#ED9A3E'
+  },
+  {
+    id: 'castellotv',
+    name: 'Televisó de Castelló',
+    logo: CastelloTVPNG,
+    logoHeight: 28,
+    fontFamily: 'Gotham',
+    color: '#0d8a50'
+  },
+  {
+    id: 'alicanteplaza',
+    name: 'Alicante Plaza',
+    logo: AlicantePlazaPNG,
+    logoHeight: 26,
+    fontFamily: 'Tiempos Headline',
+    color: '#5881B4'
+  },
+  {
+    id: 'castellonplaza',
+    name: 'Castellón Plaza',
+    logo: CastellonPlazaPNG,
+    logoHeight: 26,
+    fontFamily: 'Tiempos Headline',
+    color: '#5881B4'
+  },
+  {
+    id: 'mediterraneoperiodico',
+    name: 'El Periódico Mediterráneo',
+    logo: MediterraneoCsPNG,
+    logoHeight: 22,
+    fontFamily: 'Roboto',
+    color: '#104277'
   }
 ]
 
