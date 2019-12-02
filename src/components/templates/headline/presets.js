@@ -11,6 +11,7 @@ import SerSVG from './logos/ser.svg'
 import ValenciaplazaSVG from './logos/valenciaplaza.svg'
 import InformacionSVG from './logos/informacion.svg'
 import VeinteMinutosSVG from './logos/20_minutos.svg'
+import VeinteMinutosCardSVG from './logos/20_minutos_card.svg'
 import LaVeuSVG from './logos/laveu.svg'
 import EuropaPressSVG from './logos/europapress.svg'
 import InfoLibreSVG from './logos/infolibre.svg'
@@ -125,6 +126,7 @@ const sources = [
     id: '20minutos',
     name: '20 Minutos',
     logo: VeinteMinutosSVG,
+    logoCard: VeinteMinutosCardSVG,
     logoHeight: 34,
     fontFamily: 'Helvetica, Arial',
     color: '#1C4295'

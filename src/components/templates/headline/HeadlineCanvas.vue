@@ -21,7 +21,7 @@
         <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
       </div>
       <div class="headline-source" v-else-if="banner.source" :style="banner.card ? { backgroundColor: banner.source.color } : null">
-        <img :src="banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
+        <img :src="banner.source.hasOwnProperty('logoCard') && banner.card ? banner.source.logoCard : banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
       <div class="headline-text"
         :style="{
