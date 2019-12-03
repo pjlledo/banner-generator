@@ -169,7 +169,7 @@ export default {
 
       li {
         counter-increment: list-counter;
-        padding-left: 2rem;
+        padding-left: 2.25rem;
         line-height: 1;
         margin-bottom: .75rem;
 
@@ -185,7 +185,7 @@ export default {
 
     ul {
       li {
-        padding-left: 2rem;
+        padding-left: 2.25rem;
         line-height: 1;
         margin-bottom: .75rem;
 
