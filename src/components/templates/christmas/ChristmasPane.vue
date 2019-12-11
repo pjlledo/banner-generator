@@ -99,7 +99,8 @@ export default {
         border-radius: 4px;
       }
 
-      &.selected {
+      &.selected,
+      &.selected:hover {
         border-color: $primary;
       }
 

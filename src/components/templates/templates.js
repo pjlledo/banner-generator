@@ -3,7 +3,7 @@ const templates = [
     id: 'Christmas',
     name: 'Felicitació de nadal',
     aspects: ['11', '916'],
-    icon: 'newspaper',
+    icon: 'hat-santa',
     isNew: true,
     components: {
       pane: () => import(/* webpackChunkName: "christmas" */ './christmas/ChristmasPane'),
