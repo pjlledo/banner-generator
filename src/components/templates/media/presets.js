@@ -26,6 +26,8 @@ import cadenaSer from '../headline/logos/ser.svg'
 import rne from './logos/channels/rne.jpg'
 import ondaCero from './logos/channels/ondacero.png'
 
+import radioPego from './logos/channels/radiopego.png'
+
 import desayunos from './logos/programme/desayunos.jpeg'
 import apuntNtc from './logos/programme/apuntntc.png'
 import assumptesInterms from './logos/programme/assumptesinterns.jpg'
@@ -240,6 +242,18 @@ const sources = [
         color: '#fff',
         programmes: []
       },
+    ]
+  },
+  {
+    name: 'Radios Locals',
+    channels: [
+      {
+        id: 'radiopego',
+        name: 'Radio Pego',
+        logo: radioPego,
+        color: 'white',
+        programmes: []
+      }
     ]
   }
 ]

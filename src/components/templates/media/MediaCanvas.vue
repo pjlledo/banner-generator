@@ -92,7 +92,7 @@ export default {
     height: 400px;
     z-index: 20;
     transition: all .5s ease-in-out;
-    font-family: 'Compromis', serif;
+    font-family: $family-primary;
 
     &-title {
       display: block;
@@ -101,7 +101,7 @@ export default {
       color: $gray-900;
       letter-spacing: -1px;
       word-wrap: break-word;
-      font-family: 'Compromis', serif;
+      font-family: $family-primary;
       font-weight: bold;
       margin: 10px 0;
     }
