@@ -82,7 +82,7 @@ export default {
     justify-content: center;
     z-index: 20;
     transition: all .5s ease-in-out;
-    font-family: 'Compromis', serif;
+    font-family: $family-primary;
 
     &-title {
       font-size: 40px;
@@ -91,7 +91,7 @@ export default {
       letter-spacing: -1px;
       display: inline;
       word-wrap: break-word;
-      font-family: 'Compromis', serif;
+      font-family: $family-primary;
       font-weight: bold;
     }
 

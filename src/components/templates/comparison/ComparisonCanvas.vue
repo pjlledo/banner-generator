@@ -63,7 +63,7 @@ export default {
       const objectPosition = (100 - this.banner.pictureBeforePos) + '% 0%'
       return { objectPosition }
     }
-  },
+  }
 }
 </script>
 
@@ -79,7 +79,7 @@ export default {
     left: 0;
     right: 0;
     z-index: 30;
-    font-family: 'Compromis', sans-serif;
+    font-family: $family-primary;
     font-weight: 700;
     transition: all .5s ease-in-out;
 

@@ -58,7 +58,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     transition: all .5s ease-in-out;
-    font-family: 'Compromis', serif;
+    font-family: $family-primary;
 
     &-text {
       font-size: 32px;
@@ -70,7 +70,7 @@ export default {
       letter-spacing: -1px;
       display: inline;
       word-wrap: break-word;
-      font-family: 'Compromis', serif;
+      font-family: $family-primary;
       font-weight: bold;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;

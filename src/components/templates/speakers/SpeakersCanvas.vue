@@ -75,7 +75,7 @@ export default {
     padding: 0 45px;
     z-index: 20;
     transition: all .5s ease-in-out;
-    font-family: 'Compromis', serif;
+    font-family: $family-primary;
 
     &-overtitle {
       font-size: 24px;
