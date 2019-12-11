@@ -8,7 +8,7 @@
         <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" :color="color" />
       </div>
     </b-tabs>
-    <careta-selector v-model="color" is-rounded v-if="!['Social', 'Comparison', 'Headline', 'Media'].includes(template.id)" />
+    <careta-selector v-model="color" is-rounded v-if="!['Christmas', 'Social', 'Comparison', 'Headline', 'Media'].includes(template.id)" />
 
     <div id="download-button" class="primary-download-button">
       <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
