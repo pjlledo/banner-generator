@@ -1,17 +1,5 @@
 const templates = [
   {
-    id: 'Christmas',
-    name: 'Felicitació de nadal',
-    aspects: ['11', '916'],
-    icon: 'hat-santa',
-    isNew: true,
-    components: {
-      pane: () => import(/* webpackChunkName: "christmas" */ './christmas/ChristmasPane'),
-      canvas: () => import(/* webpackChunkName: "christmas" */ './christmas/ChristmasCanvas'),
-      help: () => import(/* webpackChunkName: "christmas" */ './christmas/ChristmasHelp')
-    }
-  },
-  {
     id: 'Headline',
     name: 'Titular de premsa',
     aspects: ['11', '916'],

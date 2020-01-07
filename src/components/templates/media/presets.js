@@ -233,6 +233,13 @@ const sources = [
         name: 'Tele Sagunt',
         logo: teleSagunto,
         programmes: []
+      },
+      {
+        id: 'castellotv',
+        name: 'Castelló TV',
+        logo: castelloTv,
+        color: '#fff',
+        programmes: []
       }
     ]
   },
