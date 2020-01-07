@@ -241,7 +241,7 @@ const sources = [
         logo: castelloTv,
         color: '#fff',
         programmes: []
-      },
+      }
     ]
   },
   {
