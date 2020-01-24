@@ -1,39 +1,21 @@
 @font-face {
   font-family: "Compromis";
-  src: url("../assets/fonts/akkurat-webfont.eot?2");
-  src: url("../assets/fonts/akkurat-webfont.eot?#iefix")
-      format("embedded-opentype"),
-    url("../assets/fonts/akkurat-webfont.woff?2") format("woff"),
-    url("../assets/fonts/akkurat-webfont.ttf?2") format("truetype"),
-    url("../assets/fonts/akkurat-webfont.svg#AkkuratRegular") format("svg");
+  src:
+    url("../assets/fonts/manrope-medium.woff2") format("woff2"),
+    url("../assets/fonts/manrope-medium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Compromis";
-  src: url("../assets/fonts/akkurat-bold-webfont.eot?2");
-  src: url("../assets/fonts/akkurat-bold-webfont.eot?#iefix")
-      format("embedded-opentype"),
-    url("../assets/fonts/akkurat-bold-webfont.woff?2") format("woff"),
-    url("../assets/fonts/akkurat-bold-webfont.ttf?2") format("truetype"),
-    url("../assets/fonts/akkurat-bold-webfont.svg#Akkurat-BoldRegular")
-      format("svg");
+  src:
+    url("../assets/fonts/manrope-extrabold.woff2") format("woff2"),
+    url("../assets/fonts/manrope-extrabold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
-@font-face {
-  font-family: "MesCompromis";
-  src: url("../assets/fonts/Manrope3-ExtraBold.eot?#iefix")
-      format("embedded-opentype"),
-    url("../assets/fonts/Manrope3-ExtraBold.woff") format("woff"),
-    url("../assets/fonts/Manrope3-ExtraBold.ttf") format("truetype"),
-    url("../assets/fonts/Manrope3-ExtraBold.svg#Manrope3-ExtraBold")
-      format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
 
 @import "variables";
 @import "animations";
