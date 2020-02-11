@@ -1,52 +1,91 @@
-  <template>
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-      viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
-    <g id="Taronja" v-if="logoStyle === 'normal'">
-      <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="250" y1="11.3508" x2="250" y2="488.6492">
-        <stop offset="0" style="stop-color:#F29128"/>
-        <stop offset="0.2097" style="stop-color:#EC8428"/>
-        <stop offset="0.622" style="stop-color:#DD6227"/>
-        <stop offset="1" style="stop-color:#D13927"/>
+<template>
+  <svg
+    version="1.1"
+    x="0px"
+    y="0px"
+    viewBox="0 0 174.9 161.1"
+    style="enable-background:new 0 0 174.9 161.1;"
+  >
+    <g v-if="logoStyle === 'normal'">
+      <rect x="20.5" y="17.5" class="st0" width="133" height="128" />
+      <linearGradient
+        id="compromisGradient"
+        gradientUnits="userSpaceOnUse"
+        x1="130.2228"
+        y1="-16.8658"
+        x2="47.7087"
+        y2="170.8646"
+      >
+        <stop offset="0" style="stop-color: #F29027" />
+        <stop offset="0.2356" style="stop-color: #EC8027" />
+        <stop offset="0.6924" style="stop-color: #DD5727" />
+        <stop offset="1" style="stop-color: #D13827" />
       </linearGradient>
-      <path class="st0" d="M23.35,11.35C10.49,11.35,0,21.37,0,33.66v432.67c0,12.27,10.49,22.32,23.35,22.32h453.28
-        c12.82,0,23.37-10.05,23.37-22.32V33.66c0-12.29-10.54-22.31-23.37-22.31H23.35z"/>
+      <path
+        class="st1"
+        d="M150.5,0.3H24.5c-9.4,0-17,7.6-17,17v126.1c0,9.4,7.6,17,17,17h126.1c9.4,0,17-7.6,17-17V17.3
+        C167.5,7.9,159.9,0.3,150.5,0.3z M102.5,46h17.8v17h-17.8V46z M47.6,46.7c3.1,6.3,6.8,7.8,13.1,7.8V46h17.8v17H62
+        c-10.2,0-16.9-2.5-21.3-12.4L47.6,46.7z M87.5,122.7c-22.3,0-40.6-6.9-56.7-20.3l6.2-7.9c16,11.4,29.1,16.6,50.5,16.6
+        c21.4,0,34.5-5.2,50.5-16.6l6.2,7.9C128.1,115.8,109.9,122.7,87.5,122.7z"
+      />
     </g>
-    <g id="Feminista" v-if="logoStyle === 'feminista'">
-      <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="250" y1="488.6492" x2="250" y2="11.3508">
-        <stop offset="0" style="stop-color:#7D3980"/>
-        <stop offset="1" style="stop-color:#C44486"/>
+    <g v-if="logoStyle === 'mono'">
+      <path
+        fill="currentColor"
+        d="M150.5,0.3H24.5c-9.4,0-17,7.6-17,17v126.1c0,9.4,7.6,17,17,17h126.1c9.4,0,17-7.6,17-17V17.3
+        C167.5,7.9,159.9,0.3,150.5,0.3z M102.5,46h17.8v17h-17.8V46z M47.6,46.7c3.1,6.3,6.8,7.8,13.1,7.8V46h17.8v17H62
+        c-10.2,0-16.9-2.5-21.3-12.4L47.6,46.7z M87.5,122.7c-22.3,0-40.6-6.9-56.7-20.3l6.2-7.9c16,11.4,29.1,16.6,50.5,16.6
+        c21.4,0,34.5-5.2,50.5-16.6l6.2,7.9C128.1,115.8,109.9,122.7,87.5,122.7z"
+      />
+    </g>
+    <g v-if="logoStyle === 'feminista'">
+      <rect x="20.5" y="18.2" class="st0" width="133" height="128" />
+      <linearGradient
+        id="feministaGradient"
+        gradientUnits="userSpaceOnUse"
+        x1="130.2228"
+        y1="-16.1476"
+        x2="47.7087"
+        y2="171.5828"
+      >
+        <stop offset="0" style="stop-color: #C44486" />
+        <stop offset="1" style="stop-color: #7D3980" />
       </linearGradient>
-      <path class="st1" d="M23.35,11.35C10.49,11.35,0,21.37,0,33.66v432.67c0,12.27,10.49,22.32,23.35,22.32h453.28
-        c12.82,0,23.37-10.05,23.37-22.32V33.66c0-12.29-10.54-22.31-23.37-22.31H23.35z"/>
+      <path
+        class="st2"
+        d="M150.5,1H24.5c-9.4,0-17,7.6-17,17v126.1c0,9.4,7.6,17,17,17h126.1c9.4,0,17-7.6,17-17V18
+          C167.5,8.6,159.9,1,150.5,1z M102.5,46.7h17.8v17h-17.8V46.7z M47.6,47.4c3.1,6.3,6.8,7.8,13.1,7.8v-8.4h17.8v17H62
+          c-10.2,0-16.9-2.5-21.3-12.4L47.6,47.4z M87.5,123.4c-22.3,0-40.6-6.9-56.7-20.3l6.2-7.9c16,11.4,29.1,16.6,50.5,16.6
+          c21.4,0,34.5-5.2,50.5-16.6l6.2,7.9C128.1,116.5,109.9,123.4,87.5,123.4z"
+      />
     </g>
-    <g id="LGTB" v-if="logoStyle === 'lgtb'">
+    <g v-if="logoStyle === 'lgtb'">
+      <rect x="20.5" y="17.5" class="st0" width="133" height="128" />
       <g>
         <defs>
-          <path id="SVGID_3_" d="M23.35,11.35C10.49,11.35,0,21.37,0,33.66v432.67c0,12.27,10.49,22.32,23.35,22.32h453.28
-            c12.82,0,23.37-10.05,23.37-22.32V33.66c0-12.29-10.54-22.31-23.37-22.31H23.35z"/>
+          <path
+            id="SVGID_3_"
+            d="M150.5,0.3H24.5c-9.4,0-17,7.6-17,17v126.1c0,9.4,7.6,17,17,17h126.1c9.4,0,17-7.6,17-17V17.3
+              C167.5,7.9,159.9,0.3,150.5,0.3z M102.5,46h17.8v17h-17.8V46z M47.6,46.7c3.1,6.3,6.8,7.8,13.1,7.8V46h17.8v17H62
+              c-10.2,0-16.9-2.5-21.3-12.4L47.6,46.7z M87.5,122.7c-22.3,0-40.6-6.9-56.7-20.3l6.2-7.9c16,11.4,29.1,16.6,50.5,16.6
+              c21.4,0,34.5-5.2,50.5-16.6l6.2,7.9C128.1,115.8,109.9,122.7,87.5,122.7z"
+          />
         </defs>
         <clipPath id="SVGID_4_">
-          <use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+          <use xlink:href="#SVGID_3_" style="overflow:visible;" />
         </clipPath>
-        <g class="st2">
-            <rect x="-0.53" y="169.98" transform="matrix(1 -1.023529e-03 1.023529e-03 1 -0.2148 0.2558)" class="st3" width="500.62" height="80.03"/>
-            <rect x="-0.61" y="89.95" transform="matrix(1 -1.023529e-03 1.023529e-03 1 -0.1329 0.2556)" class="st4" width="500.62" height="80.03"/>
-            <rect x="-0.69" y="11.35" transform="matrix(1 -1.023529e-03 1.023529e-03 1 -0.0524 0.2555)" class="st5" width="500.62" height="80.03"/>
-            <rect x="-0.29" y="408.64" transform="matrix(1 -1.023529e-03 1.023529e-03 1 -0.4591 0.2561)" class="st6" width="500.62" height="80.03"/>
-            <rect x="-0.37" y="328.61" transform="matrix(1 -1.023529e-03 1.023529e-03 1 -0.3772 0.256)" class="st7" width="500.62" height="80.03"/>
-            <rect x="-0.45" y="250.01" transform="matrix(1 -1.023529e-03 1.023529e-03 1 -0.2967 0.2559)" class="st8" width="500.62" height="80.03"/>
+        <g class="st3">
+          <rect class="st4" width="174.9" height="26.8" />
+          <rect y="26.8" class="st5" width="174.9" height="26.8" />
+          <rect y="53.6" class="st6" width="174.9" height="26.8" />
+          <rect y="80.4" class="st7" width="174.9" height="26.8" />
+          <rect y="107.2" class="st8" width="174.9" height="26.8" />
+          <rect y="133.9" class="st9" width="174.9" height="26.8" />
         </g>
       </g>
     </g>
-    <g id="Cara">
-      <rect x="289.69" y="141.56" class="st9" width="52.24" height="49.86"/>
-      <path class="st9" d="M162.01,141.56h52.27v49.89h-48.11c-30.1,0-49.82-7.3-62.63-36.4l20.07-11.52c9,18.5,20.08,22.79,38.4,22.79
-        V141.56z"/>
-      <path class="st9" d="M402.32,288.82l18.34,23.45c-47.79,39.66-101.73,60.11-167.81,60.11c-66.07,0-120.05-20.45-167.78-60.11
-        l18.33-23.45c47.37,33.73,86.16,49.22,149.46,49.22C316.15,338.05,354.95,322.55,402.32,288.82"/>
-    </g>
-    </svg>
-  </template>
+  </svg>
+</template>
 
 <script>
 export default {
@@ -57,22 +96,25 @@ export default {
       type: String,
       default: 'normal',
       validator: (value) => {
-        return ['normal', 'feminista', 'lgtb'].indexOf(value) !== -1
+        return ['mono', 'normal', 'feminista', 'lgtb'].includes(value)
       }
     }
   }
 }
 </script>
 
-  <style lang="scss" scoped>
-    .st0 { fill:url(#SVGID_1_); }
-    .st1 { fill:url(#SVGID_2_); }
-    .st2 { clip-path:url(#SVGID_4_); }
-    .st3 { fill:#FFD10F; }
-    .st4 { fill:#F79226; }
-    .st5 { fill:#EF404D; }
-    .st6 { fill:#A14A9C; }
-    .st7 { fill:#55A4DB; }
-    .st8 { fill:#7FC347; }
-    .st9 { fill:#FFFFFF; }
-  </style>
+<style lang="scss" scoped>
+  .st0 { fill: #FFFFFF; }
+  .st1 { fill: url(#compromisGradient); }
+  .st2 { fill: url(#feministaGradient); }
+  .st3 { clip-path:url(#SVGID_4_); }
+  .st4 { fill: #EF404D; }
+  .st5 { fill: #F79226; }
+  .st6 { fill: #FFD10F; }
+  .st7 { fill: #7FC347; }
+  .st8 { fill: #55A4DB; }
+  .st9 { fill: #A14A9C; }
+  .st10 { fill:url(#SVGID_5_); }
+  .st11 { fill:url(#SVGID_6_); }
+  .st12 { clip-path:url(#SVGID_8_); }
+</style>

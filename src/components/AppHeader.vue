@@ -53,18 +53,24 @@ export default {
     }
 
     .logo-label {
-      border-left: 1px $gray-400 solid;
       margin-left: .75rem;
-      padding-left: .75rem;
+      color: $gray-700;
     }
 
     .app-label {
       margin-left: auto;
+      color: $gray-700;
     }
 
     &--dark {
       background: $gray-900;
       color: $white;
+
+      .logo-label,
+      .app-label {
+        color: $white;
+        opacity: .75;
+      }
     }
   }
 
