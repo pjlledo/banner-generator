@@ -40,7 +40,7 @@ export default {
 
     .logo {
       color: $white;
-      height: 28px;
+      height: 1.75rem;
     }
 
     .nav-label {
