@@ -86,7 +86,7 @@ export default {
     &-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: .75rem;
+      grid-column-gap: 12px;
       align-items: stretch;
       position: absolute;
       top: 0;
@@ -104,7 +104,7 @@ export default {
       word-wrap: break-word;
       background: $white;
       width: 265px;
-      padding: 1rem;
+      padding: 16px;
       border-radius: $card-radius;
       box-shadow: $raised-shadow;
       position: absolute;
@@ -144,7 +144,7 @@ export default {
 
     &--custom {
       margin-bottom: 4px;
-      font-size: 1.5rem;
+      font-size: 24px;
       color: $white;
       font-weight: bold;
     }

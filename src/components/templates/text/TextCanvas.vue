@@ -138,10 +138,10 @@ export default {
   @import "../../../sass/variables";
 
   .text-wysiwyg {
-    font-size: 1.25rem;
+    font-size: 20px;
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 40px;
       letter-spacing: -1px;
       font-weight: bold;
       margin: 0;
@@ -152,14 +152,14 @@ export default {
       background: $gray-100;
       padding: 16px 24px;
       margin: 16px -24px;
-      font-size: 1.5rem;
+      font-size: 24px;
       letter-spacing: -.5px;
       line-height: 1.1;
     }
 
     p {
       line-height: 1.1;
-      margin: .5rem 0;
+      margin: 8px 0;
     }
 
     ol {
@@ -168,32 +168,32 @@ export default {
 
       li {
         counter-increment: list-counter;
-        padding-left: 2.25rem;
+        padding-left: 30px;
         line-height: 1;
-        margin-bottom: .75rem;
+        margin-bottom: 12px;
 
         &::before {
           position: absolute;
           content: counter(list-counter) ". ";
           color: $orange;
           font-weight: bold;
-          left: 2rem;
+          left: 24px;
         }
       }
     }
 
     ul {
       li {
-        padding-left: 2.25rem;
+        padding-left: 30px;
         line-height: 1;
-        margin-bottom: .75rem;
+        margin-bottom: 12px;
 
         &::before {
           position: absolute;
           content: '➡️';
           color: $orange;
           font-weight: bold;
-          left: 2rem;
+          left: 24px;
         }
       }
 
@@ -213,7 +213,7 @@ export default {
     h2 {
       padding: 16px;
       margin: 16px -16px;
-      font-size: 1.25rem;
+      font-size: 20px;
     }
 
     ol, ul {

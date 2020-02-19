@@ -71,11 +71,11 @@ export default {
     justify-content: center;
 
     &-source {
-      margin-bottom: .25rem;
+      margin-bottom: 4px;
 
       &--custom {
         margin-bottom: 4px;
-        font-size: 1.35rem;
+        font-size: 22px;
       }
     }
 
@@ -245,7 +245,7 @@ export default {
         }
 
         &--custom {
-          font-size: 1.35rem;
+          font-size: 22px;
           color: $white;
           font-family: Compromis, sans-serif;
         }

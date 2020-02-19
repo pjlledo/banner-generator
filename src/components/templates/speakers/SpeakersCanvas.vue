@@ -82,7 +82,7 @@ export default {
       line-height: 1;
       color: $gray-700;
       letter-spacing: -1px;
-      margin-bottom: .5rem;
+      margin-bottom: 8px;
     }
 
     &-title {
@@ -96,7 +96,7 @@ export default {
     }
 
     &-name {
-      padding-top: .75rem;
+      padding-top: 12px;
       font-size: 18px;
       line-height: 1;
       color: $gray-900;
@@ -105,7 +105,7 @@ export default {
     }
 
     &-description {
-      padding-top: .25rem;
+      padding-top: 4px;
       font-size: 14px;
       line-height: 1;
       letter-spacing: -0.5px;
@@ -114,7 +114,7 @@ export default {
 
     &-image {
       height: 200px;
-      border-radius: 1rem;
+      border-radius: 16px;
       overflow: hidden;
       background: $gray-200;
 
@@ -131,7 +131,7 @@ export default {
       left: 45px;
       right: 45px;
       display: grid;
-      margin-top: 1rem;
+      margin-top: 16px;
       grid-column-gap: 15px;
       justify-content: start;
       grid-template-columns: repeat(auto-fit, var(--image-size, 200px));
@@ -151,12 +151,12 @@ export default {
       letter-spacing: -1px;
       width: auto;
       color: $gray-700;
-      padding-right: 1.25rem;
+      padding-right: 20px;
       line-height: 1.1;
 
       svg {
-        padding-right: .5rem;
-        font-size: 1.75rem;
+        padding-right: 8px;
+        font-size: 28px;
 
         * {
           fill: url(#compromisGradient) !important;
@@ -307,11 +307,11 @@ export default {
       }
 
       &-details {
-        margin: .4rem 0;
+        margin: 7px 0;
         font-size: 19px;
 
         svg {
-          margin-right: .25rem;
+          margin-right: 4px;
         }
       }
     }
@@ -349,7 +349,7 @@ export default {
     // Event aspect
   .aspect-event {
     .blob {
-      border-radius: 9rem;
+      border-radius: 144px;
 
       &-1 {
         top: -50%;
@@ -380,7 +380,7 @@ export default {
 
       &-image {
         height: 415px;
-        border-radius: 3rem;
+        border-radius: 48px;
       }
 
       &-name, &-description {
@@ -392,7 +392,7 @@ export default {
       }
 
       &-overtitle {
-        font-size: 3rem;
+        font-size: 48px;
       }
     }
 

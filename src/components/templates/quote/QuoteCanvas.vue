@@ -92,7 +92,7 @@ export default {
     &-author {
       font-size: 19px;
       letter-spacing: -0.5px;
-      margin-top: .75rem;
+      margin-top: 12px;
       line-height: 1.2;
       width: 165px;
       color: $gray-600;
@@ -224,7 +224,7 @@ export default {
       &-image {
         left: auto;
         top: auto;
-        border-top-right-radius: 5rem;
+        border-top-right-radius: 80px;
         border-bottom-left-radius: 0;
         bottom: -26px;
         right: 236px;

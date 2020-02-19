@@ -50,8 +50,8 @@
             }"
             :style="{
               backgroundColor: banner.programme === 'other' ? banner.customProgrammeColor : banner.programme['color'],
-              padding: banner.programme !== 'other' ? `${banner.programme['padding']}rem` : null,
-              width: banner.programme !== 'other' ? `${banner.programme['width']}` : null,
+              padding: banner.programme !== 'other' ? banner.programme['padding'] : null,
+              width: banner.programme !== 'other' ? banner.programme['width'] : null,
             }">
             <img v-if="banner.programme !== 'other'" :src="banner.programme.logo" />
             <span v-else>{{ banner.customProgramme }}</span>
@@ -125,7 +125,7 @@ export default {
     }
 
     &-details {
-      padding-top: 3rem;
+      padding-top: 48px;
       font-size: 18px;
       letter-spacing: -0.5px;
     }
@@ -133,13 +133,13 @@ export default {
     &-day, &-time {
       display: flex;
       align-content: center;
-      padding-top: .75rem;
+      padding-top: 12px;
       color: $gray-700;
     }
 
     &-channel, &-programme {
       display: inline-flex;
-      margin: .5rem .5rem 0 0;
+      margin: 8px 8px 0 0;
       background-color: $gray-800;
       border-radius: 5px;
       width: 50px;
@@ -149,7 +149,7 @@ export default {
       flex-shrink: 0;
 
       &-custom {
-        padding: .5rem 1rem;
+        padding: 8px 16px;
         color: $white;
         font-weight: bold;
         width: 170px;
@@ -164,11 +164,11 @@ export default {
       display: flex;
       flex-wrap: wrap;
       align-items: stretch;
-      margin-top: .5rem;
+      margin-top: 8px;
     }
 
     .icon {
-      padding-right: .3rem;
+      padding-right: 5px;
     }
   }
 
@@ -240,7 +240,7 @@ export default {
       }
 
       &-details {
-        padding-top: 1.5rem;
+        padding-top: 24px;
       }
 
       &-channel-custom, &-programme-custom {
