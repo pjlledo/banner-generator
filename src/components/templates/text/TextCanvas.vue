@@ -168,7 +168,7 @@ export default {
 
       li {
         counter-increment: list-counter;
-        padding-left: 36px;
+        padding-left: 30px;
         line-height: 1;
         margin-bottom: 12px;
 
@@ -177,14 +177,14 @@ export default {
           content: counter(list-counter) ". ";
           color: $orange;
           font-weight: bold;
-          left: 32px;
+          left: 24px;
         }
       }
     }
 
     ul {
       li {
-        padding-left: 36px;
+        padding-left: 30px;
         line-height: 1;
         margin-bottom: 12px;
 
@@ -193,7 +193,7 @@ export default {
           content: '➡️';
           color: $orange;
           font-weight: bold;
-          left: 32px;
+          left: 24px;
         }
       }
 
