@@ -2,7 +2,7 @@
   <footer>
     <help is-text />
     <div>
-      <strong>Generador de Targes</strong> <em>0.1-beta</em> és una aplicació desenvolupada pel <strong>Departament de Comunicació</strong> de <strong>Compromís</strong>.
+      <strong>Generador de Targes</strong> <em>beta</em> és una aplicació desenvolupada pel <strong>Departament de Comunicació</strong> de <strong>Compromís</strong>.
     </div>
   </footer>
 </template>
