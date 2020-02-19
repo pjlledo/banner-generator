@@ -92,7 +92,6 @@ export default {
     z-index: 20;
 
     &-local-label {
-      border-left: 1px $white solid;
       color: $white;
     }
   }
