@@ -97,7 +97,7 @@ const sources = [
             name: 'Espejo Público',
             logo: espejoPublico,
             color: '#ddd',
-            padding: 0.25
+            padding: '5px'
           }
         ]
       },
@@ -130,7 +130,7 @@ const sources = [
             name: 'Al Rojo Vivo',
             logo: alRojoVivo,
             color: '#d4001f',
-            padding: 0.25
+            padding: '5px'
           }
         ]
       },

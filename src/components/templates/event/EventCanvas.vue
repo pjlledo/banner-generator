@@ -100,11 +100,11 @@ export default {
       letter-spacing: -0.5px;
       color: $gray-700;
       line-height: 1.1;
-      padding-bottom: .25rem;
+      padding-bottom: 4px;
     }
 
     &-details {
-      padding-top: .75rem;
+      padding-top: 12px;
       display: flex;
       align-content: center;
       font-size: 17.5px;
@@ -112,11 +112,11 @@ export default {
       color: $gray-700;
 
       &-wrapper {
-        margin-top: 1rem;
+        margin-top: 16px;
       }
 
       .icon {
-        padding-right: .3rem;
+        padding-right: 5px;
         flex-shrink: 0;
 
         svg {
@@ -251,7 +251,7 @@ export default {
         span {
           background: $white;
           color: $gray-900;
-          padding: .25rem 2rem;
+          padding: 4px 32px;
           border-radius: 6px;
           line-height: 1.42;
           -webkit-box-decoration-break: clone;
@@ -263,7 +263,7 @@ export default {
       &-overtitle {
         position: absolute;
         color: $white;
-        font-size: 3rem;
+        font-size: 48px;
         letter-spacing: -1px;
         font-weight: bold;
         top: -150px;
@@ -273,7 +273,7 @@ export default {
     }
 
     .blob {
-      border-radius: 10rem;
+      border-radius: 16px;
 
       &-1 {
         top: -50%;
@@ -299,7 +299,7 @@ export default {
         left: 0;
         bottom: 0;
         right: 0;
-        border-radius: 0rem;
+        border-radius: 0;
 
         img {
           transform: rotate(0) scale(1);
@@ -322,7 +322,7 @@ export default {
         justify-content: flex-end;
         .icon {
           order: 1;
-          margin-left: .25rem;
+          margin-left: 4px;
         }
       }
     }
@@ -334,15 +334,11 @@ export default {
       z-index: 20;
       width: 460px;
       border-radius: 0;
-      border-bottom-right-radius: 5rem;
+      border-bottom-right-radius: 80px;
     }
 
     .blob-2 {
       display: none
-    }
-
-    .hashtag {
-
     }
   }
 </style>
