@@ -21,6 +21,7 @@ import ElPeriodicSVG from './logos/elperiodic.svg'
 import ElConfidencialSVG from './logos/elconfidencial.svg'
 import LaMarinaPlazaSVG from './logos/marinaplaza.svg'
 import ElMundoSVG from './logos/elmundo.svg'
+import NouHortaSVG from './logos/nou-horta.svg'
 import CSInfoPNG from './logos/csinfo.png'
 import CastellonPlazaPNG from './logos/castellon-plaza.png'
 import AlicantePlazaPNG from './logos/alicante-plaza.png'
@@ -246,6 +247,14 @@ const sources = [
     logoHeight: 22,
     fontFamily: 'Roboto',
     color: '#104277'
+  },
+  {
+    id: 'nouhorta',
+    name: 'Nou Horta',
+    logo: NouHortaSVG,
+    logoHeight: 22,
+    fontFamily: 'Roboto',
+    color: '#1b75bc'
   }
 ]
 
