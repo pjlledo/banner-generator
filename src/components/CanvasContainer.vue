@@ -12,8 +12,9 @@
 
     <div id="download-button" class="primary-download-button">
       <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
-        <b-button type="is-primary" size="is-large" rounded @click="download">
-          <b-icon icon="arrow-to-bottom" />
+        <b-button type="is-primary" size="is-large" rounded @click="download" :disabled="downloading">
+          <b-icon v-if="!downloading" icon="arrow-to-bottom" />
+          <b-icon v-else icon="circle-notch" custom-class="fa-spin" />
           <span class="button-label">Descarrega</span>
         </b-button>
       </b-tooltip>
@@ -46,6 +47,7 @@ export default {
       aspect: 0,
       color: 'normal',
       displayTooltip: false,
+      downloading: false,
       scale: 1,
       margin: 0,
       aspects: {
@@ -109,16 +111,40 @@ export default {
       const dimensions = this.aspects[aspect]
 
       if (this.isDownloadable) {
-        domtoimage.toPng(document.getElementById('bannerCanvas' + aspect), { bgcolor: '#fff', ...dimensions })
-          .then(function (blob) {
-            saveAs(blob, 'banner.png')
-            // eslint-disable-next-line
-            gtag('event', 'banner_download', {
-              event_category: 'banners',
-              event_label: aspect
-            })
+        this.downloading = true
+
+        domtoimage.toPng(
+          document.getElementById('bannerCanvas' + aspect),
+          { bgcolor: '#fff', ...dimensions }
+        ).then((blob) => {
+          saveAs(blob, 'banner.png')
+          this.saveToServer(blob)
+          this.downloading = false
+          // eslint-disable-next-line
+          gtag('event', 'banner_download', {
+            event_category: 'banners',
+            event_label: aspect
           })
+        })
       }
+    },
+
+    saveToServer (blob) {
+      fetch('https://compromis.net/espai/targes/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: this.encode({ blob })
+      })
+    },
+
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join('&')
     }
   }
 }
