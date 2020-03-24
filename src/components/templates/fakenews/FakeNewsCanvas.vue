@@ -18,7 +18,7 @@
     <div class="blob blob-2"></div>
     <div class="text" v-if="banner.text">
       <div class="text-holder" contenteditable>
-        <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 50, 30, 140) : fontSize('text', 50, 25, 140) }">{{ banner.text | formatString }}</div>
+        <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 50, 30, 140) : fontSize('text', 50, 22, 140) }">{{ banner.text | formatString }}</div>
       </div>
     </div>
     <div class="logo">
@@ -161,17 +161,13 @@ export default {
       }
     }
 
-    .quote {
-      top: 370px;
+    .text {
+      left: 40px;
+      right: 40px;
+    }
 
-      &-glyph {
-        top: -105px;
-        font-size: 140px;
-      }
-
-      &-text {
-        font-size: 28px;
-      }
+    .stamp {
+      font-size: 90px;
     }
 
     .logo {
