@@ -62,7 +62,7 @@ export default {
       left: -58%;
       top: -82%;
       z-index: 20;
-      // display: none;
+      display: none;
     }
 
     &-2 {
