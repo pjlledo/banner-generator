@@ -82,7 +82,7 @@ export default {
       border-radius: $card-radius;
       overflow: hidden;
       background: $white;
-      box-shadow: 0 10px 50px -25px $fake-color;
+      box-shadow: 0 10px 60px -20px $fake-color, 0 5px 15px -7px rgba($fake-color, .75);
       transform: rotate(-2deg);
 
       &::before {
