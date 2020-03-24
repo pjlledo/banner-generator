@@ -9,14 +9,16 @@
       'blobs-' + color
     ]"
     v-if="banner">
-    <div class="blob blob-image">
+    <div class="blob-image">
+      <span class="stamp">{{ banner.stamp }}</span>
+      <span class="stamp stamp-over">{{ banner.stamp }}</span>
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
+    <div class="text" v-if="banner.text">
       <div class="text-holder" contenteditable>
-        <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 80, 35, 110) : fontSize('text', 70, 25, 110) }">{{ banner.text | formatString }}</div>
+        <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 50, 30, 140) : fontSize('text', 50, 25, 140) }">{{ banner.text | formatString }}</div>
       </div>
     </div>
     <div class="logo">
@@ -43,38 +45,16 @@ export default {
   @import "../../../sass/variables";
 
   .text {
-    display: flex;
     position: absolute;
-    top: 155px;
+    top: 475px;
     bottom: 175px;
-    left: 0;
+    left: 60px;
+    right: 60px;
     z-index: 30;
-    width: 100%;
     transition: all .5s ease-in-out;
-
-    &-holder {
-      width: 100%;
-      padding: 0 45px;
-      -webkit-line-break: normal;
-    }
-
-    &-lines {
-      font-size: 45px;
-      line-height: 1.42;
-      color: white;
-      padding: 0 10px;
-      border-radius: 2px;
-      background: linear-gradient(45deg,$gradient-start,$gradient-end);
-      letter-spacing: -1px;
-      display: inline;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      font-family: $family-primary;
-      font-weight: bold;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      -webkit-line-break: normal;
-    }
+    letter-spacing: -.03em;
+    line-height: 1.25;
+    color: $gray-900;
   }
 
   .blob {
@@ -82,6 +62,7 @@ export default {
       left: -58%;
       top: -82%;
       z-index: 20;
+      // display: none;
     }
 
     &-2 {
@@ -92,16 +73,30 @@ export default {
     }
 
     &-image {
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 10;
-      background: $gray-300;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      right: 30px;
+      height: 410px;
+      z-index: 30;
       transform: rotate(0);
-      border-radius: 0;
+      border-radius: $card-radius;
+      overflow: hidden;
+      background: $white;
+      box-shadow: 0 10px 50px -25px $fake-color;
+      transform: rotate(-2deg);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: $fake-color;
+        opacity: .25;
+        z-index: 30;
+      }
 
       img {
         width: 100%;
@@ -109,6 +104,24 @@ export default {
         object-fit: cover;
         transform: rotate(0);
       }
+    }
+  }
+
+  .stamp {
+    position: absolute;
+    font-size: 150px;
+    font-weight: bold;
+    bottom: 20px;
+    left: 20px;
+    color: $fake-color;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    z-index: 30;
+    mix-blend-mode: multiply;
+
+    &-over {
+      mix-blend-mode: normal;
+      opacity: .75;
     }
   }
 
@@ -122,9 +135,10 @@ export default {
   }
 
   .hashtag {
-    top: 20px;
+    bottom: 30px;
     left: 35px;
-    bottom: auto;
+    top: auto;
+    color: $gray-900;
   }
 
   .has-local-label {

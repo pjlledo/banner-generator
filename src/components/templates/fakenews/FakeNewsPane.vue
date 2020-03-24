@@ -1,8 +1,8 @@
 <template>
   <div :class="{ 'pane generic-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
     <!-- Text -->
-    <b-field label="Text">
-      <b-input type="textarea" placeholder="Açò és fals perquè..." v-model="properties.text" maxlength="100"></b-input>
+    <b-field label="Realitat">
+      <b-input type="textarea" placeholder="Açò és fals perquè..." v-model="properties.text" maxlength="140"></b-input>
     </b-field>
 
     <b-field label="Segell">
