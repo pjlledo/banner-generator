@@ -26,7 +26,6 @@ const templates = [
     name: 'Text lliure',
     aspects: ['11', '916'],
     icon: 'align-left',
-    isNew: true,
     components: {
       pane: () => import(/* webpackChunkName: "text" */ './text/TextPane'),
       canvas: () => import(/* webpackChunkName: "text" */ './text/TextCanvas'),
@@ -49,11 +48,22 @@ const templates = [
     name: 'Comparativa',
     aspects: ['11'],
     icon: 'columns',
+    components: {
+      pane: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonPane'),
+      canvas: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonCanvas'),
+      help: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonHelp')
+    }
+  },
+  {
+    id: 'FakeNews',
+    name: 'Bulo',
+    aspects: ['11', '916'],
+    icon: 'ban',
     isNew: true,
     components: {
-      pane: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonPane'),
-      canvas: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonCanvas'),
-      help: () => import(/* webpackChunkName: "social" */ './comparison/ComparisonHelp')
+      pane: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsPane'),
+      canvas: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsCanvas'),
+      help: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsHelp')
     }
   },
   {
