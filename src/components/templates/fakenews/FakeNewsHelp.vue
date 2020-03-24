@@ -1,11 +1,10 @@
 <template>
   <div>
     <p>
-      Aquesta tarja serveix per a <strong>difondre un missatge genèric a xarxes</strong>,
-      que no puga ser difós amb la resta de models de tarja.
+      Aquesta tarja serveix per a <strong>desmentir una mentida o notícia falsa</strong> que circule per les xarxes.
     </p>
     <p>
-      Recomanem usar una <strong>foto representativa</strong> de la temàtica del missatge, i una frase curta i directa.
+      Recomanem usar una <strong>captura de pantalla del document, tweet o notícia falsa</strong> i acompanyar-la d'un text explicatiu amb la realitat.
     </p>
     <p>
       És pot afegir, si és adient, un hashtag relacionat amb la temàtica, així com el nom del col·lectiu al costat del logo, utilizant els camps "hashtag" i "afegir text al logo".
