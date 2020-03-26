@@ -48,6 +48,7 @@ export default {
   methods: {
     toggleForm () {
       this.formIsActive = !this.formIsActive
+      this.$emit('modalOpen', this.formIsActive)
     }
   },
 

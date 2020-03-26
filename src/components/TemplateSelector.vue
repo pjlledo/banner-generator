@@ -184,15 +184,6 @@ export default {
         }
       }
     }
-
-    footer {
-      padding: 1rem;
-      backdrop-filter: blur(4px);
-      background-color: rgba($body-background-color, .75);
-      border-radius: .5rem;
-      margin-bottom: 1rem;
-      margin-top: 2rem;
-    }
   }
 
   @media (max-width: $xs-breakpoint) {
@@ -218,12 +209,6 @@ export default {
           padding: .75rem;
         }
       }
-    }
-
-    footer {
-      background: rgba($white, .75);
-      backdrop-filter: blur(4px);
-      margin-top: 2rem;
     }
   }
 </style>
