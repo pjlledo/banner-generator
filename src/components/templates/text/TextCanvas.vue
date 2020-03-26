@@ -163,22 +163,10 @@ export default {
     }
 
     ol {
-      list-style: none;
-      counter-reset: list-counter;
-
       li {
-        counter-increment: list-counter;
-        padding-left: 30px;
+        margin-left: 30px;
         line-height: 1;
         margin-bottom: 12px;
-
-        &::before {
-          position: absolute;
-          content: counter(list-counter) ". ";
-          color: $orange;
-          font-weight: bold;
-          left: 24px;
-        }
       }
     }
 
