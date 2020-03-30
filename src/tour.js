@@ -8,7 +8,7 @@ export const labels = {
 export const selectorSteps = [
   {
     target: '.template-selector-header',
-    content: `<strong>Hola! Estàs al generador de targes de Compromís</strong>,
+    content: `<strong>Hola! Estàs al generador de targes de Joves PV - Compromís</strong>,
     una ferramenta per a crear gràfics per a xarxes socials ràpidament i fàcilment.
     Si vols, et podem fer una curteta visita guiada per l'aplicació.`
   },
