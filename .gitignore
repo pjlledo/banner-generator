@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+run.sh
+.gitignore
+package.json
+yarn.lock
