@@ -1,7 +1,7 @@
 <template>
   <div class="help-block">
     <div v-if="isText" class="text">
-      Si tens qualsevol dubte o suggeriment, pots <a href="#" @click.prevent="toggleForm">contactar-nos</a>.
+      Si tens qualsevol dubte o suggeriment, pots <a href="mailto:info@jovespv.org" @click.prevent="toggleForm">contactar-nos</a>.
     </div>
     <div v-else>
     <b-tooltip label="Ajuda i suggeriments" position="is-left" type="is-dark">

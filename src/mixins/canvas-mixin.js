@@ -39,8 +39,8 @@ export default {
 
       return string
         .replace(/'/g, '’')
-        .replace(/Mònica Oltra/gi, 'Mónica Oltra')
-        .replace(/Monica Oltra/gi, 'Mónica Oltra')
+        .replace(/Joan Baldoví/gi, 'Joan Baldoví')
+        .replace(/Joan Baldoví/gi, 'Joan Baldoví')
     }
   },
 

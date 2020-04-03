@@ -2,7 +2,7 @@
   <footer :class="{ 'modal-open': modalIsOpen }">
     <help is-text @modalOpen="(open) => modalIsOpen = open" />
     <div>
-      <strong>Generador de Targes</strong> <em>beta</em> és una aplicació desenvolupada pel <strong>Departament de Comunicació</strong> de <strong>Compromís</strong>.
+      <strong>Generador de Targes</strong> <em>beta</em> és una aplicació desenvolupada pel <strong>Departament de Comunicació</strong> de <strong>Compromís</strong> </br> i modificada per <strong> Joves PV - Compromís </strong> per al seu us privat.
     </div>
   </footer>
 </template>

@@ -10,7 +10,7 @@
       @submit.prevent="submit">
       <input type="hidden" name="form-name" value="ask-question" />
       <b-field label="E-mail">
-        <b-input type="email" placeholder="joan@compromis.net" v-model="form.email" required></b-input>
+        <b-input type="email" placeholder="info@jovespv.org" v-model="form.email" required></b-input>
       </b-field>
       <b-field label="Dubte o suggeriment">
         <b-input type="textarea" placeholder="No em funciona el condensador de flux..." v-model="form.text" required></b-input>

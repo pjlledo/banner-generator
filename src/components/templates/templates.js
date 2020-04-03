@@ -59,7 +59,7 @@ const templates = [
     name: 'Bulo',
     aspects: ['11', '916'],
     icon: 'ban',
-    isNew: true,
+    // isNew: true,
     components: {
       pane: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsPane'),
       canvas: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsCanvas'),

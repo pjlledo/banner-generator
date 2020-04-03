@@ -53,7 +53,7 @@ export default {
     }
 
     .logo-label {
-      margin-left: .75rem;
+      margin-left: .70rem;
       color: $gray-700;
     }
 
