@@ -45,7 +45,8 @@ export default {
     .blob {
       position: absolute;
       border-radius: $border-radius;
-      background: linear-gradient(45deg, $gradient-start, $gradient-end);
+//      background: linear-gradient(180deg, $gradient-start, $gradient-end);
+      background: #e85d0f;
       width: 50rem;
       height: 50rem;
       animation-name: blob1;
