@@ -4,7 +4,7 @@
       <div class="blob blob-1"></div>
     </div>
     <div class="blob-holder" data-depth="0.2">
-      <div class="blob blob-2"></div>
+      <careta class="careta" :logo-style="'normal'"></careta>
     </div>
     <div class="blob-holder" data-depth="0.05">
       <div class="blob blob-3"></div>
@@ -14,12 +14,16 @@
 
 <script>
 import Parallax from 'parallax-js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'app-background',
 
   props: {
     hidden: Boolean
+  },
+  components: {
+    Careta
   },
 
   mounted () {
@@ -33,6 +37,21 @@ export default {
 <style lang="scss" scoped>
   @import "../sass/variables";
 
+  .careta {
+      position: absolute;
+      width: 30rem;
+      height: 30rem;
+      animation-duration: 20s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out;
+      transition: 1s ease-in-out;
+      will-change: transform, left, top, right, bottom;
+      animation-name: blob2;
+      top: 70%;
+      left: -15rem;
+
+  }
   .blobs {
     position: fixed;
     top: 0;
@@ -103,8 +122,15 @@ export default {
 
   @media (max-width: $xs-breakpoint) {
     .blob {
-      &-2 {
+      &-3 {
         display: none;
+      }
+      &-1 {
+        display: none;
+      }
+      .careta {
+        top: 50%;
+        left: -10rem;        
       }
     }
   }
@@ -125,8 +151,8 @@ export default {
   @media (max-height: 700px) {
     .blobs {
       .blob {
-        &-1 {
-          bottom: -40rem;
+        &-3 {
+          display: none;
         }
       }
     }
