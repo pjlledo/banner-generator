@@ -43,17 +43,17 @@ const templates = [
       help: () => import(/* webpackChunkName: "quote" */ './quote/QuoteHelp')
     }
   },
-  {
+  /*{
     id: 'Comparison',
     name: 'Comparativa',
     aspects: ['11'],
     icon: 'columns',
     components: {
-      pane: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonPane'),
-      canvas: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonCanvas'),
-      help: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonHelp')
+      pane: () => import(/* webpackChunkName: "comparison" */ /*'./comparison/ComparisonPane'),
+      canvas: () => import(/* webpackChunkName: "comparison" */ /*'./comparison/ComparisonCanvas'),
+      help: () => import(/* webpackChunkName: "comparison" */ /*'./comparison/ComparisonHelp')
     }
-  },
+  }, 
   {
     id: 'FakeNews',
     name: 'Bulo',
@@ -61,11 +61,11 @@ const templates = [
     icon: 'ban',
     // isNew: true,
     components: {
-      pane: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsPane'),
-      canvas: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsCanvas'),
-      help: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsHelp')
+      pane: () => import(/* webpackChunkName: "fakenews" */ /*'./fakenews/FakeNewsPane'),
+      canvas: () => import(/* webpackChunkName: "fakenews" */ /*'./fakenews/FakeNewsCanvas'),
+      help: () => import(/* webpackChunkName: "fakenews" */ /*'./fakenews/FakeNewsHelp')
     }
-  },
+  }, */
   {
     id: 'Media',
     name: 'Mitjans',
