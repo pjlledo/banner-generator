@@ -85,7 +85,7 @@ export default {
       word-wrap: break-word;
     }
   }
-
+// Targes blanques
   .blob {
     &-1 {
       top: -42%;
@@ -255,14 +255,14 @@ export default {
     .blob {
       &-1 {
         left: -58%;
-        top: -82%;
+        top: -88%;
         z-index: 20;
       }
 
       &-2 {
         left: auto;
-        right: -57%;
-        bottom: -81%;
+        right: -45%;
+        bottom: -87%;
         z-index: 20;
         --gradient-orientation: -45deg;
       }

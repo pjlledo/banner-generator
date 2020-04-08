@@ -5,7 +5,7 @@
 $family-primary: 'Compromis', sans-serif;
 
 // Colors
-$primary: #ff6600;
+$primary: #e85d0f;
 $primary-invert: findColorInvert($primary);
 
 $gray-darkest: #353949;
@@ -59,8 +59,11 @@ $link-focus-border: $primary;
 $input-shadow: 0;
 
 // Banners
-$gradient-start: #d13416;
-$gradient-end: #f29128;
+//$gradient-start: #d13416;
+//$gradient-end: #f29128;
+$gradient-start: #e85d0f;
+$gradient-end: #e85d0f;
+
 $gradient: linear-gradient(var(--gradient-orientation, 45deg), $gradient-start, $gradient-end);
 //$gradient-feminista: linear-gradient(var(--gradient-orientation, 45deg), #7D3A81, #C54687);
 $gradient-feminista: #662D91;
