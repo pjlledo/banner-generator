@@ -28,16 +28,26 @@
       <compromis-logo :mono="banner.card ? true : false" />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
+    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
+    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'mono'"></careta>
+    </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin],
+  components: {
+    Careta
+  }
 }
 </script>
 
@@ -108,7 +118,8 @@ export default {
     }
 
     &-2 {
-      left: -67%;
+      display: none;
+      left: 120%;
       bottom: -88%;
       z-index: 10;
     }
@@ -130,13 +141,17 @@ export default {
     }
   }
 
+  .estrela{
+    display:none;
+  }
+
   // Story aspect
   .aspect-916 {
     .quote {
       bottom: 153px;
       top: 221px;
       padding: 0 30px;
-      height: 415px;
+      height: 325px;
       justify-content: flex-end;
       width: 95%;
 
@@ -157,7 +172,7 @@ export default {
       }
 
       &-2 {
-        left: -110%;
+        left: -120%;
         bottom: -94%;
       }
 
@@ -165,18 +180,29 @@ export default {
         width: 440px;
         height: 472px;
         top: -27px;
-        left: -12px;
+        left: 12px;
         border-bottom-right-radius: 0;
 
         img {
           width: 96%;
-          margin: 21px 3px;
+          margin: 21px -8px;
         }
       }
     }
 
     .logo {
       display: none;
+    }
+
+    .estrela {
+      display: block;
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      z-index: 20;
+      //filter: drop-shadow(1px 1px 1px #111111);
     }
   }
 
@@ -187,6 +213,7 @@ export default {
       align-items: flex-end;
       text-align: right;
       right: 10px;
+      bottom: 100;
       left: auto;
 
       &-text {
@@ -281,15 +308,19 @@ export default {
 
       &-1 {
         display: block;
-        left: -58%;
-        top: -82%;
+        left: -5%;
+        top: -88%;
+        width: 425px;
         z-index: 20;
       }
 
       &-2 {
+        display: block;
         left: auto;
-        right: -57%;
-        bottom: -81%;
+        //right: -45%;
+        right: -4.5%;
+        width: 425px;
+        bottom: -87%;
         z-index: 20;
         --gradient-orientation: -45deg;
       }
@@ -313,6 +344,7 @@ export default {
         }
 
         &-2 {
+          display: none;
           right: -104%;
         }
       }
