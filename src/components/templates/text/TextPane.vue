@@ -34,7 +34,7 @@
       </b-field>
     </transition>
 
-    <!-- Local label -->
+    <!-- Local label 
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -47,7 +47,16 @@
             </b-field>
           </div>
         </transition>
-      </div>
+      </div> 
+    </transition> -->
+   
+    <!-- color estrela -->
+    <transition name="slide">
+    <div v-if="aspect" class="colorEstrela" id="colorEstrela">
+      <b-switch v-model="properties.EstrelaBlanca">
+      Estrela Blanca
+      </b-switch>
+    </div>
     </transition>
   </div>
 </template>

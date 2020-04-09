@@ -24,16 +24,26 @@
     <div class="hashtag" v-if="aspect === '11'">
       {{ banner.hashtag }}
     </div>
+    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
+    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'mono'"></careta>
+    </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'text-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin],
+  components: {
+    Careta
+  }
 }
 </script>
 
@@ -54,14 +64,18 @@ export default {
 
   .blob {
     &-1 {
-      left: -58%;
-      top: -82%;
+      left: -5%;
+      top: -88%;
+      width: 425px;
       z-index: 20;
     }
 
     &-2 {
-      right: -57%;
-      bottom: -81%;
+      left: auto;
+      //right: -45%;
+      right: -4.5%;
+      width: 425px;
+      bottom: -87%;
       z-index: 20;
       --gradient-orientation: -45deg;
     }
@@ -126,10 +140,21 @@ export default {
       left: 16px;
       right: 16px;
       padding: 16px;
+      bottom: 110px;
     }
 
     .logo {
       display: none;
+    }
+
+    .estrela {
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      z-index: 20;
+      //filter: drop-shadow(1px 1px 1px #111111);
     }
   }
 </style>
