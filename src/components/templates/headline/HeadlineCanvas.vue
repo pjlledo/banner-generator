@@ -56,7 +56,6 @@ export default {
   name: 'headline-canvas',
 
   mixins: [CanvasMixin],
-  
   components: {
     Careta
   }
@@ -362,7 +361,7 @@ export default {
 
         &-2 {
           right: -200%;
-        }    
+        }
       }
 
       /* Cards in story aspect with headline on top */
