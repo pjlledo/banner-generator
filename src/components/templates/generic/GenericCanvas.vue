@@ -14,6 +14,12 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
+    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'mono'"></careta>
+    </div>
     <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
       <div class="text-holder" contenteditable>
         <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 80, 35, 110) : fontSize('text', 70, 25, 110) }">{{ banner.text | formatString }}</div>
@@ -31,11 +37,15 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'generic-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin],
+    components: {
+    Careta
+  }
 }
 </script>
 
@@ -76,17 +86,29 @@ export default {
       -webkit-line-break: normal;
     }
   }
+  .estrela {
+      position: absolute;
+      width: 20rem;
+      height: 20rem;
+      top: 120%;
+      left: -9rem;
+      //filter: drop-shadow(1px 1px 1px #111111);
 
+  }
   .blob {
     &-1 {
-      left: -58%;
-      top: -82%;
+      left: -5%;
+      top: -88%;
+      width: 425px;
       z-index: 20;
     }
 
     &-2 {
-      right: -57%;
-      bottom: -81%;
+      left: auto;
+      //right: -45%;
+      right: -4.5%;
+      width: 425px;
+      bottom: -87%;
       z-index: 20;
       --gradient-orientation: -45deg;
     }
@@ -138,11 +160,11 @@ export default {
     .blob {
       &-1 {
         top: -85%;
-        left: -120%;
+        left: -200%;
       }
 
       &-2 {
-        right: -120%;
+        right: -200%;
         bottom: -84%;
       }
     }
@@ -162,6 +184,16 @@ export default {
 
     .logo {
       display: none;
+    }
+    
+    .estrela {
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      z-index: 20;
+      //filter: drop-shadow(1px 1px 1px #111111);
     }
   }
 </style>
