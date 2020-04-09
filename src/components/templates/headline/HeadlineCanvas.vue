@@ -16,6 +16,12 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
+    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'mono'"></careta>
+    </div>
     <div class="headline">
       <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="banner.card ? { backgroundColor: banner.customSourceColor } : null">
         <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
@@ -44,11 +50,16 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'headline-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin],
+  
+  components: {
+    Careta
+  }
 }
 </script>
 
@@ -94,9 +105,10 @@ export default {
     }
 
     &-2 {
-      left: -42%;
-      bottom: -91%;
-      z-index: 10;
+        left: auto;
+        right: -100%;
+        bottom: -100%;
+        z-index: -50;
     }
 
     &-image {
@@ -116,6 +128,15 @@ export default {
     }
   }
 
+  .estrela {
+      position: absolute;
+      width: 20rem;
+      height: 20rem;
+      top: 120%;
+      left: -9rem;
+      //filter: drop-shadow(1px 1px 1px #111111);
+
+  }
   .has-local-label {
     .blob-2 {
       left: -60%;
@@ -134,7 +155,8 @@ export default {
     .blob {
       &-1 {
         top: -43%;
-        right: -120%;
+        right:-200%;
+        //right: -120%;
       }
 
       &-2 {
@@ -144,20 +166,22 @@ export default {
 
       &-image {
         top: -20px;
-        left: -12px;
+        //left: -12px;
+        left: 20px;
         width: 444px;
         height: 395px;
         border-bottom-right-radius: 0;
 
         img {
           width: 93%;
-          margin: 15px 10px;
+          //margin: 15px 10px;
+          margin: 15px -20px;
         }
       }
     }
 
     .headline {
-      top: 430px;
+      top: 380px;
 
       &-text {
         font-size: 20px;
@@ -166,6 +190,15 @@ export default {
 
     .logo {
       display: none;
+    }
+
+    .estrela {
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      //filter: drop-shadow(1px 1px 1px #111111);
     }
   }
 
@@ -200,7 +233,7 @@ export default {
     .blob {
       &-1 {
         top: -90%;
-        right: 40%;
+        right: 57%;
       }
 
       &-2 {
@@ -324,12 +357,12 @@ export default {
 
       .blob {
         &-1 {
-          left: -118%;
+          left: -200%;
         }
 
         &-2 {
-          right: -104%;
-        }
+          right: -200%;
+        }    
       }
 
       /* Cards in story aspect with headline on top */

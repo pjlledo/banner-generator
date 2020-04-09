@@ -113,7 +113,7 @@
       </b-field>
     </transition>
 
-    <!-- Local label -->
+    <!-- Local label 
     <transition name="slide">
       <div v-if="!aspect" class="field" id="local-label-field">
         <b-switch v-model="properties.hasLocalLabel" @input="properties.hashtag = properties.hashtag.substring(0, 18)">
@@ -127,6 +127,15 @@
           </div>
         </transition>
       </div>
+    </transition> -->
+
+    <!-- color estrela -->
+    <transition name="slide">
+    <div v-if="aspect" class="colorEstrela" id="colorEstrela">
+      <b-switch v-model="properties.EstrelaBlanca">
+      Estrela Blanca
+      </b-switch>
+    </div>
     </transition>
   </div>
 </template>
