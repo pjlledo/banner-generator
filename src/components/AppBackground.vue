@@ -130,7 +130,7 @@ export default {
       }
       .careta {
         top: 50%;
-        left: -10rem;        
+        left: -10rem;
       }
     }
   }

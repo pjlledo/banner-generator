@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul :class="{'careta-selector': true, 'is-rounded': isRounded }">
-      <li :class="{'normal' : true, 'active': value === 'mono'}" @click="$emit('input', 'mono')" 
+      <li :class="{'normal' : true, 'active': value === 'mono'}" @click="$emit('input', 'mono')"
       style=" background: #f4813e;">
           <careta v-if="!isRounded" logo-style="mono"></careta>
       </li>
@@ -13,8 +13,8 @@
           <careta v-if="!isRounded" logo-style="lgtb"></careta>
       </li>
       <li :class="{'quatri' : true, 'active': value === 'quatri'}" @click="$emit('input', 'mono')">
-	      <careta v-if="!isRounded" logo-style="quatri"></careta>
-	    </li>
+        <careta v-if="!isRounded" logo-style="quatri"></careta>
+      </li>
     </ul>
     <b-message v-if="value === 'feminista' && isRounded === false" type="is-warning" size="is-small">
       El logo Compromís Feminista està pensat per ser utilitzat a les xarxes únicament
@@ -65,7 +65,7 @@ export default {
   li {
     border: .25rem solid $gray-200;
     border-radius: .5rem;
-  	background: $gray-200;
+    background: $gray-200;
     transition: .25s ease-in-out;
 
     svg {
@@ -152,7 +152,7 @@ export default {
       }
       &.lgtb {
         background: $gradient-lgtb;
-      }      
+      }
       &.quatri {
       background: $gradient-quatri;
       }
