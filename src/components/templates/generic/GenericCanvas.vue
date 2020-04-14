@@ -43,7 +43,7 @@ export default {
   name: 'generic-canvas',
 
   mixins: [CanvasMixin],
-    components: {
+  components: {
     Careta
   }
 }
@@ -185,7 +185,7 @@ export default {
     .logo {
       display: none;
     }
-    
+
     .estrela {
       position: absolute;
       width: 15rem;

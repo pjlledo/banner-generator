@@ -58,7 +58,7 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Local label 
+    <!-- Local label
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
