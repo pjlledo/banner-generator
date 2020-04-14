@@ -13,6 +13,9 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="estrela">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
     <div class="medium">
       <div class="medium-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
@@ -68,11 +71,16 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
+
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin], 
+  components: {
+    Careta
+  }
 }
 </script>
 
@@ -179,6 +187,7 @@ export default {
     }
 
     &-2 {
+      display: none;
       left: -63%;
       bottom: -74%;
       z-index: 10;
@@ -202,6 +211,10 @@ export default {
     }
   }
 
+  .estrela {
+    display: none;
+  }
+
   // Story aspect
   .aspect-916 {
     .blob {
@@ -212,6 +225,7 @@ export default {
       &-2 {
         left: -110%;
         bottom: -94%;
+        display: none;
       }
 
       &-image {
@@ -226,6 +240,15 @@ export default {
           width: 98%;
         }
       }
+    }
+
+    .estrela {
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      display: block;
     }
 
     .medium {

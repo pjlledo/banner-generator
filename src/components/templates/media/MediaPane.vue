@@ -6,7 +6,7 @@
       :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
       :message="properties.title ? '' : displayErrors ? `Has d'omplir el títol` : ''">
       <b-input
-        placeholder="Mónica Oltra"
+        placeholder="Joan Baldoví"
         v-model="properties.title"
         maxlength="30">
       </b-input>
@@ -140,7 +140,7 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Local label -->
+    <!-- Local label 
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -154,7 +154,7 @@
           </div>
         </transition>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
