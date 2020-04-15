@@ -46,17 +46,26 @@
       <compromis-logo />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
+    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
+    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
+      <careta class="careta" :logo-style="'mono'"></careta>
+    </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'quote-canvas',
 
   mixins: [CanvasMixin],
-
+  components: {
+    Careta
+  },
   computed: {
     isCrowded: function () {
       return (this.banner.speakers.length > 2 && (this.banner.title.length > 30 || this.banner.place.length > 50)) ||
@@ -131,16 +140,23 @@ export default {
     }
   }
 
+  .estrela {
+    display: none;
+  }
+
   .blob {
     &-1 {
-      top: -87%;
-      left: -74%;
+      top: -22%;
+      left: -4%;
+      width: 17rem;
+      height: 15rem;
     }
 
     &-2 {
       left: -60%;
       bottom: -74%;
       z-index: 10;
+      display:none;
     }
 
     &-image {
@@ -168,6 +184,7 @@ export default {
     }
     .blob-2 {
       bottom: -88%;
+      display: none;
     }
   }
 
@@ -181,6 +198,7 @@ export default {
       &-2 {
         left: -110%;
         bottom: -94%;
+        display: none;
       }
 
       &-image {
@@ -198,7 +216,7 @@ export default {
     }
 
     .event {
-      top: 252px;
+      top: 220px;
       width: 100%;
       height: 400px;
       box-sizing: border-box;
@@ -233,6 +251,16 @@ export default {
     .logo {
       display: none;
     }
+
+    .estrela {
+      display: block;
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      //filter: drop-shadow(1px 1px 1px #111111);
+    }
   }
 
   // Event aspect
@@ -262,24 +290,38 @@ export default {
 
       &-overtitle {
         position: absolute;
-        color: $white;
+        color: white;
         font-size: 48px;
         letter-spacing: -1px;
         font-weight: bold;
-        top: -150px;
-        left: 60px;
+        top: -165px;
+        right: 21px;
         z-index: 20;
+        width: 540px;
+        text-align: center;
       }
     }
-
+    .estrela {
+      display: block;
+      position: absolute;
+      width: 30rem;
+      height: 30rem;
+      top: 62%;
+      left: -6.5rem;
+      z-index: 19;
+      //filter: drop-shadow(1px 1px 1px #111111);
+    }
     .blob {
       border-radius: 16px;
 
       &-1 {
-        top: -50%;
-        left: -3%;
+        top: -10%;
+        left: 69%;
+        width: 44rem;
         z-index: 20;
-        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        transform: rotate(2deg);
+
       }
 
       &-2 {
@@ -300,6 +342,7 @@ export default {
         bottom: 0;
         right: 0;
         border-radius: 0;
+        z-index: 15;
 
         img {
           transform: rotate(0) scale(1);
