@@ -12,7 +12,7 @@
       <li :class="{'lgtb' : true, 'active': value === 'lgtb'}" @click="$emit('input', 'lgtb')">
           <careta v-if="!isRounded" logo-style="lgtb"></careta>
       </li>
-      <li :class="{'quatri' : true, 'active': value === 'quatri'}" @click="$emit('input', 'mono')">
+      <li :class="{'quatri' : true, 'active': value === 'quatri'}" @click="$emit('input', 'quatri')">
         <careta v-if="!isRounded" logo-style="quatri"></careta>
       </li>
     </ul>
@@ -154,7 +154,7 @@ export default {
         background: $gradient-lgtb;
       }
       &.quatri {
-      background: $gradient-quatri;
+        background: $gradient-quatri;
       }
     }
   }
