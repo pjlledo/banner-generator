@@ -52,7 +52,7 @@
       </b-field>
     </transition>
 
-    <!-- Local label -->
+    <!-- Local label 
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -66,7 +66,7 @@
           </div>
         </transition>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -95,8 +95,8 @@ export default {
         place: '',
         speakers: [
           {
-            name: 'Mónica Oltra',
-            description: 'Vicepresidenta',
+            name: 'Joan Baldovi',
+            description: 'Diputat al congrés',
             picture: null
           },
           {

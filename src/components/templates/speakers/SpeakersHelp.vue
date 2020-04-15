@@ -22,7 +22,7 @@
     </p>
     <ul>
       <li><strong>1:1</strong>: model genèric per a compartir en la majoria de xarxes socials (Facebook, Instagram, Twitter, canals de Telegram i Whatsapp, etc.).</li>
-      <li><strong>9:16</strong>: model per a stories (Instagram, Facebook, Whatsapp). Aquest model no inclou el logo de Comporomís perquè ja és mostra a la part superior esquerra quan es comparteix en l'aplicació. Per favor, no l'afegiu.</li>
+      <li><strong>9:16</strong>: model per a stories (Instagram, Facebook, Whatsapp). Aquest model no inclou el logo de Joves PV - Comporomís perquè ja és mostra a la part superior esquerra quan es comparteix en l'aplicació. Per favor, no l'afegiu.</li>
       <li><strong>Portada</strong>: model per a la portada de l'esdeveniment de l'acte a Facebook. Nota: certa informació no està present en aquest format perquè facebook ja l'afegeix al costat de la portada l'hora de crear l'esdeveniment. No l'afegiu també a la imatge, per favor. </li>
     </ul>
 

@@ -301,6 +301,7 @@ export default {
         text-align: center;
       }
     }
+
     .estrela {
       display: block;
       position: absolute;
@@ -311,6 +312,7 @@ export default {
       z-index: 19;
       //filter: drop-shadow(1px 1px 1px #111111);
     }
+    
     .blob {
       border-radius: 16px;
 

@@ -22,6 +22,9 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
+    <div class="estrela">
+      <careta class="careta" :logo-style="'normal'"></careta>
+    </div>
     <div class="speakers">
       <div class="speakers-overtitle">
         {{ banner.overtitle | formatString }}
@@ -56,10 +59,13 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Careta from '@/utils/Careta'
 
 export default {
   name: 'quote-canvas',
-
+  components: {
+    Careta
+  },
   mixins: [CanvasMixin]
 }
 </script>
@@ -174,13 +180,19 @@ export default {
     &-1 {
       top: -83%;
       left: 50%;
+      width: 250px;
     }
 
     &-2 {
       left: -50%;
       bottom: -90%;
       z-index: 10;
+      display: none;
     }
+  }
+
+  .estrela {
+    display: none;
   }
 
   .has-long-title {
@@ -233,13 +245,17 @@ export default {
       &-1 {
         left: -125%;
         top: -88%;
+        display: none;
       }
 
       &-2 {
         left: 60%;
         bottom: -88%;
         --gradient-orientation: -45deg;
+        display: none;
       }
+
+
 
       &-image {
         height: 540px;
@@ -249,19 +265,29 @@ export default {
       }
     }
 
+    .estrela {
+      display: block;
+      position: absolute;
+      width: 15rem;
+      height: 15rem;
+      top: 80%;
+      left: -4rem;
+      z-index: 19;
+    }
+
     .speakers {
       padding: 0 30px;
       box-sizing: border-box;
       width: 100%;
-      top: 98px;
+      top: 65px;
 
       &-overtitle{
         font-size: 20px;
       }
 
       &-items {
-        top: 30%;
-        left: 30px;
+        top:22%;
+        left: 45px;
         right: 30px;
         grid-row-gap: 10px;
         grid-column-gap: 0;
@@ -303,7 +329,8 @@ export default {
         width: 100%;
         box-sizing: border-box;
         flex-direction: column;
-        bottom: 10%;
+        bottom: 23%;
+        left: 12px;
       }
 
       &-details {
@@ -349,11 +376,12 @@ export default {
     // Event aspect
   .aspect-event {
     .blob {
-      border-radius: 144px;
+      border-radius: 65px;
 
       &-1 {
         top: -50%;
         left: 70%;
+        width: 620px;
         z-index: 20;
       }
 
@@ -362,7 +390,19 @@ export default {
         bottom: -50%;
         right: 70%;
         z-index: 20;
+        display: none;
       }
+    }
+
+    .estrela {
+      display: block;
+      position: absolute;
+      width: 30rem;
+      height: 30rem;
+      top: 62%;
+      left: -6.5rem;
+      z-index: 19;
+      //filter: drop-shadow(1px 1px 1px #111111);
     }
 
     .speakers {
