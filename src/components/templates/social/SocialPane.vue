@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       properties: {
-        logoStyle: 'normal'
+        logoStyle: 'mono'
       }
     }
   },
