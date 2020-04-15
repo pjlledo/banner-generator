@@ -26,12 +26,7 @@ export default {
 <style lang="scss" scoped>
   @import "../../../sass/variables";
 
-  .picture {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    mix-blend-mode: luminosity;
-  }
+
 
   .careta {
     position: absolute;
@@ -45,11 +40,24 @@ export default {
   #bannerCanvas11mono {
     background-color: #e85d0f;
     height: 720px;
+  
+    .picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: luminosity;
+    }
   }
 
   #bannerCanvas11feminista {
     background-color: #662D91;
     height: 720px;
+    .picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: luminosity; 
+    }
   }
 
   #bannerCanvas11lgtb {
@@ -67,6 +75,12 @@ export default {
     rgba(196,39,142,1) 83%,
     rgba(196,39,142,1) 100%);
     height: 720px;
+    .picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: screen; 
+    }
  } 
 
 #bannerCanvas11quatri {
@@ -90,5 +104,11 @@ export default {
   rgba(252,221,9,1) 88.8%,
   rgba(252,221,9,1) 100%);
   height: 720px;
+    .picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: screen; 
+    }
 }
 </style>
