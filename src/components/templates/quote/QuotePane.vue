@@ -74,6 +74,19 @@
       </div>
     </transition> -->
 
+    <!-- Hashtag -->
+    <transition name="slide">
+      <b-field label="Hashtag" v-if="!aspect">
+        <b-input
+          id="hashtag-field"
+          placeholder="#"
+          @input="updateHashtag"
+          :value="properties.hashtag"
+          :maxlength="properties.hasLocalLabel ? 18 : 26">
+        </b-input>
+      </b-field>
+    </transition>
+
     <!-- color estrela -->
     <transition name="slide">
       <div v-if="aspect" class="colorEstrela" id="colorEstrela">
@@ -122,4 +135,8 @@ export default {
   .local-label {
     margin-top: .75rem;
   }
+
+  .hashtag {
+      margin-top: .25rem;
+    }
 </style>

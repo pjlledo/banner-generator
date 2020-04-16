@@ -34,6 +34,9 @@
     <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
       <careta class="careta" :logo-style="'mono'"></careta>
     </div>
+    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
+      {{ banner.hashtag }}
+    </div>
   </div>
 </template>
 
@@ -326,6 +329,12 @@ export default {
       }
     }
 
+    .hashtag {
+      top: 26px;
+      left: 35px;
+      bottom: auto;
+      font-size: 22px;
+    }
     .logo {
       color: $white;
       z-index: 25;
