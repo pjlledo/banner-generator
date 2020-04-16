@@ -12,7 +12,7 @@
       <li :class="{'lgtb' : true, 'active': value === 'lgtb'}" @click="$emit('input', 'lgtb')">
           <careta v-if="!isRounded" logo-style="lgtb"></careta>
       </li>
-      <li :class="{'quatri' : true, 'active': value === 'quatri'}" @click="$emit('input', 'quatri')">
+      <li :class="{'quatri' : true, 'active': value === 'quatri'}" @click="$emit('input', 'quatri')" v-if="!isRounded">
         <careta v-if="!isRounded" logo-style="quatri"></careta>
       </li>
     </ul>

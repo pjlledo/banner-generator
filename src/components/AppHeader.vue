@@ -3,7 +3,7 @@
     <router-link to="/" class="logo-link">
       <compromis-logo class="logo" :mono="dark" />
     </router-link>
-    <div class="nav-label logo-label">Disseny</div>
+    <div class="nav-label logo-label"></div>
     <div class="nav-label app-label">Generador de targes</div>
   </div>
 </template>
