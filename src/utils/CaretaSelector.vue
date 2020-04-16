@@ -17,11 +17,11 @@
       </li>
     </ul>
     <b-message v-if="value === 'feminista' && isRounded === false" type="is-warning" size="is-small">
-      El logo Compromís Feminista està pensat per ser utilitzat a les xarxes únicament
+      El logo Feminista està pensat per ser utilitzat a les xarxes únicament
       el 8 de març o altres dates simbòliques del feminisme.
     </b-message>
     <b-message v-if="value === 'lgtb' && isRounded === false" type="is-warning" size="is-small">
-      El logo Compromís LGTB està pensat per ser utilitzat a les xarxes únicament
+      El logo LGTB està pensat per ser utilitzat a les xarxes únicament
       durant el mes de l'orgull o altres dates simbòliques del moviment LGTB.
     </b-message>
     <b-message v-if="value === 'quatri' && isRounded === false" type="is-warning" size="is-small">
