@@ -140,6 +140,19 @@
         @touchend="dimPane(false)" />
     </b-field>
 
+    <!-- Hashtag -->
+    <transition name="slide">
+      <b-field label="Hashtag" v-if="!aspect">
+        <b-input
+          id="hashtag-field"
+          placeholder="#"
+          @input="updateHashtag"
+          :value="properties.hashtag"
+          :maxlength="properties.hasLocalLabel ? 18 : 18">
+        </b-input>
+      </b-field>
+    </transition>
+
     <!-- Local label 
     <transition name="slide">
       <div v-if="!aspect" class="field">
