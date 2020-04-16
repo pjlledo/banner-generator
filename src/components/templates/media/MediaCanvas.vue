@@ -262,12 +262,12 @@ export default {
       height: 15rem;
       top: 80%;
       left: -4rem;
-      display: block;
+      display: none;
     }
 
     .medium {
       display: flex;
-      top: 245px;
+      top: 285px;
       align-content: center;
       width: 100%;
       box-sizing: border-box;
@@ -314,7 +314,10 @@ export default {
     }
 
     .logo {
-      display: none;
+      display: block;
+      svg {
+        height: 19px;
+      }
     }
   }
 </style>
