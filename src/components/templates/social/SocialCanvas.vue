@@ -32,7 +32,7 @@ export default {
     position: absolute;
     z-index: 10;
     width: 500px;
-    left: 100px;
+    left: 109px;
     top: 100px;
     filter: drop-shadow(0px 0px 10px rgba(0,0,0,.5));
   }
@@ -45,7 +45,8 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      mix-blend-mode: luminosity;
+      mix-blend-mode: multiply;
+      filter: greyscale(100%); 
     }
   }
 
@@ -56,7 +57,8 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      mix-blend-mode: luminosity; 
+      mix-blend-mode: soft-light;
+      filter: greyscale(100%); 
     }
   }
 
@@ -79,7 +81,8 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      mix-blend-mode: screen; 
+      mix-blend-mode: hard-light;
+      filter: greyscale(100%); 
     }
  } 
 
@@ -108,7 +111,8 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      mix-blend-mode: screen; 
+      mix-blend-mode: hard-light;
+      filter: greyscale(100%); 
     }
 }
 </style>
