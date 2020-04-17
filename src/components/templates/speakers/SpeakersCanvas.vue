@@ -217,6 +217,12 @@ export default {
     }
   }
 
+  .has-3-speakers {
+    .blob-1 {
+      width: 370px;
+    }
+  }
+
   .has-4-speakers {
     .speakers {
       &-items {
@@ -226,6 +232,9 @@ export default {
       &-image {
         height: 145px;
       }
+    }
+    .blob-1 {
+      width: 370px;
     }
   }
 
@@ -286,7 +295,7 @@ export default {
       }
 
       &-items {
-        top:22%;
+        top:20%;
         left: 45px;
         right: 30px;
         grid-row-gap: 10px;
@@ -330,7 +339,7 @@ export default {
         box-sizing: border-box;
         flex-direction: column;
         bottom: 23%;
-        left: 12px;
+        left: 6px;
       }
 
       &-details {

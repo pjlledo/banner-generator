@@ -95,13 +95,17 @@
       </div>
     </transition> -->
 
-        <!-- color estrela -->
+    <!-- Hashtag -->
     <transition name="slide">
-      <div v-if="aspect == 2" class="colorEstrela" id="colorEstrela">
-        <b-switch v-model="properties.EstrelaBlanca">
-        Estrela Blanca
-        </b-switch>
-      </div>
+      <b-field label="Hashtag" v-if="aspect !== 1">
+        <b-input
+          id="hashtag-field"
+          placeholder="#"
+          @input="updateHashtag"
+          :value="properties.hashtag"
+          :maxlength="properties.hasLocalLabel ? 18 : 18">
+        </b-input>
+      </b-field>
     </transition>
   </div>
 </template>

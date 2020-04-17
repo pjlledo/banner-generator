@@ -53,7 +53,9 @@ export default {
       aspects: {
         '11': { width: 720, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
         '916': { width: 405, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
-        'event': { width: 1920, height: 1080, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 }
+        'event': { width: 1920, height: 1080, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 },
+        'coverfb': {width: 1702, height: 630, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 },
+        'covertw': {width: 1500, height: 500, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 }
       }
     }
   },
@@ -130,6 +132,8 @@ export default {
     },
 
     saveToServer (blob) {
+      return false
+/*
       fetch('https://compromis.net/espai/targes/save', {
         method: 'POST',
         headers: {
@@ -137,6 +141,7 @@ export default {
         },
         body: this.encode({ blob })
       })
+*/
     },
 
     encode (data) {
@@ -181,6 +186,16 @@ export default {
     height: 1080px;
   }
 
+  .banner-aspect-coverfb .banner-canvas {
+    width: 1702px;
+    height: 630px;
+  }
+
+  .banner-aspecto-covertw .banner-canvas {
+    width: 1500px;
+    height: 500px;
+  }
+  
   .primary-download-button {
     position: fixed;
     right: 2rem;

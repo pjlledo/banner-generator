@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="logo" v-if="aspect !== 'event'">
+    <div class="logo" v-if="aspect">
       <compromis-logo />
       <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
     </div>
@@ -51,6 +51,9 @@
     </div>
     <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
       <careta class="careta" :logo-style="'mono'"></careta>
+    </div>
+    <div class="hashtag" v-if="banner.hashtag && aspect !== 1">
+      {{ banner.hashtag }}
     </div>
   </div>
 </template>
@@ -140,6 +143,13 @@ export default {
     }
   }
 
+  .hashtag {
+    top: 26px;
+    left: 20px;
+    bottom: auto;
+    font-size: 20px;
+  }
+
   .estrela {
     display: none;
   }
@@ -215,6 +225,10 @@ export default {
       }
     }
 
+    .hashtag{
+      display:none;
+    }
+    
     .event {
       top: 220px;
       width: 100%;
@@ -265,6 +279,21 @@ export default {
 
   // Event aspect
   .aspect-event {
+    .logo {
+      display: block;
+      z-index: 20;
+      left: 35px;
+      svg {
+        height: 75px;
+      }
+    }
+    
+    .hashtag {
+      top: 45px;
+      left: 50px;
+      bottom: auto;
+      font-size: 50px;
+    }
     .event {
       display: flex;
       align-items: center;
@@ -303,7 +332,7 @@ export default {
     }
 
     .estrela {
-      display: block;
+      display: none;
       position: absolute;
       width: 30rem;
       height: 30rem;
@@ -312,18 +341,18 @@ export default {
       z-index: 19;
       //filter: drop-shadow(1px 1px 1px #111111);
     }
-    
+
     .blob {
       border-radius: 16px;
 
       &-1 {
-        top: -10%;
-        left: 69%;
-        width: 44rem;
+        top: -50%;
+        left: -3%;
         z-index: 20;
-        border-bottom-right-radius: 0;
-        transform: rotate(2deg);
-
+        border-bottom-left-radius: 0;
+        transform: rotate(-2deg);
+        width: 720px;
+        height: 720px;
       }
 
       &-2 {

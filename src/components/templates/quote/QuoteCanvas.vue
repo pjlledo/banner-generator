@@ -335,6 +335,7 @@ export default {
       bottom: auto;
       font-size: 22px;
     }
+    
     .logo {
       color: $white;
       z-index: 25;
