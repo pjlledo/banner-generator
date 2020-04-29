@@ -109,6 +109,17 @@ const templates = [
       canvas: () => import(/* webpackChunkName: "social" */ './social/SocialCanvas'),
       help: () => import(/* webpackChunkName: "social" */ './social/SocialHelp')
     }
+  },
+  {
+    id: 'Cover',
+    name: 'Portada per a Facebook (en desenvolupament)',
+    aspects: ['coverfb', 'covertw'],
+    icon: 'user-circle',
+    components: {
+      pane: () => import(/* webpackChunkName: "cover" */ './cover/CoverPane'),
+      canvas: () => import(/* webpackChunkName: "cover" */ './cover/CoverCanvas'),
+      help: () => import(/* webpackChunkName: "cover" */ './cover/CoverHelp')
+    }
   }
 ]
 
