@@ -112,7 +112,7 @@ const templates = [
   },
   {
     id: 'Cover',
-    name: 'Portada per a Facebook (en desenvolupament)',
+    name: 'Portada per a Facebook',
     aspects: ['coverfb', 'covertw'],
     icon: 'user-circle',
     components: {

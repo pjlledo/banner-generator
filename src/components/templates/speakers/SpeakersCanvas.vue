@@ -264,8 +264,6 @@ export default {
         display: none;
       }
 
-
-
       &-image {
         height: 540px;
         top: -160px;

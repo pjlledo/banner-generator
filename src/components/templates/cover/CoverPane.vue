@@ -1,33 +1,5 @@
 <template>
-  <div :class="{ 'pane generic-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
-    <!-- Text -->
-    <div class="text-wrapper">
-      <b-field label="Text">
-        <b-input type="textarea" placeholder="48152342 usuaris de bicicleta en 2023" v-model="properties.text" maxlength="100"></b-input>
-      </b-field>
-
-      <!-- Text align -->
-      <b-field label="Alineació del text" class="text-align-group">
-        <b-tabs @change="updateTextAlign" :value="1" class="text-align" type="is-toggle" size="is-small" expanded>
-          <b-tab-item icon="align-left"></b-tab-item>
-          <b-tab-item icon="align-center"></b-tab-item>
-          <b-tab-item icon="align-right"></b-tab-item>
-        </b-tabs>
-
-        <!-- Text position -->
-        <b-tabs @change="updateTextPosition" :value="1" class="text-position" type="is-toggle" size="is-small" expanded>
-          <b-tab-item icon="arrow-to-top"></b-tab-item>
-          <b-tab-item icon="grip-lines"></b-tab-item>
-          <b-tab-item icon="arrow-to-bottom"></b-tab-item>
-        </b-tabs>
-      </b-field>
-
-      <article class="message is-info is-small" v-if="aspect === 1">
-        <div class="message-body">
-          Es recomana utilitzar la ferramenta de text nativa d'Instragram per a afegir text en aquest model de tarja.
-        </div>
-      </article>
-    </div>
+  <div :class="{ 'pane': true, 'pane-dimmed': paneDimmed }">
 
     <!-- Picture -->
     <picture-upload
@@ -47,42 +19,21 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Hashtag -->
-    <transition name="slide">
-      <b-field label="Hashtag" v-if="!aspect">
-        <b-input
-          placeholder="#"
-          @input="updateHashtag"
-          :value="properties.hashtag"
-          :maxlength="25">
-        </b-input>
+    <!-- col·lectiu comarcal -->
+    <div class="logoColectiu" id="logoColectiu">
+      <b-field label="Escriu i selecciona el teu col·lectiu">
+        <b-autocomplete
+            rounded
+            v-model="properties.name"
+            :data="filteredDataArray"
+            placeholder="Joves PV - Compromís"
+            icon="magnify"
+            clearable
+            @select="option => selected = option">
+            <template slot="empty">Col·lectiu no trobat</template>
+        </b-autocomplete>
       </b-field>
-    </transition>
-
-    <!-- Local label
-    <transition name="slide">
-      <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
-    </transition> -->
-
-    <!-- color estrela -->
-    <transition name="slide">
-    <div v-if="aspect" class="colorEstrela" id="colorEstrela">
-      <b-switch v-model="properties.EstrelaBlanca">
-      Estrela Blanca
-      </b-switch>
     </div>
-    </transition>
 
   </div>
 </template>
@@ -91,7 +42,7 @@
 import PaneMixin from '@/mixins/pane-mixin.js'
 
 export default {
-  name: 'generic-pane',
+  name: 'cover-pane',
 
   mixins: [PaneMixin],
 
@@ -102,8 +53,43 @@ export default {
         textPos: 'center',
         textAlign: 'center',
         textPosI: 1,
-        textAlignI: 1
+        textAlignI: 1,
+        data: [
+          'Joves PV - Compromís',
+          'el Maestrat - els Ports',
+          'la Plana Alta - l’Alcalatén',
+          'la Plana Baixa - l’Alt Millars',
+          'el Camp de Morvedre - l’Alt Palància',
+          'el Camp de Túria - els Serrans - el Racó d’Ademús',
+          'l’Horta Nord',
+          'l’Horta Sud',
+          'València',
+          'la Foia de Bunyol - la Plana d’Utiel - la Vall de Cofrents',
+          'la Ribera Alta',
+          'La Ribera Baixa',
+          'la Costera - la Canal de Navarrés',
+          'la Safor - Valldigna',
+          'la Vall d’Albaida',
+          'l’Alcoià - el Comtat - les Foies',
+          'la Marina',
+          'l’Alacantí',
+          'el Vinalopó Mitjà - l’Alt Vinalopó',
+          'el Baix Vinalopó - el Baix Segura'
+        ],
+        name: 'Joves PV - Compromís',
+        selected: 'Joves PV - Compromís'
       }
+    }
+  },
+
+  computed: {
+    filteredDataArray () {
+      return this.properties.data.filter((option) => {
+        return option
+          .toString()
+          .toLowerCase()
+          .indexOf(this.properties.name.toLowerCase()) >= 0
+      })
     }
   },
 
@@ -114,8 +100,10 @@ export default {
         this.isDownloadable = (
           properties.picture !== null
         )
+        this.properties.selected = properties.selected
       },
       deep: true
+
     }
   },
 

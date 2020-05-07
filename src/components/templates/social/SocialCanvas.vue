@@ -1,7 +1,7 @@
 <template>
   <div
     :id="'bannerCanvas' + aspect"
-    class='banner-canvas' 
+    class='banner-canvas'
     v-if="banner">
       <div :id="'bannerCanvas' + aspect + banner.logoStyle">
         <img class="picture" :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
@@ -26,8 +26,6 @@ export default {
 <style lang="scss" scoped>
   @import "../../../sass/variables";
 
-
-
   .careta {
     position: absolute;
     z-index: 10;
@@ -40,13 +38,13 @@ export default {
   #bannerCanvas11mono {
     background-color: #e85d0f;
     height: 720px;
-  
+
     .picture {
       width: 100%;
       height: 100%;
       object-fit: cover;
       mix-blend-mode: multiply;
-      filter: greyscale(100%); 
+      filter: grayscale(100%);
     }
   }
 
@@ -58,7 +56,7 @@ export default {
       height: 100%;
       object-fit: cover;
       mix-blend-mode: soft-light;
-      filter: greyscale(100%); 
+      filter: grayscale(100%);
     }
   }
 
@@ -82,9 +80,9 @@ export default {
       height: 100%;
       object-fit: cover;
       mix-blend-mode: hard-light;
-      filter: greyscale(100%); 
+      filter: grayscale(100%);
     }
- } 
+ }
 
 #bannerCanvas11quatri {
   background-image: linear-gradient(90deg,
@@ -112,7 +110,7 @@ export default {
       height: 100%;
       object-fit: cover;
       mix-blend-mode: hard-light;
-      filter: greyscale(100%); 
+      filter: grayscale(100%);
     }
 }
 </style>
