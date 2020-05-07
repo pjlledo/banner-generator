@@ -25,7 +25,8 @@ export default {
       aspect: 0,
       isDownloadable: false,
       displayErrors: false,
-      paneDimmed: false
+      paneDimmed: false,
+      selected: null
     }
   },
 

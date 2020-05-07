@@ -17,16 +17,16 @@
       </li>
     </ul>
     <b-message v-if="value === 'feminista' && isRounded === false" type="is-warning" size="is-small">
-      El logo Feminista està pensat per ser utilitzat a les xarxes únicament
-      el 8 de març o altres dates simbòliques del feminisme.
+      El logo feminista està pensat per ser utilitzat a les xarxes
+      únicament el 8 de març, el 25 de novembre o altres dates simbòliques del feminisme.
     </b-message>
     <b-message v-if="value === 'lgtb' && isRounded === false" type="is-warning" size="is-small">
-      El logo LGTB està pensat per ser utilitzat a les xarxes únicament
-      durant el mes de l'orgull o altres dates simbòliques del moviment LGTB.
+      El logo LGTBI+ està pensat per ser utilitzat a les xarxes únicament
+      durant el mes de l'orgull (juny) o altres dates simbòliques del moviment LGTBI+.
     </b-message>
     <b-message v-if="value === 'quatri' && isRounded === false" type="is-warning" size="is-small">
-      El logo de la quatribarrada està pensat per ser utilitzat a les xarxes únicament
-      durant les dates properes al 9 d'octubre.
+      El logo de la quatribarrada està pensat per ser utilitzat
+      a les xarxes únicament durant les dates properes al 9 d’octubre i el 25 d’abril.
     </b-message>
   </div>
 </template>

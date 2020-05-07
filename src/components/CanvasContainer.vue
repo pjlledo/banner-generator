@@ -4,11 +4,13 @@
       <b-tab-item id="aspect-tabs" v-if="template.aspects.includes('11')" label="1:1" icon="square"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('916')" label="9:16" icon="mobile-android"></b-tab-item>
       <b-tab-item v-if="template.aspects.includes('event')" label="Portada" icon="rectangle-landscape"></b-tab-item>
+      <b-tab-item v-if="template.aspects.includes('coverfb')" label="Facebook" icon="rectangle-landscape"></b-tab-item>
+      <b-tab-item v-if="template.aspects.includes('covertw')" label="Twitter" icon="rectangle-landscape"></b-tab-item>
       <div :class="['canvas-wrapper', `template-${template.id.toLowerCase()}`]" :style="{transform: `scale(${scale})`, margin: `${margin}rem`}">
         <component :is="canvasComponent" :banner="banner" :aspect="template.aspects[aspect]" :color="color" />
       </div>
     </b-tabs>
-    <careta-selector v-model="color" is-rounded v-if="!['FakeNews', 'Social', 'Comparison', 'Headline', 'Media'].includes(template.id)" />
+    <careta-selector v-model="color" is-rounded v-if="!['FakeNews', 'Social', 'Comparison', 'Headline', 'Media','Cover'].includes(template.id)" />
 
     <div id="download-button" class="primary-download-button">
       <b-tooltip label="Has d'emplenar tots els camps necessaris" position="is-left" type="is-dark" :active="!isDownloadable && displayTooltip">
@@ -54,8 +56,8 @@ export default {
         '11': { width: 720, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
         '916': { width: 405, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
         'event': { width: 1920, height: 1080, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 },
-        'coverfb': {width: 1702, height: 630, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 },
-        'covertw': {width: 1500, height: 500, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 }
+        'coverfb': { width: 1702, height: 630, minScale: 0.25, maxScale: 0.7, minMargin: -5, maxMargin: -5 },
+        'covertw': { width: 1500, height: 500, minScale: 0.25, maxScale: 0.7, minMargin: -5, maxMargin: -4 }
       }
     }
   },
@@ -132,16 +134,13 @@ export default {
     },
 
     saveToServer (blob) {
-      return false
-/*
-      fetch('https://compromis.net/espai/targes/save', {
+      fetch('https://compromis.net/espai/targes/save?ref=jovespv', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: this.encode({ blob })
       })
-*/
     },
 
     encode (data) {
@@ -191,11 +190,11 @@ export default {
     height: 630px;
   }
 
-  .banner-aspecto-covertw .banner-canvas {
+  .banner-aspect-covertw .banner-canvas {
     width: 1500px;
     height: 500px;
   }
-  
+
   .primary-download-button {
     position: fixed;
     right: 2rem;

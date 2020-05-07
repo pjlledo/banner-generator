@@ -76,11 +76,10 @@
 import CanvasMixin from '@/mixins/canvas-mixin.js'
 import Careta from '@/utils/Careta'
 
-
 export default {
   name: 'quote-canvas',
 
-  mixins: [CanvasMixin], 
+  mixins: [CanvasMixin],
   components: {
     Careta
   }
