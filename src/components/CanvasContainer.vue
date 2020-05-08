@@ -56,8 +56,8 @@ export default {
         '11': { width: 720, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
         '916': { width: 405, height: 720, minScale: 0.35, maxScale: 1, minMargin: -15, maxMargin: 0 },
         'event': { width: 1920, height: 1080, minScale: 0.25, maxScale: 0.5, minMargin: -25, maxMargin: -17 },
-        'coverfb': { width: 1702, height: 630, minScale: 0.25, maxScale: 0.7, minMargin: -5, maxMargin: -5 },
-        'covertw': { width: 1500, height: 500, minScale: 0.25, maxScale: 0.7, minMargin: -5, maxMargin: -4 }
+        'coverfb': { width: 1702, height: 630, minScale: 0.25, maxScale: 0.5, minMargin: -5, maxMargin: -5 },
+        'covertw': { width: 1500, height: 500, minScale: 0.25, maxScale: 0.5, minMargin: -5, maxMargin: -4 }
       }
     }
   },
