@@ -74,7 +74,13 @@ export default {
           'la Marina',
           'l’Alacantí',
           'el Vinalopó Mitjà - l’Alt Vinalopó',
-          'el Baix Vinalopó - el Baix Segura'
+          'el Baix Vinalopó - el Baix Segura',
+          'Xeraco',
+          'Tavernes de la Valldigna',
+          'Gandia',
+          'Algemesí',
+          'Castelló de la Ribera',
+          'Xàtiva'
         ],
         name: 'Joves PV - Compromís',
         selected: 'Joves PV - Compromís'
