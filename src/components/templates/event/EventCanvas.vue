@@ -19,7 +19,7 @@
       <div class="event-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 155, 130, 60) : fontSize('title', 45, 30, 60)}">
+      <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 75, 40, 60) : fontSize('title', 45, 30, 60)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
@@ -144,7 +144,7 @@ export default {
   }
 
   .hashtag {
-    top: 26px;
+    top: 15px;
     left: 20px;
     bottom: auto;
     font-size: 20px;
@@ -156,10 +156,11 @@ export default {
 
   .blob {
     &-1 {
-      top: -22%;
-      left: -4%;
-      width: 17rem;
-      height: 15rem;
+      top: -91%;
+      left: -5%;
+
+      width: 20rem;
+      //height: 15rem;
     }
 
     &-2 {
@@ -228,9 +229,9 @@ export default {
     .hashtag{
       display:none;
     }
-    
+
     .event {
-      top: 220px;
+      top: 252px;
       width: 100%;
       height: 400px;
       box-sizing: border-box;
@@ -273,61 +274,62 @@ export default {
       height: 15rem;
       top: 80%;
       left: -4rem;
-      //filter: drop-shadow(1px 1px 1px #111111);
     }
   }
 
   // Event aspect
+
   .aspect-event {
     .logo {
       display: block;
       z-index: 20;
-      left: 35px;
+      left: 15px;
+      bottom: 15px;
       svg {
-        height: 75px;
+        height: 30px;
       }
     }
-    
+
     .hashtag {
-      top: 45px;
-      left: 50px;
+      top: 15.5px;
+      left: 25px;
       bottom: auto;
-      font-size: 50px;
+      font-size: 25px;
     }
     .event {
       display: flex;
       align-items: center;
-      top: 200px;
-      bottom: 200px;
+      top: 100px;
+      bottom: 100px;
       width: 100%;
       height: auto;
-      padding: 0 100px;
+      padding: 0 60px;
       box-sizing: border-box;
 
       &-title {
         span {
           background: $white;
           color: $gray-900;
-          padding: 4px 32px;
-          border-radius: 6px;
+          padding: 6px 15px;
+          border-radius: 4px;
           line-height: 1.42;
           -webkit-box-decoration-break: clone;
           -webkit-line-break: normal;
-          letter-spacing: -4px;
+          letter-spacing: -0.04em;
         }
       }
 
       &-overtitle {
         position: absolute;
-        color: white;
-        font-size: 48px;
+        color: $white;
+        font-size: 22px;
         letter-spacing: -1px;
         font-weight: bold;
-        top: -165px;
-        right: 21px;
+        top: -80px;
+        right: 30px;
         z-index: 20;
-        width: 540px;
-        text-align: center;
+        //width: 540px;
+        //text-align: center;
       }
     }
 
@@ -346,19 +348,19 @@ export default {
       border-radius: 16px;
 
       &-1 {
-        top: -50%;
-        left: -3%;
+        top: -158%;
+        left: -4%;
         z-index: 20;
         border-bottom-left-radius: 0;
         transform: rotate(-2deg);
-        width: 720px;
-        height: 720px;
+        width: 360px;
+        //height: 720px;
       }
 
       &-2 {
         left: auto;
-        bottom: -50%;
-        right: -4%;
+        bottom: -146%;
+        right: -66%;
         z-index: 20;
         border-top-right-radius: 0;
         --gradient-orientation: -45deg;
@@ -373,7 +375,7 @@ export default {
         bottom: 0;
         right: 0;
         border-radius: 0;
-        z-index: 15;
+        //z-index: 15;
 
         img {
           transform: rotate(0) scale(1);

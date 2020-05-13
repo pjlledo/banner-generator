@@ -35,7 +35,7 @@ export const workspaceSteps = [
     }
   },
   {
-    target: '#aspect-tabs',
+    target: '.banner-aspect .tabs',
     content: `Amb aquest botó pots canviar les dimensions de la tarja. 1:1 fa targes quadrades per xarxes com facebook, twitter o instagram.
     9:16 crea gràfics en format story.`,
     params: {

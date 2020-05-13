@@ -29,7 +29,15 @@
       <div class="speakers-overtitle">
         {{ banner.overtitle | formatString }}
       </div>
-      <div class="speakers-title" :style="{ fontSize: aspect === '11' ? fontSize('title', 50, 35 , 60) : aspect === 'event' ? fontSize('title', 110, 80 , 60) : fontSize('title', 40, 27 , 60) }">
+      <div
+      class="speakers-title"
+        :style="{
+          fontSize: aspect === '11'
+            ? fontSize('title', 50, 35 , 60)
+            : aspect === 'event'
+            ? fontSize('title', 45, 28 , 60)
+            : fontSize('title', 40, 27 , 60)
+        }">
         {{ banner.title | formatString }}
       </div>
     </div>
@@ -286,15 +294,15 @@ export default {
       padding: 0 30px;
       box-sizing: border-box;
       width: 100%;
-      top: 65px;
+      top: 4%;
 
       &-overtitle{
         font-size: 20px;
       }
 
       &-items {
-        top:20%;
-        left: 45px;
+        top: 20%;
+        left: 30px;
         right: 30px;
         grid-row-gap: 10px;
         grid-column-gap: 0;
@@ -332,12 +340,11 @@ export default {
       }
 
       &-details-wrapper {
-        padding: 0 30px;
+        padding: 0 35px;
         width: 100%;
         box-sizing: border-box;
         flex-direction: column;
-        bottom: 23%;
-        left: 6px;
+        bottom: 22%;
       }
 
       &-details {
@@ -383,29 +390,29 @@ export default {
     // Event aspect
   .aspect-event {
     .blob {
-      border-radius: 65px;
+      //border-radius: 65px;
 
       &-1 {
-        top: -50%;
-        left: 70%;
-        width: 620px;
-        z-index: 20;
+        top: -60%;
+        left: 60%;
+        width: 310px;
+        height: 310px;
       }
 
       &-2 {
         left: auto;
-        bottom: -50%;
-        right: 70%;
+        bottom: 81%;
+        right: -61%;
         z-index: 20;
         display: none;
       }
     }
 
     .estrela {
-      display: block;
+      display: none;
       position: absolute;
-      width: 30rem;
-      height: 30rem;
+      width: 15rem;
+      height: 15rem;
       top: 62%;
       left: -6.5rem;
       z-index: 19;
@@ -414,20 +421,15 @@ export default {
 
     .speakers {
       top: 0;
-      padding: 80px;
+      padding: 30px;
 
       &-items {
-        --image-size: 415px;
-        grid-column-gap: 35px;
-        left: 60px;
-        right: 60px;
-        top: 35%;
-        justify-content: center;
-      }
-
-      &-image {
-        height: 415px;
-        border-radius: 48px;
+        left: 30px;
+        right: 30px;
+        justify-content: end;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        margin-top: 18px;
+        top: 27%;
       }
 
       &-name, &-description {
@@ -435,21 +437,35 @@ export default {
       }
 
       &-title {
-        width: 1200px;
+        width: 400px;
       }
 
       &-overtitle {
-        font-size: 48px;
+        margin-bottom: 6px;
+        font-size: 20px;
+      }
+    }
+
+    &.has-3-speakers {
+
+      .speakers-image {
+        height: 170px;
       }
     }
 
     .logo {
-      display: none;
+      display: block;
+      left: 3%;
+      bottom: 3%;
     }
 
     &.has-2-speakers {
       .speakers-items {
-        transform: scale(1.2);
+        left: 260px;
+      }
+
+      .speakers-title {
+        width: 200px;
       }
     }
   }
