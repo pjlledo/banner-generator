@@ -80,7 +80,9 @@ export default {
           'Gandia',
           'Algemesí',
           'Castelló de la Ribera',
-          'Xàtiva'
+          'Xàtiva',
+          'Alginet',
+          'Benicarló'
         ],
         name: 'Joves PV - Compromís',
         selected: 'Joves PV - Compromís'
