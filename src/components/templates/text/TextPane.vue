@@ -1,13 +1,33 @@
 <template>
   <div :class="{ 'pane generic-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
+    <!-- Disposition -->
+    <transition name="slide">
+      <b-field label="Posició de la targeta">
+        <b-tabs
+          id="disposition-tabs"
+          type="is-toggle"
+          size="is-small"
+          v-model="properties.disposition"
+          class="tabs-field"
+          expanded>
+          <b-tab-item label="Baix"></b-tab-item>
+          <b-tab-item label="Dalt"></b-tab-item>
+        </b-tabs>
+      </b-field>
+    </transition>
+
     <b-field label="Contingut">
       <vue-editor v-model="properties.text" :editor-toolbar="customToolbar" />
     </b-field>
+
+    <!-- Emoji picker -->
+    <emoji-picker v-model="properties.emojis" />
 
     <!-- Picture -->
     <picture-upload
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
@@ -29,12 +49,12 @@
           placeholder="#"
           @input="updateHashtag"
           :value="properties.hashtag"
-          :maxlength="25">
+          :maxlength="20">
         </b-input>
       </b-field>
     </transition>
 
-    <!-- Local label
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -48,15 +68,6 @@
           </div>
         </transition>
       </div>
-    </transition> -->
-
-    <!-- color estrela -->
-    <transition name="slide">
-    <div v-if="aspect" class="colorEstrela" id="colorEstrela">
-      <b-switch v-model="properties.EstrelaBlanca">
-      Estrela Blanca
-      </b-switch>
-    </div>
     </transition>
   </div>
 </template>
@@ -64,18 +75,20 @@
 <script>
 import { VueEditor } from 'vue2-editor'
 import PaneMixin from '@/mixins/pane-mixin.js'
+import EmojiPicker from '@/utils/EmojiPicker'
 
 export default {
   name: 'text-pane',
 
   mixins: [PaneMixin],
 
-  components: { VueEditor },
+  components: { VueEditor, EmojiPicker },
 
   data () {
     return {
       properties: {
-        text: ''
+        text: '',
+        emojis: []
       },
       customToolbar: [
         [{ header: 1 }, { header: 2 }],
@@ -85,15 +98,9 @@ export default {
     }
   },
 
-  watch: {
-    properties: {
-      handler: function (properties) {
-        // Check if canvas can be downloaded
-        this.isDownloadable = (
-          properties.picture !== null
-        )
-      },
-      deep: true
+  methods: {
+    validate () {
+      this.pictureRequired()
     }
   }
 }

@@ -1,4 +1,4 @@
-fggg<template>
+<template>
   <svg
     version="1.1"
     x="0px"

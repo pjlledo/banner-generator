@@ -46,15 +46,15 @@ export default [
       help: () => import(/* webpackChunkName: "quote" */ './quote/QuoteHelp')
     }
   },
-  /* {
+  {
     id: 'Comparison',
     name: 'Comparativa',
     aspects: ['11'],
     icon: 'columns',
     components: {
-      pane: () => import(/* webpackChunkName: "comparison" */ /* './comparison/ComparisonPane'),
-      canvas: () => import(/* webpackChunkName: "comparison" */ /* './comparison/ComparisonCanvas'),
-      help: () => import(/* webpackChunkName: "comparison" */ /* './comparison/ComparisonHelp')
+      pane: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonPane'),
+      canvas: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonCanvas'),
+      help: () => import(/* webpackChunkName: "comparison" */ './comparison/ComparisonHelp')
     }
   },
   {
@@ -62,13 +62,25 @@ export default [
     name: 'Bulo',
     aspects: ['11', '916'],
     icon: 'ban',
-    // isNew: true,
     components: {
-      pane: () => import(/* webpackChunkName: "fakenews" */ /* './fakenews/FakeNewsPane'),
-      canvas: () => import(/* webpackChunkName: "fakenews" */ /* './fakenews/FakeNewsCanvas'),
-      help: () => import(/* webpackChunkName: "fakenews" */ /* './fakenews/FakeNewsHelp')
+      pane: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsPane'),
+      canvas: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsCanvas'),
+      help: () => import(/* webpackChunkName: "fakenews" */ './fakenews/FakeNewsHelp')
     }
-  }, */
+  },
+  {
+    id: 'Tweet',
+    name: 'Tweet',
+    aspects: ['11'],
+    icon: 'twitter',
+    iconPack: 'fab',
+    label: '✨Nou',
+    components: {
+      pane: () => import(/* webpackChunkName: "tweet" */ './tweet/TweetPane'),
+      canvas: () => import(/* webpackChunkName: "tweet" */ './tweet/TweetCanvas'),
+      help: () => import(/* webpackChunkName: "tweet" */ './tweet/TweetHelp')
+    }
+  },
   {
     id: 'Media',
     name: 'Mitjans',
@@ -113,6 +125,30 @@ export default [
       pane: () => import(/* webpackChunkName: "social" */ './social/SocialPane'),
       canvas: () => import(/* webpackChunkName: "social" */ './social/SocialCanvas'),
       help: () => import(/* webpackChunkName: "social" */ './social/SocialHelp')
+    }
+  },
+  {
+    id: 'Video',
+    name: 'Portada de vídeo',
+    aspects: ['11', 'event'],
+    icon: 'play',
+    components: {
+      pane: () => import(/* webpackChunkName: "videocover" */ './videocover/VideoCoverPane'),
+      canvas: () => import(/* webpackChunkName: "videocover" */ './videocover/VideoCoverCanvas'),
+      help: () => import(/* webpackChunkName: "videocover" */ './videocover/VideoCoverHelp')
+    }
+  },
+  {
+    id: 'Superavit',
+    name: 'Superàvit local',
+    aspects: ['11'],
+    icon: 'euro-sign',
+    label: '🦠Covid-19',
+    archived: true,
+    components: {
+      pane: () => import(/* webpackChunkName: "archived" */ './archived/superavit/SuperavitPane'),
+      canvas: () => import(/* webpackChunkName: "archived" */ './archived/superavit/SuperavitCanvas'),
+      help: () => import(/* webpackChunkName: "archived" */ './archived/superavit/SuperavitHelp')
     }
   },
   {

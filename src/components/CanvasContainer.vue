@@ -54,6 +54,7 @@
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
 import { EventBus } from '@/event-bus'
+import API from '@/api'
 import aspects from '@/components/templates/aspects'
 import CaretaSelector from '@/utils/CaretaSelector'
 
@@ -150,7 +151,7 @@ export default {
           }
         ).then((blob) => {
           saveAs(blob, 'banner.png')
-          this.saveToServer(blob)
+          API.saveToServer({ blob })
           this.downloading = false
           // eslint-disable-next-line
           gtag('event', 'banner_download', {
@@ -159,24 +160,6 @@ export default {
           })
         })
       }
-    },
-
-    saveToServer (blob) {
-      fetch('https://compromis.net/espai/targes/save?ref=jovespv', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: this.encode({ blob })
-      })
-    },
-
-    encode (data) {
-      return Object.keys(data)
-        .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join('&')
     }
   }
 }
@@ -194,6 +177,7 @@ export default {
     overflow: hidden;
     transition: all .5s ease-in-out;
     background: $white;
+    user-select: none;
   }
 
   .canvas-wrapper {
@@ -226,7 +210,6 @@ export default {
     width: 1500px;
     height: 500px;
   }
-
   .primary-download-button {
     position: fixed;
     right: 2rem;
@@ -246,7 +229,7 @@ export default {
 
       &-label {
         position: relative;
-        top: -4px;
+        top: -.15rem;
         overflow: hidden;
       }
     }
@@ -299,7 +282,7 @@ export default {
 
         .icon {
           position: relative;
-          top: 3px;
+          top: .25rem;
           height: .85rem;
           width: .85rem;
           margin-right: .35rem !important;

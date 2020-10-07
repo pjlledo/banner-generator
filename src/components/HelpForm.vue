@@ -10,7 +10,7 @@
       @submit.prevent="submit">
       <input type="hidden" name="form-name" value="ask-question" />
       <b-field label="E-mail">
-        <b-input type="email" placeholder="info@jovespv.org" v-model="form.email" required></b-input>
+        <b-input type="email" placeholder="joan@compromis.net" v-model="form.email" required></b-input>
       </b-field>
       <b-field label="Dubte o suggeriment">
         <b-input type="textarea" placeholder="No em funciona el condensador de flux..." v-model="form.text" required></b-input>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import API from '@/api'
+
 export default {
   name: 'help-form',
 
@@ -46,28 +48,10 @@ export default {
   },
 
   methods: {
-    encode (data) {
-      return Object.keys(data)
-        .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join('&')
-    },
     submit () {
-      fetch('https://compromis.net/espai/targes/contact/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: this.encode({ ...this.form })
-      }).then(function (response) {
-        if (!response.ok) {
-          throw Error(response.statusText)
-        }
-        return response
-      }).then(() => {
-        this.formSubmitted = true
-      }).catch(() => {
-        this.formSubmitted = false
-      })
+      API.submitForm(this.form)
+        .then(() => { this.formSubmitted = true })
+        .catch(() => { this.formSubmitted = false })
     }
   }
 }

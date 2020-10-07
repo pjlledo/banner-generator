@@ -3,8 +3,8 @@
     <!-- Title -->
     <b-field
       label="Titol"
-      :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.title ? '' : displayErrors ? `Has d'omplir un títol` : ''">
+      :type="setFieldType('title')"
+      :message="setFieldMessage('title')">
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
 
@@ -38,8 +38,8 @@
       <b-field
         label="Lloc"
         v-if="aspect !== 2"
-        :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
-        :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
+        :type="setFieldType('place')"
+        :message="setFieldMessage('place')">
         <b-input
           placeholder="Riu Túria"
           v-model="properties.place"
@@ -65,6 +65,7 @@
     <picture-upload
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
@@ -79,7 +80,7 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Local label 
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -93,19 +94,6 @@
           </div>
         </transition>
       </div>
-    </transition> -->
-
-    <!-- Hashtag -->
-    <transition name="slide">
-      <b-field label="Hashtag" v-if="aspect !== 1">
-        <b-input
-          id="hashtag-field"
-          placeholder="#"
-          @input="updateHashtag"
-          :value="properties.hashtag"
-          :maxlength="properties.hasLocalLabel ? 18 : 18">
-        </b-input>
-      </b-field>
     </transition>
   </div>
 </template>
@@ -138,23 +126,21 @@ export default {
     }
   },
 
-  watch: {
-    properties: {
-      handler: function (properties) {
-        this.isDownloadable = (
-          properties.title !== '' &&
-          properties.place !== '' &&
-          properties.picture !== null
-        )
-      },
-      deep: true
-    }
-  },
-
   created () {
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)
+  },
+
+  methods: {
+    validate () {
+      this.fieldRequired({
+        title: "Has d'escriure un títol",
+        place: "Has d'escriure un lloc"
+      })
+      this.pictureRequired()
+      this.allCapsDisallowed('title', 'place')
+    }
   }
 }
 </script>

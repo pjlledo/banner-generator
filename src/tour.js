@@ -8,7 +8,7 @@ export const labels = {
 export const selectorSteps = [
   {
     target: '.template-selector-header',
-    content: `<strong>Hola! Estàs al generador de targes de Joves PV - Compromís</strong>,
+    content: `<strong>Hola! Estàs al generador de targes de Compromís</strong>,
     una ferramenta per a crear gràfics per a xarxes socials ràpidament i fàcilment.
     Si vols, et podem fer una curteta visita guiada per l'aplicació.`
   },
@@ -36,7 +36,7 @@ export const workspaceSteps = [
   },
   {
     target: '.banner-aspect .tabs',
-    content: `Amb aquest botó pots canviar les dimensions de la tarja. 1:1 fa targes quadrades per xarxes com facebook, twitter o instagram.
+    content: `Amb aquest botó pots canviar les dimensions de la tarja. 1:1 fa targes quadrades per xarxes com Facebook, Twitter o Instagram.
     9:16 crea gràfics en format story.`,
     params: {
       placement: 'bottom'

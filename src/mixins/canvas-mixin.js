@@ -1,4 +1,4 @@
-import CompromisLogo from '@/utils/CompromisLogo'
+import CompromisLogo from '@/utils/JovesLogo'
 import moment from 'moment'
 moment.locale('ca')
 
@@ -31,6 +31,14 @@ export default {
       return moment(time).format('H:mm')
     },
 
+    formatQuote (quote) {
+      if (!['?', '!', '.'].includes(quote.substring(quote.length - 1, quote.length))) {
+        return quote + '.”'
+      } else {
+        return quote + '”'
+      }
+    },
+
     formatString (string) {
       if (string.includes('graphic design is my passion')) {
         const body = document.getElementsByTagName('body')[0]
@@ -39,15 +47,26 @@ export default {
 
       return string
         .replace(/'/g, '’')
-        .replace(/Joan Baldoví/gi, 'Joan Baldoví')
-        .replace(/Joan Baldoví/gi, 'Joan Baldoví')
+        .replace(/Mònica Oltra/gi, 'Mónica Oltra')
+        .replace(/Monica Oltra/gi, 'Mónica Oltra')
+    },
+
+    formatNumber (number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    },
+
+    formatLocal (local) {
+      return local
+        .replace(/^per/gi, '')
+        .replace(/#/g, '')
     }
   },
 
   methods: {
-    fontSize (prop, maxFontSize, minFontSize, maxLength) {
-      const propLength = this.banner[prop].length / maxLength
-      const fontSize = maxFontSize + propLength * (minFontSize - maxFontSize)
+    fontSize (text, maxFontSize, minFontSize, maxLength, multiplier) {
+      const adjust = multiplier ? multiplier / 100 : 1
+      const propLength = text.length / maxLength
+      const fontSize = (maxFontSize * adjust) + propLength * ((minFontSize * adjust) - (maxFontSize * adjust))
       return `${fontSize}px`
     }
   }

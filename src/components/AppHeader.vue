@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import CompromisLogo from '@/utils/CompromisLogo'
+import CompromisLogo from '@/utils/JovesLogo'
 
 export default {
   name: 'app-header',
@@ -53,7 +53,7 @@ export default {
     }
 
     .logo-label {
-      margin-left: .70rem;
+      margin-left: .75rem;
       color: $gray-700;
     }
 

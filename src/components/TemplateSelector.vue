@@ -2,19 +2,21 @@
   <div class="template-selector">
     <div class="template-selector-templates">
       <h2 class="template-selector-header">Selecciona un model de tarja</h2>
-      <ul>
-        <li v-for="template in templates" :key="template.id">
-          <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`, template['isNew'] ? 'template-item-new' : '']">
-            <span class="template-item-label" v-if="'label' in template">{{ template.label }}</span>
-            <span class="template-item-icon">
-              <b-icon :icon="template.icon" size="is-large" />
-            </span>
-            <span class="template-item-name">{{ template.name }}</span>
-          </router-link>
-        </li>
-      </ul>
+      <transition-group tag="ul" name="fade">
+        <template v-for="template in templates">
+          <li v-if="!(template['hidden'] || (template['archived'] && !showArchive))" :key="template.id">
+            <router-link :to="`/${template.id.toLowerCase()}`" :class="['template-item', `template-item-${template.id.toLowerCase()}`, template['isNew'] ? 'template-item-new' : '', template['archived'] ? 'template-archived' : '']">
+              <span class="template-item-label" v-if="'label' in template">{{ template.label }}</span>
+              <span class="template-item-icon">
+                <b-icon :icon="template.icon" :pack="'iconPack' in template ? template.iconPack : 'far'" size="is-large" />
+              </span>
+              <span class="template-item-name">{{ template.name }}</span>
+            </router-link>
+          </li>
+        </template>
+      </transition-group>
     </div>
-    <app-footer />
+    <app-footer @archive="(show) => showArchive = show" />
     <v-tour name="selectorTour" :steps="selectorSteps" :callbacks="tourCallbacks" :options="{ labels }"></v-tour>
     <BrowserWarning />
     <svg width="0" height="0">
@@ -49,7 +51,8 @@ export default {
       tourCallbacks: {
         onStop: this.onTourStop
       },
-      labels: labels
+      labels: labels,
+      showArchive: false
     }
   },
 
@@ -86,6 +89,14 @@ export default {
         font-weight: bold;
         letter-spacing: -1px;
         line-height: 1;
+      }
+    }
+
+    &-buttons {
+      margin: 3rem 1rem 0 1rem;
+
+      .button {
+        opacity: .75;
       }
     }
 
@@ -182,6 +193,14 @@ export default {
         .template-item-label {
           background: $orange;
         }
+      }
+    }
+
+    .template-archived {
+      opacity: .5;
+
+      &:hover {
+        opacity: 1;
       }
     }
   }

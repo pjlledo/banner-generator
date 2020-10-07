@@ -19,7 +19,7 @@
       <div class="event-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize('title', 75, 40, 60) : fontSize('title', 45, 30, 60)}">
+      <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize(banner.title, 75, 40, 60) : fontSize(banner.title, 45, 30, 60)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
@@ -42,33 +42,23 @@
         </div>
       </div>
     </div>
-    <div class="logo" v-if="aspect">
+    <div class="logo" v-if="aspect !== 'event'">
       <compromis-logo />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'mono'"></careta>
-    </div>
-    <div class="hashtag" v-if="banner.hashtag && aspect !== 1">
-      {{ banner.hashtag }}
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
 
 export default {
   name: 'quote-canvas',
 
   mixins: [CanvasMixin],
-  components: {
-    Careta
-  },
+
   computed: {
     isCrowded: function () {
       return (this.banner.speakers.length > 2 && (this.banner.title.length > 30 || this.banner.place.length > 50)) ||
@@ -143,31 +133,16 @@ export default {
     }
   }
 
-  .hashtag {
-    top: 15px;
-    left: 20px;
-    bottom: auto;
-    font-size: 20px;
-  }
-
-  .estrela {
-    display: none;
-  }
-
   .blob {
     &-1 {
-      top: -91%;
-      left: -5%;
-
-      width: 20rem;
-      //height: 15rem;
+      top: -87%;
+      left: -74%;
     }
 
     &-2 {
       left: -60%;
       bottom: -74%;
       z-index: 10;
-      display:none;
     }
 
     &-image {
@@ -195,7 +170,6 @@ export default {
     }
     .blob-2 {
       bottom: -88%;
-      display: none;
     }
   }
 
@@ -209,7 +183,6 @@ export default {
       &-2 {
         left: -110%;
         bottom: -94%;
-        display: none;
       }
 
       &-image {
@@ -224,10 +197,6 @@ export default {
           width: 98%;
         }
       }
-    }
-
-    .hashtag{
-      display:none;
     }
 
     .event {
@@ -266,36 +235,10 @@ export default {
     .logo {
       display: none;
     }
-
-    .estrela {
-      display: block;
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-    }
   }
 
   // Event aspect
-
   .aspect-event {
-    .logo {
-      display: block;
-      z-index: 20;
-      left: 15px;
-      bottom: 15px;
-      svg {
-        height: 30px;
-      }
-    }
-
-    .hashtag {
-      top: 15.5px;
-      left: 25px;
-      bottom: auto;
-      font-size: 25px;
-    }
     .event {
       display: flex;
       align-items: center;
@@ -326,35 +269,17 @@ export default {
         letter-spacing: -1px;
         font-weight: bold;
         top: -80px;
-        right: 30px;
+        left: 30px;
         z-index: 20;
-        //width: 540px;
-        //text-align: center;
       }
     }
 
-    .estrela {
-      display: none;
-      position: absolute;
-      width: 30rem;
-      height: 30rem;
-      top: 62%;
-      left: -6.5rem;
-      z-index: 19;
-      //filter: drop-shadow(1px 1px 1px #111111);
-    }
-
     .blob {
-      border-radius: 16px;
-
       &-1 {
-        top: -158%;
-        left: -4%;
+        top: -149%;
+        left: -67%;
         z-index: 20;
         border-bottom-left-radius: 0;
-        transform: rotate(-2deg);
-        width: 360px;
-        //height: 720px;
       }
 
       &-2 {
@@ -375,7 +300,6 @@ export default {
         bottom: 0;
         right: 0;
         border-radius: 0;
-        //z-index: 15;
 
         img {
           transform: rotate(0) scale(1);

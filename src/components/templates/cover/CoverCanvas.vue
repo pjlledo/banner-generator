@@ -24,7 +24,7 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
+import Careta from '@/utils/Estrela'
 import logotext from '@/utils/logotext'
 import Llagrimes from '@/utils/llagrimes'
 

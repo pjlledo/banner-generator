@@ -16,40 +16,52 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="quote">
-      <div class="quote-glyph">“</div>
+      <div :class="['quote-glyph', 'quote-glyph-' + banner.textColor ]" >“</div>
       <div class="quote-text-wrapper">
-        <div class="quote-text" :style="{fontSize: aspect === '11' ? fontSize('quote', 47, 30, 140) : fontSize('quote', 47, 20, 140)}">
-          {{ banner.quote | formatString }}<span v-if="banner.quote.substring(banner.quote.length - 1, banner.quote.length) !== '.'">.</span><span>”</span>
-        </div>
+        <text-in-pills
+        v-if="banner.quote"
+        :text="$options.filters.formatString($options.filters.formatQuote(banner.quote))"
+        :pill-style="banner.textColor"
+        :font-size="fontSizePrimary"
+        :text-align="textAlign"
+        :width="600" />
       </div>
       <div class="quote-author">{{ banner.author | formatString }}</div>
     </div>
     <div class="logo">
       <compromis-logo :mono="banner.card ? true : false" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'mono'"></careta>
-    </div>
-    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
-      {{ banner.hashtag }}
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
+import TextInPills from '@/utils/TextInPills'
 
 export default {
   name: 'quote-canvas',
 
   mixins: [CanvasMixin],
+
   components: {
-    Careta
+    TextInPills
+  },
+
+  computed: {
+    fontSizePrimary () {
+      const { aspect, banner, fontSize } = this
+      return aspect === '11'
+        ? fontSize(banner.quote, 60, 38, 110, banner.textSize)
+        : fontSize(banner.quote, 50, 33, 110, banner.textSize)
+    },
+    textAlign () {
+      return this.banner.disposition === 0 || this.aspect === '916'
+        ? 'left'
+        : 'right'
+    }
   }
 }
 </script>
@@ -95,11 +107,22 @@ export default {
 
     &-glyph {
       font-size: 170px;
-      color: $gradient-start;
       font-weight: bold;
       margin-bottom: -134px;
-      margin-left: -10px;
+      margin-left: -24px;
       margin-top: -58px;
+
+      &-black {
+        color: $gray-darkest;
+      }
+
+      &-white {
+        color: $white;
+      }
+
+      &-orange {
+        color: $gradient-start;
+      }
     }
 
     &-author {
@@ -121,8 +144,7 @@ export default {
     }
 
     &-2 {
-      display: none;
-      left: 120%;
+      left: -67%;
       bottom: -88%;
       z-index: 10;
     }
@@ -144,17 +166,13 @@ export default {
     }
   }
 
-  .estrela{
-    display:none;
-  }
-
   // Story aspect
   .aspect-916 {
     .quote {
       bottom: 153px;
       top: 221px;
       padding: 0 30px;
-      height: 325px;
+      height: 415px;
       justify-content: flex-end;
       width: 95%;
 
@@ -175,7 +193,7 @@ export default {
       }
 
       &-2 {
-        left: -120%;
+        left: -110%;
         bottom: -94%;
       }
 
@@ -183,12 +201,12 @@ export default {
         width: 440px;
         height: 472px;
         top: -27px;
-        left: 12px;
+        left: -12px;
         border-bottom-right-radius: 0;
 
         img {
           width: 96%;
-          margin: 21px -8px;
+          margin: 21px 3px;
         }
       }
     }
@@ -197,15 +215,10 @@ export default {
       display: none;
     }
 
-    .estrela {
-      display: block;
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-      z-index: 20;
-      //filter: drop-shadow(1px 1px 1px #111111);
+    &.cards {
+      .quote {
+        height: 490px;
+      }
     }
   }
 
@@ -216,7 +229,6 @@ export default {
       align-items: flex-end;
       text-align: right;
       right: 10px;
-      bottom: 100;
       left: auto;
 
       &-text {
@@ -224,8 +236,11 @@ export default {
       }
 
       &-glyph {
-        margin-right: -20px;
-        color: #eb7a24;
+        margin-right: -12px;
+
+        &-orange {
+          color: $gradient-end;
+        }
       }
 
       &-author {
@@ -277,10 +292,6 @@ export default {
         color: $gray-900;
       }
 
-      &-glyph {
-        color: $white;
-      }
-
       &-author {
         font-weight: bold;
         color: $white;
@@ -311,31 +322,20 @@ export default {
 
       &-1 {
         display: block;
-        left: -5%;
-        top: -88%;
-        width: 425px;
+        left: -58%;
+        top: -82%;
         z-index: 20;
       }
 
       &-2 {
-        display: block;
         left: auto;
-        //right: -45%;
-        right: -4.5%;
-        width: 425px;
-        bottom: -87%;
+        right: -57%;
+        bottom: -81%;
         z-index: 20;
         --gradient-orientation: -45deg;
       }
     }
 
-    .hashtag {
-      top: 26px;
-      left: 35px;
-      bottom: auto;
-      font-size: 22px;
-    }
-    
     .logo {
       color: $white;
       z-index: 25;
@@ -348,13 +348,17 @@ export default {
     }
 
     &.aspect-916 {
+      .cards .quote {
+        bottom: 115px;
+        top: auto;
+      }
+
       .blob {
         &-1 {
           left: -118%;
         }
 
         &-2 {
-          display: none;
           right: -104%;
         }
       }

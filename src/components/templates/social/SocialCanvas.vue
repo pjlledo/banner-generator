@@ -3,17 +3,16 @@
     :id="'bannerCanvas' + aspect"
     class='banner-canvas'
     v-if="banner">
-      <div :id="'bannerCanvas' + aspect + banner.logoStyle">
-        <img class="picture" :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
-        <careta class="careta" :logo-style="banner.logoStyle"></careta>
-      </div>
+    <div :id="'bannerCanvas' + aspect + banner.logoStyle">
+      <img class="picture" :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
+      <careta class="careta" :logo-style="banner.logoStyle"></careta>
+    </div>
   </div>
-
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin'
-import Careta from '@/utils/Careta'
+import Careta from '@/utils/Estrela'
 export default {
   name: 'social-canvas',
   mixins: [CanvasMixin],
@@ -82,7 +81,7 @@ export default {
       mix-blend-mode: hard-light;
       filter: grayscale(100%);
     }
- }
+  }
 
 #bannerCanvas11quatri {
   background-image: linear-gradient(90deg,
@@ -112,5 +111,6 @@ export default {
       mix-blend-mode: hard-light;
       filter: grayscale(100%);
     }
-}
+  }
+
 </style>

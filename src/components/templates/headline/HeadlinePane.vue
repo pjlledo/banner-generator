@@ -33,8 +33,8 @@
     <b-field
       id="source-field"
       label="Font"
-      :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.source ? '' : displayErrors ? `Has se seleccionar una font` : ''">
+      :type="setFieldType('source')"
+      :message="setFieldMessage('source')">
       <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
         <option
           v-for="source in presets"
@@ -57,8 +57,8 @@
         <b-field
           class="source-input-name"
           label="Mitjà de comunicació"
-          :type="properties.source === 'other' && properties.customSource ? '' : displayErrors ? 'is-danger' : ''"
-          :message="properties.source === 'other' && properties.customSource ? '' : displayErrors ? `Has se seleccionar una font` : ''">
+          :type="setFieldType('customSource')"
+          :message="setFieldMessage('customSource')">
           <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
         </b-field>
         <b-field label="Color" class="source-input-color">
@@ -71,8 +71,8 @@
     <b-field
       id="headline-field"
       label="Titular"
-      :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
+      :type="setFieldType('headline')"
+      :message="setFieldMessage('headline')">
       <b-input
         type="textarea"
         placeholder="L'ús de la bici està per damunt de 9000..."
@@ -81,11 +81,17 @@
       </b-input>
     </b-field>
 
+    <!-- Emoji picker -->
+    <transition name="slide">
+      <emoji-picker v-model="properties.emojis" v-if="properties.card === 1" />
+    </transition>
+
     <!-- Picture -->
     <picture-upload
       id="picture-field"
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
@@ -113,7 +119,7 @@
       </b-field>
     </transition>
 
-    <!-- Local label
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect" class="field" id="local-label-field">
         <b-switch v-model="properties.hasLocalLabel" @input="properties.hashtag = properties.hashtag.substring(0, 18)">
@@ -127,15 +133,6 @@
           </div>
         </transition>
       </div>
-    </transition> -->
-
-    <!-- color estrela -->
-    <transition name="slide">
-    <div v-if="aspect" class="colorEstrela" id="colorEstrela">
-      <b-switch v-model="properties.EstrelaBlanca">
-      Estrela Blanca
-      </b-switch>
-    </div>
     </transition>
   </div>
 </template>
@@ -144,12 +141,14 @@
 import PaneMixin from '@/mixins/pane-mixin.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
+import EmojiPicker from '@/utils/EmojiPicker'
 
 export default {
   name: 'headline-pane',
 
   components: {
-    Swatches
+    Swatches,
+    EmojiPicker
   },
 
   mixins: [PaneMixin],
@@ -160,28 +159,26 @@ export default {
         headline: '',
         source: null,
         customSource: '',
-        customSourceColor: '#1CA085'
+        customSourceColor: '#1CA085',
+        emojis: []
       },
       presets: presets
     }
   },
 
-  watch: {
-    properties: {
-      handler: function (properties) {
-        const { headline, picture, source, customSource } = properties
-        const sourceIsValid = source === 'other' ? customSource !== '' : source !== null
-        this.isDownloadable = (
-          headline !== '' &&
-          picture !== null &&
-          sourceIsValid
-        )
-      },
-      deep: true
-    }
-  },
-
   methods: {
+    validate () {
+      const sourceField = this.properties.source === 'other'
+        ? { customSource: "Has d'esciure una font" }
+        : { source: 'Has de seleccionar una font' }
+      this.fieldRequired({
+        headline: "Has d'omplir un titular",
+        ...sourceField
+      })
+      this.pictureRequired()
+      this.allCapsDisallowed('headline')
+    },
+
     updateSource (source) {
       if (source === 'other') {
         this.properties.source = 'other'
@@ -224,12 +221,6 @@ export default {
       &-color {
         margin-right: .5rem;
       }
-    }
-
-    .vue-swatches__trigger {
-      height: 36px !important;
-      width: 36px !important;
-      border-radius: 4px !important;
     }
   }
 </style>

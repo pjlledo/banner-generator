@@ -16,12 +16,6 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'mono'"></careta>
-    </div>
     <div class="headline">
       <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="banner.card ? { backgroundColor: banner.customSourceColor } : null">
         <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
@@ -32,15 +26,18 @@
       <div class="headline-text"
         :style="{
           fontFamily: banner.source ? banner.source.fontFamily : false,
-          fontSize: aspect === '11' ? fontSize('headline', 50, 30, 160) : fontSize('headline', 35, 23.5, 160),
+          fontSize: aspect === '11' ? fontSize(banner.headline, 50, 30, 160) : fontSize(banner.headline, 35, 23.5, 160),
           letterSpacing: banner.source ? banner.source['letterSpacing'] : false
         }">
         {{ banner.headline | formatString }}
       </div>
     </div>
+    <emojis-on-canvas v-model="banner.emojis" />
     <div class="logo">
       <compromis-logo :mono="banner.card ? true : false" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
     <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
       {{ banner.hashtag }}
@@ -50,21 +47,22 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
+import EmojisOnCanvas from '@/utils/EmojisOnCanvas'
 
 export default {
   name: 'headline-canvas',
 
   mixins: [CanvasMixin],
+
   components: {
-    Careta
+    EmojisOnCanvas
   }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
-  @import "../../../sass/fonts";
+  @import "./fonts";
 
   .headline {
     display: flex;
@@ -95,7 +93,7 @@ export default {
       word-wrap: break-word;
     }
   }
-// Targes blanques
+
   .blob {
     &-1 {
       top: -42%;
@@ -104,10 +102,9 @@ export default {
     }
 
     &-2 {
-        left: auto;
-        right: -100%;
-        bottom: -100%;
-        z-index: -50;
+      left: -42%;
+      bottom: -91%;
+      z-index: 10;
     }
 
     &-image {
@@ -127,15 +124,6 @@ export default {
     }
   }
 
-  .estrela {
-      position: absolute;
-      width: 20rem;
-      height: 20rem;
-      top: 120%;
-      left: -9rem;
-      //filter: drop-shadow(1px 1px 1px #111111);
-
-  }
   .has-local-label {
     .blob-2 {
       left: -60%;
@@ -154,8 +142,7 @@ export default {
     .blob {
       &-1 {
         top: -43%;
-        right:-200%;
-        //right: -120%;
+        right: -120%;
       }
 
       &-2 {
@@ -165,22 +152,20 @@ export default {
 
       &-image {
         top: -20px;
-        //left: -12px;
-        left: 20px;
+        left: -12px;
         width: 444px;
         height: 395px;
         border-bottom-right-radius: 0;
 
         img {
           width: 93%;
-          //margin: 15px 10px;
-          margin: 15px -20px;
+          margin: 15px 10px;
         }
       }
     }
 
     .headline {
-      top: 380px;
+      top: 430px;
 
       &-text {
         font-size: 20px;
@@ -189,15 +174,6 @@ export default {
 
     .logo {
       display: none;
-    }
-
-    .estrela {
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-      //filter: drop-shadow(1px 1px 1px #111111);
     }
   }
 
@@ -232,7 +208,7 @@ export default {
     .blob {
       &-1 {
         top: -90%;
-        right: 57%;
+        right: 40%;
       }
 
       &-2 {
@@ -287,14 +263,14 @@ export default {
     .blob {
       &-1 {
         left: -58%;
-        top: -88%;
+        top: -82%;
         z-index: 20;
       }
 
       &-2 {
         left: auto;
-        right: -45%;
-        bottom: -87%;
+        right: -57%;
+        bottom: -81%;
         z-index: 20;
         --gradient-orientation: -45deg;
       }
@@ -356,11 +332,11 @@ export default {
 
       .blob {
         &-1 {
-          left: -200%;
+          left: -118%;
         }
 
         &-2 {
-          right: -200%;
+          right: -104%;
         }
       }
 
@@ -372,5 +348,9 @@ export default {
         }
       }
     }
+  }
+
+  .no-cards .drr {
+    display: none;
   }
 </style>

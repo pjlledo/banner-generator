@@ -22,21 +22,18 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="estrela">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
     <div class="speakers">
       <div class="speakers-overtitle">
         {{ banner.overtitle | formatString }}
       </div>
       <div
-      class="speakers-title"
+        class="speakers-title"
         :style="{
           fontSize: aspect === '11'
-            ? fontSize('title', 50, 35 , 60)
+            ? fontSize(banner.title, 50, 35 , 60)
             : aspect === 'event'
-            ? fontSize('title', 45, 28 , 60)
-            : fontSize('title', 40, 27 , 60)
+            ? fontSize(banner.title, 45, 28 , 60)
+            : fontSize(banner.title, 40, 27 , 60)
         }">
         {{ banner.title | formatString }}
       </div>
@@ -54,7 +51,9 @@
     </div>
     <div class="logo">
       <compromis-logo />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
     <svg width="0" height="0">
       <radialGradient id="compromisGradient" r="150%" cx="30%" cy="107%">
@@ -67,13 +66,10 @@
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
 
 export default {
   name: 'quote-canvas',
-  components: {
-    Careta
-  },
+
   mixins: [CanvasMixin]
 }
 </script>
@@ -188,19 +184,13 @@ export default {
     &-1 {
       top: -83%;
       left: 50%;
-      width: 250px;
     }
 
     &-2 {
       left: -50%;
       bottom: -90%;
       z-index: 10;
-      display: none;
     }
-  }
-
-  .estrela {
-    display: none;
   }
 
   .has-long-title {
@@ -218,16 +208,9 @@ export default {
   }
 
   .has-2-speakers {
-
     .blob-1 {
       top: -42%;
       left: 69%;
-    }
-  }
-
-  .has-3-speakers {
-    .blob-1 {
-      width: 370px;
     }
   }
 
@@ -240,9 +223,6 @@ export default {
       &-image {
         height: 145px;
       }
-    }
-    .blob-1 {
-      width: 370px;
     }
   }
 
@@ -262,14 +242,12 @@ export default {
       &-1 {
         left: -125%;
         top: -88%;
-        display: none;
       }
 
       &-2 {
         left: 60%;
         bottom: -88%;
         --gradient-orientation: -45deg;
-        display: none;
       }
 
       &-image {
@@ -280,28 +258,18 @@ export default {
       }
     }
 
-    .estrela {
-      display: block;
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-      z-index: 19;
-    }
-
     .speakers {
       padding: 0 30px;
       box-sizing: border-box;
       width: 100%;
-      top: 4%;
+      top: 98px;
 
       &-overtitle{
         font-size: 20px;
       }
 
       &-items {
-        top: 20%;
+        top: 30%;
         left: 30px;
         right: 30px;
         grid-row-gap: 10px;
@@ -340,11 +308,11 @@ export default {
       }
 
       &-details-wrapper {
-        padding: 0 35px;
+        padding: 0 30px;
         width: 100%;
         box-sizing: border-box;
         flex-direction: column;
-        bottom: 22%;
+        bottom: 10%;
       }
 
       &-details {
@@ -390,13 +358,10 @@ export default {
     // Event aspect
   .aspect-event {
     .blob {
-      //border-radius: 65px;
-
       &-1 {
-        top: -60%;
-        left: 60%;
-        width: 310px;
-        height: 310px;
+        top: 81%;
+        left: -64%;
+        z-index: 20;
       }
 
       &-2 {
@@ -404,19 +369,7 @@ export default {
         bottom: 81%;
         right: -61%;
         z-index: 20;
-        display: none;
       }
-    }
-
-    .estrela {
-      display: none;
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 62%;
-      left: -6.5rem;
-      z-index: 19;
-      //filter: drop-shadow(1px 1px 1px #111111);
     }
 
     .speakers {
@@ -429,7 +382,6 @@ export default {
         justify-content: end;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         margin-top: 18px;
-        top: 27%;
       }
 
       &-name, &-description {
@@ -447,16 +399,13 @@ export default {
     }
 
     &.has-3-speakers {
+      .blob-1 {
+        top: 87%;
+      }
 
       .speakers-image {
         height: 170px;
       }
-    }
-
-    .logo {
-      display: block;
-      left: 3%;
-      bottom: 3%;
     }
 
     &.has-2-speakers {
@@ -467,6 +416,10 @@ export default {
       .speakers-title {
         width: 200px;
       }
+    }
+
+    .logo {
+      display: none;
     }
   }
 </style>

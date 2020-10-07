@@ -27,8 +27,6 @@ import rne from './logos/channels/rne.jpg'
 import ondaCero from './logos/channels/ondacero.png'
 
 import radioPego from './logos/channels/radiopego.png'
-import radioLevante from './logos/channels/977.png'
-import radioKlara from './logos/channels/radioKlara.png'
 
 import desayunos from './logos/programme/desayunos.jpeg'
 import apuntNtc from './logos/programme/apuntntc.png'
@@ -254,19 +252,6 @@ const sources = [
         name: 'Radio Pego',
         logo: radioPego,
         color: 'white',
-        programmes: []
-      },
-      {
-        id: 'radioLevante',
-        name: '977 Radio levante',
-        logo: radioLevante,
-        programmes: []
-      }
-      ,
-      {
-        id: 'radioKlara',
-        name: 'Radio Klara',
-        logo: radioKlara,
         programmes: []
       }
     ]
