@@ -14,7 +14,13 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="marc">
-      <Marc class="marcgeneric"></Marc>
+      <Marc class="marcgeneric" v-if="this.color == 'normal'">></Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'feminista'" :feminista="true"></Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'lgtb'" :lgtb="true">> </Marc>
     </div>
 
     <div class="blob blob-2"></div>
@@ -31,7 +37,7 @@
     <div class="logo" v-if="!banner.name">
       <compromis-logo :mono="false" />
     </div>
-    <div class="logo" v-if="banner.name" style="bottom: 15px;" >
+    <div class="logo" v-if="banner.name" style="bottom: 15px; right: 17px;" >
       <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
     </div>
     <div class="hashtag" v-if="aspect === '11'">
@@ -77,10 +83,10 @@ export default {
   .text {
     display: flex;
     position: absolute;
-    top: 155px;
-    bottom: 175px;
-    left: 45px;
-    right: 45px;
+    top: 200px;
+    bottom: 200px;
+    left: 140px;
+    right: 140px;
     z-index: 30;
     transition: all .5s ease-in-out;
   }
@@ -113,6 +119,7 @@ export default {
     }
 
     &-image {
+      display: none;
       top: 0;
       left: 0;
       bottom: 0;
@@ -152,7 +159,8 @@ export default {
     color: $black;
     top: 587px;
     left: 304px;
-    width: 150px;
+    width: 245px;
+    text-align: center;
   }
 
   .has-local-label {

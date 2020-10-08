@@ -6,7 +6,15 @@
     viewBox="0 0 855 855"
     enable-background="new 0 0 855 855"
   >
-    <g>
+    <g :class="{ 'feminista': feminista, 'lgtb' : lgtb }">
+        <linearGradient id="gradientlgtb" x1="425.19" y1="850.39" x2="425.19" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6d237f"/>
+            <stop offset="0.21" stop-color="#3057a1"/>
+            <stop offset="0.41" stop-color="#098037"/>
+            <stop offset="0.62" stop-color="#f8e720"/>
+            <stop offset="0.82" stop-color="#ef861a"/>
+            <stop offset="1" stop-color="#e00e18"/>
+        </linearGradient>
       <path
         class="marc"
         d="M756.35,849v-5a86.9,86.9,0,0,0,61.7-25.5,87.84,87.84,0,0,0,26-61.65V92.12A87.22,87.22,0,0,0,756.88,5H92.12A87.22,87.22,0,0,0,5,92.12V756.88A87.22,87.22,0,0,0,92.12,844H319.5v5H92.12A92.22,92.22,0,0,1,0,756.88V92.12A92.22,92.22,0,0,1,92.12,0H756.88A92.22,92.22,0,0,1,849,92.12V756.88A92.78,92.78,0,0,1,821.58,822,91.84,91.84,0,0,1,756.35,849Z"
@@ -26,8 +34,14 @@
 <script>
 export default {
   name: "marc",
+
+  props: {
+    feminista: Boolean,
+    lgtb: Boolean
+  }
 };
 </script>
+
 
 <style lang="scss" scoped>
 .comilla {
@@ -38,43 +52,27 @@ export default {
   filter: drop-shadow(5px 5px 2px #e7600c);
 }
 
-.st0 {
-  fill: #ffffff;
-}
-.st1 {
-  fill: url(#compromisGradient);
-}
-.st2 {
-  fill: url(#feministaGradient);
-}
-.st3 {
-  clip-path: url(#SVGID_4_);
-}
-.st4 {
-  fill: #ef404d;
-}
-.st5 {
-  fill: #f79226;
-}
-.st6 {
-  fill: #ffd10f;
-} 
-.st7 {
-  fill: #7fc347;
-}
-.st8 {
-  fill: #55a4db;
-}
-.st9 {
-  fill: #a14a9c;
-}
-.st10 {
-  fill: url(#SVGID_5_);
-}
-.st11 {
-  fill: url(#SVGID_6_);
-}
-.st12 {
-  clip-path: url(#SVGID_8_);
-}
+.feminista {
+    .marc {
+      fill: #6D237F;
+      filter: drop-shadow(5px 5px 2px #6D237F);
+    }
+
+    .comilla {
+      fill: #6D237F;
+    }
+  }
+
+.lgtb {
+    .marc {
+      fill: url(#gradientlgtb);
+    
+    filter: drop-shadow(5px 5px 2px #e3e3e3);
+    }
+    
+
+    .comilla {
+      fill: #353949;
+    }
+  }
 </style>

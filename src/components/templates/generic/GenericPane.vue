@@ -6,8 +6,8 @@
         <b-input type="textarea" placeholder="48152342 usuaris de bicicleta en 2023" v-model="properties.text" maxlength="100"></b-input>
       </b-field>
 
-      <!-- Text Color -->
-      <color-selector v-model="properties.textColor" />
+      <!-- Text Color 
+      <color-selector v-model="properties.textColor" /> -->
 
       <!-- Text align -->
       <b-field label="Alineació del text" class="text-align-group">
@@ -46,15 +46,15 @@
     <!-- Emoji picker -->
     <emoji-picker v-model="properties.emojis" />
 
-    <!-- Picture -->
+    <!-- Picture 
     <picture-upload
       :picture="properties.picture"
       :display-errors="displayErrors"
       :errors="errors"
       @upload="updateImage"
-      @delete="properties.picture = null; properties.picturePreview = null" />
+      @delete="properties.picture = null; properties.picturePreview = null" /> 
 
-    <!-- Picture position -->
+    <!-- Picture position 
     <b-field label="Posició de la imatge" class="range">
       <range-slider
         name="points"
@@ -63,7 +63,7 @@
         v-model="properties.picturePos"
         @touchstart="dimPane(true)"
         @touchend="dimPane(false)" />
-    </b-field>
+    </b-field> -->
 
     <!-- Hashtag -->
     <transition name="slide">
@@ -127,7 +127,7 @@ export default {
         textAlignI: 1,
         textSize: 100,
         emojis: [],
-        textColor: 'black',
+        textColor: 'white',
         data: [
           'Joves PV - Compromís',
           'el Maestrat - els Ports',
@@ -175,7 +175,7 @@ export default {
 
   methods: {
     validate () {
-      this.pictureRequired()
+      /* this.pictureRequired() */
     },
 
     updateTextAlign (i) {
