@@ -10,6 +10,12 @@
       <li :class="{'lgtb' : true, 'active': value === 'lgtb'}" @click="$emit('input', 'lgtb')">
           <careta v-if="!isRounded" logo-style="lgtb"></careta>
       </li>
+            <li :class="{'red' : true, 'active': value === 'red'}" @click="$emit('input', 'red')">
+          <careta v-if="!isRounded" logo-style="red"></careta>
+      </li>
+            <li :class="{'green' : true, 'active': value === 'green'}" @click="$emit('input', 'green')">
+          <careta v-if="!isRounded" logo-style="green"></careta>
+      </li>
       <li v-if="!isRounded" :class="{'dol' : true, 'active': value === 'dol'}" @click="$emit('input', 'dol')">
           <careta logo-style="dol"></careta>
       </li>
@@ -114,6 +120,12 @@ export default {
       }
       &.lgtb {
         background: $gradient-lgtb;
+      }
+      &.red {
+        background: #e00e18;
+      }
+      &.green {
+        background: #098037;
       }
     }
   }

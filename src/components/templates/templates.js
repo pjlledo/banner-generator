@@ -23,6 +23,18 @@ export default [
     }
   },
   {
+    id: 'Generic2',
+    name: 'Frase 2',
+    aspects: ['11', '916'],
+    supports: ['multicolor-blobs'],
+    icon: 'font',
+    components: {
+      pane: () => import(/* webpackChunkName: "generic" */ './generic2/GenericPane'),
+      canvas: () => import(/* webpackChunkName: "generic" */ './generic2/GenericCanvas'),
+      help: () => import(/* webpackChunkName: "generic" */ './generic2/GenericHelp')
+    }
+  },
+  {
     id: 'Text',
     name: 'Text lliure',
     aspects: ['11', '916'],

@@ -6,7 +6,7 @@
     viewBox="0 0 855 855"
     enable-background="new 0 0 855 855"
   >
-    <g :class="{ 'feminista': feminista, 'lgtb' : lgtb }">
+    <g :class="{ 'feminista': feminista, 'lgtb' : lgtb , 'red' : red , 'green' : green}">
         <linearGradient id="gradientlgtb" x1="425.19" y1="850.39" x2="425.19" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#6d237f"/>
             <stop offset="0.21" stop-color="#3057a1"/>
@@ -33,15 +33,16 @@
 
 <script>
 export default {
-  name: "marc",
+  name: 'marc',
 
   props: {
     feminista: Boolean,
-    lgtb: Boolean
+    lgtb: Boolean,
+    red: Boolean,
+    green: Boolean
   }
-};
+}
 </script>
-
 
 <style lang="scss" scoped>
 .comilla {
@@ -66,13 +67,36 @@ export default {
 .lgtb {
     .marc {
       fill: url(#gradientlgtb);
-    
+
     filter: drop-shadow(5px 5px 2px #e3e3e3);
     }
-    
 
     .comilla {
       fill: #353949;
+    }
+  }
+
+.red {
+    .marc {
+      fill: #e00e18;
+
+    filter: drop-shadow(5px 5px 2px #e00e18);
+    }
+
+    .comilla {
+      fill: #e00e18;
+    }
+  }
+
+.green {
+    .marc {
+      fill: #098037;
+
+    filter: drop-shadow(5px 5px 2px #098037);
+    }
+
+    .comilla {
+      fill: #098037;
     }
   }
 </style>

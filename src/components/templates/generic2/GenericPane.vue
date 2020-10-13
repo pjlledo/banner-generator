@@ -54,7 +54,7 @@
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
-    Picture position
+    <!-- Picture position
     <b-field label="Posició de la imatge" class="range">
       <range-slider
         name="points"
