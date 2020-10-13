@@ -11,8 +11,20 @@ export default [
     }
   },
   {
+    id: 'Color',
+    name: 'Color',
+    aspects: ['11', '916'],
+    supports: ['multicolor-blobs'],
+    icon: 'font',
+    components: {
+      pane: () => import(/* webpackChunkName: "color" */ './color/ColorPane'),
+      canvas: () => import(/* webpackChunkName: "color" */ './color/ColorCanvas'),
+      help: () => import(/* webpackChunkName: "color" */ './color/ColorHelp')
+    }
+  },
+  {
     id: 'Generic',
-    name: 'Frase',
+    name: 'Citas',
     aspects: ['11', '916'],
     supports: ['multicolor-blobs'],
     icon: 'font',
@@ -24,14 +36,14 @@ export default [
   },
   {
     id: 'Generic2',
-    name: 'Frase 2',
+    name: 'Citas 2',
     aspects: ['11', '916'],
     supports: ['multicolor-blobs'],
     icon: 'font',
     components: {
-      pane: () => import(/* webpackChunkName: "generic" */ './generic2/GenericPane'),
-      canvas: () => import(/* webpackChunkName: "generic" */ './generic2/GenericCanvas'),
-      help: () => import(/* webpackChunkName: "generic" */ './generic2/GenericHelp')
+      pane: () => import(/* webpackChunkName: "generic2" */ './generic2/Generic2Pane'),
+      canvas: () => import(/* webpackChunkName: "generic2" */ './generic2/Generic2Canvas'),
+      help: () => import(/* webpackChunkName: "generic2" */ './generic2/Generic2Help')
     }
   },
   {
