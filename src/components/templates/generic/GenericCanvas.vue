@@ -219,5 +219,13 @@ export default {
       left: 80px;
       bottom: 80px;
     }
+
+    .hashtag {
+    color: $orange;
+    bottom: 105px;
+    width: 245px;
+    left: 83px;
+    text-align: center;
+  }
   }
 </style>
