@@ -6,7 +6,7 @@
     viewBox="0 0 753.71 1090.62"
     enable-background="new 0 0 753.71 1090.62"
   >
-    <g :class="{ feminista: feminista, lgtb: lgtb, red: red, green: green }">
+    <g :class="{ feminista: feminista, lgtb: lgtb, red: red, green: green, mono : mono}">
       <linearGradient
         id="gradientlgtb"
         x1="377.55"
@@ -50,7 +50,8 @@ export default {
     feminista: Boolean,
     lgtb: Boolean,
     red: Boolean,
-    green: Boolean
+    green: Boolean,
+    mono: Boolean
   }
 }
 </script>
@@ -110,4 +111,13 @@ export default {
     fill: #098037;
   }
 }
+
+.mono {
+  .marc {
+    fill: #ffffff;
+    filter: drop-shadow(5px 5px 2px #ffffff);
+  }
+
+}
+
 </style>

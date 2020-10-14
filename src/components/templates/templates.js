@@ -23,6 +23,18 @@ export default [
     }
   },
   {
+    id: 'Color2',
+    name: 'Color 2',
+    aspects: ['11', '916'],
+    supports: ['multicolor-blobs'],
+    icon: 'font',
+    components: {
+      pane: () => import(/* webpackChunkName: "color 2" */ './color2/Color2Pane'),
+      canvas: () => import(/* webpackChunkName: "color 2" */ './color2/Color2Canvas'),
+      help: () => import(/* webpackChunkName: "color 2" */ './color2/Color2Help')
+    }
+  },
+  {
     id: 'Generic',
     name: 'Citas',
     aspects: ['11', '916'],
