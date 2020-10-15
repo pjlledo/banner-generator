@@ -107,10 +107,10 @@ export default [
   {
     id: 'Tweet',
     name: 'Tweet',
-    aspects: ['11'],
+    aspects: ['11', '916'],
     icon: 'twitter',
     iconPack: 'fab',
-    label: '✨Nou',
+    /* label: '✨Nou', */
     components: {
       pane: () => import(/* webpackChunkName: "tweet" */ './tweet/TweetPane'),
       canvas: () => import(/* webpackChunkName: "tweet" */ './tweet/TweetCanvas'),

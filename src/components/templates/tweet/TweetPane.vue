@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'pane tweet-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
-    <!-- Style -->
+    <!-- Style 
     <b-field label="Estil">
       <b-tabs
         id="style-tabs"
@@ -13,7 +13,7 @@
         <b-tab-item label="Targeta"></b-tab-item>
         <b-tab-item label="Fosc"></b-tab-item>
       </b-tabs>
-    </b-field>
+    </b-field> -->
 
     <!-- Color -->
     <b-field label="Color de fons">
@@ -62,11 +62,22 @@
         </div>
 
         <!-- Text size -->
-        <b-field label="Tamany del text" class="range">
+        <b-field label="Tamany del text" class="range" v-if="this.aspect == 0">
           <range-slider
             name="points"
             :min="75"
             :max="125"
+            v-model="properties.textSize"
+            @touchstart="dimPane(true)"
+            @touchend="dimPane(false)" />
+        </b-field>
+
+        <!-- Text size -->
+        <b-field label="Tamany del text" class="range" v-if="this.aspect == 1">
+          <range-slider
+            name="points"
+            :min="40"
+            :max="70"
             v-model="properties.textSize"
             @touchstart="dimPane(true)"
             @touchend="dimPane(false)" />
@@ -109,7 +120,7 @@
       </div>
     </transition>
 
-    <b-switch v-model="properties.showCta" style="margin-bottom: 1rem">
+    <b-switch v-if="!properties.showHashtag" v-model="properties.showCta" style="margin-bottom: 1rem">
         Afegir cridada a l'acció
     </b-switch>
     <transition name="slide">
@@ -120,7 +131,26 @@
       </div>
     </transition>
 
-    <!-- Local label -->
+    <!-- Hashtag -->
+    <div>
+        <b-switch v-if="!properties.showCta" v-model="properties.showHashtag" style="margin-bottom: 1rem">
+        Afegir hashtag
+        </b-switch>
+    <transition name="slide">
+      <div v-if="properties.showHashtag">
+      <b-field label="Hashtag">
+        <b-input
+          placeholder="#"
+          @input="updateHashtag"
+          :value="properties.hashtag"
+          :maxlength="20">
+        </b-input>
+      </b-field>
+      </div>
+    </transition>
+    </div>
+
+    <!-- Local label 
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -134,7 +164,30 @@
           </div>
         </transition>
       </div>
+    </transition> -->
+
+    <!-- Logo de col·lectiu -->
+    <transition name="slide">
+      <b-switch v-model="properties.ColectiuLocal">
+        Logo de col·lectiu
+      </b-switch>
     </transition>
+
+    <!-- col·lectiu comarcal -->
+    <div v-if="properties.ColectiuLocal" class="logoColectiu" id="logoColectiu">
+      <b-field label="Escriu i selecciona el teu col·lectiu">
+        <b-autocomplete
+            rounded
+            v-model="properties.name"
+            :data="filteredDataArray"
+            placeholder="Joves PV - Compromís"
+            icon="magnify"
+            clearable
+            @select="option => selected = option">
+            <template slot="empty">Col·lectiu no trobat</template>
+        </b-autocomplete>
+      </b-field>
+    </div>
   </div>
 </template>
 
@@ -158,13 +211,43 @@ export default {
         tweetUrl: '',
         tweetId: null,
         tweetEmbed: null,
-        textSize: 100,
+        textSize: 75,
         showMedia: true,
         showCounts: true,
         showCta: false,
-        backgroundColor: 'black',
-        card: 0,
-        cta: 'Passa-ho!'
+        backgroundColor: 'orange',
+        card: 1,
+        cta: 'Passa-ho!',
+        data: [
+          'Joves PV - Compromís',
+          'el Maestrat - els Ports',
+          'la Plana Alta - l’Alcalatén',
+          'la Plana Baixa - l’Alt Millars',
+          'el Camp de Morvedre - l’Alt Palància',
+          'el Camp de Túria - els Serrans - el Racó d’Ademús',
+          'l’Horta Nord',
+          'l’Horta Sud',
+          'València',
+          'la Foia de Bunyol - la Plana d’Utiel - la Vall de Cofrents',
+          'la Ribera Alta',
+          'La Ribera Baixa',
+          'la Costera - la Canal de Navarrés',
+          'la Safor - Valldigna',
+          'la Vall d’Albaida',
+          'l’Alcoià - el Comtat - les Foies',
+          'la Marina',
+          'l’Alacantí',
+          'el Vinalopó Mitjà - l’Alt Vinalopó',
+          'el Baix Vinalopó - el Baix Segura',
+          'Xeraco',
+          'Tavernes de la Valldigna',
+          'Gandia',
+          'Algemesí',
+          'Castelló de la Ribera',
+          'Xàtiva'
+        ],
+        name: '',
+        selected: 'Joves PV - Compromís'
       },
       fetching: false
     }
@@ -175,7 +258,16 @@ export default {
       this.fetchTweet(url)
     }
   },
-
+  computed: {
+    filteredDataArray () {
+      return this.properties.data.filter((option) => {
+        return option
+          .toString()
+          .toLowerCase()
+          .indexOf(this.properties.name.toLowerCase()) >= 0
+      })
+    }
+  },
   methods: {
     validate () {
       this.fieldRequired({

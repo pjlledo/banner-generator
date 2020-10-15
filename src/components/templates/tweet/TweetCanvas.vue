@@ -3,6 +3,7 @@
     :id="'bannerCanvas' + aspect"
     :class="[
       'banner-canvas',
+      'aspect-' + aspect,
       `card-${banner.card}`,
       `background-${banner.backgroundColor}`,
       banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
@@ -62,16 +63,29 @@
       </div>
     </div>
     <div class="logo">
-      <compromis-logo :mono="banner.backgroundColor === 'white' ? false : true" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
-        {{ banner.localLabel | formatLocal }}
-      </div>
+      <compromis-logo :mono="banner.backgroundColor === 'white' ? false : true" v-if="!banner.name"/>
     </div>
-    <div class="cta" v-if="banner.showCta && banner.cta">
+    <div class="logo" v-if="banner.name && aspect == '11'" style="bottom: 15px; right: 17px;" >
+      <TextColectiu class="nomcolectiu" :mono="banner.backgroundColor === 'white' ? false : true" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '916'" style="bottom: 55px; left: 55px; width: 300px;" >
+      <TextColectiu class="nomcolectiu" :mono="banner.backgroundColor === 'white' ? false : true" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+    <div>
+      <Llagrimes class="llagrimes" :mono="banner.backgroundColor === 'white' ? false : true"></Llagrimes>
+    </div>
+    <div class="cta" v-if="banner.showCta && banner.cta && !banner.showHashtag">
       <span>{{ banner.cta }}</span>
-      <div>
+        <div>
         <img src="./images/point-down.png" alt="" />
       </div>
+
+    </div>
+    <div class="hashtag" v-if="!banner.name && !banner.showCta && banner.showHashtag">
+      {{ banner.hashtag }}
+    </div>
+    <div class="hashtag2" v-if="aspect && banner.name && !banner.showCta && banner.showHashtag">
+      {{ banner.hashtag }}
     </div>
   </div>
 </template>
@@ -79,11 +93,17 @@
 <script>
 import moment from 'moment'
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import TextColectiu from '@/utils/ColectiuLogo'
+import Llagrimes from '@/utils/generic2'
 
 export default {
   name: 'tweet-canvas',
 
   mixins: [CanvasMixin],
+  components: {
+    TextColectiu,
+    Llagrimes
+  },
 
   computed: {
     textFontSize () {
@@ -176,6 +196,27 @@ export default {
     }
   }
 
+  .hashtag {
+    position: absolute;
+    z-index: 30;
+    bottom: 25px;
+    left: 35px;
+    color: $white;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+  }
+  .hashtag2 {
+    position: absolute;
+    z-index: 30;
+    bottom: 25px;
+    left: 35px;
+    color: $white;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    bottom: 40px;
+  }
   .background {
     background: var(--background);
     position: absolute;
@@ -194,20 +235,23 @@ export default {
 
   .tweet {
     color: var(--base-color);
-    border: 2px var(--base-color) solid;
+    border: px var(--base-color) solid;
     background-color: var(--card-background);
-    border-radius: $card-radius;
-    padding: 26px;
+    border-radius: 3rem;
+    padding: 30px;
     width: 100%;
+    height: 100%;
+    display: grid;
+    align-content: center;
 
     &-wrapper {
       position: absolute;
       display: flex;
       align-items: center;
-      top: 40px;
-      left: 70px;
-      right: 70px;
-      bottom: 80px;
+      top: 130px;
+      left: 120px;
+      right: 120px;
+      bottom: 130px;
       z-index: 200;
     }
 
@@ -344,6 +388,15 @@ export default {
       text-align: right;
     }
   }
+  .llagrimes {
+    z-index: 30;
+    top: 50px;
+    right: 70px;
+    width: 10%;
+    position: absolute;
+    transform: rotate(-7deg);
+    filter: drop-shadow(3px 3px 1px $gray-900);
+  }
 
   .logo {
     color: $white;
@@ -362,17 +415,204 @@ export default {
   .card-2 {
     .tweet {
       border: 0;
-      box-shadow: $raised-shadow;
+      box-shadow: 6px 6px 6px 8px var(--shadow-color, rgba($gray-900, .15)),
+    0 .9rem 1.4rem -.5rem var(--shadow-color, rgba($gray-900, .2)),
+    0 -.75rem 1.4rem -.4rem var(--shadow-color, rgba($gray-900, .015));
     }
 
     .cta {
       color: $white;
     }
 
+    &.background-white .hashtag {
+      color: $gray-900;
+    }
+
+    &.background-white .hashtag2{
+      color: $gray-900;
+    }
+
     &.background-white .cta {
       color: $gray-900;
     }
   }
+
+  // Story aspect
+  .aspect-916 {
+
+    .text {
+      left: 30px;
+      right: 30px;
+      top: 190px;
+      bottom: 300px;
+      padding: 16px;
+    }
+
+    .logo {
+      width:250px;
+      left: 80px;
+      bottom: 80px;
+    }
+
+    .llagrimes {
+      z-index: 30;
+      top: 140px;
+      right: 10px;
+      width: 12%;
+      position: absolute;
+      transform: rotate(-7deg);
+      filter: drop-shadow(3px 3px 1px $gray-900);
+  }
+
+    .hashtag {
+    color: $white;
+    left: 80px;
+    bottom: 110px;
+    width: 250px;
+    text-align: center;
+    }
+
+    .hashtag2 {
+    color: $white;
+    left: 80px;
+    bottom: 110px;
+    width: 250px;
+    text-align: center;
+    }
+
+    .cta {
+      right: 95px;
+    }
+
+    .tweet {
+    color: var(--base-color);
+    border: px var(--base-color) solid;
+    background-color: var(--card-background);
+    border-radius: 3rem;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-content: center;
+
+    &-wrapper {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 200px;
+      left: 40px;
+      right: 40px;
+      bottom: 250px;
+      z-index: 200;
+    }
+
+    &-user {
+      display: flex;
+      margin-bottom: 16px;
+      line-height: 1.25;
+
+      &-pic img {
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+
+      &-name {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: bold;
+      }
+
+      &-full_name {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+
+        .verified {
+          display: flex;
+          align-items: center;
+          margin-left: 6px;
+          color: var(--twitter-color);
+        }
+      }
+
+      &-screen_name {
+        font-weight: normal;
+        opacity: .5;
+      }
+    }
+
+    &-text {
+      font-size: 14px;
+      line-height: 1.25;
+      white-space: pre-wrap;
+    }
+
+    &-quote {
+      border: 1px var(--quote-border-color) solid;
+      border-radius: .5rem;
+      margin-top: 16px;
+      padding: 12px;
+
+      &-text {
+        font-size:10px;
+      }
+
+      &-user {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+
+        img {
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          margin-right: 8px;
+        }
+
+        strong {
+          color: var(--base-color);
+          margin-right: 6px;
+        }
+
+        &-screen_name {
+          margin-left: 8px;
+          opacity: .5;
+        }
+
+        .verified {
+          color: var(--twitter-color);
+        }
+      }
+    }
+
+    &-date {
+      margin: 6px 0 6px;
+      opacity: .5;
+    }
+
+    &-icon {
+      margin-left: auto;
+      color: var(--twitter-color);
+    }
+
+    &-counts {
+      display: flex;
+
+      &-rts,
+      &-faves {
+        display: flex;
+        align-items: center;
+        margin-right: 26px;
+
+        .icon {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+  }
+
 </style>
 <style lang="scss">
 .tweet {
