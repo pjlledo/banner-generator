@@ -51,6 +51,7 @@ export default [
     id: 'Headline',
     name: 'Titular de premsa',
     aspects: ['11', '916'],
+    supports: ['multicolor-blobs'],
     icon: 'newspaper',
     components: {
       pane: () => import(/* webpackChunkName: "headline" */ './headline/HeadlinePane'),

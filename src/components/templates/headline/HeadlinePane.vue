@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'pane headline-pane': true, 'pane-dimmed': paneDimmed }">
-    <!-- <b-field label="Estil"> 
+    <!-- <b-field label="Estil">
       <b-tabs
         id="style-tabs"
         type="is-toggle"

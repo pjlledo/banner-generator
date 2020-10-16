@@ -8,7 +8,7 @@
       banner.card ? 'cards' : 'no-cards',
       banner.localLabel && banner.hasLocalLabel ? 'has-local-label' : '',
       banner.headline.length > 95 ? 'has-long-headline' : '',
-      'blobs-' + color
+      'blobs-'
     ]"
     v-if="banner">
     <div class="blob blob-image">
@@ -83,7 +83,7 @@ export default {
     position: absolute;
     left: 70px;
     z-index: 30;
-    
+
     width: 500px;
     padding: 10px 40px;
     font-family: 'Tiempos Headline', serif;
@@ -249,7 +249,6 @@ export default {
       }
     }
 
-  
     .headline {
       //top: 430px;
 

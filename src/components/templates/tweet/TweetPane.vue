@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'pane tweet-pane': true, 'pane-dimmed': paneDimmed, 'pane-916': aspect === 1 }">
-    <!-- Style 
+    <!--
     <b-field label="Estil">
       <b-tabs
         id="style-tabs"
@@ -149,22 +149,6 @@
       </div>
     </transition>
     </div>
-
-    <!-- Local label 
-    <transition name="slide">
-      <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
-    </transition> -->
 
     <!-- Logo de col·lectiu -->
     <transition name="slide">
