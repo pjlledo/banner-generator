@@ -6,7 +6,7 @@
     viewBox="0 0 855 855"
     enable-background="new 0 0 855 855"
   >
-    <g :class="{ 'feminista': feminista, 'lgtb' : lgtb , 'red' : red , 'green' : green , 'mono' : mono }">
+    <g :class="{ 'feminista': feminista, 'lgtb' : lgtb , 'red' : red , 'green' : green , 'mono' : mono , 'noquote' : noquote}">
         <linearGradient id="gradientlgtb" x1="425.19" y1="850.39" x2="425.19" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#6d237f"/>
             <stop offset="0.21" stop-color="#3057a1"/>
@@ -40,7 +40,8 @@ export default {
     lgtb: Boolean,
     red: Boolean,
     green: Boolean,
-    mono: Boolean
+    mono: Boolean,
+    noquote: Boolean
   }
 }
 </script>
@@ -53,6 +54,17 @@ export default {
   fill: #e7600c;
   filter: drop-shadow(5px 5px 2px #e7600c);
 }
+
+.noquote {
+    .marc {
+      fill: #e7600c;
+      filter: drop-shadow(5px 5px 2px #e7600c);
+    }
+
+    .comilla {
+      fill: none;
+    }
+  }
 
 .feminista {
     .marc {

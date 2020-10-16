@@ -149,21 +149,28 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Local label -->
+    <!-- Logo de col·lectiu -->
     <transition name="slide">
-      <div v-if="!aspect" class="field">
-        <b-switch v-model="properties.hasLocalLabel">
-          Afegir text al logo
-        </b-switch>
-        <transition name="slide">
-          <div v-if="properties.hasLocalLabel" class="local-label">
-            <b-field>
-              <b-input placeholder="Alacant" v-model="properties.localLabel" maxlength="48"></b-input>
-            </b-field>
-          </div>
-        </transition>
-      </div>
+      <b-switch v-model="properties.ColectiuLocal">
+        Logo de col·lectiu
+      </b-switch>
     </transition>
+
+    <!-- col·lectiu comarcal -->
+    <div v-if="properties.ColectiuLocal" class="logoColectiu" id="logoColectiu">
+      <b-field label="Escriu i selecciona el teu col·lectiu">
+        <b-autocomplete
+            rounded
+            v-model="properties.name"
+            :data="filteredDataArray"
+            placeholder="Joves PV - Compromís"
+            icon="magnify"
+            clearable
+            @select="option => selected = option">
+            <template slot="empty">Col·lectiu no trobat</template>
+        </b-autocomplete>
+      </b-field>
+    </div>
   </div>
 </template>
 
@@ -196,7 +203,37 @@ export default {
         customSource: '',
         customSourceColor: '#1CA085',
         customProgramme: '',
-        customProgrammeColor: '#1CA085'
+        customProgrammeColor: '#1CA085',
+        data: [
+          'Joves PV - Compromís',
+          'el Maestrat - els Ports',
+          'la Plana Alta - l’Alcalatén',
+          'la Plana Baixa - l’Alt Millars',
+          'el Camp de Morvedre - l’Alt Palància',
+          'el Camp de Túria - els Serrans - el Racó d’Ademús',
+          'l’Horta Nord',
+          'l’Horta Sud',
+          'València',
+          'la Foia de Bunyol - la Plana d’Utiel - la Vall de Cofrents',
+          'la Ribera Alta',
+          'La Ribera Baixa',
+          'la Costera - la Canal de Navarrés',
+          'la Safor - Valldigna',
+          'la Vall d’Albaida',
+          'l’Alcoià - el Comtat - les Foies',
+          'la Marina',
+          'l’Alacantí',
+          'el Vinalopó Mitjà - l’Alt Vinalopó',
+          'el Baix Vinalopó - el Baix Segura',
+          'Xeraco',
+          'Tavernes de la Valldigna',
+          'Gandia',
+          'Algemesí',
+          'Castelló de la Ribera',
+          'Xàtiva'
+        ],
+        name: '',
+        selected: 'Joves PV - Compromís'
       },
       presets: presets
     }
@@ -208,6 +245,16 @@ export default {
     this.properties.time.setMinutes(0)
   },
 
+  computed: {
+    filteredDataArray () {
+      return this.properties.data.filter((option) => {
+        return option
+          .toString()
+          .toLowerCase()
+          .indexOf(this.properties.name.toLowerCase()) >= 0
+      })
+    }
+  },
   methods: {
     validate () {
       const sourceField = this.properties.source === 'other'

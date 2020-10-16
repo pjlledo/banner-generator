@@ -14,10 +14,13 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="medium">
-      <div class="medium-overtitle">
+      <div class="medium-overtitle" v-if="aspect === '11'">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div class="medium-title" :style="{fontSize: fontSize(banner.title, 60, 40, 30)}">
+      <div class="medium-title" :style="{fontSize: fontSize(banner.title, 60, 40, 30)}" v-if="aspect === '11'">
+        <span>{{ banner.title | formatString }}</span>
+      </div>
+      <div class="medium-title" :style="{fontSize: fontSize(banner.title, 40, 28, 15)}" v-if="aspect === '916'">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="medium-subtitle">
@@ -59,39 +62,89 @@
         </div>
       </div>
     </div>
-    <div class="logo">
-      <compromis-logo />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
-        {{ banner.localLabel | formatLocal }}
-      </div>
+    <div class="logo" v-if="!banner.name">
+      <compromis-logo :mono="false" />
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '11'" style="bottom: 100px; left: 1px;" >
+      <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 76px;"></TextColectiu>
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '916'" style="bottom: 20px; left: 55px; width: 300px;" >
+      <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'normal'" :noquote="true">></Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'feminista'" :feminista="true"></Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'lgtb'" :lgtb="true">> </Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'green'" :green="true">> </Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'red'" :red="true">> </Marc>
+    </div>
+
+  <div class ="marc2" v-if="aspect == '916'">
     </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import Marc from '@/utils/generic'
+import TextColectiu from '@/utils/ColectiuLogo'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [CanvasMixin]
+  mixins: [CanvasMixin],
+  components: {
+    Marc,
+    TextColectiu
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
 
+  .marc {
+    z-index: 30;
+    top: 50px;
+    left: 50px;
+    width: 60%;
+    position: absolute;
+    transform: rotate(90deg) scaleX(-1);
+
+  }
+  .marc2 {
+    width: 330px;
+    height: 350px;
+    bottom: -40px;
+    left: 35px;
+    border-style: solid;
+    z-index: 30;
+    position: absolute;
+    border-radius: 3rem;
+    border-color: #e7600c;
+    filter: drop-shadow(2px 2px 1px #e7600c);
+  }
+
   .medium {
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    top: 100px;
-    left: 0;
+    top: 110px;
+    left: 50px;
     z-index: 40;
-    padding: 0 35px;
-    width: 265px;
-    height: 400px;
+    padding: 0;
+    width: 334px;
+    height: 350px;
     z-index: 20;
     transition: all .5s ease-in-out;
     font-family: $family-primary;
@@ -110,7 +163,7 @@ export default {
 
     &-subtitle {
       display: flex;
-      align-items: center;
+      background: $white;
       font-size: 19px;
       letter-spacing: -0.5px;
       color: $gray-700;
@@ -128,7 +181,8 @@ export default {
 
     &-details {
       padding-top: 48px;
-      font-size: 18px;
+      padding-left: 50px;
+      font-size: 15px;
       letter-spacing: -0.5px;
     }
 
@@ -176,39 +230,44 @@ export default {
 
   .blob {
     &-1 {
-      top: -87%;
-      left: -74%;
+      background: $white;
+      top: 1;
+      width: 70%;
+      height: 90%;
+      transform: none;
+      left: -15%;
+      border-radius: 3rem;
     }
 
     &-2 {
-      left: -63%;
-      bottom: -74%;
-      z-index: 10;
+      display: none;
     }
 
     &-image {
-      top: -5%;
-      right: -4%;
-      height: 618px;
-      z-index: 20;
-      width: 414px;
       border-radius: 0;
-      border-bottom-left-radius: $border-radius;
+      transform: none;
 
       img {
-        transform: rotate(-$rotation);
         width: 100%;
-        height: 98%;
-        margin: 28px -28px;
+        height: 100%;
+        transform: none;
       }
     }
+  }
+
+  .logo {
+    bottom: 120px;
+    left: 30px;
   }
 
   // Story aspect
   .aspect-916 {
     .blob {
       &-1 {
-        display: none;
+        width: 365px;
+        height: 375px;
+        bottom: -40px;
+        left: 20px;
       }
 
       &-2 {
@@ -217,32 +276,41 @@ export default {
       }
 
       &-image {
-        height: 404px;
-        width: 431px;
-        top: -23px;
-        left: -3px;
-        border-bottom-right-radius: 0;
+        height: 100%;
+        width: 100%;
 
         img {
-          margin: 21px -5px;
-          width: 98%;
+          width: 100%;
         }
       }
     }
 
+    .marc {
+      display: none;
+    }
     .medium {
       display: flex;
-      top: 245px;
-      align-content: center;
-      width: 100%;
+      left: 75px;
+      top: 390px;
+      width: 258px;
+      height: 230px;
       box-sizing: border-box;
+      background: $white;
+      z-index: 40;
 
       &-title {
-        font-size: 34px;
+        font-size: 15px;
+        text-align: center;
+
       }
 
+      &-subtitle {
+        text-align: center;
+        display: grid;
+      }
       &-details {
-        padding-top: 24px;
+        padding-top: 0px;
+        padding-left: 15px;
       }
 
       &-channel-custom, &-programme-custom {
@@ -250,13 +318,17 @@ export default {
         flex-grow: 1;
       }
 
+      &-time {
+      padding-top: 14px;
+    }
+      &-day {
+        padding-top: 0px;
+      }
+
       &-title, &-subtitle, &-overtitle {
         span {
           box-decoration-break: clone;
           -webkit-box-decoration-break: clone;
-          color: white;
-          border-radius: 2px;
-          background: $gradient;
           letter-spacing: -1px;
           display: inline;
           line-height: 1.42;
@@ -279,7 +351,9 @@ export default {
     }
 
     .logo {
-      display: none;
+      width:250px;
+      left: 80px;
+      bottom: 40px;
     }
   }
 </style>
