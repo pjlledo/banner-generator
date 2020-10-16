@@ -52,8 +52,7 @@
     <div class="hashtag2" v-if="aspect && banner.name">
       {{ banner.hashtag }}
     </div>
-    <div class="degradat">
-      </div>
+    <div :id="'blob-2' + color" class="blob blob-2"></div>
   </div>
 </template>
 
@@ -143,8 +142,19 @@ export default {
           margin: 0;
         }
     }
+    &-2 {
+      z-index: 20;
+      bottom: -250px;
+      right: -50px;
+      width: 600px;
+      height: 400px;
+      transform: rotate(0);
+    }
   }
 
+  #blob-2normal {
+    background: radial-gradient(circle, rgba(232,93,15,1) 0%, rgba(232,93,15,0.60) 10%, rgba(232,93,15,0) 100%);;
+  }
   .hashtag {
     position: absolute;
     z-index: 30;
