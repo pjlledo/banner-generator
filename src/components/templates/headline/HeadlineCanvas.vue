@@ -36,6 +36,21 @@
     <div class="marc">
       <Forquilla class="marcgeneric"></Forquilla>
     </div>
+    <div>
+      <Forquilla class="marcgeneric" v-if="this.color == 'normal'">></Forquilla>
+    </div>
+    <div class="marc">
+      <Forquilla class="marcgeneric" v-if="this.color == 'feminista'" :feminista="true"></Forquilla>
+    </div>
+    <div class="marc">
+      <Forquilla class="marcgeneric" v-if="this.color == 'lgtb'" :lgtb="true">> </Forquilla>
+    </div>
+    <div class="marc">
+      <Forquilla class="marcgeneric" v-if="this.color == 'green'" :green="true">> </Forquilla>
+    </div>
+    <div class="marc">
+      <Forquilla class="marcgeneric" v-if="this.color == 'red'" :red="true">> </Forquilla>
+    </div>
 
     <div class="logo">
       <compromis-logo :mono="true" v-if="!banner.name"/>
@@ -144,16 +159,32 @@ export default {
     }
     &-2 {
       z-index: 20;
-      bottom: -250px;
+      bottom: -130px;
       right: -50px;
       width: 600px;
-      height: 400px;
+      height: 300px;
       transform: rotate(0);
     }
   }
 
   #blob-2normal {
-    background: radial-gradient(circle, rgba(232,93,15,1) 0%, rgba(232,93,15,0.60) 10%, rgba(232,93,15,0) 100%);;
+    background: radial-gradient(at 500px 150px, rgba(232,93,15,0.6) 0%, rgba(232,93,15,0) 65%);
+  }
+  #blob-2feminista{
+    background: radial-gradient(at 500px 150px, rgba(109,35,127,1) 0%, rgba(109,35,127,0) 65%);
+  }
+
+  #blob-2green{
+    background: radial-gradient(at 500px 150px, rgba(9,128,55,1) 0%, rgba(19,128,55,0) 65%);
+  }
+
+  #blob-2red{
+    background: radial-gradient(at 500px 150px, rgba(224,14,24,1) 0%, rgba(19,128,55,0) 65%);
+  }
+
+  #blob-2lgtb{
+    background: none;
+
   }
   .hashtag {
     position: absolute;
