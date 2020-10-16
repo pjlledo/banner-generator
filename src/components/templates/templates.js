@@ -18,9 +18,9 @@ export default [
     supports: ['multicolor-blobs'],
     icon: 'align-center',
     components: {
-      pane: () => import(/* webpackChunkName: "color 2" */ './color2/Color2Pane'),
-      canvas: () => import(/* webpackChunkName: "color 2" */ './color2/Color2Canvas'),
-      help: () => import(/* webpackChunkName: "color 2" */ './color2/Color2Help')
+      pane: () => import(/* webpackChunkName: "color2" */ './color2/Color2Pane'),
+      canvas: () => import(/* webpackChunkName: "color2" */ './color2/Color2Canvas'),
+      help: () => import(/* webpackChunkName: "color2" */ './color2/Color2Help')
     }
   },
   {

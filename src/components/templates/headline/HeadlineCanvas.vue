@@ -52,6 +52,8 @@
     <div class="hashtag2" v-if="aspect && banner.name">
       {{ banner.hashtag }}
     </div>
+    <div class="degradat">
+      </div>
   </div>
 </template>
 
