@@ -4,6 +4,7 @@
     <picture-upload
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
@@ -27,33 +28,23 @@
 
 <script>
 import PaneMixin from '@/mixins/pane-mixin'
-import CaretaSelector from '@/utils/CaretaSelector'
-
+import CaretaSelector from '@/utils/EstrelaSelector'
 export default {
   name: 'social-pane',
   mixins: [PaneMixin],
-
   data () {
     return {
       properties: {
-        logoStyle: 'mono'
+        logoStyle: 'normal'
       }
     }
   },
-
   components: {
     CaretaSelector
   },
-
-  // Emit state to parent component
-  watch: {
-    properties: {
-      handler: function (properties) {
-        this.isDownloadable = (
-          properties.picture !== null
-        )
-      },
-      deep: true
+  methods: {
+    validate () {
+      this.pictureRequired()
     }
   }
 }
@@ -61,7 +52,6 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
-
   .local-label {
     margin-top: .75rem;
   }

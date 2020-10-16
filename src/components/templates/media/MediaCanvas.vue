@@ -13,14 +13,11 @@
     </div>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="estrela">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
     <div class="medium">
       <div class="medium-overtitle">
         <span>{{ banner.overtitle | formatString }}</span>
       </div>
-      <div class="medium-title" :style="{fontSize: fontSize('title', 60, 40, 30)}">
+      <div class="medium-title" :style="{fontSize: fontSize(banner.title, 60, 40, 30)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
       <div class="medium-subtitle">
@@ -64,25 +61,20 @@
     </div>
     <div class="logo">
       <compromis-logo />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
-    </div>
-        <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
-        {{ banner.hashtag }}
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
 
 export default {
   name: 'quote-canvas',
 
-  mixins: [CanvasMixin],
-  components: {
-    Careta
-  }
+  mixins: [CanvasMixin]
 }
 </script>
 
@@ -186,11 +178,9 @@ export default {
     &-1 {
       top: -87%;
       left: -74%;
-      width: 765px;
     }
 
     &-2 {
-      display: none;
       left: -63%;
       bottom: -74%;
       z-index: 10;
@@ -214,16 +204,6 @@ export default {
     }
   }
 
-  .estrela {
-    display: none;
-  }
-  .hashtag {
-    top: 26px;
-    left: 20px;
-    bottom: auto;
-    font-size: 20px;
-  }
-
   // Story aspect
   .aspect-916 {
     .blob {
@@ -234,7 +214,6 @@ export default {
       &-2 {
         left: -110%;
         bottom: -94%;
-        display: none;
       }
 
       &-image {
@@ -251,22 +230,9 @@ export default {
       }
     }
 
-    .hashtag {
-      display: none;
-    }
-
-    .estrela {
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-      display: none;
-    }
-
     .medium {
       display: flex;
-      top: 285px;
+      top: 245px;
       align-content: center;
       width: 100%;
       box-sizing: border-box;
@@ -313,10 +279,7 @@ export default {
     }
 
     .logo {
-      display: block;
-      svg {
-        height: 19px;
-      }
+      display: none;
     }
   }
 </style>

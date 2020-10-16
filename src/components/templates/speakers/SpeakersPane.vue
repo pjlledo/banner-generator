@@ -3,8 +3,8 @@
     <!-- Title -->
     <b-field
       label="Titol"
-      :type="properties.title ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.title ? '' : displayErrors ? `Has d'omplir un títol` : ''">
+      :type="setFieldType('title')"
+      :message="setFieldMessage('title')">
       <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
 
@@ -18,6 +18,7 @@
       :default-speakers="properties.speakers"
       @updated="(speakers) => properties.speakers = speakers"
       :display-errors="displayErrors"
+      :errors="errors"
       :min-speakers="2"
       :max-speakers="4" />
 
@@ -46,13 +47,13 @@
       <b-field
         label="Lloc"
         v-if="aspect !== 2"
-        :type="properties.place ? '' : displayErrors ? 'is-danger' : ''"
-        :message="properties.place ? '' : displayErrors ? `Has d'omplir un lloc` : ''">
+        :type="setFieldType('place')"
+        :message="setFieldMessage('place')">
         <b-input placeholder="Riu Túria" v-model="properties.place" maxlength="60"></b-input>
       </b-field>
     </transition>
 
-    <!-- Local label
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -66,7 +67,7 @@
           </div>
         </transition>
       </div>
-    </transition> -->
+    </transition>
   </div>
 </template>
 
@@ -95,8 +96,8 @@ export default {
         place: '',
         speakers: [
           {
-            name: 'Joan Baldovi',
-            description: 'Diputat al congrés',
+            name: 'Mónica Oltra',
+            description: 'Vicepresidenta',
             picture: null
           },
           {
@@ -109,25 +110,26 @@ export default {
     }
   },
 
-  // Emit state to parent component
-  watch: {
-    properties: {
-      handler: function (properties) {
-        const speakersAreValid = properties.speakers.every((speaker) => speaker.picture !== null && speaker.name !== '')
-        this.isDownloadable = (
-          properties.title !== '' &&
-          properties.place !== '' &&
-          speakersAreValid
-        )
-      },
-      deep: true
-    }
-  },
-
   created () {
     // Set a default time
     this.properties.time.setHours(10)
     this.properties.time.setMinutes(0)
+  },
+
+  methods: {
+    validate () {
+      this.fieldRequired({
+        title: "Has d'escriure un títol",
+        place: "Has d'escriure un lloc"
+      })
+      this.allCapsDisallowed('title', 'place')
+
+      // Check speakers
+      const speakersAreValid = this.properties.speakers.every((speaker) => speaker.picture !== null && speaker.name !== '')
+      if (!speakersAreValid) {
+        this.errors.speakers = true
+      }
+    }
   }
 }
 </script>

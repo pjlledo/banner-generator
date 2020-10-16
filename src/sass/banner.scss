@@ -1,3 +1,9 @@
+.banner {
+  position: fixed;
+  z-index: 10000;
+  border: 2px black solid;
+}
+
 .banner-canvas {
   &.blobs {
     &-feminista {
@@ -7,14 +13,9 @@
     }
     &-lgtb {
       .blob-1, .blob-2 {
-        background: $gradient-lgtb;
-        background-size: 100% 33.4%;
-      }
-    }
-    &-quatri {
-      .blob-1, .blob-2 {
-        background: $gradient-quatri;
-        background-size: 100% 33.4%;
+        background: $gradient-lgtb !important;
+        background-size: 50% 33.4% !important;
+        --gradient-orientation: 90deg !important;
       }
     }
   }
@@ -53,7 +54,7 @@
 
     &-local-label {
       margin-left: .75rem;
-      font-size: 1.25rem;
+      font-size: 20px;
       letter-spacing: -.3px;
       line-height: 1;
       white-space: nowrap;

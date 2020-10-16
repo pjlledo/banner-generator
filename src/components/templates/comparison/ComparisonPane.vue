@@ -1,12 +1,12 @@
 <template>
-  <div :class="{ 'pane headline-pane': true, 'pane-dimmed': paneDimmed }">
+  <div :class="{ 'pane comparison-pane': true, 'pane-dimmed': paneDimmed }">
 
     <!-- Party -->
     <b-field
       id="source-field"
       label="Partit Abans"
-      :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.source ? '' : displayErrors ? `Has de seleccionar un partit` : ''">
+      :type="setFieldType('source')"
+      :message="setFieldMessage('source')">
       <b-select placeholder="Selecciona un partit" @input="updateSource" expanded>
         <option
           v-for="source in presets"
@@ -29,9 +29,9 @@
         <b-field
           class="source-input-name"
           label="Formació política"
-          :type="properties.source === 'other' && properties.customSource ? '' : displayErrors ? 'is-danger' : ''"
-          :message="properties.source === 'other' && properties.customSource ? '' : displayErrors ? `Has de seleccionar una font` : ''">
-          <b-input placeholder="La Veu" v-model="properties.customSource" maxlength="23"></b-input>
+          :type="setFieldType('customSource')"
+          :message="setFieldMessage('customSource')">
+          <b-input placeholder="Partit local" v-model="properties.customSource" maxlength="23"></b-input>
         </b-field>
         <b-field label="Color" class="source-input-color">
           <swatches v-model="properties.customSourceColor"></swatches>
@@ -42,8 +42,8 @@
     <!-- Before Text  -->
     <b-field
       label="Text Abans"
-      :type="properties.textBefore ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.textBefore ? '' : displayErrors ? `Has d'omplir un text` : ''">
+      :type="setFieldType('textBefore')"
+      :message="setFieldMessage('textBefore')">
       <b-input
         type="textarea"
         placeholder="L'ús de la bici està per damunt de 9000..."
@@ -55,8 +55,10 @@
     <!-- Before Picture -->
     <picture-upload
       id="picture-field"
+      field-name="pictureBefore"
       :picture="properties.pictureBefore"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="(image) => updateImageComparison('Before', image)"
       @delete="properties.pictureBefore = null; properties.pictureBeforePreview = null" />
 
@@ -74,8 +76,8 @@
     <!-- After Text  -->
     <b-field
       label="Text Després"
-      :type="properties.textAfter ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.textAfter ? '' : displayErrors ? `Has d'omplir un text` : ''">
+      :type="setFieldType('textAfter')"
+      :message="setFieldMessage('textAfter')">
       <b-input
         type="textarea"
         placeholder="L'ús de la bici està per damunt de 9000..."
@@ -87,8 +89,10 @@
     <!-- After Picture -->
     <picture-upload
       id="picture-field"
+      field-name="pictureAfter"
       :picture="properties.pictureAfter"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="(image) => updateImageComparison('After', image)"
       @delete="properties.pictureAfter = null; properties.pictureAfterPreview = null" />
 
@@ -99,6 +103,17 @@
         :min="0"
         :max="100"
         v-model="properties.pictureAfterPos"
+        @touchstart="dimPane(true)"
+        @touchend="dimPane(false)" />
+    </b-field>
+
+    <!-- Text size -->
+    <b-field label="Tamany del text" class="range">
+      <range-slider
+        name="points"
+        :min="50"
+        :max="150"
+        v-model="properties.textSize"
         @touchstart="dimPane(true)"
         @touchend="dimPane(false)" />
     </b-field>
@@ -127,7 +142,7 @@ import presets from './presets'
 import Swatches from 'vue-swatches'
 
 export default {
-  name: 'headline-pane',
+  name: 'comparison-pane',
 
   components: {
     Swatches
@@ -143,35 +158,34 @@ export default {
         customSourceColor: '#1CA085',
         textAfter: '',
         textBefore: '',
+        textSize: 100,
         pictureBefore: null,
-        pictureBeforePreview: '',
+        pictureBeforePreview: null,
         pictureBeforePos: 50,
         pictureAfter: null,
-        pictureAfterPreview: '',
+        pictureAfterPreview: null,
         pictureAfterPos: 50
       },
       presets: presets
     }
   },
 
-  watch: {
-    properties: {
-      handler: function (properties) {
-        const { textBefore, textAfter, pictureBefore, pictureAfter, source, customSource } = properties
-        const sourceIsValid = source === 'other' ? customSource !== '' : source !== null
-        this.isDownloadable = (
-          textBefore !== '' &&
-          textAfter !== '' &&
-          pictureBefore !== null &&
-          pictureAfter !== null &&
-          sourceIsValid
-        )
-      },
-      deep: true
-    }
-  },
-
   methods: {
+    validate () {
+      const sourceField = (this.properties.source === 'other')
+        ? { customSource: "Has d'escriure el nom d'un partit" }
+        : { source: 'Has de seleccionar un partit' }
+
+      this.fieldRequired({
+        textBefore: "Has d'escirure una cita",
+        textAfter: "Has d'escriure un autor",
+        pictureBefore: 'Has de seleccionar una foto',
+        pictureAfter: 'Has de seleccionar una foto',
+        ...sourceField
+      })
+      this.allCapsDisallowed('textBefore', 'textAfter')
+    },
+
     updateImageComparison (which, image) {
       this.properties[`picture${which}`] = image
       this.properties[`picture${which}Preview`] = URL.createObjectURL(image)
@@ -195,7 +209,7 @@ export default {
 <style lang="scss">
   @import "../../../sass/variables";
 
-  .headline-pane {
+  .comparison-pane {
     .hashtag {
       margin-top: .25rem;
     }

@@ -111,7 +111,6 @@ export default {
         this.properties.selected = properties.selected
       },
       deep: true
-
     }
   },
 

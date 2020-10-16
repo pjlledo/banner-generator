@@ -17,32 +17,30 @@
     <div class="text text-wysiwyg" v-if="banner.text">
       <div v-html="banner.text"></div>
     </div>
+    <emojis-on-canvas v-model="banner.emojis" />
     <div class="logo">
       <compromis-logo :mono="true" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
     <div class="hashtag" v-if="aspect === '11'">
       {{ banner.hashtag }}
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'mono'"></careta>
     </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
+import EmojisOnCanvas from '@/utils/EmojisOnCanvas'
 
 export default {
   name: 'text-canvas',
 
   mixins: [CanvasMixin],
+
   components: {
-    Careta
+    EmojisOnCanvas
   }
 }
 </script>
@@ -60,22 +58,20 @@ export default {
     box-shadow: $raised-shadow;
     border-radius: $card-radius;
     padding: 24px 24px;
+    max-height: 515px;
+    overflow: hidden;
   }
 
   .blob {
     &-1 {
-      left: -5%;
-      top: -88%;
-      width: 425px;
+      left: -58%;
+      top: -82%;
       z-index: 20;
     }
 
     &-2 {
-      left: auto;
-      //right: -45%;
-      right: -4.5%;
-      width: 425px;
-      bottom: -87%;
+      right: -57%;
+      bottom: -81%;
       z-index: 20;
       --gradient-orientation: -45deg;
     }
@@ -140,21 +136,18 @@ export default {
       left: 16px;
       right: 16px;
       padding: 16px;
-      bottom: 110px;
     }
 
     .logo {
       display: none;
     }
+  }
 
-    .estrela {
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-      z-index: 20;
-      //filter: drop-shadow(1px 1px 1px #111111);
+  // Card on top
+  .disposition-1 {
+    .text {
+      bottom: auto;
+      top: 80px;
     }
   }
 </style>
@@ -165,11 +158,27 @@ export default {
   .text-wysiwyg {
     font-size: 20px;
 
+    & > div > *:first-child {
+      margin-top: 0;
+    }
+
+    & > div > *:last-child {
+      margin-bottom: 0;
+    }
+
+    & > div > h2:first-child {
+      margin-top: -24px;
+    }
+
+    & > div > h2:last-child {
+      margin-bottom: -24px;
+    }
+
     h1 {
       font-size: 40px;
       letter-spacing: -1px;
       font-weight: bold;
-      margin: 0;
+      margin: 16px 0;
       line-height: 1.1;
     }
 
@@ -184,10 +193,12 @@ export default {
 
     p {
       line-height: 1.1;
-      margin: 8px 0;
+      margin: 16px 0;
     }
 
     ol {
+      margin: 16px 0;
+
       li {
         margin-left: 30px;
         line-height: 1;
@@ -196,6 +207,8 @@ export default {
     }
 
     ul {
+      margin: 16px 0;
+
       li {
         padding-left: 30px;
         line-height: 1;
@@ -223,18 +236,28 @@ export default {
   }
 
   .aspect-916 {
-    h2 {
-      padding: 16px;
-      margin: 16px -16px;
-      font-size: 20px;
-    }
+    .text-wysiwyg {
+      & > div > h2:first-child {
+        margin-top: -16px;
+      }
 
-    ol, ul {
-      li {
-        padding-left: 28px;
+      & > div > h2:last-child {
+        margin-bottom: -16px;
+      }
 
-        &::before {
-          left: 16px;
+      h2 {
+        padding: 16px;
+        margin: 16px -16px;
+        font-size: 20px;
+      }
+
+      ul {
+        li {
+          padding-left: 28px;
+
+          &::before {
+            left: 16px;
+          }
         }
       }
     }

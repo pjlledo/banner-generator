@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'pane headline-pane': true, 'pane-dimmed': paneDimmed }">
-    <b-field label="Estil">
+    <!-- <b-field label="Estil">
       <b-tabs
         id="style-tabs"
         type="is-toggle"
@@ -13,7 +13,6 @@
       </b-tabs>
     </b-field>
 
-    <!-- Disposition -->
     <transition name="slide">
       <b-field label="Posició del titular" v-if="(!aspect && !properties.card) || (properties.card)">
         <b-tabs
@@ -27,14 +26,14 @@
           <b-tab-item label="Titular dalt"></b-tab-item>
         </b-tabs>
       </b-field>
-    </transition>
+    </transition> -->
 
     <!-- Source -->
     <b-field
       id="source-field"
       label="Font"
-      :type="properties.source ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.source ? '' : displayErrors ? `Has se seleccionar una font` : ''">
+      :type="setFieldType('source')"
+      :message="setFieldMessage('source')">
       <b-select placeholder="Selecciona un diari" @input="updateSource" expanded>
         <option
           v-for="source in presets"
@@ -57,8 +56,8 @@
         <b-field
           class="source-input-name"
           label="Mitjà de comunicació"
-          :type="properties.source === 'other' && properties.customSource ? '' : displayErrors ? 'is-danger' : ''"
-          :message="properties.source === 'other' && properties.customSource ? '' : displayErrors ? `Has se seleccionar una font` : ''">
+          :type="setFieldType('customSource')"
+          :message="setFieldMessage('customSource')">
           <b-input placeholder="La Veu" v-model="properties.customSource"></b-input>
         </b-field>
         <b-field label="Color" class="source-input-color">
@@ -71,8 +70,8 @@
     <b-field
       id="headline-field"
       label="Titular"
-      :type="properties.headline ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.headline ? '' : displayErrors ? `Has d'omplir un titular` : ''">
+      :type="setFieldType('headline')"
+      :message="setFieldMessage('headline')">
       <b-input
         type="textarea"
         placeholder="L'ús de la bici està per damunt de 9000..."
@@ -81,11 +80,17 @@
       </b-input>
     </b-field>
 
+    <!-- Emoji picker -->
+    <transition name="slide">
+      <emoji-picker v-model="properties.emojis" v-if="properties.card === 1" />
+    </transition>
+
     <!-- Picture -->
     <picture-upload
       id="picture-field"
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
@@ -113,6 +118,29 @@
       </b-field>
     </transition>
 
+    <!-- Logo de col·lectiu -->
+    <transition name="slide">
+      <b-switch v-model="properties.ColectiuLocal">
+        Logo de col·lectiu
+      </b-switch>
+    </transition>
+
+    <!-- col·lectiu comarcal -->
+    <div v-if="properties.ColectiuLocal" class="logoColectiu" id="logoColectiu">
+      <b-field label="Escriu i selecciona el teu col·lectiu">
+        <b-autocomplete
+            rounded
+            v-model="properties.name"
+            :data="filteredDataArray"
+            placeholder="Joves PV - Compromís"
+            icon="magnify"
+            clearable
+            @select="option => selected = option">
+            <template slot="empty">Col·lectiu no trobat</template>
+        </b-autocomplete>
+      </b-field>
+    </div>
+
     <!-- Local label
     <transition name="slide">
       <div v-if="!aspect" class="field" id="local-label-field">
@@ -128,15 +156,6 @@
         </transition>
       </div>
     </transition> -->
-
-    <!-- color estrela -->
-    <transition name="slide">
-    <div v-if="aspect" class="colorEstrela" id="colorEstrela">
-      <b-switch v-model="properties.EstrelaBlanca">
-      Estrela Blanca
-      </b-switch>
-    </div>
-    </transition>
   </div>
 </template>
 
@@ -144,12 +163,14 @@
 import PaneMixin from '@/mixins/pane-mixin.js'
 import presets from './presets'
 import Swatches from 'vue-swatches'
+import EmojiPicker from '@/utils/EmojiPicker'
 
 export default {
   name: 'headline-pane',
 
   components: {
-    Swatches
+    Swatches,
+    EmojiPicker
   },
 
   mixins: [PaneMixin],
@@ -160,28 +181,66 @@ export default {
         headline: '',
         source: null,
         customSource: '',
-        customSourceColor: '#1CA085'
+        customSourceColor: '#1CA085',
+        card: 0,
+        emojis: [],
+        data: [
+          'Joves PV - Compromís',
+          'el Maestrat - els Ports',
+          'la Plana Alta - l’Alcalatén',
+          'la Plana Baixa - l’Alt Millars',
+          'el Camp de Morvedre - l’Alt Palància',
+          'el Camp de Túria - els Serrans - el Racó d’Ademús',
+          'l’Horta Nord',
+          'l’Horta Sud',
+          'València',
+          'la Foia de Bunyol - la Plana d’Utiel - la Vall de Cofrents',
+          'la Ribera Alta',
+          'La Ribera Baixa',
+          'la Costera - la Canal de Navarrés',
+          'la Safor - Valldigna',
+          'la Vall d’Albaida',
+          'l’Alcoià - el Comtat - les Foies',
+          'la Marina',
+          'l’Alacantí',
+          'el Vinalopó Mitjà - l’Alt Vinalopó',
+          'el Baix Vinalopó - el Baix Segura',
+          'Xeraco',
+          'Tavernes de la Valldigna',
+          'Gandia',
+          'Algemesí',
+          'Castelló de la Ribera',
+          'Xàtiva'
+        ],
+        name: '',
+        selected: 'Joves PV - Compromís'
       },
       presets: presets
     }
   },
-
-  watch: {
-    properties: {
-      handler: function (properties) {
-        const { headline, picture, source, customSource } = properties
-        const sourceIsValid = source === 'other' ? customSource !== '' : source !== null
-        this.isDownloadable = (
-          headline !== '' &&
-          picture !== null &&
-          sourceIsValid
-        )
-      },
-      deep: true
+  computed: {
+    filteredDataArray () {
+      return this.properties.data.filter((option) => {
+        return option
+          .toString()
+          .toLowerCase()
+          .indexOf(this.properties.name.toLowerCase()) >= 0
+      })
     }
   },
-
   methods: {
+    validate () {
+      const sourceField = this.properties.source === 'other'
+        ? { customSource: "Has d'esciure una font" }
+        : { source: 'Has de seleccionar una font' }
+      this.fieldRequired({
+        headline: "Has d'omplir un titular",
+        ...sourceField
+      })
+      this.pictureRequired()
+      this.allCapsDisallowed('headline')
+    },
+
     updateSource (source) {
       if (source === 'other') {
         this.properties.source = 'other'
@@ -224,12 +283,6 @@ export default {
       &-color {
         margin-right: .5rem;
       }
-    }
-
-    .vue-swatches__trigger {
-      height: 36px !important;
-      width: 36px !important;
-      border-radius: 4px !important;
     }
   }
 </style>

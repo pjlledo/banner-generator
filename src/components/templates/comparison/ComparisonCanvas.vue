@@ -25,20 +25,22 @@
     <div class="comparison">
       <div class="comparison-text comparison-text-before"
         :style="{
-          fontSize: fontSize('textBefore', 45, 30, 160),
+          fontSize: smallestFontSize
         }">
         {{ banner.textBefore | formatString }}
       </div>
       <div class="comparison-text comparison-text-after"
         :style="{
-          fontSize: fontSize('textAfter', 45, 30, 160),
+          fontSize: smallestFontSize
         }">
         {{ banner.textAfter | formatString }}
       </div>
     </div>
     <div class="logo">
       <compromis-logo :mono="banner.card ? true : false" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
+      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
+        {{ banner.localLabel | formatLocal }}
+      </div>
     </div>
     <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
       {{ banner.hashtag }}
@@ -50,7 +52,7 @@
 import CanvasMixin from '@/mixins/canvas-mixin.js'
 
 export default {
-  name: 'headline-canvas',
+  name: 'comparison-canvas',
 
   mixins: [CanvasMixin],
 
@@ -62,6 +64,11 @@ export default {
     objectPositionBefore: function () {
       const objectPosition = (100 - this.banner.pictureBeforePos) + '% 0%'
       return { objectPosition }
+    },
+    smallestFontSize () {
+      const before = this.fontSize(this.banner.textBefore, 45, 30, 160, this.banner.textSize)
+      const after = this.fontSize(this.banner.textAfter, 45, 30, 160, this.banner.textSize)
+      return before < after ? before : after
     }
   }
 }
@@ -69,7 +76,6 @@ export default {
 
 <style lang="scss" scoped>
   @import "../../../sass/variables";
-  @import "../../../sass/fonts";
 
   .comparison {
     display: flex;

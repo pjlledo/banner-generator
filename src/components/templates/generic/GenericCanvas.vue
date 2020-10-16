@@ -13,21 +13,41 @@
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'normal'">></Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'feminista'" :feminista="true"></Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'lgtb'" :lgtb="true">> </Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'green'" :green="true">> </Marc>
+    </div>
+    <div class="marc">
+      <Marc class="marcgeneric" v-if="this.color == 'red'" :red="true">> </Marc>
+    </div>
+
     <div class="blob blob-2"></div>
-    <div class="estrela" data-depth="0.2" v-if="!banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'normal'"></careta>
-    </div>
-    <div class="estrela" data-depth="0.2" v-if="banner.EstrelaBlanca">
-      <careta class="careta" :logo-style="'mono'"></careta>
-    </div>
     <div class="text" v-if="banner.text" :style="{ alignItems: banner.textPos, textAlign: banner.textAlign }">
-      <div class="text-holder" contenteditable>
-        <div class="text-lines" :style="{ fontSize: aspect === '11' ? fontSize('text', 80, 35, 110) : fontSize('text', 70, 25, 110) }">{{ banner.text | formatString }}</div>
-      </div>
+      <text-in-pills
+        v-if="banner.text"
+        :text="$options.filters.formatString(banner.text)"
+        :pill-style="banner.textColor"
+        :text-align="banner.textAlign"
+        :font-size="fontSizePrimary"
+        :width="820" />
     </div>
-    <div class="logo">
-      <compromis-logo :mono="true" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">{{ banner.localLabel }}</div>
+    <emojis-on-canvas v-model="banner.emojis" />
+    <div class="logo" v-if="!banner.name">
+      <compromis-logo :mono="false" />
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '11'" style="bottom: 15px; right: 17px;" >
+      <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '916'" style="bottom: 55px; left: 55px; width: 300px;" >
+      <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
     </div>
     <div class="hashtag" v-if="aspect === '11'">
       {{ banner.hashtag }}
@@ -36,15 +56,31 @@
 </template>
 
 <script>
-import CanvasMixin from '@/mixins/canvas-mixin.js'
-import Careta from '@/utils/Careta'
+import CanvasMixin from '@/mixins/canvas-mixin'
+import EmojisOnCanvas from '@/utils/EmojisOnCanvas'
+import TextInPills from '@/utils/TextInPills'
+import TextColectiu from '@/utils/ColectiuLogo'
+import Marc from '@/utils/generic'
 
 export default {
   name: 'generic-canvas',
 
   mixins: [CanvasMixin],
+
   components: {
-    Careta
+    EmojisOnCanvas,
+    TextInPills,
+    TextColectiu,
+    Marc
+  },
+
+  computed: {
+    fontSizePrimary () {
+      const { aspect, banner, fontSize } = this
+      return aspect === '11'
+        ? fontSize(banner.text, 60, 35, 110, banner.textSize)
+        : fontSize(banner.text, 60, 25, 110, banner.textSize)
+    }
   }
 }
 </script>
@@ -55,65 +91,42 @@ export default {
   .text {
     display: flex;
     position: absolute;
-    top: 155px;
-    bottom: 175px;
-    left: 0;
+    top: 200px;
+    bottom: 200px;
+    left: 140px;
+    right: 140px;
     z-index: 30;
-    width: 100%;
     transition: all .5s ease-in-out;
-
-    &-holder {
-      width: 100%;
-      padding: 0 45px;
-      -webkit-line-break: normal;
-    }
-
-    &-lines {
-      font-size: 45px;
-      line-height: 1.42;
-      color: white;
-      padding: 0 10px;
-      border-radius: 2px;
-      background: linear-gradient(45deg,$gradient-start,$gradient-end);
-      letter-spacing: -1px;
-      display: inline;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      font-family: $family-primary;
-      font-weight: bold;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      -webkit-line-break: normal;
-    }
   }
-  .estrela {
-      position: absolute;
-      width: 20rem;
-      height: 20rem;
-      top: 120%;
-      left: -9rem;
-      //filter: drop-shadow(1px 1px 1px #111111);
+
+  .marc {
+    z-index: 30;
+    top: 105px;
+    left: 108px;
+    width: 70%;
+    position: absolute;
 
   }
+
   .blob {
     &-1 {
-      left: -5%;
-      top: -88%;
-      width: 425px;
+      left: -58%;
+      top: -82%;
       z-index: 20;
+      display: none;
     }
 
     &-2 {
-      left: auto;
-      //right: -45%;
-      right: -4.5%;
-      width: 425px;
-      bottom: -87%;
+      right: -57%;
+      bottom: -81%;
       z-index: 20;
       --gradient-orientation: -45deg;
+      display: none;
+
     }
 
     &-image {
+      display: none;
       top: 0;
       left: 0;
       bottom: 0;
@@ -143,10 +156,17 @@ export default {
     }
   }
 
+.nomcolectiu {
+    color: $white;
+    z-index: 20;
+  }
+
   .hashtag {
-    top: 20px;
-    left: 35px;
-    bottom: auto;
+    color: $black;
+    top: 587px;
+    left: 304px;
+    width: 245px;
+    text-align: center;
   }
 
   .has-local-label {
@@ -157,17 +177,29 @@ export default {
 
   // Story aspect
   .aspect-916 {
-    .blob {
-      &-1 {
-        top: -85%;
-        left: -200%;
-      }
+  .text {
+    display: flex;
+    position: absolute;
+    top: 155px;
+    bottom: 350px;
+    left: 100px;
+    right: 100px;
+    z-index: 30;
+    transition: all .5s ease-in-out;
+  }
 
-      &-2 {
-        right: -200%;
-        bottom: -84%;
-      }
-    }
+.lines {
+        font-size: 35px;
+
+  }
+
+    .marc {
+      z-index: 30;
+      top: 105px;
+      left: 40.5px;
+      width: 80%;
+      position: absolute;
+  }
 
     .quote {
       top: 370px;
@@ -178,22 +210,22 @@ export default {
       }
 
       &-text {
-        font-size: 28px;
+        font-size: 150px;
       }
     }
 
     .logo {
-      display: none;
+      width:250px;
+      left: 80px;
+      bottom: 80px;
     }
 
-    .estrela {
-      position: absolute;
-      width: 15rem;
-      height: 15rem;
-      top: 80%;
-      left: -4rem;
-      z-index: 20;
-      //filter: drop-shadow(1px 1px 1px #111111);
-    }
+    .hashtag {
+    color: $orange;
+    bottom: 105px;
+    width: 245px;
+    left: 83px;
+    text-align: center;
+  }
   }
 </style>

@@ -27,23 +27,37 @@
     <!-- Quote -->
     <b-field
       label="Frase"
-      :type="properties.quote ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.quote ? '' : displayErrors ? `Has d'omplir la frase` : ''">
-      <b-input type="textarea" placeholder="Tenim de 30 a 50 ciclistes passant cada segon pel carril bici." v-model="properties.quote" maxlength="140"></b-input>
+      :type="setFieldType('quote')"
+      :message="setFieldMessage('quote')">
+      <b-input
+        type="textarea"
+        placeholder="Tenim de 30 a 50 ciclistes passant cada segon pel carril bici."
+        v-model="properties.quote"
+        maxlength="140">
+      </b-input>
     </b-field>
+
+    <color-selector v-model="properties.textColor" :colors="properties.card ? ['black', 'white', 'orange'] : ['black', 'orange']" />
 
     <!-- Author -->
     <b-field
       label="Autor i/o mitjà"
-      :type="properties.author ? '' : displayErrors ? 'is-danger' : ''"
-      :message="properties.author ? '' : displayErrors ? `Has d'omplir la frase` : ''">
-      <b-input type="textarea" class="textarea-small" placeholder="Giuseppe Grezzi a l'entrevista de La Sexta" v-model="properties.author" maxlength="70"></b-input>
+      :type="setFieldType('author')"
+      :message="setFieldMessage('author')">
+      <b-input
+        type="textarea"
+        class="textarea-small"
+        placeholder="Giuseppe Grezzi a l'entrevista de La Sexta"
+        v-model="properties.author"
+        maxlength="70">
+      </b-input>
     </b-field>
 
     <!-- Picture -->
     <picture-upload
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
@@ -58,7 +72,7 @@
         @touchend="dimPane(false)" />
     </b-field>
 
-    <!-- Local label
+    <!-- Local label -->
     <transition name="slide">
       <div v-if="!aspect" class="field">
         <b-switch v-model="properties.hasLocalLabel">
@@ -72,34 +86,13 @@
           </div>
         </transition>
       </div>
-    </transition> -->
-
-    <!-- Hashtag -->
-    <transition name="slide">
-      <b-field label="Hashtag" v-if="!aspect">
-        <b-input
-          id="hashtag-field"
-          placeholder="#"
-          @input="updateHashtag"
-          :value="properties.hashtag"
-          :maxlength="properties.hasLocalLabel ? 18 : 26">
-        </b-input>
-      </b-field>
-    </transition>
-
-    <!-- color estrela -->
-    <transition name="slide">
-      <div v-if="aspect" class="colorEstrela" id="colorEstrela">
-        <b-switch v-model="properties.EstrelaBlanca">
-        Estrela Blanca
-        </b-switch>
-      </div>
     </transition>
   </div>
 </template>
 
 <script>
 import PaneMixin from '@/mixins/pane-mixin.js'
+import ColorSelector from '@/utils/ColorSelector'
 
 export default {
   name: 'quote-pane',
@@ -110,23 +103,38 @@ export default {
     return {
       properties: {
         quote: '',
-        author: ''
+        author: '',
+        textColor: 'white'
       }
     }
   },
 
+  // Prevent white text on no-cards
+  // when user transitions from white text on cards to no-cards
   watch: {
     properties: {
-      handler: function (properties) {
-        // Check if canvas can be downloaded
-        this.isDownloadable = (
-          properties.quote !== '' &&
-          properties.author !== '' &&
-          properties.picture !== null
-        )
+      handler: function (props) {
+        if (props.card === 0 && props.textColor === 'white') {
+          this.properties.textColor = 'orange'
+        }
       },
       deep: true
     }
+  },
+
+  methods: {
+    validate () {
+      this.fieldRequired({
+        quote: "Has d'escirure una cita",
+        author: "Has d'escriure un autor"
+      })
+      this.pictureRequired()
+      this.allCapsDisallowed('quote', 'author')
+    }
+  },
+
+  components: {
+    ColorSelector
   }
 }
 </script>
@@ -136,7 +144,8 @@ export default {
     margin-top: .75rem;
   }
 
-  .hashtag {
-      margin-top: .25rem;
-    }
+  .color-selector {
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+  }
 </style>
