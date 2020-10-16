@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'pane headline-pane': true, 'pane-dimmed': paneDimmed }">
-    <b-field label="Estil">
+    <!-- <b-field label="Estil"> 
       <b-tabs
         id="style-tabs"
         type="is-toggle"
@@ -13,7 +13,6 @@
       </b-tabs>
     </b-field>
 
-    <!-- Disposition -->
     <transition name="slide">
       <b-field label="Posició del titular" v-if="(!aspect && !properties.card) || (properties.card)">
         <b-tabs
@@ -27,7 +26,7 @@
           <b-tab-item label="Titular dalt"></b-tab-item>
         </b-tabs>
       </b-field>
-    </transition>
+    </transition> -->
 
     <!-- Source -->
     <b-field
@@ -119,7 +118,30 @@
       </b-field>
     </transition>
 
-    <!-- Local label -->
+    <!-- Logo de col·lectiu -->
+    <transition name="slide">
+      <b-switch v-model="properties.ColectiuLocal">
+        Logo de col·lectiu
+      </b-switch>
+    </transition>
+
+    <!-- col·lectiu comarcal -->
+    <div v-if="properties.ColectiuLocal" class="logoColectiu" id="logoColectiu">
+      <b-field label="Escriu i selecciona el teu col·lectiu">
+        <b-autocomplete
+            rounded
+            v-model="properties.name"
+            :data="filteredDataArray"
+            placeholder="Joves PV - Compromís"
+            icon="magnify"
+            clearable
+            @select="option => selected = option">
+            <template slot="empty">Col·lectiu no trobat</template>
+        </b-autocomplete>
+      </b-field>
+    </div>
+
+    <!-- Local label
     <transition name="slide">
       <div v-if="!aspect" class="field" id="local-label-field">
         <b-switch v-model="properties.hasLocalLabel" @input="properties.hashtag = properties.hashtag.substring(0, 18)">
@@ -133,7 +155,7 @@
           </div>
         </transition>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -160,12 +182,52 @@ export default {
         source: null,
         customSource: '',
         customSourceColor: '#1CA085',
-        emojis: []
+        card: 0,
+        emojis: [],
+        data: [
+          'Joves PV - Compromís',
+          'el Maestrat - els Ports',
+          'la Plana Alta - l’Alcalatén',
+          'la Plana Baixa - l’Alt Millars',
+          'el Camp de Morvedre - l’Alt Palància',
+          'el Camp de Túria - els Serrans - el Racó d’Ademús',
+          'l’Horta Nord',
+          'l’Horta Sud',
+          'València',
+          'la Foia de Bunyol - la Plana d’Utiel - la Vall de Cofrents',
+          'la Ribera Alta',
+          'La Ribera Baixa',
+          'la Costera - la Canal de Navarrés',
+          'la Safor - Valldigna',
+          'la Vall d’Albaida',
+          'l’Alcoià - el Comtat - les Foies',
+          'la Marina',
+          'l’Alacantí',
+          'el Vinalopó Mitjà - l’Alt Vinalopó',
+          'el Baix Vinalopó - el Baix Segura',
+          'Xeraco',
+          'Tavernes de la Valldigna',
+          'Gandia',
+          'Algemesí',
+          'Castelló de la Ribera',
+          'Xàtiva'
+        ],
+        name: '',
+        selected: 'Joves PV - Compromís'
       },
       presets: presets
     }
   },
-
+  computed: {
+    filteredDataArray () {
+      return this.properties.data.filter((option) => {
+        return option
+          .toString()
+          .toLowerCase()
+          .indexOf(this.properties.name.toLowerCase()) >= 0
+      })
+    }
+  },
   methods: {
     validate () {
       const sourceField = this.properties.source === 'other'

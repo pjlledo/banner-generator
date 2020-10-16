@@ -15,14 +15,7 @@
       <img :src="banner.picturePreview" alt="Imatge" v-if="banner.picturePreview" :style="objectPosition" />
     </div>
     <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
     <div class="headline">
-      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="banner.card ? { backgroundColor: banner.customSourceColor } : null">
-        <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
-      </div>
-      <div class="headline-source" v-else-if="banner.source" :style="banner.card ? { backgroundColor: banner.source.color } : null">
-        <img :src="banner.source.hasOwnProperty('logoCard') && banner.card ? banner.source.logoCard : banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
-      </div>
       <div class="headline-text"
         :style="{
           fontFamily: banner.source ? banner.source.fontFamily : false,
@@ -31,15 +24,32 @@
         }">
         {{ banner.headline | formatString }}
       </div>
-    </div>
-    <emojis-on-canvas v-model="banner.emojis" />
-    <div class="logo">
-      <compromis-logo :mono="banner.card ? true : false" />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
-        {{ banner.localLabel | formatLocal }}
+      <div class="headline-source headline-source--custom" v-if="banner.source === 'other'" :style="banner.card ? { backgroundColor: banner.customSourceColor } : null">
+        <span :style="banner.card ? { color: 'white' } : { color: banner.customSourceColor }">{{ banner.customSource }}</span>
+      </div>
+      <div class="headline-source" v-else-if="banner.source" :style="banner.card ? { backgroundColor: banner.source.color } : null">
+        <img :src="banner.source.hasOwnProperty('logoCard') && banner.card ? banner.source.logoCard : banner.source.logo" :alt="banner.source.name" :style="{ height: banner.source.logoHeight + 'px' }" />
       </div>
     </div>
-    <div class="hashtag" v-if="banner.hashtag && aspect === '11'">
+    <emojis-on-canvas v-model="banner.emojis" />
+
+    <div class="marc">
+      <Forquilla class="marcgeneric"></Forquilla>
+    </div>
+
+    <div class="logo">
+      <compromis-logo :mono="true" v-if="!banner.name"/>
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '11'" style="bottom: 15px; right: 17px;" >
+      <TextColectiu class="nomcolectiu" :mono="true" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '916'" style="bottom: 55px; left: 55px; width: 300px;" >
+      <TextColectiu class="nomcolectiu" :mono="true" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+    <div class="hashtag" v-if="!banner.name">
+      {{ banner.hashtag }}
+    </div>
+    <div class="hashtag2" v-if="aspect && banner.name">
       {{ banner.hashtag }}
     </div>
   </div>
@@ -48,6 +58,8 @@
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
 import EmojisOnCanvas from '@/utils/EmojisOnCanvas'
+import TextColectiu from '@/utils/ColectiuLogo'
+import Forquilla from '@/utils/forquilla'
 
 export default {
   name: 'headline-canvas',
@@ -55,7 +67,9 @@ export default {
   mixins: [CanvasMixin],
 
   components: {
-    EmojisOnCanvas
+    EmojisOnCanvas,
+    Forquilla,
+    TextColectiu
   }
 }
 </script>
@@ -67,19 +81,18 @@ export default {
   .headline {
     display: flex;
     position: absolute;
-    top: 425px;
-    left: 0;
+    left: 70px;
     z-index: 30;
-    height: 200px;
-    padding: 0 40px;
+    
+    width: 500px;
+    padding: 10px 40px;
     font-family: 'Tiempos Headline', serif;
     font-weight: 700;
     transition: all .5s ease-in-out;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 
     &-source {
-      margin-bottom: 4px;
 
       &--custom {
         margin-bottom: 4px;
@@ -88,40 +101,73 @@ export default {
     }
 
     &-text {
-      font-size: 27px;
+      font-size: 23px;
       line-height: 1.1;
       word-wrap: break-word;
+      height: 180px;
+      text-align: center;
     }
   }
 
+  .marc {
+    z-index: 30;
+    position: absolute;
+    width: 83%;
+    top: -371px;
+    left: 72px;
+  }
   .blob {
+
     &-1 {
-      top: -42%;
-      right: -55%;
-      z-index: 10;
-    }
+      background: $white;
+      transform: rotate(0);
+      width: 85%;
+      top: -495px;
+      left: 55px;
 
-    &-2 {
-      left: -42%;
-      bottom: -91%;
-      z-index: 10;
     }
-
     &-image {
-      top: -25px;
-      left: -30px;
-      width: 620px;
-      height: 410px;
-      z-index: 20;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-
-      img {
-        width: 98%;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-        margin: 27px;
-      }
+        transform: rotate(0);
+        border-radius: 0;
+        z-index: 0;
+
+        img {
+          transform: rotate(0);
+          width: 100%;
+          margin: 0;
+        }
     }
+  }
+
+  .hashtag {
+    position: absolute;
+    z-index: 30;
+    bottom: 25px;
+    left: 35px;
+    color: $white;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+  }
+  .hashtag2 {
+    position: absolute;
+    z-index: 30;
+    bottom: 25px;
+    left: 35px;
+    color: $white;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    bottom: 40px;
+  }
+
+  .logo {
+    color: $white;
+    z-index: 50;
   }
 
   .has-local-label {
@@ -139,17 +185,38 @@ export default {
 
   // Story aspect
   .aspect-916 {
-    .blob {
-      &-1 {
-        top: -43%;
-        right: -120%;
+    .headline {
+      display: flex;
+      position: absolute;
+      left: 13px;
+      z-index: 30;
+      width: 300px;
+      padding: 10px 40px;
+      font-family: 'Tiempos Headline', serif;
+      font-weight: 700;
+      transition: all .5s ease-in-out;
+      flex-direction: column;
+      align-items: center;
+
+      &-source {
+        width: 65px;
+
+        &--custom {
+          margin-bottom: 4px;
+          font-size: 22px;
+        }
       }
 
-      &-2 {
-        left: -110%;
-        bottom: -94%;
-      }
+      &-text {
+        font-size: 23px;
+        line-height: 1.1;
+        word-wrap: break-word;
+        height: 155px;
+        text-align: center;
+        overflow: hidden;
 
+      }
+    }
       &-image {
         top: -20px;
         left: -12px;
@@ -162,20 +229,34 @@ export default {
           margin: 15px 10px;
         }
       }
+
+      .marc {
+        width: 85%;
+        top: -155px;
+        left: 38px;
+      }
+
+      .blob {
+
+        &-1 {
+          background: $white;
+          transform: rotate(0);
+          width: 90%;
+          top: -528px;
+          left: 20px;
+          border-radius: 3rem;
+        }
+      }
     }
 
+  
     .headline {
-      top: 430px;
+      //top: 430px;
 
       &-text {
         font-size: 20px;
       }
     }
-
-    .logo {
-      display: none;
-    }
-  }
 
   // Headline on top
   .disposition-1.no-cards {
@@ -187,13 +268,6 @@ export default {
     .blob-image {
       img {
         margin: -29px -14px;
-      }
-    }
-
-    &.has-local-label {
-      .blob-1 {
-        left: -60%;
-        top: -88%;
       }
     }
 
@@ -301,12 +375,6 @@ export default {
       top: 20px;
       left: 35px;
       bottom: auto;
-    }
-
-    &.has-local-label {
-      .blob-2 {
-        right: -44%;
-      }
     }
 
     /* Cards with headline on top */
