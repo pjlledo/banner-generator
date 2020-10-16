@@ -6,8 +6,7 @@
       'aspect-' + aspect,
       banner.localLabel ? 'has-local-label' : '',
       aspect === '11' ? 'disposition-' + banner.disposition : '',
-      isCrowded ? 'is-crowded' : '',
-      'blobs-' + color
+      isCrowded ? 'is-crowded' : ''
     ]"
     v-if="banner">
     <div class="blob blob-image">
@@ -16,12 +15,19 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="event">
-      <div class="event-overtitle">
-        <span>{{ banner.overtitle | formatString }}</span>
-      </div>
       <div v-if="banner.title" class="event-title" :style="{fontSize: aspect === 'event' ? fontSize(banner.title, 75, 40, 60) : fontSize(banner.title, 45, 30, 60)}">
         <span>{{ banner.title | formatString }}</span>
       </div>
+      <div class="event-overtitle">
+        <span>{{ banner.overtitle | formatString }}</span>
+      </div>
+      <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 ">
+          <ul>
+            <li v-for="(speaker, i) in banner.speakers" :key="i">
+              {{ speaker.name }}
+            </li>
+          </ul>
+        </div>
       <div class="event-details-wrapper" v-if="aspect !== 'event'">
         <div class="event-details" contenteditable>
           <b-icon icon="calendar-day"/> {{ banner.date | formatDate }}
@@ -29,35 +35,40 @@
         <div class="event-details" contenteditable>
           <b-icon icon="clock"/> {{ banner.time | formatTime }}
         </div>
-        <div class="event-details">
+        <!-- <div class="event-details">
           <b-icon icon="map-marker-alt"/> {{ banner.place }}
-        </div>
-        <div class="event-details event-details--speakers" v-if="banner.speakers.length > 0 && aspect === '11'">
-          <b-icon icon="keynote"/>
-          <ul>
-            <li v-for="(speaker, i) in banner.speakers" :key="i">
-              {{ speaker.name }}
-            </li>
-          </ul>
-        </div>
+        </div> -->
       </div>
     </div>
-    <div class="logo" v-if="aspect !== 'event'">
-      <compromis-logo />
-      <div :class="{ 'logo-local-label': true, 'logo-local-label--long': banner.localLabel.length > 18 }" v-if="banner.localLabel && banner.hasLocalLabel">
-        {{ banner.localLabel | formatLocal }}
-      </div>
+    <div class="logo" v-if="!banner.name">
+      <compromis-logo :mono="false" />
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '11'" style="bottom: 100px; left: 1px;" >
+      <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 76px;"></TextColectiu>
+    </div>
+    <div class="logo" v-if="banner.name && aspect == '916'" style="bottom: 20px; left: 55px; width: 300px;" >
+      <TextColectiu class="nomcolectiu" :mono="false" :logoStyle="banner.name" style="height: 80px;"></TextColectiu>
+    </div>
+
+    <div class="marc">
+    </div>
+
+  <div :id="'marc2' + color" class ="marc2">
     </div>
   </div>
 </template>
 
 <script>
 import CanvasMixin from '@/mixins/canvas-mixin.js'
+import TextColectiu from '@/utils/ColectiuLogo'
 
 export default {
   name: 'quote-canvas',
 
   mixins: [CanvasMixin],
+  components: {
+    TextColectiu
+  },
 
   computed: {
     isCrowded: function () {
@@ -75,8 +86,8 @@ export default {
     display: flex;
     position: absolute;
     top: 90px;
-    left: 0;
-    height: 415px;
+    left: 16px;
+    height: 380px;
     z-index: 40;
     padding: 0 35px;
     width: 260px;
@@ -95,14 +106,16 @@ export default {
       word-wrap: break-word;
       font-family: $family-primary;
       font-weight: bold;
+      background: $white;
     }
 
     &-overtitle {
-      font-size: 18px;
+      font-size: 22px;
       letter-spacing: -0.5px;
       color: $gray-700;
       line-height: 1.1;
       padding-bottom: 4px;
+      background: $white;
     }
 
     &-details {
@@ -115,6 +128,7 @@ export default {
 
       &-wrapper {
         margin-top: 16px;
+        padding-left: 40px;
       }
 
       .icon {
@@ -129,14 +143,21 @@ export default {
 
       &--speakers {
         align-items: flex-start;
+        background: $white;
+        z-index: 300;
       }
     }
   }
 
   .blob {
     &-1 {
-      top: -87%;
-      left: -74%;
+      background: $white;
+      top: 1;
+      width: 70%;
+      height: 90%;
+      transform: none;
+      left: -15%;
+      border-radius: 3rem;
     }
 
     &-2 {
@@ -146,22 +167,65 @@ export default {
     }
 
     &-image {
-      top: -5%;
-      right: -4%;
-      height: 618px;
-      z-index: 20;
-      width: 414px;
-      border-radius: 0;
-      border-bottom-left-radius: $border-radius;
+      img {
+        width: 100%;
+        height: 100%;
+        transform: none;
+      }
 
       img {
         transform: rotate(-$rotation);
         width: 100%;
-        height: 98%;
-        margin: 28px -28px;
+        height: 100%;
       }
     }
   }
+
+  .marc {
+    display: none;
+    top: 50px;
+    left: 50px;
+    width: 60%;
+    position: absolute;
+    transform: rotate(90deg) scaleX(-1);
+  }
+
+  .marc2 {
+      width: 430px;
+      height: 430px;
+      top: 50px;
+      left: 52px;
+      border-style: solid;
+      z-index: 30;
+      position: absolute;
+      border-radius: 3rem;
+      z-index:1;
+    }
+
+    #marc2normal {
+      border-color: #e7600c;
+      filter: drop-shadow(2px 2px 1px #e7600c);
+      }
+
+    #marc2lgtb {
+      border-image: linear-gradient(135deg, rgba(109,35,127,1) 0%, rgba(48,87,161,1) 21%, rgba(9,128,55,1) 41%, rgba(248,231,32,1) 62%, rgba(239,134,26,1) 82%, rgba(224,14,24,1) 100%);
+      filter: drop-shadow(2px 2px 1px #e3e3e3);
+    }
+
+    #marc2feminista {
+      border-color: #6D237F;
+      filter: drop-shadow(2px 2px 1px #6D237F);
+    }
+
+    #marc2red {
+      border-color: #e00e18;
+      filter: drop-shadow(2px 2px 1px #e00e18);
+    }
+
+    #marc2green {
+      border-color: #098037;
+      filter: drop-shadow(2px 2px 1px #098037);
+    }
 
   .is-crowded {
     .event {
@@ -173,11 +237,58 @@ export default {
     }
   }
 
+  .blob {
+    &-1 {
+      background: $white;
+      top: 1;
+      width: 70%;
+      height: 90%;
+      transform: none;
+      left: -15%;
+      border-radius: 3rem;
+    }
+
+    &-2 {
+      display: none;
+    }
+
+    &-image {
+      border-radius: 0;
+      transform: none;
+
+      img {
+        width: 100%;
+        height: 100%;
+        transform: none;
+      }
+    }
+  }
+
+  .logo {
+    bottom: 120px;
+    left: 30px;
+  }
+
   // Story aspect
   .aspect-916 {
+    .marc2 {
+      width: 330px;
+      top: 400px;
+      left: 35px;
+      border-style: solid;
+      z-index: 30;
+      position: absolute;
+      border-radius: 3rem;
+      border-color: #e7600c;
+      filter: drop-shadow(2px 2px 1px #e7600c);
+    }
+
     .blob {
       &-1 {
-        display: none;
+        width: 365px;
+        height: 375px;
+        bottom: -40px;
+        left: 20px;
       }
 
       &-2 {
@@ -186,28 +297,28 @@ export default {
       }
 
       &-image {
-        height: 404px;
-        width: 431px;
-        top: -23px;
-        left: -3px;
-        border-bottom-right-radius: 0;
+        height: 100%;
+        width: 100%;
 
         img {
-          margin: 21px -5px;
-          width: 98%;
+          width: 100%;
         }
       }
     }
 
     .event {
-      top: 252px;
+      top: 395px;
+      left: 40px;
       width: 100%;
-      height: 400px;
+      height: 240px;
+      width: 330px;
       box-sizing: border-box;
+      justify-content: flex-start;
+      z-index: 50;
 
       &-overtitle {
+        text-align: center;
         span{
-          background: $white;
           padding: 0 10px;
           border-radius: 2px;
           letter-spacing: -1px;
@@ -218,127 +329,40 @@ export default {
 
       &-title {
         font-size: 34px;
-        line-height: 1.42;
+        line-height: 1;
+        text-align: center;
 
         span {
-          color: $white;
+          color: $gray-900;
           padding: 0 10px;
           border-radius: 2px;
-          background: $gradient;
+          background: $white;
           letter-spacing: -1px;
           box-decoration-break: clone;
           -webkit-box-decoration-break: clone;
         }
       }
+      &-details {
+        align-content: center;
+        display: grid;
+        padding-top: 5px;
+
+        &--speakers {
+          text-align: center;
+          line-height: 1.1;
+        }
+      }
+    }
+
+    .marc {
+      display: none;
     }
 
     .logo {
-      display: none;
+      width:250px;
+      left: 80px;
+      bottom: 40px;
     }
   }
 
-  // Event aspect
-  .aspect-event {
-    .event {
-      display: flex;
-      align-items: center;
-      top: 100px;
-      bottom: 100px;
-      width: 100%;
-      height: auto;
-      padding: 0 60px;
-      box-sizing: border-box;
-
-      &-title {
-        span {
-          background: $white;
-          color: $gray-900;
-          padding: 6px 15px;
-          border-radius: 4px;
-          line-height: 1.42;
-          -webkit-box-decoration-break: clone;
-          -webkit-line-break: normal;
-          letter-spacing: -0.04em;
-        }
-      }
-
-      &-overtitle {
-        position: absolute;
-        color: $white;
-        font-size: 22px;
-        letter-spacing: -1px;
-        font-weight: bold;
-        top: -80px;
-        left: 30px;
-        z-index: 20;
-      }
-    }
-
-    .blob {
-      &-1 {
-        top: -149%;
-        left: -67%;
-        z-index: 20;
-        border-bottom-left-radius: 0;
-      }
-
-      &-2 {
-        left: auto;
-        bottom: -146%;
-        right: -66%;
-        z-index: 20;
-        border-top-right-radius: 0;
-        --gradient-orientation: -45deg;
-      }
-
-      &-image {
-        transform: rotate(0);
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border-radius: 0;
-
-        img {
-          transform: rotate(0) scale(1);
-          margin: 0;
-          height: 100%;
-        }
-      }
-    }
-  }
-
-  // Title on top
-  .disposition-1 {
-    .event {
-      left: auto;
-      right: 0;
-      text-align: right;
-
-      &-details {
-        text-align: right;
-        justify-content: flex-end;
-        .icon {
-          order: 1;
-          margin-left: 4px;
-        }
-      }
-    }
-
-    .blob-image {
-      top: -3%;
-      right: 41%;
-      height: 550px;
-      z-index: 20;
-      width: 460px;
-      border-radius: 0;
-      border-bottom-right-radius: 80px;
-    }
-
-    .blob-2 {
-      display: none
-    }
-  }
 </style>

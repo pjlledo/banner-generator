@@ -123,7 +123,7 @@ export default [
   {
     id: 'Event',
     name: 'Acte amb foto',
-    aspects: ['11', '916', 'event'],
+    aspects: ['11', '916'],
     supports: ['multicolor-blobs'],
     icon: 'portrait',
     components: {
