@@ -5,6 +5,7 @@
     <picture-upload
       :picture="properties.picture"
       :display-errors="displayErrors"
+      :errors="errors"
       @upload="updateImage"
       @delete="properties.picture = null; properties.picturePreview = null" />
 
