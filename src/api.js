@@ -8,7 +8,7 @@ function encode (data) {
 
 export default {
   saveToServer: (data) => {
-    fetch('https://compromis.net/espai/targes/save', {
+    fetch('https://compromis.net/espai/targes/save?ref=jovespv', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

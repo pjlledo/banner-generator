@@ -135,7 +135,7 @@ export default [
   {
     id: 'Speakers',
     name: 'Acte amb ponents',
-    aspects: ['11', '916', 'event'],
+    aspects: ['11', '916'],
     supports: ['multicolor-blobs'],
     icon: 'keynote',
     components: {

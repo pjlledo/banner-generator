@@ -122,10 +122,10 @@ export default {
         background: $gradient-lgtb;
       }
       &.red {
-        background: #e00e18;
+        background: $gradient-red;
       }
       &.green {
-        background: #098037;
+        background: $gradient-green;
       }
     }
   }

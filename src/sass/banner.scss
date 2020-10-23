@@ -11,6 +11,16 @@
         background: $gradient-feminista;
       }
     }
+    &-green {
+      .blob-1, .blob-2 {
+        background: $gradient-green;
+      }
+    }
+    &-red {
+      .blob-1, .blob-2 {
+        background: $gradient-red;
+      }
+    }
     &-lgtb {
       .blob-1, .blob-2 {
         background: $gradient-lgtb !important;
