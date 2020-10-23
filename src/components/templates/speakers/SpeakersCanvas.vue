@@ -464,9 +464,6 @@ export default {
         height: 150px;
       }
 
-      &-item1{
-        align-items: baseline !important;
-      }
         &-item {
           height: 150px;
           width: 110px;
@@ -474,6 +471,9 @@ export default {
           display:flex;
           align-items: end;
           justify-content: center;
+          &1{
+            align-items: baseline !important;
+          }
         }
 
         &-image {
