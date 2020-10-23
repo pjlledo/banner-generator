@@ -465,7 +465,7 @@ export default {
       }
 
       &-item1{
-        align-items: baseline;
+        align-items: baseline !important;
       }
         &-item {
           height: 150px;
@@ -473,6 +473,7 @@ export default {
           --image-size: 90px;
           display:flex;
           align-items: end;
+          justify-content: center;
         }
 
         &-image {
