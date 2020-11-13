@@ -5,12 +5,12 @@
       label="Titol"
       :type="setFieldType('title')"
       :message="setFieldMessage('title')">
-      <b-input placeholder="Acte Central a València" v-model="properties.title" maxlength="60"></b-input>
+      <b-input placeholder="Acte Central" v-model="properties.title" maxlength="60"></b-input>
     </b-field>
 
     <!-- Overtitle -->
-    <b-field label="Tipus d'acte">
-      <b-input placeholder="Debat" maxlength="20" v-model="properties.overtitle"></b-input>
+    <b-field label="Lloc">
+      <b-input placeholder="València" maxlength="20" v-model="properties.overtitle"></b-input>
     </b-field>
 
     <!-- Date -->
@@ -166,10 +166,10 @@ export default {
     validate () {
       this.fieldRequired({
         title: "Has d'escriure un títol",
-        place: "Has d'escriure un lloc"
+        overtitle: "Has d'escriure un lloc"
       })
       this.pictureRequired()
-      this.allCapsDisallowed('title', 'place')
+      this.allCapsDisallowed('title', 'overtitle')
     }
   }
 }
