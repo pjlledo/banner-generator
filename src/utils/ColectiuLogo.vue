@@ -7,11 +7,11 @@
     enable-background="new 0 0 2500 500"
   >
 <g :class="{ 'mono': mono, 'inverted' : inverted }">
-  <linearGradient id="compromisGradient" gradientUnits="userSpaceOnUse" x1="1223.9541" y1="505.8086" x2="1224.9536" y2="505.8086">
-      <stop offset="0" style="stop-color:#F29027" />
-      <stop offset="0.2356" style="stop-color:#EC8027" />
-      <stop offset="0.6924" style="stop-color:#DD5727" />
-      <stop offset="1" style="stop-color:#D13827" />
+  <linearGradient id="compromisGradient" gradientUnits="userSpaceOnUse" x1="-9.765625e-04" y1="500.002" x2="0.999" y2="500.002" gradientTransform="matrix(-102.626 233.488 -233.488 -102.626 118113.25 51439.2539)">
+		<stop  offset="0" style="stop-color:#F19026"/>
+		<stop  offset="0.2054" style="stop-color:#EC8325"/>
+		<stop  offset="0.6036" style="stop-color:#DC6427"/>
+		<stop  offset="1" style="stop-color:#D03C27"/>
 </linearGradient>
 <path class="careta" d="M1415.509,324.998V168.162c0-11.691-9.452-21.144-21.144-21.144H1237.53
     c-11.691,0-21.146,9.453-21.146,21.144v156.836c0,11.691,9.453,21.143,21.146,21.143h156.711
